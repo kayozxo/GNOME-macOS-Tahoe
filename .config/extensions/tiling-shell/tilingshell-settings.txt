@@ -1,0 +1,16 @@
+[/]
+enable-autotiling=false
+enable-blur-selected-tilepreview=false
+enable-blur-snap-assistant=false
+enable-smart-window-border-radius=false
+enable-snap-assistant-windows-suggestions=false
+enable-tiling-system=true
+enable-tiling-system-windows-suggestions=false
+enable-window-border=false
+inner-gaps=uint32 8
+outer-gaps=uint32 20
+quarter-tiling-threshold=uint32 40
+selected-layouts=[['Layout 1'], ['Layout 4'], ['Layout 1'], ['Layout 1']]
+show-indicator=true
+window-border-color='rgba(80,80,80,0.573333)'
+window-border-width=uint32 2

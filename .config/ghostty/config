@@ -1,0 +1,10 @@
+font-family = "JetBrainsMonoNL Nerd Font"
+theme = "Aura"
+font-size = 14
+cursor-style = "block"
+background-opacity = 0.7
+background-blur-radius = 40
+window-decoration = false
+adjust-cursor-thickness = 20%
+window-padding-balance = true
+macos-titlebar-style = "tabs"
