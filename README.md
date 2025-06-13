@@ -1,7 +1,5 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=42&duration=2000&pause=5000&color=F7F7F7&center=true&vCenter=true&width=600&height=80&lines=%F0%9F%97%94+GNOME+%2B+macOS+Tahoe)](https://git.io/typing-svg)
 
-<hr>
-
 <h3 align='center'>A clean and minimal LIQUID GLASS-themed GNOME setup.</h3>
 
 ![Preview](screenshots/SS3.png)
