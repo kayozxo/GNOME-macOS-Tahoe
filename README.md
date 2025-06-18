@@ -9,7 +9,7 @@
 
 If you like my project, you can buy me a coffee, many thanks ❤️ !
 
-<a href="https://www.buymeacoffee.com/kayozxo"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=kayozxo&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
+<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png"/></a>
 
 # Installation is easy!
 
