@@ -1,21 +1,21 @@
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=42&duration=2000&pause=5000&color=F7F7F7&center=true&vCenter=true&width=600&height=80&lines=%F0%9F%97%94+GNOME+%2B+macOS+Tahoe)](https://git.io/typing-svg)
+<h1 align="center"> Tahoe GTK Theme </h1>
+<p align="center"> <img src="screenshots/SS3.png"/> </p>
 
-<h3 align='center'>A clean and minimal LIQUID GLASS-themed GNOME setup.</h3>
+<br>
+<p align="center"> <b> A macOS Tahoe like theme for Linux GTK Desktops </b> </p>
+<br>
 
-![Preview](screenshots/SS3.png)
+## Donate
 
----
+If you like my project, you can buy me a coffee, many thanks ❤️ !
 
-### Programs Used:
+<span class="buymeacoffee"><a href="https://www.paypal.me/vinceliuice" title="Donate to this project using Paypal"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal donate button" /></a></span>
 
-- [Ulauncher](https://ulauncher.io/)
-- [Ghostty](https://ghostty.org/)
-- [Zen Browser](https://zen-browser.app/)
-- [Neovim](https://neovim.io/)
+# Installation is easy!
 
----
+[Start Here!](/.config/IMPORTANT.md)
 
-### Extensions Used:
+<details> <summary> Recommended GNOME Shell extensions <b>(click to open)</b> </summary>
 
 - [Open Bar](https://extensions.gnome.org/extension/6580/open-bar/)
 - [Blur My Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
@@ -26,3 +26,11 @@
 - [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
 - [Vitals](https://extensions.gnome.org/extension/1460/vitals/)
 - [Wallpapers](./.config/walls)
+
+</details>
+
+## Quick install
+
+### Installing from source
+
+- Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe`
