@@ -1,5 +1,6 @@
 <h1 align="center"> Tahoe GTK Theme </h1>
-<p align="center"> <img src="screenshots/SS3.png"/> </p>
+<p align="center"> <img src="screenshots/v0.2.0-1.png"/> </p>
+<p align="center"> <img src="screenshots/v0.2.0-2.png"/> </p>
 
 <br>
 <p align="center"> <b> A macOS Tahoe like theme for Linux GTK Desktops </b> </p>
@@ -12,6 +13,8 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 <a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="30"/></a>
 
 # Installation is easy!
+
+<details>
 
 - [Open Bar](https://extensions.gnome.org/extension/6580/open-bar/)
 - [Blur My Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
