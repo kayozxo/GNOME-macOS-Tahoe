@@ -9,13 +9,9 @@
 
 If you like my project, you can buy me a coffee, many thanks ❤️ !
 
-<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png"/></a>
+<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="30"/></a>
 
 # Installation is easy!
-
-[Start Here!](/.config/IMPORTANT.md)
-
-<details> <summary> Recommended GNOME Shell extensions <b>(click to open)</b> </summary>
 
 - [Open Bar](https://extensions.gnome.org/extension/6580/open-bar/)
 - [Blur My Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
@@ -33,4 +29,15 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 ### Installing from source
 
-- Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe`
+1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe`
+2. Run `cd GNOME-macOS-Tahoe`
+3. Run `./install.sh`
+4. Go to `Downloads` folder and look for a folder called `Evolve`
+5. Open the app, select `macOS-Tahoe` for **GTK 3.0 Theme** and **GTK 4.0 Theme**
+6. Then continue from [here](.config/IMPORTANT.md)
+
+## ✅ Done!
+
+Reboot or log out and back in — your GNOME should now resemble **macOS Tahoe**!
+
+If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1l9dqpk/gnome_macos_tahoe_but_better/).

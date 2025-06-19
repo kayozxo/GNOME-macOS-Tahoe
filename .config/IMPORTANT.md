@@ -24,19 +24,20 @@ sudo apt install gnome-tweaks
 
 ## Step 2: Install WhiteSur GTK Theme
 
-We are using the **WhiteSur GTK Theme** as the base macOS-like appearance.
+We are using the **WhiteSur GTK Theme** for macOS-like [lock screen](https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--install-and-customize-gdm-theme--).
 
 1. **Download the theme**
    Head over to the official theme page:
    → [https://github.com/vinceliuice/WhiteSur-gtk-theme](https://github.com/vinceliuice/WhiteSur-gtk-theme)
 
-2. **Install the theme**
+2. **Install the GDM theme**
 
    ```bash
    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
    cd WhiteSur-gtk-theme
-   ./install.sh
    ```
+
+   - And follow the guide [here](https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--install-and-customize-gdm-theme--)
 
 3. **(Optional) Install matching icon and cursor theme:**
 
@@ -60,8 +61,6 @@ We are using the **WhiteSur GTK Theme** as the base macOS-like appearance.
    - Go to **Appearance**
    - Set:
 
-     - **Shell**: `WhiteSur`
-     - **Legacy Applications**: `WhiteSur`
      - **Icons**: `WhiteSur`
      - **Cursor**: `WhiteSur`
 
@@ -69,7 +68,7 @@ We are using the **WhiteSur GTK Theme** as the base macOS-like appearance.
 
 ## Step 3: Install Required GNOME Extensions
 
-The macOS-like layout depends on several GNOME extensions.
+The macOS-Tahoe like theme depends on several GNOME extensions.
 
 ### Install Extension Manager (GUI tool)
 
@@ -81,8 +80,9 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 
 ### Enable the following extensions:
 
-→ You can find the list of all required extensions in the `README.md` file of this repo. Please enable **each one** using the Extension Manager or GNOME Extensions website: [https://extensions.gnome.org](https://extensions.gnome.org)
-→ After that, navigate to [extension](./extensions/) folder and follow steps for each extension.
+- You can find the list of all required extensions in the `README.md` file of this repo. Please enable **each one** using the Extension Manager or GNOME Extensions website: [https://extensions.gnome.org](https://extensions.gnome.org)
+- After that, navigate to [extension](./extensions/) folder and follow steps for each extension.
+- You can find the theme for app launcher [here](https://github.com/kayozxo/ulauncher-liquid-glass)
 
 ---
 
@@ -90,14 +90,4 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 
 Reboot or log out and back in — your GNOME should now resemble **macOS Tahoe**!
 
-If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](#).
-
----
-
-Let me know if you’d like to include:
-
-- Optional tweaks (fonts, dock size, panel padding)
-- Auto-install script
-- Manual extension links
-
-I can add those too.
+If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1l9dqpk/gnome_macos_tahoe_but_better/).
