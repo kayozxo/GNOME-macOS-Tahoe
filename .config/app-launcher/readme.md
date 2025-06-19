@@ -4,4 +4,4 @@ Check out this repo and make sure to follow the last steps carefully: [Ulauncher
 
 ## Preview
 
-![Screenshot](SS9.png)
+![Screenshot](SS10.png)
