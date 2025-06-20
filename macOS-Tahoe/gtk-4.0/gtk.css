@@ -516,18 +516,6 @@ windowcontrols > button.close {
 }
 
 windowcontrols > button.minimize > image {
-  background-color: #fdbe04;
-  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-windowcontrols > button.minimize > image:hover {
-  background-color: rgba(253, 190, 4, 0.85);
-}
-
-windowcontrols > button.maximize > image {
   background-color: #38c76a;
   box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
     inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
@@ -535,8 +523,20 @@ windowcontrols > button.maximize > image {
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-windowcontrols > button.maximize > image:hover {
+windowcontrols > button.minimize > image:hover {
   background-color: rgba(56, 199, 106, 0.85);
+}
+
+windowcontrols > button.maximize > image {
+  background-color: #fdbe04;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+windowcontrols > button.maximize > image:hover {
+  background-color: rgba(253, 190, 4, 0.85);
 }
 
 windowcontrols > button.close > image {
@@ -548,7 +548,7 @@ windowcontrols > button.close > image {
 }
 
 windowcontrols > button.close > image:hover {
-  background-color: rgba(253, 95, 81, 0.85)
+  background-color: rgba(253, 95, 81, 0.85);
 }
 
 windowcontrols > button > image {
@@ -579,11 +579,15 @@ textview.editor {
     inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
 }
 
-textview.editor > border.left > gutter, textview.editor > border.left, revealer.bottom-bar.raised, positionlabel.bottom.numeric.right {
+textview.editor > border.left > gutter,
+textview.editor > border.left,
+revealer.bottom-bar.raised,
+positionlabel.bottom.numeric.right {
   background-color: rgba(0, 0, 0, 0);
 }
 
-revealer.bottom-bar.raised, revealer.top-bar.raised {
+revealer.bottom-bar.raised,
+revealer.top-bar.raised {
   border: none;
   box-shadow: none;
 }
@@ -592,17 +596,22 @@ separator.vertical {
   opacity: 0;
 }
 
-list.boxed-list > row.property, list.boxed-list > row.activatable.combo, list.boxed-list > row.activatable {
+list.boxed-list > row.property,
+list.boxed-list > row.activatable.combo,
+list.boxed-list > row.activatable {
   border-bottom-color: rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-widget.end.sidebar-pane, widget.end.sidebar-pane > widget, widget.end.sidebar-pane > widget > preferencespage {
+widget.end.sidebar-pane,
+widget.end.sidebar-pane > widget,
+widget.end.sidebar-pane > widget > preferencespage {
   border-radius: 30px;
 }
 
-widget.end.sidebar-pane > widget, widget.end.sidebar-pane > widget > preferencespage {
+widget.end.sidebar-pane > widget,
+widget.end.sidebar-pane > widget > preferencespage {
   margin-top: -14px;
   margin-bottom: -14px;
 }
@@ -611,7 +620,6 @@ widget.end.sidebar-pane {
   margin-top: 10px;
   margin-left: 10px;
 }
-
 
 /*
 .collapse-spacing.vertical {
@@ -629,49 +637,54 @@ widget.end.sidebar-pane {
 /*********************
  * Nautilus *
  *********************/
- 
- window.filechooser > gridview.view, window.filechooser > list.navigation-sidebar {
+
+window.filechooser > gridview.view,
+window.filechooser > list.navigation-sidebar {
   background-color: transparent;
- }
- 
- gridview > child > picture.large.thumbnail {
+}
+
+gridview > child > picture.large.thumbnail {
   border-radius: 2px;
- }
- .nautilus-window headerbar > revealer.top-bar, overlay-split-view.view,  statuspage.view,   window#NautilusAppChooser > headerbar.titlebar, box.vertical > banner > revealer > widget {
-    background-color: rgba(0, 0, 0, 0);
- }
- 
- .sidebar-pane {
+}
+.nautilus-window headerbar > revealer.top-bar,
+overlay-split-view.view,
+statuspage.view,
+window#NautilusAppChooser > headerbar.titlebar,
+box.vertical > banner > revealer > widget {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.sidebar-pane {
   background-color: transparent;
   background-image: linear-gradient(
     to bottom,
-    rgba(255,255,255,0.1),
-    rgba(255,255,255,0.03)
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
   );
   box-shadow: inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6),
     inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6);
- }
- 
+}
+
 window {
   background-color: rgba(0, 0, 0, 0.6);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -1px 0 rgba(255, 255, 255, 0.05);
- }
- 
+}
+
 #NautilusFileChooser.background {
   background-color: rgba(0, 0, 0, 0.6);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -1px 0 rgba(255, 255, 255, 0.05);
- }
- 
- window#NautilusFileChooser > button.default.pill {
+}
+
+window#NautilusFileChooser > button.default.pill {
   margin-right: 10px;
- }
- 
- window#NautilusFileChooser > revealer.bottom-bar {
+}
+
+window#NautilusFileChooser > revealer.bottom-bar {
   margin-left: 10px;
- }
- 
+}
+
 #NautilusPathBar {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
@@ -680,9 +693,9 @@ window {
     rgba(255, 255, 255, 0.03)
   );
   box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
-    inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6); 
- }
- 
+    inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
+}
+
 entry {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
@@ -691,22 +704,25 @@ entry {
     rgba(255, 255, 255, 0.03)
   );
   box-shadow: inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6),
-    inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6); 
- }
- 
- window#NautilusAppChooser > separator.horizontal {
+    inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6);
+}
+
+window#NautilusAppChooser > separator.horizontal {
   opacity: 0;
- }
- 
-  window#NautilusAppChooser > box.dialog-vbox > box.vertical > scrolledwindow.background {
-    background-color: rgba(0, 0, 0, 0);
-  }
-  
-  window#NautilusAppChooser > scrolledwindow.background {
-    border: none;
-  }
-  
-  list.background {
+}
+
+window#NautilusAppChooser
+  > box.dialog-vbox
+  > box.vertical
+  > scrolledwindow.background {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+window#NautilusAppChooser > scrolledwindow.background {
+  border: none;
+}
+
+list.background {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
     to bottom,
@@ -716,34 +732,34 @@ entry {
   box-shadow: inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6),
     inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6);
   margin-top: 10px;
-  }
- 
- /* This removes selection color of sidebar
+}
+
+/* This removes selection color of sidebar
 row.activatable {
   background-color: rgba(0, 0, 0, 0);
  }
  */
- 
- sheet.background {
+
+sheet.background {
   background-color: rgba(0, 0, 0, 0.92);
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.03)
   );
- }
- 
- button.suggested-action.text-button {
+}
+
+button.suggested-action.text-button {
   margin-right: -10px;
- }
- 
- box.bottom.floating-bar {
-    background-color: rgba(0, 0, 0, 0.6);
-    box-shadow: inset 2px 2px 2px -2.8px rgba(255, 255, 255, 0.8),
+}
+
+box.bottom.floating-bar {
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: inset 2px 2px 2px -2.8px rgba(255, 255, 255, 0.8),
     inset -2px -2px 2px -2.8px rgba(255, 255, 255, 0.8);
- }
- 
- /*
+}
+
+/*
  row.activatable.entry {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
@@ -766,60 +782,71 @@ row.activatable {
     inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6);
  }
 */
- 
-  /*********************
+
+/*********************
  * General *
  *********************/
- 
-switch > slider {
+
+switch > slider,
+scale.horizontal > trough > slider {
   min-width: 25px;
 }
 
- window > tooltip.background {
+window > tooltip.background {
   box-shadow: inset 2px 2px 2px -2.8px rgba(255, 255, 255, 0.8),
     inset -2px -2px 2px -2.8px rgba(255, 255, 255, 0.8);
- }
- 
- popover > contents {
+}
+
+popover > contents {
   background-color: rgba(0, 0, 0, 0.92);
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.03)
   );
- }
- 
-  popover > arrow {
+}
+
+popover > arrow {
   background-color: rgba(0, 0, 0, 0.92);
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.03)
   );
- }
-  
-  .raised.top-bar, window > windowhandle, window > headerbar.titlebar {
-    background-color: rgba(0, 0, 0, 0); 
-    border: none;
-  }
-  
+}
+
+.raised.top-bar,
+window > windowhandle,
+window > headerbar.titlebar {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
 widget.content-pane {
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 30px;
-  }
-  
-box.vertical, stack.view, calendar-view, navigation-view-page > toolbarview.undershoot-top.view {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 30px;
+}
+
+box.vertical,
+stack.view,
+calendar-view,
+navigation-view-page > toolbarview.undershoot-top.view {
   background-color: rgba(0, 0, 0, 0);
 }
 
-stack.drop-widget, stack.drop-widget > revealer, widget.background, widget.content-pane > lpdragoverlay > revealer, widget.content-pane > lpdragoverlay {
- border-radius: 30px;
+stack.drop-widget,
+stack.drop-widget > revealer,
+widget.background,
+widget.content-pane > lpdragoverlay > revealer,
+widget.content-pane > lpdragoverlay {
+  border-radius: 30px;
 }
- 
- /*********************
+
+/*********************
  * Tweaks *
  *********************/
-.tweak-titlebar-left, .tweak-titlebar-right  {
+.tweak-titlebar-left,
+.tweak-titlebar-right {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   border-top-color: rgba(0, 0, 0, 0);
@@ -827,37 +854,38 @@ stack.drop-widget, stack.drop-widget > revealer, widget.background, widget.conte
   border-bottom-color: rgba(0, 0, 0, 0);
   border-left-color: rgba(0, 0, 0, 0);
   box-shadow: none;
- }
- 
- .tweak-titlebar-left > box, .tweak-titlebar-right > box {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    border-top-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
-    border-left-color: rgba(0, 0, 0, 0);
-    box-shadow: none;
- }
- 
- box {
-    border: none;
-    border-top-color: rgba(0, 0, 0, 0);
-    border-right-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgba(0, 0, 0, 0);
-    border-left-color: rgba(0, 0, 0, 0);
-    box-shadow: none;
- }
- 
+}
+
+.tweak-titlebar-left > box,
+.tweak-titlebar-right > box {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+}
+
+box {
+  border: none;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+}
+
 stack.background {
   background-color: rgba(0, 0, 0, 0);
- }
- 
- box.split-row.vertical {
+}
+
+box.split-row.vertical {
   border-radius: 0;
   border-bottom-color: rgba(0, 0, 0, 0, 0.2);
- }
- 
- /*********************
+}
+
+/*********************
  * weather *
  *********************/
 
@@ -870,11 +898,11 @@ monthcell:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
- /*********************
+/*********************
  * Mission Center *
  *********************/
- 
- columnview.rich-list.view {
+
+columnview.rich-list.view {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
     to bottom,
@@ -883,9 +911,9 @@ monthcell:hover {
   );
   box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
     inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
- }
- 
- /*
+}
+
+/*
  toolbarview.undershoot-top {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
@@ -897,12 +925,12 @@ monthcell:hover {
     inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6);
  }
  */
- 
-  /*********************
+
+/*********************
  * Photos APP *
  *********************/
- 
- /*
+
+/*
  revealer.bottom-bar {
   border-radius: 9999px;
   background-color: rgba(0, 0, 0, 0);
@@ -913,16 +941,16 @@ monthcell:hover {
   );
   box-shadow: inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6),
     inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6);
-  
+
  }
  */
- 
-   /*********************
+
+/*********************
  * Photos APP *
  *********************/
- 
- row.expander, row.expander > row.activatable.header {
+
+row.expander,
+row.expander > row.activatable.header {
   border-radius: 0;
   border-bottom-color: rgba(255, 255, 255, 0.2);
- }
-
+}
