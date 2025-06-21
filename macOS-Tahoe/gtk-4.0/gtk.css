@@ -552,7 +552,7 @@ windowcontrols > button.close > image:hover {
 }
 
 windowcontrols > button > image {
-  padding: 2px;
+  padding: 1px;
 }
 
 windowcontrols {
