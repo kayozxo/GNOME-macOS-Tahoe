@@ -14,7 +14,7 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 # Installation is easy!
 
-<details>
+<details> <summary> Recommended GNOME Shell extensions </summary>
 
 - [Open Bar](https://extensions.gnome.org/extension/6580/open-bar/)
 - [Blur My Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
