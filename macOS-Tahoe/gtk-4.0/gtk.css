@@ -954,3 +954,38 @@ row.expander > row.activatable.header {
   border-radius: 0;
   border-bottom-color: rgba(255, 255, 255, 0.2);
 }
+
+/*********************
+ * Settings *
+ *********************/
+
+button.background-preview-button.toggle:checked {
+  border-radius: 30px;
+}
+
+button.background-preview-button.toggle > background-preview > picture {
+  border-radius: 28px;
+}
+
+/*********************
+ * Extensions *
+ *********************/
+
+header.horizontal.top > tabs > tab:checked,
+header.horizontal.top > tabs > tab:hover {
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+header.horizontal.top > tabs > tab {
+  margin-left: -4px;
+  margin-right: 8px;
+}
+
+notebook.frame > stack {
+  background-color: transparent;
+}
+
+notebook.frame > stack > list {
+  background-color: rgba(255, 255, 255, 0.6);
+}
