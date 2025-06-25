@@ -1,0 +1,547 @@
+/* GTK NAMED COLORS ---------------- use responsibly! */
+@define-color destructive_bg_color @red_4;
+@define-color destructive_fg_color white;
+@define-color success_bg_color @green_5;
+@define-color success_fg_color white;
+@define-color warning_bg_color #cd9309;
+@define-color warning_fg_color RGB(0 0 0 / 80%);
+@define-color error_bg_color @red_4;
+@define-color error_fg_color white;
+@define-color accent_color oklab(from @accent_bg_color max(l, 0.85) a b);
+@define-color destructive_color oklab(from @destructive_bg_color max(l, 0.85) a b);
+@define-color success_color oklab(from @success_bg_color max(l, 0.85) a b);
+@define-color warning_color oklab(from @warning_bg_color max(l, 0.85) a b);
+@define-color error_color oklab(from @error_bg_color max(l, 0.85) a b);
+@define-color window_bg_color #222226;
+@define-color window_fg_color white;
+@define-color view_bg_color #1d1d20;
+@define-color view_fg_color white;
+@define-color headerbar_bg_color #2e2e32;
+@define-color headerbar_fg_color white;
+@define-color headerbar_border_color white;
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_shade_color RGB(0 0 6/36%);
+@define-color headerbar_darker_shade_color RGB(0 0 12/90%);
+@define-color sidebar_bg_color #2e2e32;
+@define-color sidebar_fg_color white;
+@define-color sidebar_backdrop_color #28282c;
+@define-color sidebar_shade_color RGB(0 0 6/25%);
+@define-color sidebar_border_color RGB(0 0 6/36%);
+@define-color secondary_sidebar_bg_color #28282c;
+@define-color secondary_sidebar_fg_color white;
+@define-color secondary_sidebar_backdrop_color #252529;
+@define-color secondary_sidebar_shade_color RGB(0 0 6/25%);
+@define-color secondary_sidebar_border_color RGB(0 0 6/36%);
+@define-color card_bg_color RGB(255 255 255/8%);
+@define-color card_fg_color white;
+@define-color card_shade_color RGB(0 0 6/36%);
+@define-color dialog_bg_color #36363a;
+@define-color dialog_fg_color white;
+@define-color popover_bg_color #36363a;
+@define-color popover_fg_color white;
+@define-color popover_shade_color RGB(0 0 6/25%);
+@define-color thumbnail_bg_color #39393d;
+@define-color thumbnail_fg_color white;
+@define-color shade_color RGB(0 0 6/25%);
+@define-color scrollbar_outline_color RGB(0 0 12/95%);
+:root {
+  --standalone-color-oklab: max(l, 0.85) a b;
+  --accent-color: oklab(
+    from var(--accent-bg-color) var(--standalone-color-oklab)
+  );
+  --destructive-color: oklab(
+    from var(--destructive-bg-color) var(--standalone-color-oklab)
+  );
+  --success-color: oklab(
+    from var(--success-bg-color) var(--standalone-color-oklab)
+  );
+  --warning-color: oklab(
+    from var(--warning-bg-color) var(--standalone-color-oklab)
+  );
+  --error-color: oklab(
+    from var(--error-bg-color) var(--standalone-color-oklab)
+  );
+  --active-toggle-bg-color: rgb(255 255 255 / 20%);
+  --active-toggle-fg-color: #ffffff;
+  --overview-bg-color: #28282c;
+  --overview-fg-color: #ffffff;
+}
+@import '../gtk-3.0/libadwaita.css';
+@import '../gtk-3.0/libadwaita-tweaks.css';
+
+* {
+  border-radius: 20px;
+}
+
+window {
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.maximize window {
+  border-radius: 0px;
+  padding: 0px;
+}
+
+window.maximize {
+  border-radius: 0px;
+  padding: 0px;
+}
+/* More customizations */
+/* GTK3 */
+button.titlebutton {
+  color: transparent;
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0;
+  margin: 0 2px;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+button.titlebutton:backdrop {
+  opacity: 0.5;
+}
+
+/*****************
+   * Title buttons *
+   *****************/
+.raven .expander-button,
+.raven .raven-header:not(.top) button.image-button,
+widget > box.terminal-titlebar > button.image-button,
+widget > box.terminal-titlebar > button.image-button.toggle,
+.terminix-session-sidebar button.tilix-sidebar-close-button,
+.tilix-session-sidebar button.tilix-sidebar-close-button,
+.nemo-window toolbar.primary-toolbar > toolitem > box.raised > button,
+.nemo-window toolbar.primary-toolbar > toolitem > box.linked.raised > button,
+.nautilus-window headerbar > revealer > button,
+.solid-csd headerbar:not(.default-decoration) button.titlebutton,
+headerbar button.titlebutton,
+.csd headerbar button.titlebutton,
+.csd headerbar.default-decoration button.titlebutton,
+.titlebar button.titlebutton,
+.csd .titlebar button.titlebutton,
+.titlebar.default-decoration button.titlebutton,
+.csd .titlebar.default-decoration button.titlebutton,
+row button.image-button,
+check,
+radio,
+headerbar.default-decoration button.titlebutton,
+headerbar button.suggested-action,
+headerbar button.destructive-action,
+headerbar button:not(.suggested-action):not(.destructive-action),
+button.close,
+button.circular {
+  border-radius: 9999px;
+  -gtk-outline-radius: 9999px;
+}
+
+headerbar,
+.titlebar {
+  padding: 0 14px;
+}
+
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.close,
+headerbar button.titlebutton.close,
+.titlebar button.titlebutton.close {
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0;
+  margin: 0 2px;
+  color: transparent;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #f25056;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.maximize,
+headerbar button.titlebutton.maximize,
+.titlebar button.titlebutton.maximize {
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0;
+  margin: 0 2px;
+  color: transparent;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #39ea49;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.minimize,
+headerbar button.titlebutton.minimize,
+.titlebar button.titlebutton.minimize {
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0;
+  margin: 0 2px;
+  color: transparent;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #fac536;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#MozillaGtkWidget.background
+  headerbar.titlebar.default-decoration
+  button.titlebutton.close:hover,
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.close:hover,
+headerbar button.titlebutton.close:hover,
+.csd headerbar button.titlebutton.close:hover,
+headerbar.default-decoration button.titlebutton.close:hover,
+.csd headerbar.default-decoration button.titlebutton.close:hover,
+.titlebar button.titlebutton.close:hover,
+.csd .titlebar button.titlebutton.close:hover,
+.titlebar.default-decoration button.titlebutton.close:hover,
+.csd .titlebar.default-decoration button.titlebutton.close:hover {
+  padding: 2px;
+  margin: -2px 0;
+  background-color: #f25056;
+  color: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#MozillaGtkWidget.background
+  headerbar.titlebar.default-decoration
+  button.titlebutton.maximize:hover,
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.maximize:hover,
+headerbar button.titlebutton.maximize:hover,
+.csd headerbar button.titlebutton.maximize:hover,
+headerbar.default-decoration button.titlebutton.maximize:hover,
+.csd headerbar.default-decoration button.titlebutton.maximize:hover,
+.titlebar button.titlebutton.maximize:hover,
+.csd .titlebar button.titlebutton.maximize:hover,
+.titlebar.default-decoration button.titlebutton.maximize:hover,
+.csd .titlebar.default-decoration button.titlebutton.maximize:hover {
+  padding: 2px;
+  margin: -2px 0;
+  background-color: #39ea49;
+  color: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#MozillaGtkWidget.background
+  headerbar.titlebar.default-decoration
+  button.titlebutton.minimize:hover,
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.minimize:hover,
+headerbar button.titlebutton.minimize:hover,
+.csd headerbar button.titlebutton.minimize:hover,
+headerbar.default-decoration button.titlebutton.minimize:hover,
+.csd headerbar.default-decoration button.titlebutton.minimize:hover,
+.titlebar button.titlebutton.minimize:hover,
+.csd .titlebar button.titlebutton.minimize:hover,
+.titlebar.default-decoration button.titlebutton.minimize:hover,
+.csd .titlebar.default-decoration button.titlebutton.minimize:hover {
+  padding: 2px;
+  margin: -2px 0;
+  background-color: #fac536;
+  color: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.close:hover,
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.maximize:hover,
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.minimize:hover,
+headerbar button.titlebutton.close:hover,
+headerbar button.titlebutton.close:backdrop:hover,
+headerbar button.titlebutton.maximize:hover,
+headerbar button.titlebutton.maximize:backdrop:hover,
+headerbar button.titlebutton.minimize:hover,
+headerbar button.titlebutton.minimize:backdrop:hover,
+.csd headerbar button.titlebutton.close:hover,
+.csd headerbar button.titlebutton.close:backdrop:hover,
+.csd headerbar button.titlebutton.maximize:hover,
+.csd headerbar button.titlebutton.maximize:backdrop:hover,
+.csd headerbar button.titlebutton.minimize:hover,
+.csd headerbar button.titlebutton.minimize:backdrop:hover,
+headerbar.default-decoration button.titlebutton.close:hover,
+headerbar.default-decoration button.titlebutton.close:backdrop:hover,
+headerbar.default-decoration button.titlebutton.maximize:hover,
+headerbar.default-decoration button.titlebutton.maximize:backdrop:hover,
+headerbar.default-decoration button.titlebutton.minimize:hover,
+headerbar.default-decoration button.titlebutton.minimize:backdrop:hover,
+.csd headerbar.default-decoration button.titlebutton.close:hover,
+.csd headerbar.default-decoration button.titlebutton.close:backdrop:hover,
+.csd headerbar.default-decoration button.titlebutton.maximize:hover,
+.csd headerbar.default-decoration button.titlebutton.maximize:backdrop:hover,
+.csd headerbar.default-decoration button.titlebutton.minimize:hover,
+.csd headerbar.default-decoration button.titlebutton.minimize:backdrop:hover,
+.titlebar button.titlebutton.close:hover,
+.titlebar button.titlebutton.close:backdrop:hover,
+.titlebar button.titlebutton.maximize:hover,
+.titlebar button.titlebutton.maximize:backdrop:hover,
+.titlebar button.titlebutton.minimize:hover,
+.titlebar button.titlebutton.minimize:backdrop:hover,
+.csd .titlebar button.titlebutton.close:hover,
+.csd .titlebar button.titlebutton.close:backdrop:hover,
+.csd .titlebar button.titlebutton.maximize:hover,
+.csd .titlebar button.titlebutton.maximize:backdrop:hover,
+.csd .titlebar button.titlebutton.minimize:hover,
+.csd .titlebar button.titlebutton.minimize:backdrop:hover,
+.titlebar.default-decoration button.titlebutton.close:hover,
+.titlebar.default-decoration button.titlebutton.close:backdrop:hover,
+.titlebar.default-decoration button.titlebutton.maximize:hover,
+.titlebar.default-decoration button.titlebutton.maximize:backdrop:hover,
+.titlebar.default-decoration button.titlebutton.minimize:hover,
+.titlebar.default-decoration button.titlebutton.minimize:backdrop:hover,
+.csd .titlebar.default-decoration button.titlebutton.close:hover,
+.csd .titlebar.default-decoration button.titlebutton.close:backdrop:hover,
+.csd .titlebar.default-decoration button.titlebutton.maximize:hover,
+.csd .titlebar.default-decoration button.titlebutton.maximize:backdrop:hover,
+.csd .titlebar.default-decoration button.titlebutton.minimize:hover,
+.csd .titlebar.default-decoration button.titlebutton.minimize:backdrop:hover {
+  color: transparent;
+}
+
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.close:active,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.maximize:active,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.minimize:active,
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.close:checked,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.maximize:checked,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.minimize:checked,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.close:backdrop:active,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.maximize:backdrop:active,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.minimize:backdrop:active,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.close:backdrop:checked,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.maximize:backdrop:checked,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.minimize:backdrop:checked,
+headerbar button.titlebutton.close:active,
+headerbar button.titlebutton.close:checked,
+headerbar button.titlebutton.close:backdrop:active,
+headerbar button.titlebutton.close:backdrop:checked,
+headerbar button.titlebutton.maximize:active,
+headerbar button.titlebutton.maximize:checked,
+headerbar button.titlebutton.maximize:backdrop:active,
+headerbar button.titlebutton.maximize:backdrop:checked,
+headerbar button.titlebutton.minimize:active,
+headerbar button.titlebutton.minimize:checked,
+headerbar button.titlebutton.minimize:backdrop:active,
+headerbar button.titlebutton.minimize:backdrop:checked,
+.csd headerbar button.titlebutton.close:active,
+.csd headerbar button.titlebutton.close:checked,
+.csd headerbar button.titlebutton.close:backdrop:active,
+.csd headerbar button.titlebutton.close:backdrop:checked,
+.csd headerbar button.titlebutton.maximize:active,
+.csd headerbar button.titlebutton.maximize:checked,
+.csd headerbar button.titlebutton.maximize:backdrop:active,
+.csd headerbar button.titlebutton.maximize:backdrop:checked,
+.csd headerbar button.titlebutton.minimize:active,
+.csd headerbar button.titlebutton.minimize:checked,
+.csd headerbar button.titlebutton.minimize:backdrop:active,
+.csd headerbar button.titlebutton.minimize:backdrop:checked,
+headerbar.default-decoration button.titlebutton.close:active,
+headerbar.default-decoration button.titlebutton.close:checked,
+headerbar.default-decoration button.titlebutton.close:backdrop:active,
+headerbar.default-decoration button.titlebutton.close:backdrop:checked,
+headerbar.default-decoration button.titlebutton.maximize:active,
+headerbar.default-decoration button.titlebutton.maximize:checked,
+headerbar.default-decoration button.titlebutton.maximize:backdrop:active,
+headerbar.default-decoration button.titlebutton.maximize:backdrop:checked,
+headerbar.default-decoration button.titlebutton.minimize:active,
+headerbar.default-decoration button.titlebutton.minimize:checked,
+headerbar.default-decoration button.titlebutton.minimize:backdrop:active,
+headerbar.default-decoration button.titlebutton.minimize:backdrop:checked,
+.csd headerbar.default-decoration button.titlebutton.close:active,
+.csd headerbar.default-decoration button.titlebutton.close:checked,
+.csd headerbar.default-decoration button.titlebutton.close:backdrop:active,
+.csd headerbar.default-decoration button.titlebutton.close:backdrop:checked,
+.csd headerbar.default-decoration button.titlebutton.maximize:active,
+.csd headerbar.default-decoration button.titlebutton.maximize:checked,
+.csd headerbar.default-decoration button.titlebutton.maximize:backdrop:active,
+.csd headerbar.default-decoration button.titlebutton.maximize:backdrop:checked,
+.csd headerbar.default-decoration button.titlebutton.minimize:active,
+.csd headerbar.default-decoration button.titlebutton.minimize:checked,
+.csd headerbar.default-decoration button.titlebutton.minimize:backdrop:active,
+.csd headerbar.default-decoration button.titlebutton.minimize:backdrop:checked,
+.titlebar button.titlebutton.close:active,
+.titlebar button.titlebutton.close:checked,
+.titlebar button.titlebutton.close:backdrop:active,
+.titlebar button.titlebutton.close:backdrop:checked,
+.titlebar button.titlebutton.maximize:active,
+.titlebar button.titlebutton.maximize:checked,
+.titlebar button.titlebutton.maximize:backdrop:active,
+.titlebar button.titlebutton.maximize:backdrop:checked,
+.titlebar button.titlebutton.minimize:active,
+.titlebar button.titlebutton.minimize:checked,
+.titlebar button.titlebutton.minimize:backdrop:active,
+.titlebar button.titlebutton.minimize:backdrop:checked,
+.csd .titlebar button.titlebutton.close:active,
+.csd .titlebar button.titlebutton.close:checked,
+.csd .titlebar button.titlebutton.close:backdrop:active,
+.csd .titlebar button.titlebutton.close:backdrop:checked,
+.csd .titlebar button.titlebutton.maximize:active,
+.csd .titlebar button.titlebutton.maximize:checked,
+.csd .titlebar button.titlebutton.maximize:backdrop:active,
+.csd .titlebar button.titlebutton.maximize:backdrop:checked,
+.csd .titlebar button.titlebutton.minimize:active,
+.csd .titlebar button.titlebutton.minimize:checked,
+.csd .titlebar button.titlebutton.minimize:backdrop:active,
+.csd .titlebar button.titlebutton.minimize:backdrop:checked,
+.titlebar.default-decoration button.titlebutton.close:active,
+.titlebar.default-decoration button.titlebutton.close:checked,
+.titlebar.default-decoration button.titlebutton.close:backdrop:active,
+.titlebar.default-decoration button.titlebutton.close:backdrop:checked,
+.titlebar.default-decoration button.titlebutton.maximize:active,
+.titlebar.default-decoration button.titlebutton.maximize:checked,
+.titlebar.default-decoration button.titlebutton.maximize:backdrop:active,
+.titlebar.default-decoration button.titlebutton.maximize:backdrop:checked,
+.titlebar.default-decoration button.titlebutton.minimize:active,
+.titlebar.default-decoration button.titlebutton.minimize:checked,
+.titlebar.default-decoration button.titlebutton.minimize:backdrop:active,
+.titlebar.default-decoration button.titlebutton.minimize:backdrop:checked,
+.csd .titlebar.default-decoration button.titlebutton.close:active,
+.csd .titlebar.default-decoration button.titlebutton.close:checked,
+.csd .titlebar.default-decoration button.titlebutton.close:backdrop:active,
+.csd .titlebar.default-decoration button.titlebutton.close:backdrop:checked,
+.csd .titlebar.default-decoration button.titlebutton.maximize:active,
+.csd .titlebar.default-decoration button.titlebutton.maximize:checked,
+.csd .titlebar.default-decoration button.titlebutton.maximize:backdrop:active,
+.csd .titlebar.default-decoration button.titlebutton.maximize:backdrop:checked,
+.csd .titlebar.default-decoration button.titlebutton.minimize:active,
+.csd .titlebar.default-decoration button.titlebutton.minimize:checked,
+.csd .titlebar.default-decoration button.titlebutton.minimize:backdrop:active,
+.csd .titlebar.default-decoration button.titlebutton.minimize:backdrop:checked {
+  color: transparent;
+}
+
+.solid-csd headerbar:not(.default-decoration) button.titlebutton.close:backdrop,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.maximize:backdrop,
+.solid-csd
+  headerbar:not(.default-decoration)
+  button.titlebutton.minimize:backdrop,
+headerbar button.titlebutton.close:backdrop,
+headerbar button.titlebutton.maximize:backdrop,
+headerbar button.titlebutton.minimize:backdrop,
+.csd headerbar button.titlebutton.close:backdrop,
+.csd headerbar button.titlebutton.maximize:backdrop,
+.csd headerbar button.titlebutton.minimize:backdrop,
+headerbar.default-decoration button.titlebutton.close:backdrop,
+headerbar.default-decoration button.titlebutton.maximize:backdrop,
+headerbar.default-decoration button.titlebutton.minimize:backdrop,
+.csd headerbar.default-decoration button.titlebutton.close:backdrop,
+.csd headerbar.default-decoration button.titlebutton.maximize:backdrop,
+.csd headerbar.default-decoration button.titlebutton.minimize:backdrop,
+.titlebar button.titlebutton.close:backdrop,
+.titlebar button.titlebutton.maximize:backdrop,
+.titlebar button.titlebutton.minimize:backdrop,
+.csd .titlebar button.titlebutton.close:backdrop,
+.csd .titlebar button.titlebutton.maximize:backdrop,
+.csd .titlebar button.titlebutton.minimize:backdrop,
+.titlebar.default-decoration button.titlebutton.close:backdrop,
+.titlebar.default-decoration button.titlebutton.maximize:backdrop,
+.titlebar.default-decoration button.titlebutton.minimize:backdrop,
+.csd .titlebar.default-decoration button.titlebutton.close:backdrop,
+.csd .titlebar.default-decoration button.titlebutton.maximize:backdrop,
+.csd .titlebar.default-decoration button.titlebutton.minimize:backdrop {
+  color: transparent;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+button.titlebutton image {
+  margin: -1px;
+}
+
+/* gtk4 */
+
+/*********************
+ * GtkWindowControls *
+ *********************/
+windowcontrols > button {
+  min-height: 12px;
+  min-width: 12px;
+  padding: 0px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+windowcontrols > button.minimize,
+windowcontrols > button.maximize,
+windowcontrols > button.close {
+  color: transparent;
+  background: none;
+}
+
+windowcontrols > button.minimize > image {
+  background-color: #fdbe04;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+windowcontrols > button.minimize:hover > image {
+  padding: 3px;
+  margin-right: -1px;
+  margin-left: -1px;
+}
+
+windowcontrols > button.maximize > image {
+  background-color: #38c76a;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+windowcontrols > button.maximize:hover > image {
+  padding: 3px;
+  margin-right: -1px;
+  margin-left: -1px;
+}
+
+windowcontrols > button.close > image {
+  background-color: #fd5f51;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+windowcontrols > button.close:hover > image {
+  padding: 3px;
+  margin-right: -1px;
+  margin-left: -1px;
+}
+windowcontrols > button > image {
+  padding: 2px;
+}

@@ -2,8 +2,6 @@
 
 Welcome! This guide will help you set up your GNOME desktop to look like **macOS Tahoe**, just like shown in the screenshots. Follow the steps below carefully.
 
----
-
 ## Step 1: Install GNOME Tweaks
 
 > GNOME Tweaks is essential for applying GTK themes, icons, cursors, and more.
@@ -20,26 +18,9 @@ sudo dnf install gnome-tweaks
 sudo apt install gnome-tweaks
 ```
 
----
+## Step 2: Install Cursor and Icons
 
-## Step 2: Install WhiteSur GTK Theme
-
-We are using the **WhiteSur GTK Theme** for macOS-like [lock screen](https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--install-and-customize-gdm-theme--).
-
-1. **Download the theme**
-   Head over to the official theme page:
-   → [https://github.com/vinceliuice/WhiteSur-gtk-theme](https://github.com/vinceliuice/WhiteSur-gtk-theme)
-
-2. **Install the GDM theme**
-
-   ```bash
-   git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
-   cd WhiteSur-gtk-theme
-   ```
-
-   - And follow the guide [here](https://github.com/vinceliuice/WhiteSur-gtk-theme?tab=readme-ov-file#--install-and-customize-gdm-theme--)
-
-3. **(Optional) Install matching icon and cursor theme:**
+1. **(Optional) Install matching icon and cursor theme:**
 
    ```bash
    # Icon Theme
@@ -55,7 +36,7 @@ We are using the **WhiteSur GTK Theme** for macOS-like [lock screen](https://git
 
    > The cursor theme I use is [Phinger](https://github.com/phisch/phinger-cursors)
 
-4. **Apply the theme using GNOME Tweaks**
+2. **Apply the theme using GNOME Tweaks**
 
    - Open **GNOME Tweaks**
    - Go to **Appearance**
@@ -63,8 +44,6 @@ We are using the **WhiteSur GTK Theme** for macOS-like [lock screen](https://git
 
      - **Icons**: `WhiteSur`
      - **Cursor**: `WhiteSur`
-
----
 
 ## Step 3: Install Required GNOME Extensions
 
@@ -80,11 +59,8 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 
 ### Enable the following extensions:
 
-- You can find the list of all required extensions in the `README.md` file of this repo. Please enable **each one** using the Extension Manager or GNOME Extensions website: [https://extensions.gnome.org](https://extensions.gnome.org)
-- After that, navigate to [extension](./extensions/) folder and follow steps for each extension.
+- Follow [this](EXTENSIONS.md)
 - You can find the theme for app launcher [here](https://github.com/kayozxo/ulauncher-liquid-glass)
-
----
 
 ## ✅ Done!
 

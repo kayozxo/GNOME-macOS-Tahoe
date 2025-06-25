@@ -1,6 +1,6 @@
 <h1 align="center"> Tahoe GTK Theme </h1>
-<p align="center"> <img src="screenshots/v0.2.0-1.webp"/> </p>
 <p align="center"> <img src="screenshots/v0.2.0-2.webp"/> </p>
+<p align="center"> <img src="screenshots/tahoe-light.png"/> </p>
 
 <br>
 <p align="center"> <b> A macOS Tahoe like theme for Linux GTK Desktops </b> </p>
@@ -13,6 +13,13 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 <a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="30"/></a>
 
 # Installation is easy!
+
+<details> <summary> Recommended applications </summary>
+
+- [Ulauncher (Application Launcher)](https://ulauncher.io/#Download)
+- [GNOME Tweaks]() or [Refine (Recommended)](https://flathub.org/apps/page.tesk.Refine)
+
+</details>
 
 <details> <summary> Recommended GNOME Shell extensions </summary>
 
@@ -34,9 +41,9 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe`
 2. Run `cd GNOME-macOS-Tahoe`
-3. Run `./install.sh`
+3. Run `./install.sh -l` for light theme, `./install.sh -d` for dark theme.
 4. Go to `Downloads` folder and look for a folder called `Evolve`
-5. Open the app, select `macOS-Tahoe` for **GTK 3.0 Theme** and **GTK 4.0 Theme**
+5. Open the app, select `Tahoe-Dark` or `Tahoe-Light` for **GTK 3.0 Theme** and **GTK 4.0 Theme**
 6. Then continue from [here](.config/IMPORTANT.md)
 
 ## ✅ Done!
