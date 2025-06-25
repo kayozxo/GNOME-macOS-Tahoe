@@ -66,4 +66,4 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 
 Reboot or log out and back in — your GNOME should now resemble **macOS Tahoe**!
 
-If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1l9dqpk/gnome_macos_tahoe_but_better/).
+If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1lkaxv4/gnome_macos_tahoe_v030/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
