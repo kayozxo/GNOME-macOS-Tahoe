@@ -15,6 +15,14 @@ echo
 echo -e "${CYAN}${BOLD}🔒 GDM Theme Installer${NC}"
 echo
 
+THEME_CLONE_DIR="$HOME/Downloads/WhiteSur-gtk-theme"
+
+if [ -d "$THEME_CLONE_DIR" ]; then
+  echo -e "${YELLOW}⚠️  Folder '$THEME_CLONE_DIR' already exists. Removing it...${NC}"
+  rm -rf "$THEME_CLONE_DIR"
+  echo -e "${GREEN}✓ Removed existing folder.${NC}"
+fi
+
 echo -e "${BLUE}Cloning WhiteSur...${NC}"
 echo
 
