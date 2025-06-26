@@ -19,6 +19,24 @@ BOLD='\033[1m'
 UNDERLINE='\033[4m'
 NC='\033[0m'
 
+# === Uninstall Theme ===
+if [[ "${1:-}" == "-u" ]]; then
+  echo "🧹 Uninstalling Tahoe themes..."
+
+  if [[ -d "$HOME/.themes/Tahoe-Dark" ]]; then
+    rm -rf "$HOME/.themes/Tahoe-Dark"
+    echo "✅ Removed ~/.themes/Tahoe-Dark"
+  fi
+
+  if [[ -d "$HOME/.themes/Tahoe-Light" ]]; then
+    rm -rf "$HOME/.themes/Tahoe-Light"
+    echo "✅ Removed ~/.themes/Tahoe-Light"
+  fi
+
+  echo "✨ Uninstallation complete."
+  exit 0
+fi
+
 # === Banner ===
 echo -e "${CYAN}${BOLD}🌄 macOS Tahoe Theme Installer${NC}"
 echo
