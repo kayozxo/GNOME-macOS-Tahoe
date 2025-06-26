@@ -128,7 +128,7 @@ echo -e "${YELLOW}📦 Extracting ZIP to ${BOLD}~/Downloads/${NC}"
 unzip -o "$TMP_ZIP_AL" -d "$HOME/Downloads/"
 rm "$TMP_ZIP_AL"
 
-bash $HOME/Downloads/ulauncher-liquid-glass-v1.0.0/install.sh
+bash $HOME/Downloads/ulauncher-liquid-glass-v1.0.1/install.sh
 
 echo -e "${GREEN}${BOLD}🎉 Ulauncher Themes installed!${NC}"
 
