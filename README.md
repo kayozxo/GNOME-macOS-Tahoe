@@ -1,6 +1,6 @@
 <h1 align="center"> Tahoe GTK Theme </h1>
-<p align="center"> <img src="screenshots/v0.2.0-2.webp"/> </p>
-<p align="center"> <img src="screenshots/tahoe-light.png"/> </p>
+<p align="center"> <img src="screenshots/tahoe-dark.webp"/> </p>
+<p align="center"> <img src="screenshots/tahoe-light.webp"/> </p>
 
 <br>
 <p align="center"> <b> A macOS Tahoe like theme for Linux GTK Desktops </b> </p>
