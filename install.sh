@@ -136,22 +136,39 @@ echo -e "${GREEN}${BOLD}🎉 Ulauncher Themes installed!${NC}"
 scripts/./gdm.sh
 
 # === Download Evolve-Core (GUI) ===
+if ! command -v xdg-user-dir >/dev/null; then
+  echo -e "${YELLOW}⚠️ xdg-user-dir not found. Falling back to ~/Downloads.${NC}"
+  DOWNLOADS_DIR="$HOME/Downloads"
+else
+  DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD)"
+fi
+
+EVOLVE_DIR="$DOWNLOADS_DIR/Evolve"
+TMP_ZIP="$DOWNLOADS_DIR/evolve-core-latest.zip"
+
 echo
 echo
-echo -e "${CYAN}${BOLD}🌐 Downloading latest release of '$REPO'...${NC}"
 
-DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" \
-  | grep '"browser_download_url":' \
-  | sed -E 's/.*"([^"]+)".*/\1/')
+# === Check if Evolve folder exists ===
+if [ -d "$EVOLVE_DIR" ]; then
+  echo -e "${GREEN}✅ '$EVOLVE_DIR' already exists. Skipping download and extraction.${NC}"
+else
+  echo
+  echo -e "${CYAN}${BOLD}🌐 Downloading latest release of '$REPO'...${NC}"
 
-echo -e "${BLUE}⬇️  Download URL: ${UNDERLINE}$DOWNLOAD_URL${NC}"
-curl -L -o "$TMP_ZIP" "$DOWNLOAD_URL"
+  DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" \
+    | grep '"browser_download_url":' \
+    | sed -E 's/.*"([^"]+)".*/\1/')
 
-echo -e "${YELLOW}📦 Extracting ZIP to ${BOLD}~/Downloads/Evolve${NC}"
-unzip -o "$TMP_ZIP" -d "$HOME/Downloads/Evolve"
-rm "$TMP_ZIP"
+  echo -e "${BLUE}⬇️  Download URL: ${UNDERLINE}$DOWNLOAD_URL${NC}"
+  curl -L -o "$TMP_ZIP" "$DOWNLOAD_URL"
 
-echo -e "${GREEN}✅ Release extracted successfully.${NC}"
+  echo -e "${YELLOW}📦 Extracting ZIP to ${BOLD}$EVOLVE_DIR${NC}"
+  unzip -o "$TMP_ZIP" -d "$EVOLVE_DIR"
+  rm "$TMP_ZIP"
+
+  echo -e "${GREEN}✅ Release extracted successfully.${NC}"
+fi
 
 echo
 echo -e "${CYAN}${BOLD}🎨 Finalized installation in ~/.themes/${NC}"
