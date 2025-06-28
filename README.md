@@ -42,7 +42,8 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe`
 2. Run `cd GNOME-macOS-Tahoe`
 3. Run `./install.sh -l` for light theme, `./install.sh -d` for dark theme.
-4. Go to `Downloads` folder and look for a folder called `Evolve`
+   - To uninstall the theme, run `./install.sh -u`
+4. Go to `~/Downloads` folder and look for a folder called `Evolve`
 5. Open the app, select `Tahoe-Dark` or `Tahoe-Light` for **GTK 3.0 Theme** and **GTK 4.0 Theme**
 6. Then continue from [here](.config/IMPORTANT.md)
 
