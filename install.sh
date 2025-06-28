@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if ! command -v xdg-user-dir >/dev/null; then
+  echo -e "${YELLOW}⚠️ xdg-user-dir not found. Falling back to ~/Downloads.${NC}"
+  DOWNLOADS_DIR="$HOME/Downloads"
+else
+  DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD)"
+fi
+
 THEME_FOLDER="Tahoe-Light or Tahoe-Dark"
 
 REPO="arcnations-united/evolve-core"
@@ -125,24 +132,40 @@ echo -e "${BLUE}⬇️  Download URL: ${UNDERLINE}$DOWNLOAD_URL${NC}"
 curl -L -o "$TMP_ZIP_AL" "$DOWNLOAD_URL"
 
 echo -e "${YELLOW}📦 Extracting ZIP to ${BOLD}~/Downloads/${NC}"
-unzip -o "$TMP_ZIP_AL" -d "$HOME/Downloads/"
+unzip -o "$TMP_ZIP_AL" -d "$DOWNLOADS_DIR"
 rm "$TMP_ZIP_AL"
 
-bash $HOME/Downloads/ulauncher-liquid-glass-v1.0.1/install.sh
-
-echo -e "${GREEN}${BOLD}🎉 Ulauncher Themes installed!${NC}"
+bash $DOWNLOADS_DIR/ulauncher-liquid-glass-v1.0.1/install.sh
 
 # === GDM Theme ===
-scripts/./gdm.sh
+echo
+echo -e "${CYAN}${BOLD}🔒 GDM Theme Installer${NC}"
+echo
 
-# === Download Evolve-Core (GUI) ===
-if ! command -v xdg-user-dir >/dev/null; then
-  echo -e "${YELLOW}⚠️ xdg-user-dir not found. Falling back to ~/Downloads.${NC}"
-  DOWNLOADS_DIR="$HOME/Downloads"
-else
-  DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD)"
+THEME_CLONE_DIR="$DOWNLOADS_DIR/WhiteSur-gtk-theme"
+
+if [ -d "$THEME_CLONE_DIR" ]; then
+  echo -e "${YELLOW}⚠️  Folder '$THEME_CLONE_DIR' already exists. Removing it...${NC}"
+  rm -rf "$THEME_CLONE_DIR"
+  echo -e "${GREEN}✓ Removed existing folder.${NC}"
 fi
 
+echo -e "${BLUE}Cloning WhiteSur...${NC}"
+echo
+
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1 $DOWNLOADS_DIR/WhiteSur-gtk-theme
+
+echo -e "${BLUE}Installing WhiteSur GDM...${NC}"
+echo
+
+sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -b default
+
+echo -e "${GREEN}${BOLD}🎉 GDM Theme installed!${NC}"
+echo
+
+echo -e "${GREEN}In order to set custom background to GDM, use this command: ${UNDERLINE}sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -b 'my picture.jpg'${NC}"
+
+# === Download Evolve-Core (GUI) ===
 EVOLVE_DIR="$DOWNLOADS_DIR/Evolve"
 TMP_ZIP="$DOWNLOADS_DIR/evolve-core-latest.zip"
 
