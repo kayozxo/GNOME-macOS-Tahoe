@@ -24,8 +24,8 @@ sudo apt install gnome-tweaks
 
    ```bash
    # Icon Theme
-   git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
-   cd WhiteSur-icon-theme
+   git clone https://github.com/vinceliuice/MacTahoe-icon-theme.git
+   cd MacTahoe-icon-theme
    ./install.sh
 
    # Cursor Theme
@@ -42,7 +42,7 @@ sudo apt install gnome-tweaks
    - Go to **Appearance**
    - Set:
 
-     - **Icons**: `WhiteSur`
+     - **Icons**: `MacTahoe-Dark` or `MacTahoe-Light`
      - **Cursor**: `WhiteSur`
 
 ## Step 3: Install Required GNOME Extensions
