@@ -783,11 +783,35 @@ box.bottom.floating-bar {
 
 switch > slider,
 scale.horizontal > trough > slider {
-  min-width: 25px;
+  background-color: white;
+  min-width: 26px;
 }
 
 scale.marks-after > trough > slider {
-  transform: rotate(180deg);
+  background-color: white;
+  transform: rotate(0deg);
+}
+
+switch > slider,
+scale.horizontal > trough > slider,
+scale.marks-after > trough > slider {
+  transition: transform 200ms cubic-bezier(0.15, 0.5, 0.3, 0.95),
+    background-color 150ms ease-in-out;
+}
+
+switch > slider:active {
+  transform: scale(1.8);
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: inset 1.2px 0px 2px -0.2px rgb(0, 145, 255),
+    inset -0.8px 0.8px 2px -0.2px rgb(255, 255, 255);
+}
+
+scale.horizontal > trough > slider:active,
+scale.marks-after > trough > slider:active {
+  transform: scale(1.28);
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: inset 1.2px 0px 2px -0.2px rgb(0, 145, 255),
+    inset -0.8px 0.8px 2px -0.2px rgb(255, 255, 255);
 }
 
 row:hover,
