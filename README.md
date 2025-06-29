@@ -37,18 +37,6 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 ## Quick install
 
-### One command install
-
-1. Copy and Paste the below command in terminal:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/kayozxo/GNOME-macOS-Tahoe/refs/heads/main/install.sh | bash
-```
-
-2. Go to `~/Downloads` folder and look for a folder called `Evolve`
-3. Open the app, select `Tahoe-Dark` or `Tahoe-Light` for **GTK 3.0 Theme** and **GTK 4.0 Theme**
-4. Then continue from [here](.config/IMPORTANT.md)
-
 ### Installing from source
 
 1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe`
