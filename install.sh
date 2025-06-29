@@ -51,28 +51,33 @@ echo
 # === Detect theme selection flag ===
 INSTALL_LIGHT=false
 INSTALL_DARK=false
+INSTALL_LIBADWAITA=false
 
-while getopts ":ld" opt; do
-  case $opt in
-    l)
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -l)
       INSTALL_LIGHT=true
       ;;
-    d)
+    -d)
       INSTALL_DARK=true
       ;;
-    \?)
-      echo -e "${RED}Invalid option: -$OPTARG${NC}" >&2
-      echo
-      echo -e "${BLUE}Available options: ${NC}" >&2
-      echo -e "${GREEN}Light Theme: -l ${NC}" >&2
-      echo -e "${GREEN}Dark Theme: -d ${NC}" >&2
+    -la)
+      INSTALL_LIBADWAITA=true
+      ;;
+    *)
+      echo -e "${RED}Invalid option: $1${NC}"
+      echo -e "${BLUE}Available options:${NC}"
+      echo -e "${GREEN}-l ${NC}Install Light theme"
+      echo -e "${GREEN}-d ${NC}Install Dark theme"
+      echo -e "${GREEN}-la${NC}Install Libadwaita override"
       exit 1
       ;;
   esac
+  shift
 done
 
 # === Default: Install both if no flag is passed ===
-if ! $INSTALL_LIGHT && ! $INSTALL_DARK; then
+if ! $INSTALL_LIGHT && ! $INSTALL_DARK && ! $INSTALL_LIBADWAITA; then
   INSTALL_LIGHT=true
   INSTALL_DARK=true
 fi
@@ -116,6 +121,32 @@ if $INSTALL_DARK; then
   fi
 fi
 
+if $INSTALL_LIBADWAITA; then
+  echo
+  echo -e "${CYAN}🎯 Installing libadwaita override...${NC}"
+
+  if $INSTALL_LIGHT; then
+    LIBADWAITA_SRC="$SCRIPT_DIR/gtk/Tahoe-Light/gtk-4.0"
+  elif $INSTALL_DARK; then
+    LIBADWAITA_SRC="$SCRIPT_DIR/gtk/Tahoe-Dark/gtk-4.0"
+  else
+    echo -e "${RED}⚠️  Please specify -l or -d with -la to choose Light or Dark variant.${NC}"
+    exit 1
+  fi
+
+  GTK4_CONFIG_DIR="$HOME/.config/gtk-4.0"
+  mkdir -p "$GTK4_CONFIG_DIR"
+
+  if [ -d "$LIBADWAITA_SRC" ]; then
+    echo -e "${BLUE}📁 Copying Tahoe theme from $LIBADWAITA_SRC${NC}"
+    rm -rf "$GTK4_CONFIG_DIR/"{gtk.css,gtk-dark.css,gtk-Light.css,gtk-Dark.css,assets,windows-assets}
+    cp -r "$LIBADWAITA_SRC/"* "$GTK4_CONFIG_DIR/"
+    echo -e "${GREEN}✓ Installed libadwaita override in ~/.config/gtk-4.0${NC}"
+  else
+    echo -e "${RED}❌ libadwaita theme folder not found at $LIBADWAITA_SRC${NC}"
+  fi
+fi
+
 echo
 echo -e "${GREEN}${BOLD}🎉 Tahoe Themes installed!${NC}"
 
@@ -124,18 +155,23 @@ echo
 echo
 echo -e "${CYAN}${BOLD}🌐 Downloading latest release of '$APP_LAUNCHER'...${NC}"
 
-DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$APP_LAUNCHER/releases/latest" \
-  | grep '"browser_download_url":' \
-  | sed -E 's/.*"([^"]+)".*/\1/')
+read -p "$(echo -e "${CYAN}❓ Do you want to install Ulauncher themes? (yes/no): ${NC}")" answer
+if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
+    echo -e "${YELLOW}⚠️ Skipping Ulauncher theme installation.${NC}"
+else
+    DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$APP_LAUNCHER/releases/latest" \
+      | grep '"browser_download_url":' \
+      | sed -E 's/.*"([^"]+)".*/\1/')
 
-echo -e "${BLUE}⬇️  Download URL: ${UNDERLINE}$DOWNLOAD_URL${NC}"
-curl -L -o "$TMP_ZIP_AL" "$DOWNLOAD_URL"
+    echo -e "${BLUE}⬇️  Download URL: ${UNDERLINE}$DOWNLOAD_URL${NC}"
+    curl -L -o "$TMP_ZIP_AL" "$DOWNLOAD_URL"
 
-echo -e "${YELLOW}📦 Extracting ZIP to ${BOLD}~/Downloads/${NC}"
-unzip -o "$TMP_ZIP_AL" -d "$DOWNLOADS_DIR"
-rm "$TMP_ZIP_AL"
+    echo -e "${YELLOW}📦 Extracting ZIP to ${BOLD}~/Downloads/${NC}"
+    unzip -o "$TMP_ZIP_AL" -d "$DOWNLOADS_DIR"
+    rm "$TMP_ZIP_AL"
 
-bash $DOWNLOADS_DIR/ulauncher-liquid-glass-v1.0.1/install.sh
+    bash $DOWNLOADS_DIR/ulauncher-liquid-glass-v1.0.2/install.sh
+fi
 
 # === GDM Theme ===
 echo
@@ -164,40 +200,6 @@ echo -e "${GREEN}${BOLD}🎉 GDM Theme installed!${NC}"
 echo
 
 echo -e "${GREEN}In order to set custom background to GDM, use this command: ${UNDERLINE}sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -b 'my picture.jpg'${NC}"
-
-# === Download Evolve-Core (GUI) ===
-EVOLVE_DIR="$DOWNLOADS_DIR/Evolve"
-TMP_ZIP="$DOWNLOADS_DIR/evolve-core-latest.zip"
-
-echo
-echo
-
-# === Check if Evolve folder exists ===
-if [ -d "$EVOLVE_DIR" ]; then
-  echo -e "${GREEN}✅ '$EVOLVE_DIR' already exists. Skipping download and extraction.${NC}"
-else
-  echo
-  echo -e "${CYAN}${BOLD}🌐 Downloading latest release of '$REPO'...${NC}"
-
-  DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" \
-    | grep '"browser_download_url":' \
-    | sed -E 's/.*"([^"]+)".*/\1/')
-
-  echo -e "${BLUE}⬇️  Download URL: ${UNDERLINE}$DOWNLOAD_URL${NC}"
-  curl -L -o "$TMP_ZIP" "$DOWNLOAD_URL"
-
-  echo -e "${YELLOW}📦 Extracting ZIP to ${BOLD}$EVOLVE_DIR${NC}"
-  unzip -o "$TMP_ZIP" -d "$EVOLVE_DIR"
-  rm "$TMP_ZIP"
-
-  echo -e "${GREEN}✅ Release extracted successfully.${NC}"
-fi
-
-echo
-echo -e "${CYAN}${BOLD}🎨 Finalized installation in ~/.themes/${NC}"
-echo -e "${BLUE}👉 Open Downloads folder and look for the '${BOLD}Evolve${NC}${BLUE}' folder"
-echo -e "${BLUE}   • Launch the app and select:${NC}"
-echo -e "${BLUE}     → GTK 3.0 Theme and GTK 4.0 → '${BOLD}$THEME_FOLDER${NC}${BLUE}'${NC}"
 
 echo
 echo -e "${GREEN}${BOLD}Enjoy the theme! 🍎${NC}"

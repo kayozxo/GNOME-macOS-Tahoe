@@ -39,13 +39,32 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 ### Installing from source
 
-1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe`
+1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe --depth=1`
 2. Run `cd GNOME-macOS-Tahoe`
-3. Run `./install.sh -l` for light theme, `./install.sh -d` for dark theme.
-   - To uninstall the theme, run `./install.sh -u`
-4. Go to `~/Downloads` folder and look for a folder called `Evolve`
-5. Open the app, select `Tahoe-Dark` or `Tahoe-Light` for **GTK 3.0 Theme** and **GTK 4.0 Theme**
-6. Then continue from [here](.config/IMPORTANT.md)
+3. Run:
+   - `./install.sh -l` for light theme
+   - `./install.sh -d` for dark theme.
+   - `./install.sh -u` to uninstall the theme.
+4. Then continue from [here](.config/IMPORTANT.md)
+
+## Fix for libadwaita (not perfect)
+
+<details> <summary> Details <b>(click to open)</b> </summary>
+
+Since the release of `Gnome 43.0`, more and more built-in apps use `libadwaita` now, and libadwaita does not support custom themes, which means we cannot change the appearance of app using libadwaita through `gnome-tweaks` or `dconf-editor`. For users who love custom themes, it’s really sucks!
+
+Anyway if anybody who still want to custom themes we can only do this way:
+
+That is to use the `theme file` to overwrite the `gtk-4.0 configuration file`. The result is that only Fixed making all gtk4 apps use one theme and cannot be switched (even can not switch to dark mode) If you want to change a theme, you can only re-overwrite the `gtk-4.0 configuration file` with a new theme, I know this method is not perfect, But at the moment it is only possible to continue using themes for libadwaita's apps ...
+
+</details>
+
+Run this command to install `Tahoe` into `gtk-4.0 configuration folder` ($HOME/.config/gtk-4.0)
+
+```bash
+./install.sh -l -la        # install light theme for libadwaita
+./install.sh -d -la        # install dark theme for libadwaita
+```
 
 ## ✅ Done!
 
