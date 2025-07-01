@@ -513,11 +513,14 @@ windowcontrols > button.close {
 }
 
 windowcontrols > button.minimize > image {
-  margin-left: 12px;
   background-color: #34c759;
   box-shadow: inset 0 -1px 0 0 alpha(black, 0.1),
     inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
     inset -1px 0 0 0 alpha(white, 0.07);
+}
+
+windowcontrols.end > button.minimize > image {
+  margin-left: 12px;
 }
 
 windowcontrols > button.minimize > image:hover {
@@ -636,8 +639,12 @@ window.filechooser > list.navigation-sidebar {
   background-color: transparent;
 }
 
-gridview > child > picture.large.thumbnail {
-  border-radius: 2px;
+gridview.view picture.thumbnail {
+  border-radius: 16px;
+  border: none;
+  border-color: rgba(255, 255, 255, 0);
+  box-shadow: none;
+  background-color: transparent;
 }
 
 .nautilus-window headerbar > revealer.top-bar,
@@ -1041,4 +1048,20 @@ notebook.frame > stack {
 
 notebook.frame > stack > list {
   background-color: rgba(255, 255, 255, 0.6);
+}
+
+/*********************
+ * Cartridges *
+ *********************/
+
+overlay.large > button#cover_button {
+  border-radius: 20px;
+  min-width: 22px;
+}
+
+overlay.large
+  > revealer.right.top
+  > menubutton.circular.osd.popup
+  button.image-button.toggle {
+  margin-right: 1px;
 }

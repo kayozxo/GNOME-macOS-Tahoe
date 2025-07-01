@@ -153,12 +153,14 @@ echo -e "${GREEN}${BOLD}🎉 Tahoe Themes installed!${NC}"
 # === Download Ulauncher Theme ===
 echo
 echo
-echo -e "${CYAN}${BOLD}🌐 Downloading latest release of '$APP_LAUNCHER'...${NC}"
 
 read -p "$(echo -e "${CYAN}❓ Do you want to install Ulauncher themes? (yes/no): ${NC}")" answer
 if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
     echo -e "${YELLOW}⚠️ Skipping Ulauncher theme installation.${NC}"
+    echo
 else
+    echo -e "${CYAN}${BOLD}🌐 Downloading latest release of '$APP_LAUNCHER'...${NC}"
+
     DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$APP_LAUNCHER/releases/latest" \
       | grep '"browser_download_url":' \
       | sed -E 's/.*"([^"]+)".*/\1/')
@@ -171,6 +173,44 @@ else
     rm "$TMP_ZIP_AL"
 
     bash $DOWNLOADS_DIR/ulauncher-liquid-glass-v1.0.2/install.sh
+fi
+
+read -p "$(echo -e "${CYAN}❓ Do you want to install Tahoe icons? (yes/no): ${NC}")" answer
+if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
+    echo -e "${YELLOW}⚠️ Skipping icons theme installation.${NC}"
+    echo
+else
+    echo -e "${BLUE}Cloning MacTahoe-icon-theme...${NC}"
+    echo
+
+    git clone https://github.com/vinceliuice/MacTahoe-icon-theme.git --depth=1 $DOWNLOADS_DIR/MacTahoe-icon-theme
+
+    echo -e "${BLUE}Installing MacTahoe-icon-theme...${NC}"
+    echo
+
+    sudo bash $DOWNLOADS_DIR/MacTahoe-icon-theme/install.sh -b
+
+    echo -e "${GREEN}${BOLD}🎉 Icon Theme installed!${NC}"
+    echo
+fi
+
+read -p "$(echo -e "${CYAN}❓ Do you want to install WhiteSur icons? (yes/no): ${NC}")" answer
+if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
+    echo -e "${YELLOW}⚠️ Skipping cursor theme installation.${NC}"
+    echo
+else
+    echo -e "${BLUE}Cloning WhiteSur-cursors...${NC}"
+    echo
+
+    git clone https://github.com/vinceliuice/WhiteSur-cursors.git --depth=1 $DOWNLOADS_DIR/WhiteSur-cursors
+
+    echo -e "${BLUE}Installing WhiteSur-cursors...${NC}"
+    echo
+
+    sudo bash $DOWNLOADS_DIR/WhiteSur-cursors/install.sh
+
+    echo -e "${GREEN}${BOLD}🎉 Cursor Theme installed!${NC}"
+    echo
 fi
 
 # === GDM Theme ===
