@@ -142,8 +142,10 @@ if $INSTALL_LIBADWAITA; then
     rm -rf "$GTK4_CONFIG_DIR/"{gtk.css,gtk-dark.css,gtk-Light.css,gtk-Dark.css,assets,windows-assets}
     cp -r "$LIBADWAITA_SRC/"* "$GTK4_CONFIG_DIR/"
     echo -e "${GREEN}✓ Installed libadwaita override in ~/.config/gtk-4.0${NC}"
+    exit 0
   else
-    echo -e "${RED}❌ libadwaita theme folder not found at $LIBADWAITA_SRC${NC}"
+    echo -e "${RED}❌ Libadwaita theme folder not found at $LIBADWAITA_SRC${NC}"
+    exit 1
   fi
 fi
 
@@ -180,6 +182,14 @@ if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
     echo -e "${YELLOW}⚠️ Skipping icons theme installation.${NC}"
     echo
 else
+    ICON_THEME_DIR="$DOWNLOADS_DIR/MacTahoe-icon-theme"
+
+    if [ -d "$ICON_THEME_DIR" ]; then
+      echo -e "${YELLOW}⚠️  Folder '$ICON_THEME_DIR' already exists. Removing it...${NC}"
+      rm -rf "$ICON_THEME_DIR"
+      echo -e "${GREEN}✓ Removed existing folder.${NC}"
+    fi
+
     echo -e "${BLUE}Cloning MacTahoe-icon-theme...${NC}"
     echo
 
@@ -199,6 +209,14 @@ if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
     echo -e "${YELLOW}⚠️ Skipping cursor theme installation.${NC}"
     echo
 else
+    CURSOR_THEME_DIR="$DOWNLOADS_DIR/WhiteSur-cursors"
+
+    if [ -d "$CURSOR_THEME_DIR" ]; then
+      echo -e "${YELLOW}⚠️  Folder '$CURSOR_THEME_DIR' already exists. Removing it...${NC}"
+      rm -rf "$CURSOR_THEME_DIR"
+      echo -e "${GREEN}✓ Removed existing folder.${NC}"
+    fi
+
     echo -e "${BLUE}Cloning WhiteSur-cursors...${NC}"
     echo
 
