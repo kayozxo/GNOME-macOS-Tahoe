@@ -1065,3 +1065,60 @@ overlay.large
   button.image-button.toggle {
   margin-right: 1px;
 }
+
+/*********************
+ * Dissent *
+ *********************/
+
+notebook.login-methods > header.horizontal.top {
+  border: none;
+  padding-bottom: 12px;
+}
+
+notebook.login-methods > stack {
+  background-color: transparent;
+  padding-bottom: 12px;
+}
+
+headerbar.login-page-header,
+headerbar.login-page-header > windowhandle {
+  background-color: transparent;
+  border: 0px solid rgba(0, 0, 0, 0);
+}
+
+picture.onlineimage.thumbnail-embed-image,
+button.flat.thumbnail-embed {
+  border-radius: 20px;
+}
+
+window headerbar {
+  background-color: transparent;
+}
+
+overlay-split-vew.window-chatpage
+  > widget.sidebar-pane
+  > box.horizontal.sidebar-sidebar
+  > box.sidebar-guildside.vertical
+  > windowcontrols.start {
+  margin-top: 10px;
+}
+
+box.horizontal.user-bar {
+  margin-right: 17px;
+}
+
+popover.emoji-picker > box.emoji-searchbar > entry.search {
+  min-height: 100px;
+}
+
+list.message-list > row,
+textview.md-textblock {
+  border-radius: 0;
+}
+
+overlay-split-vew.window-chatpage
+  > windowhandle
+  > box.end.horizontal
+  > button.image-button.toggle {
+  margin-right: -4px;
+}
