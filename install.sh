@@ -204,7 +204,7 @@ else
     echo
 fi
 
-read -p "$(echo -e "${CYAN}❓ Do you want to install WhiteSur icons? (yes/no): ${NC}")" answer
+read -p "$(echo -e "${CYAN}❓ Do you want to install WhiteSur cursors? (yes/no): ${NC}")" answer
 if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
     echo -e "${YELLOW}⚠️ Skipping cursor theme installation.${NC}"
     echo
@@ -232,33 +232,36 @@ else
 fi
 
 # === GDM Theme ===
-echo
-echo -e "${CYAN}${BOLD}🔒 GDM Theme Installer${NC}"
-echo
+read -p "$(echo -e "${CYAN}❓ Do you want to install GDM Theme? (yes/no): ${NC}")" answer
+if [[ "$answer" != "yes" && "$answer" != "y" ]]; then
+    echo -e "${YELLOW}⚠️ Skipping GDM theme installation.${NC}"
+    echo
+else
+  THEME_CLONE_DIR="$DOWNLOADS_DIR/WhiteSur-gtk-theme"
 
-THEME_CLONE_DIR="$DOWNLOADS_DIR/WhiteSur-gtk-theme"
+  if [ -d "$THEME_CLONE_DIR" ]; then
+    echo -e "${YELLOW}⚠️  Folder '$THEME_CLONE_DIR' already exists. Removing it...${NC}"
+    rm -rf "$THEME_CLONE_DIR"
+    echo -e "${GREEN}✓ Removed existing folder.${NC}"
+  fi
 
-if [ -d "$THEME_CLONE_DIR" ]; then
-  echo -e "${YELLOW}⚠️  Folder '$THEME_CLONE_DIR' already exists. Removing it...${NC}"
-  rm -rf "$THEME_CLONE_DIR"
-  echo -e "${GREEN}✓ Removed existing folder.${NC}"
+  echo -e "${BLUE}Cloning WhiteSur...${NC}"
+  echo
+
+  git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1 $DOWNLOADS_DIR/WhiteSur-gtk-theme
+
+  echo -e "${BLUE}Installing WhiteSur GDM...${NC}"
+  echo
+
+  sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -b default
+
+  echo -e "${GREEN}${BOLD}🎉 GDM Theme installed!${NC}"
+  echo
+
+  echo -e "${GREEN}In order to set custom background to GDM, use this command: ${UNDERLINE}sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -b 'my picture.jpg'${NC}"
+
+  echo
 fi
 
-echo -e "${BLUE}Cloning WhiteSur...${NC}"
-echo
-
-git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1 $DOWNLOADS_DIR/WhiteSur-gtk-theme
-
-echo -e "${BLUE}Installing WhiteSur GDM...${NC}"
-echo
-
-sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -b default
-
-echo -e "${GREEN}${BOLD}🎉 GDM Theme installed!${NC}"
-echo
-
-echo -e "${GREEN}In order to set custom background to GDM, use this command: ${UNDERLINE}sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -b 'my picture.jpg'${NC}"
-
-echo
 echo -e "${GREEN}${BOLD}Enjoy the theme! 🍎${NC}"
 exit 0
