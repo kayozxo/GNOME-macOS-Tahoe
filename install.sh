@@ -10,9 +10,6 @@ fi
 
 THEME_FOLDER="Tahoe-Light or Tahoe-Dark"
 
-REPO="arcnations-united/evolve-core"
-TMP_ZIP="evolve-core-latest.zip"
-
 APP_LAUNCHER="kayozxo/ulauncher-liquid-glass"
 TMP_ZIP_AL="ulauncher-liquid-glass.zip"
 
@@ -29,15 +26,33 @@ NC='\033[0m'
 # === Uninstall Theme ===
 if [[ "${1:-}" == "-u" ]]; then
   echo "🧹 Uninstalling Tahoe themes..."
+  echo
 
   if [[ -d "$HOME/.themes/Tahoe-Dark" ]]; then
     rm -rf "$HOME/.themes/Tahoe-Dark"
-    echo "✅ Removed ~/.themes/Tahoe-Dark"
+    echo "✅ Removed Tahoe-Dark from ~/.themes"
   fi
 
   if [[ -d "$HOME/.themes/Tahoe-Light" ]]; then
     rm -rf "$HOME/.themes/Tahoe-Light"
-    echo "✅ Removed ~/.themes/Tahoe-Light"
+    echo "✅ Removed Tahoe-Light from ~/.themes"
+  fi
+
+  if [[ -d "$HOME/.config/gtk-4.0" ]]; then
+    rm -rf "$HOME/.config/gtk-4.0"
+    echo "✅ Removed gtk-4.0 from ~/.config"
+  fi
+
+  if [[ -d "$DOWNLOADS_DIR/WhiteSur-gtk-theme" ]]; then
+    sudo bash $DOWNLOADS_DIR/WhiteSur-gtk-theme/tweaks.sh -g -r
+    rm -rf "$DOWNLOADS_DIR/WhiteSur-gtk-theme"
+    echo "✅ Uninstalled WhiteSur GDM theme"
+  fi
+
+  if [[ -d "$DOWNLOADS_DIR/MacTahoe-icon-theme" ]]; then
+    sudo bash $DOWNLOADS_DIR/MacTahoe-icon-theme/install.sh -r
+    rm -rf "$DOWNLOADS_DIR/MacTahoe-icon-theme"
+    echo "✅ Uninstalled MacTahoe icon theme"
   fi
 
   echo "✨ Uninstallation complete."
