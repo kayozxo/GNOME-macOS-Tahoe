@@ -515,8 +515,16 @@ windowcontrols > button.close {
   background: none;
 }
 
-windowcontrols > button.minimize > image {
+windowcontrols.end > button.minimize > image {
   background-color: #38c76a;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+windowcontrols.start > button.minimize > image {
+  background-color: #fdbe04;
   box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
     inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
     inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
@@ -527,11 +535,15 @@ windowcontrols.end > button.minimize > image {
   margin-left: 12px;
 }
 
-windowcontrols > button.minimize > image:hover {
+windowcontrols.end > button.minimize > image:hover {
   background-color: rgba(56, 199, 106, 0.85);
 }
 
-windowcontrols > button.maximize > image {
+windowcontrols.start > button.minimize > image:hover {
+  background-color: rgba(253, 190, 4, 0.85);
+}
+
+windowcontrols.end > button.maximize > image {
   background-color: #fdbe04;
   box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
     inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
@@ -539,8 +551,20 @@ windowcontrols > button.maximize > image {
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-windowcontrols > button.maximize > image:hover {
+windowcontrols.start > button.maximize > image {
+  background-color: #38c76a;
+  box-shadow: inset 0 -1px 0 0 alpha(white, 0.2),
+    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
+    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+windowcontrols.end > button.maximize > image:hover {
   background-color: rgba(253, 190, 4, 0.85);
+}
+
+windowcontrols.start > button.maximize > image:hover {
+  background-color: rgba(56, 199, 106, 0.85);
 }
 
 windowcontrols > button.close > image {
@@ -556,7 +580,7 @@ windowcontrols > button.close > image:hover {
 }
 
 windowcontrols > button > image {
-  padding: 1px;
+  padding: 0.4px;
 }
 
 windowcontrols {
@@ -796,6 +820,19 @@ box.bottom.floating-bar {
  * General *
  *********************/
 
+viewswitcher.wide {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+viewswitcher.wide > button {
+  margin: 2px;
+}
+
+switch:checked {
+  background-color: rgb(48, 209, 88);
+}
+
 switch > slider,
 scale.horizontal > trough > slider {
   background-color: white;
@@ -817,7 +854,7 @@ scale.marks-after > trough > slider {
 switch > slider:active {
   transform: scale(1.8);
   background-color: rgba(255, 255, 255, 0);
-  box-shadow: inset 1.2px 0px 2px -0.2px rgba(0, 145, 255, 0.8),
+  box-shadow: inset 1.2px 0px 2px -0.2px rgba(48, 209, 88, 0.8),
     inset -0.8px 0.8px 2px -0.2px rgba(255, 255, 255, 0.6);
 }
 

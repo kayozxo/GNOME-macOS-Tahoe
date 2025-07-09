@@ -12,6 +12,7 @@ THEME_FOLDER="Tahoe-Light or Tahoe-Dark"
 
 APP_LAUNCHER="kayozxo/ulauncher-liquid-glass"
 TMP_ZIP_AL="ulauncher-liquid-glass.zip"
+GTK4_CONFIG_DIR="$HOME/.config/gtk-4.0"
 
 # === Style Variables ===
 RED='\033[0;31m'
@@ -38,9 +39,9 @@ if [[ "${1:-}" == "-u" ]]; then
     echo "✅ Removed Tahoe-Light from ~/.themes"
   fi
 
-  if [[ -d "$HOME/.config/gtk-4.0" ]]; then
-    rm -rf "$HOME/.config/gtk-4.0"
-    echo "✅ Removed gtk-4.0 from ~/.config"
+  if [[ -d "$HOME/.config/gtk-4.0/" ]]; then
+    rm -rf "$GTK4_CONFIG_DIR/"{gtk.css,gtk-dark.css,gtk-Light.css,gtk-Dark.css,assets,windows-assets}
+    echo "✅ Removed everything in gtk-4.0 from ~/.config"
   fi
 
   if [[ -d "$DOWNLOADS_DIR/WhiteSur-gtk-theme" ]]; then
@@ -149,7 +150,6 @@ if $INSTALL_LIBADWAITA; then
     exit 1
   fi
 
-  GTK4_CONFIG_DIR="$HOME/.config/gtk-4.0"
   mkdir -p "$GTK4_CONFIG_DIR"
 
   if [ -d "$LIBADWAITA_SRC" ]; then
