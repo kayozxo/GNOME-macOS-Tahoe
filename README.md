@@ -42,10 +42,21 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe --depth=1`
 2. Run `cd GNOME-macOS-Tahoe`
 3. Run:
+
+   - `./install.sh` for both the themes
    - `./install.sh -l` for light theme
-   - `./install.sh -d` for dark theme.
-   - `./install.sh -u` to uninstall the theme.
-4. Then continue from [here](.config/README.md)
+   - `./install.sh -d` for dark theme
+   - `./install.sh -u` to uninstall the theme
+
+4. <details> <summary> How to update <b>(click to open)</b> </summary>
+
+   - Run `cd GNOME-macOS-Tahoe`
+   - Run `git pull origin main`
+   - Run step 3 again!
+
+</details>
+
+5. Then continue from [here](.config/README.md)
 
 ## Fix for libadwaita (not perfect)
 
