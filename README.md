@@ -3,7 +3,7 @@
 <p align="center"> <img src="screenshots/tahoe-light.webp"/> </p>
 
 <br>
-<p align="center"> <b> A macOS Tahoe like theme for Linux GTK Desktops </b> </p>
+<p align="center"> <b> A macOS Tahoe like theme for GNOME Desktops </b> </p>
 <br>
 
 ## Donate
@@ -81,4 +81,4 @@ Run this command to install `Tahoe` into `gtk-4.0 configuration folder` ($HOME/.
 
 Reboot or log out and back in — your GNOME should now resemble **macOS Tahoe**!
 
-If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1lkaxv4/gnome_macos_tahoe_v030/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
+If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1lt325d/gnome_macos_tahoe_v040/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
