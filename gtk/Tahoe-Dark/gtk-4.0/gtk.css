@@ -666,6 +666,22 @@ widget.end.sidebar-pane {
  * Nautilus *
  *********************/
 
+widget#NautilusViewCell {
+  border-radius: 0px;
+}
+
+widget#NautilusViewCell
+  > box.horizontal
+  > box.horizontal
+  > box.vertical
+  > picture {
+  border-radius: 0px;
+}
+
+widget#NautilusViewCell > box.horizontal > box.horizontal > box.vertical {
+  border-radius: 0px;
+}
+
 window.filechooser > gridview.view,
 window.filechooser > list.navigation-sidebar {
   background-color: transparent;
