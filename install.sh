@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if ! command -v xdg-user-dir >/dev/null; then
-  echo -e "${YELLOW}⚠️ xdg-user-dir not found. Falling back to ~/Downloads.${NC}"
-  DOWNLOADS_DIR="$HOME/Downloads"
-else
-  DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD)"
-fi
-
 THEME_FOLDER="Tahoe-Light or Tahoe-Dark"
 
 APP_LAUNCHER="kayozxo/ulauncher-liquid-glass"
@@ -23,6 +16,13 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
 NC='\033[0m'
+
+if ! command -v xdg-user-dir >/dev/null; then
+  echo -e "${YELLOW}⚠️ xdg-user-dir not found. Falling back to ~/Downloads.${NC}"
+  DOWNLOADS_DIR="$HOME/Downloads"
+else
+  DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD)"
+fi
 
 # === Uninstall Theme ===
 if [[ "${1:-}" == "-u" ]]; then
