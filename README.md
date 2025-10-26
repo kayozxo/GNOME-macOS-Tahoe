@@ -58,6 +58,44 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 5. Then continue from [here](.config/README.md)
 
+## 🎨 Accent Colors
+
+Tahoe now supports **16 beautiful accent colors** with complete theming support across **GTK4, GTK3, and GNOME Shell**! Generate and install accent color variants easily:
+
+### Examples
+
+```bash
+# Generate all 16 accent color variants
+./install.sh --colors
+
+# Generate and install specific color (dark & light)
+./install.sh --color blue
+
+# Dark mode only with purple accent
+./install.sh -d --color purple
+
+# Light mode only with green accent
+./install.sh -l --color green
+
+# Libadwaita fix with colored theme
+./install.sh -d --color blue -la
+```
+
+### Available Colors
+
+| Color  | Color   |
+| ------ | ------- |
+| Blue   | Rose    |
+| Green  | Emerald |
+| Purple | Violet  |
+| Pink   | Amber   |
+| Orange | Cyan    |
+| Red    | Lime    |
+| Teal   | Sky     |
+| Indigo | Slate   |
+
+**After installation**, select your preferred color variant in **Tweaks → Appearance** (e.g., `Tahoe-Dark-Blue`, `Tahoe-Light-Green`, `Tahoe-Dark-Amber`, etc.). The accent colors will apply to all applications and GNOME Shell elements including dash, notifications, popups, and more!
+
 ## Fix for libadwaita (not perfect)
 
 <details> <summary> Details <b>(click to open)</b> </summary>
@@ -70,12 +108,16 @@ That is to use the `theme file` to overwrite the `gtk-4.0 configuration file`. T
 
 </details>
 
-Run this command to install `Tahoe` into `gtk-4.0 configuration folder` ($HOME/.config/gtk-4.0)
+Run this command to install `Tahoe` into `gtk-4.0 configuration folder` ($HOME/.config/gtk-4.0) for libadwaita applications:
 
 ```bash
-./install.sh -l -la        # install light theme for libadwaita
-./install.sh -d -la        # install dark theme for libadwaita
+./install.sh -l -la          # install light theme for libadwaita
+./install.sh -d -la          # install dark theme for libadwaita
+./install.sh -d --color blue -la    # install dark blue theme for libadwaita
+./install.sh -l --color green -la    # install light green theme for libadwaita
 ```
+
+**Note:** The `-la` flag also applies the accent color to GNOME Shell elements (dash, notifications, popups, etc.) when used with `--color`.
 
 ## ✅ Done!
 

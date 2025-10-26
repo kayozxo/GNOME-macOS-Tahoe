@@ -39,6 +39,15 @@ if [[ "${1:-}" == "-u" ]]; then
     echo "✅ Removed Tahoe-Light from ~/.themes"
   fi
 
+  # Remove all color variants
+  for color_dir in "$HOME/.themes"/Tahoe-Dark-* "$HOME/.themes"/Tahoe-Light-*; do
+    if [ -d "$color_dir" ]; then
+      color_name=$(basename "$color_dir")
+      rm -rf "$color_dir"
+      echo "✅ Removed $color_name from ~/.themes"
+    fi
+  done
+
   if [[ -d "$HOME/.config/gtk-4.0/" ]]; then
     rm -rf "$GTK4_CONFIG_DIR/"{gtk.css,gtk-dark.css,gtk-Light.css,gtk-Dark.css,assets,windows-assets}
     echo "✅ Removed everything in gtk-4.0 from ~/.config"
@@ -68,6 +77,9 @@ echo
 INSTALL_LIGHT=false
 INSTALL_DARK=false
 INSTALL_LIBADWAITA=false
+INSTALL_COLORS=false
+INSTALL_DYNAMIC=false
+SPECIFIC_COLOR=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -80,12 +92,26 @@ while [[ $# -gt 0 ]]; do
     -la)
       INSTALL_LIBADWAITA=true
       ;;
+    --colors)
+      INSTALL_COLORS=true
+      ;;
+    --color)
+      INSTALL_COLORS=true
+      SPECIFIC_COLOR="$2"
+      shift
+      ;;
+    --dynamic)
+      INSTALL_DYNAMIC=true
+      ;;
     *)
       echo -e "${RED}Invalid option: $1${NC}"
       echo -e "${BLUE}Available options:${NC}"
       echo -e "${GREEN}-l ${NC}Install Light theme"
       echo -e "${GREEN}-d ${NC}Install Dark theme"
-      echo -e "${GREEN}-la${NC}Install Libadwaita override"
+      echo -e "${GREEN}-la ${NC}Install Libadwaita override"
+      echo -e "${GREEN}--colors ${NC}Generate all accent color variants"
+      echo -e "${GREEN}--color COLOR ${NC}Generate specific color variant (blue, green, purple, etc.)"
+      echo -e "${GREEN}--dynamic ${NC}Setup dynamic color switching system"
       exit 1
       ;;
   esac
@@ -93,7 +119,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # === Default: Install both if no flag is passed ===
-if ! $INSTALL_LIGHT && ! $INSTALL_DARK && ! $INSTALL_LIBADWAITA; then
+if ! $INSTALL_LIGHT && ! $INSTALL_DARK && ! $INSTALL_LIBADWAITA && ! $INSTALL_COLORS && ! $INSTALL_DYNAMIC; then
   INSTALL_LIGHT=true
   INSTALL_DARK=true
 fi
@@ -137,14 +163,56 @@ if $INSTALL_DARK; then
   fi
 fi
 
+# === Color Generation (must happen before libadwaita) ===
+if $INSTALL_COLORS; then
+  echo
+  echo -e "${CYAN}${BOLD}🎨 Generating Accent Color Variants...${NC}"
+
+  # Check if Python is available
+  if command -v python3 >/dev/null 2>&1; then
+    if [ -n "$SPECIFIC_COLOR" ]; then
+      echo -e "${BLUE}📦 Generating $SPECIFIC_COLOR accent variant...${NC}"
+      python3 generate_accent_variants.py --color "$SPECIFIC_COLOR" --name "$SPECIFIC_COLOR"
+    else
+      echo -e "${BLUE}📦 Generating all 16 accent color variants...${NC}"
+      python3 generate_accent_variants.py --all
+    fi
+  elif command -v python >/dev/null 2>&1; then
+    # Fallback to python command
+    if [ -n "$SPECIFIC_COLOR" ]; then
+      echo -e "${BLUE}📦 Generating $SPECIFIC_COLOR accent variant...${NC}"
+      python generate_accent_variants.py --color "$SPECIFIC_COLOR" --name "$SPECIFIC_COLOR"
+    else
+      echo -e "${BLUE}📦 Generating all 16 accent color variants...${NC}"
+      python generate_accent_variants.py --all
+    fi
+  else
+    echo -e "${RED}❌ Python not found. Please install Python 3 to generate color variants.${NC}"
+    echo -e "${YELLOW}💡 You can still use the base themes, but color variants require Python.${NC}"
+  fi
+fi
+
 if $INSTALL_LIBADWAITA; then
   echo
   echo -e "${CYAN}🎯 Installing libadwaita override...${NC}"
 
+  # Determine which theme to use for libadwaita
   if $INSTALL_LIGHT; then
-    LIBADWAITA_SRC="$SCRIPT_DIR/gtk/Tahoe-Light/gtk-4.0"
+    if [ -n "$SPECIFIC_COLOR" ] && [ -d "$GTK_DIR/Tahoe-Light-${SPECIFIC_COLOR^}" ]; then
+      LIBADWAITA_SRC="$GTK_DIR/Tahoe-Light-${SPECIFIC_COLOR^}/gtk-4.0"
+      echo -e "${BLUE}📁 Using Tahoe-Light-${SPECIFIC_COLOR^} for libadwaita${NC}"
+    else
+      LIBADWAITA_SRC="$GTK_DIR/Tahoe-Light/gtk-4.0"
+      echo -e "${BLUE}📁 Using Tahoe-Light for libadwaita${NC}"
+    fi
   elif $INSTALL_DARK; then
-    LIBADWAITA_SRC="$SCRIPT_DIR/gtk/Tahoe-Dark/gtk-4.0"
+    if [ -n "$SPECIFIC_COLOR" ] && [ -d "$GTK_DIR/Tahoe-Dark-${SPECIFIC_COLOR^}" ]; then
+      LIBADWAITA_SRC="$GTK_DIR/Tahoe-Dark-${SPECIFIC_COLOR^}/gtk-4.0"
+      echo -e "${BLUE}📁 Using Tahoe-Dark-${SPECIFIC_COLOR^} for libadwaita${NC}"
+    else
+      LIBADWAITA_SRC="$GTK_DIR/Tahoe-Dark/gtk-4.0"
+      echo -e "${BLUE}📁 Using Tahoe-Dark for libadwaita${NC}"
+    fi
   else
     echo -e "${RED}⚠️  Please specify -l or -d with -la to choose Light or Dark variant.${NC}"
     exit 1
@@ -153,11 +221,11 @@ if $INSTALL_LIBADWAITA; then
   mkdir -p "$GTK4_CONFIG_DIR"
 
   if [ -d "$LIBADWAITA_SRC" ]; then
-    echo -e "${BLUE}📁 Copying Tahoe theme from $LIBADWAITA_SRC${NC}"
+    echo -e "${BLUE}📁 Copying theme files from $LIBADWAITA_SRC${NC}"
     rm -rf "$GTK4_CONFIG_DIR/"{gtk.css,gtk-dark.css,gtk-Light.css,gtk-Dark.css,assets,windows-assets}
     cp -r "$LIBADWAITA_SRC/"* "$GTK4_CONFIG_DIR/"
     echo -e "${GREEN}✓ Installed libadwaita override in ~/.config/gtk-4.0${NC}"
-    exit 0
+    # Don't exit early - let color variants be copied too
   else
     echo -e "${RED}❌ Libadwaita theme folder not found at $LIBADWAITA_SRC${NC}"
     exit 1
@@ -166,6 +234,59 @@ fi
 
 echo
 echo -e "${GREEN}${BOLD}🎉 Tahoe Themes installed!${NC}"
+
+# === Install Color Variants ===
+if $INSTALL_COLORS; then
+  # Install generated color variants based on user preferences
+  echo -e "${CYAN}📦 Installing color variants...${NC}"
+
+  # Install dark variants if user wants dark theme
+  if $INSTALL_DARK || [[ ! $INSTALL_LIGHT && ! $INSTALL_DARK ]]; then
+    for color_dir in "$GTK_DIR"/Tahoe-Dark-*; do
+      if [ -d "$color_dir" ]; then
+        color_name=$(basename "$color_dir")
+        rm -rf "$THEME_DIR/$color_name"
+        cp -r "$color_dir" "$THEME_DIR/"
+        echo -e "${GREEN}✓ Installed $color_name${NC}"
+      fi
+    done
+  fi
+
+  # Install light variants if user wants light theme
+  if $INSTALL_LIGHT || [[ ! $INSTALL_LIGHT && ! $INSTALL_DARK ]]; then
+    for color_dir in "$GTK_DIR"/Tahoe-Light-*; do
+      if [ -d "$color_dir" ]; then
+        color_name=$(basename "$color_dir")
+        rm -rf "$THEME_DIR/$color_name"
+        cp -r "$color_dir" "$THEME_DIR/"
+        echo -e "${GREEN}✓ Installed $color_name${NC}"
+      fi
+    done
+  fi
+
+  echo -e "${GREEN}${BOLD}🎉 Accent color variants installed!${NC}"
+  echo -e "${YELLOW}💡 Select them in Settings → Appearance (e.g., Tahoe-Dark-Blue, Tahoe-Light-Green)${NC}"
+fi
+
+# === Dynamic Color System ===
+if $INSTALL_DYNAMIC; then
+  echo
+  echo -e "${CYAN}${BOLD}🔄 Setting up Dynamic Color System...${NC}"
+
+  if command -v python3 >/dev/null 2>&1; then
+    python3 setup_dynamic_colors.py
+    echo -e "${GREEN}${BOLD}🎉 Dynamic color system ready!${NC}"
+    echo -e "${YELLOW}💡 Use 'python3 color_switcher.py COLOR_NAME' to switch colors${NC}"
+    echo -e "${BLUE}📋 Available colors: blue, green, purple, pink, orange, red, teal, indigo, rose, emerald, violet, amber, cyan, lime, sky, slate${NC}"
+  elif command -v python >/dev/null 2>&1; then
+    python setup_dynamic_colors.py
+    echo -e "${GREEN}${BOLD}🎉 Dynamic color system ready!${NC}"
+    echo -e "${YELLOW}💡 Use 'python color_switcher.py COLOR_NAME' to switch colors${NC}"
+    echo -e "${BLUE}📋 Available colors: blue, green, purple, pink, orange, red, teal, indigo, rose, emerald, violet, amber, cyan, lime, sky, slate${NC}"
+  else
+    echo -e "${RED}❌ Python not found. Please install Python 3 to setup dynamic colors.${NC}"
+  fi
+fi
 
 # === Download Ulauncher Theme ===
 echo
