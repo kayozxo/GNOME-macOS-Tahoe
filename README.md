@@ -9,7 +9,7 @@
 
 If you like my project, you can buy me a coffee, many thanks ❤️ !
 
-<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="30"/></a>
+<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="40"/></a>
 
 # Installation is easy!
 
@@ -121,8 +121,8 @@ Tahoe now supports **16 beautiful accent colors** with complete theming support 
 
 ## Wallpapers
 
-<p align="center"> <img style="border-radius: 40px;" src=".config/walls/26-Tahoe-Light-6K.png"/> </p>
-<p align="center"> <img src=".config/walls/26-Tahoe-Dark.png" style="border-radius: 40px;"/> </p>
+<p align="center"> <img style="border-radius: 40px;" src=".config/walls/26-Tahoe-Light-6K.png" height="1080"/> </p>
+<p align="center"> <img src=".config/walls/26-Tahoe-Dark.png" style="border-radius: 40px;" height="1080"/> </p>
 
 ## Fix for libadwaita (not perfect)
 
@@ -167,7 +167,7 @@ Example: `./install.sh --flatpak`
 
 If you like my project, you can buy me a coffee, many thanks ❤️ !
 
-<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="30"/></a>
+<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="40"/></a>
 
 Reboot or log out and back in — your GNOME should now resemble **macOS Tahoe**!
 
