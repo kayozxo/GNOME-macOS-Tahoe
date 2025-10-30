@@ -1,6 +1,5 @@
 <h1 align="center"> Tahoe GTK Theme </h1>
-<p align="center"> <img src="screenshots/tahoe-dark.webp"/> </p>
-<p align="center"> <img src="screenshots/tahoe-light.webp"/> </p>
+<p align="center"> <img src="screenshots/hero.svg"/> </p>
 
 <br>
 <p align="center"> <b> A macOS Tahoe like theme for GNOME Desktops </b> </p>
@@ -37,28 +36,52 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 ## Quick install
 
-### Installing from source
+### Interactive Installer (Recommended!)
 
-1. Run `git clone https://github.com/kayozxo/GNOME-macOS-Tahoe --depth=1`
-2. Run `cd GNOME-macOS-Tahoe`
-3. Run:
+**Run the installer — it will automatically install [Gum](https://github.com/charmbracelet/gum) if needed!**
 
-   - `./install.sh` for both the themes
-   - `./install.sh -l` for light theme
-   - `./install.sh -d` for dark theme
-   - `./install.sh -u` to uninstall the theme
+```bash
+./install.sh
+```
 
-4. <details> <summary> How to update <b>(click to open)</b> </summary>
+**No flags needed!** The installer will provide an interactive menu to guide you through:
 
-   - Run `cd GNOME-macOS-Tahoe`
-   - Run `git pull origin main`
-   - Run step 3 again!
+- 🎨 Install Light/Dark/Both themes
+- 🌈 Generate and install accent color variants (all 16 or specific)
+- 🖼️ Install generated accent variants to ~/.themes
+- ⚙️ Install libadwaita override (for modern GTK4 apps & GNOME Shell)
+- 🎯 Install extras: MacTahoe icons, WhiteSur cursors, Ulauncher theme, GDM theme
+- 🧹 Uninstall themes
+- 📖 Help & documentation
 
-</details>
+### Command-line Usage (Advanced)
 
-5. Then continue from [here](.config/README.md)
+If you prefer command-line flags over the interactive menu:
 
-## 🎨 Accent Colors
+```bash
+# Install themes
+./install.sh -l    # Light theme only
+./install.sh -d    # Dark theme only
+./install.sh -u    # Uninstall
+
+# Generate accent colors
+./install.sh --colors        # Generate all 16 variants
+./install.sh --color blue    # Generate specific color
+
+# Install with libadwaita support
+./install.sh -d -la                 # Dark + libadwaita
+./install.sh -d --color blue -la    # Dark blue + libadwaita + GNOME Shell
+```
+
+### Updating
+
+1. Run `cd GNOME-macOS-Tahoe`
+2. Run `git pull origin main`
+3. Run `./install.sh` again
+
+Then continue from [here](.config/README.md)
+
+## Accent Colors
 
 Tahoe now supports **16 beautiful accent colors** with complete theming support across **GTK4, GTK3, and GNOME Shell**! Generate and install accent color variants easily:
 
@@ -81,7 +104,7 @@ Tahoe now supports **16 beautiful accent colors** with complete theming support 
 ./install.sh -d --color blue -la
 ```
 
-### Available Colors
+### Available Color
 
 | Color  | Color   |
 | ------ | ------- |
@@ -95,6 +118,11 @@ Tahoe now supports **16 beautiful accent colors** with complete theming support 
 | Indigo | Slate   |
 
 **After installation**, select your preferred color variant in **Tweaks → Appearance** (e.g., `Tahoe-Dark-Blue`, `Tahoe-Light-Green`, `Tahoe-Dark-Amber`, etc.). The accent colors will apply to all applications and GNOME Shell elements including dash, notifications, popups, and more!
+
+## Wallpapers
+
+<p align="center"> <img style="border-radius: 40px;" src=".config/walls/26-Tahoe-Light-6K.png"/> </p>
+<p align="center"> <img src=".config/walls/26-Tahoe-Dark.png" style="border-radius: 40px;"/> </p>
 
 ## Fix for libadwaita (not perfect)
 
@@ -119,8 +147,28 @@ Run this command to install `Tahoe` into `gtk-4.0 configuration folder` ($HOME/.
 
 **Note:** The `-la` flag also applies the accent color to GNOME Shell elements (dash, notifications, popups, etc.) when used with `--color`.
 
+## Fix for Flatpak
+
+#### 1. Run command to fix it
+
+```sh
+sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
+```
+
+If you use flatpak apps, you can run this to fix theme issue
+
+#### 2. Connect Tahoe theme to Flatpak (gtk 3.0) (Snap not support)
+
+Parameter: `--flatpak`
+
+Example: `./install.sh --flatpak`
+
 ## ✅ Done!
+
+If you like my project, you can buy me a coffee, many thanks ❤️ !
+
+<a href="https://www.buymeacoffee.com/kayozxo"><img src="screenshots/bmc-button.png" width="120" height="30"/></a>
 
 Reboot or log out and back in — your GNOME should now resemble **macOS Tahoe**!
 
-If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1lt325d/gnome_macos_tahoe_v040/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
+If you face any issues or have questions, feel free to open an issue on the repo or drop a comment on [my Reddit post](https://www.reddit.com/r/unixporn/comments/1ogcgqg/gnome_macos_tahoe_v060/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
