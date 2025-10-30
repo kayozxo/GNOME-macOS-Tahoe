@@ -78,7 +78,7 @@ If you prefer command-line flags over the interactive menu:
 2. Run `git pull origin main`
 3. Run `./install.sh` again
 
-Then continue from [here](.config/README.md)
+Then continue from [here](.config/EXTENSIONS.md)
 
 ## Accent Colors
 
