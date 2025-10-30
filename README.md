@@ -1,4 +1,3 @@
-<h1 align="center"> Tahoe GTK Theme </h1>
 <p align="center"> <img src="screenshots/hero.svg"/> </p>
 
 <br>
