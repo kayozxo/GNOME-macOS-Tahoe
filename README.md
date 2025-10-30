@@ -120,8 +120,7 @@ Tahoe now supports **16 beautiful accent colors** with complete theming support 
 
 ## Wallpapers
 
-<p align="center"> <img style="border-radius: 40px;" src=".config/walls/26-Tahoe-Light-6K.png" height="1080"/> </p>
-<p align="center"> <img src=".config/walls/26-Tahoe-Dark.png" style="border-radius: 40px;" height="1080"/> </p>
+<p align="center"><a href=".config/walls/"><img src="screenshots/walls.svg"/></a></p>
 
 ## Fix for libadwaita (not perfect)
 
