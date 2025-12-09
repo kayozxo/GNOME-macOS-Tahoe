@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<wallpapers>
+  <wallpaper deleted="false">
+    <name>Tahoe Background</name>
+    <filename>/usr/share/backgrounds/Tahoe/Tahoe-5k-light.jpg</filename>
+    <filename-dark>/usr/share/backgrounds/Tahoe/Tahoe-5k-dark.jpg</filename-dark>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#51a2da</pcolor>
+    <scolor>#294172</scolor>
+  </wallpaper>
+</wallpapers>
