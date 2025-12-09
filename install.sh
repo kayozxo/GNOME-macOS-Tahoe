@@ -672,7 +672,7 @@ interactive_menu() {
         "Generate: Specific accent variant" \
         "Install generated accent variants into ~/.themes" \
         "Install libadwaita override" \
-        "Install Extras (icons/cursors/ulauncher/GDM)" \
+        "Install Extras (icons/wallpapers/cursors/ulauncher/GDM)" \
         "Uninstall themes" \
         "Force reload theme (clear cache)" \
         "Help" \
