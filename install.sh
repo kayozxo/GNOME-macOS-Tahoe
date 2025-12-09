@@ -714,7 +714,7 @@ interactive_menu() {
         ;;
       "Install Extras (icons/cursors/ulauncher/GDM)")
         if command -v gum &>/dev/null; then
-          ex=$(gum choose "Install MacTahoe icons" "Install WhiteSur cursors" "Install Ulauncher theme" "Install WhiteSur GDM theme" "Connect Flatpak themes" "Disconnect Flatpak themes" "Back")
+          ex=$(gum choose "Install MacTahoe icons" "Install WhiteSur cursors" "Install Ulauncher theme" "Install WhiteSur GDM theme" "Install Tahoe Wallpapers" "Connect Flatpak themes" "Disconnect Flatpak themes" "Back")
         else
           echo "Extras: 1) icons 2) cursors 3) ulauncher 4) gdm 5) install wallpapers 6) connect flatpak 7) disconnect flatpak 8) back"
           read -r ex
