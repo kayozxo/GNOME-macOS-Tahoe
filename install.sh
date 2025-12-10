@@ -465,6 +465,45 @@ install_gdm_theme() {
   fi
 }
 
+install_wallpaper() {
+  gum_or_echo "${CYAN}Installing Tahoe 26 5k wallpapers...${NC}"
+  gum_or_echo "${YELLOW}⚠️  This following operation will require sudo privileges, as the wallpapers will be installed globally.${NC}"
+
+  # Check if files exist
+  local source_wallpaper_dir="$SCRIPT_DIR/.config/walls/Tahoe"
+  local source_xml="$SCRIPT_DIR/.config/walls/Tahoe.xml"
+  
+  if [ ! -d "$source_wallpaper_dir" ]; then
+    gum_or_echo "${RED}✗ Source wallpaper directory not found: $source_wallpaper_dir${NC}"
+    return 1
+  fi
+  
+  if [ ! -f "$source_xml" ]; then
+    gum_or_echo "${RED}✗ Source XML file not found: $source_xml${NC}"
+    return 1
+  fi
+
+  # Create directories
+  gum_spin_run "Creating directories..." "
+    sudo mkdir -p \"/usr/share/backgrounds/\"
+    sudo mkdir -p \"/usr/share/gnome-background-properties/\"
+  "
+
+  # Copy the wallpapers and xml file
+  gum_spin_run "Installing wallpapers..." "
+    sudo cp -r \"$source_wallpaper_dir\" \"/usr/share/backgrounds/\"
+    sudo cp \"$source_xml\" \"/usr/share/gnome-background-properties/\"
+  "
+
+  gum_or_echo "✅ Wallpapers installed!"
+  gum_or_echo "${GREEN}Wallpaper location: /usr/share/backgrounds/Tahoe${NC}"
+  gum_or_echo "${GREEN}XML location: /usr/share/gnome-background-properties/Tahoe.xml${NC}"
+  gum_or_echo "${CYAN}Note: You can apply the wallpaper in your settings under Appearance.${NC}"
+
+  # Pretty irrelevant information, but so i know you actually check the code: I like kissing boys :3
+  # wallpaper installer made by skittle0764 https://github.com/skittle0764
+}
+
 connect_flatpak() {
   if ! command -v flatpak &>/dev/null; then
     gum_or_echo "${RED}Error: Flatpak is not installed on your system${NC}"
@@ -633,7 +672,7 @@ interactive_menu() {
         "Generate: Specific accent variant" \
         "Install generated accent variants into ~/.themes" \
         "Install libadwaita override" \
-        "Install Extras (icons/cursors/ulauncher/GDM)" \
+        "Install Extras (icons/wallpapers/cursors/ulauncher/GDM)" \
         "Uninstall themes" \
         "Force reload theme (clear cache)" \
         "Help" \
@@ -675,9 +714,9 @@ interactive_menu() {
         ;;
       "Install Extras (icons/cursors/ulauncher/GDM)")
         if command -v gum &>/dev/null; then
-          ex=$(gum choose "Install MacTahoe icons" "Install WhiteSur cursors" "Install Ulauncher theme" "Install WhiteSur GDM theme" "Connect Flatpak themes" "Disconnect Flatpak themes" "Back")
+          ex=$(gum choose "Install MacTahoe icons" "Install WhiteSur cursors" "Install Ulauncher theme" "Install WhiteSur GDM theme" "Install Tahoe Wallpapers" "Connect Flatpak themes" "Disconnect Flatpak themes" "Back")
         else
-          echo "Extras: 1) icons 2) cursors 3) ulauncher 4) gdm 5) connect flatpak 6) disconnect flatpak 7) back"
+          echo "Extras: 1) icons 2) cursors 3) ulauncher 4) gdm 5) install wallpapers 6) connect flatpak 7) disconnect flatpak 8) back"
           read -r ex
         fi
         case "$ex" in
@@ -685,9 +724,10 @@ interactive_menu() {
           "Install WhiteSur cursors"|"2") install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
           "Install Ulauncher theme"|"3") install_ulauncher_theme ;;
           "Install WhiteSur GDM theme"|"4") install_gdm_theme ;;
-          "Connect Flatpak themes"|"5") connect_flatpak ;;
-          "Disconnect Flatpak themes"|"6") disconnect_flatpak ;;
-          "Back"|"7") : ;;
+          "Install Tahoe Wallpapers"|"5") install_wallpaper ;;
+          "Connect Flatpak themes"|"6") connect_flatpak ;;
+          "Disconnect Flatpak themes"|"7") disconnect_flatpak ;;
+          "Back"|"8") : ;;
         esac
         ;;
       "Uninstall themes") uninstall_all ;;
@@ -729,6 +769,7 @@ if [[ $# -gt 0 ]]; then
   INSTALL_LIBADWAITA=false
   INSTALL_COLORS=false
   SPECIFIC_COLOR=""
+  INSTALL_WALLPAPER=false
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -746,6 +787,10 @@ if [[ $# -gt 0 ]]; then
         ;;
       -la)
         INSTALL_LIBADWAITA=true
+        shift
+        ;;
+      -w|--wallpaper)
+        INSTALL_WALLPAPER=true
         shift
         ;;
       --flatpak)
@@ -800,6 +845,10 @@ if [[ $# -gt 0 ]]; then
     fi
 
     install_libadwaita_override "$pref" "$SPECIFIC_COLOR"
+  fi
+
+  if $INSTALL_WALLPAPER; then
+    install_wallpaper
   fi
 
   exit 0

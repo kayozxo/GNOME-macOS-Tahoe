@@ -49,7 +49,7 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 - 🌈 Generate and install accent color variants (all 16 or specific)
 - 🖼️ Install generated accent variants to ~/.themes
 - ⚙️ Install libadwaita override (for modern GTK4 apps & GNOME Shell)
-- 🎯 Install extras: MacTahoe icons, WhiteSur cursors, Ulauncher theme, GDM theme
+- 🎯 Install extras: MacTahoe icons, MacTahoe wallpapers, WhiteSur cursors, Ulauncher theme and GDM theme
 - 🧹 Uninstall themes
 - 📖 Help & documentation
 
@@ -62,6 +62,9 @@ If you prefer command-line flags over the interactive menu:
 ./install.sh -l    # Light theme only
 ./install.sh -d    # Dark theme only
 ./install.sh -u    # Uninstall
+
+# Install wallpapers
+./install.sh -w    # Tahoe 26 dynamic wallpapers
 
 # Generate accent colors
 ./install.sh --colors        # Generate all 16 variants
