@@ -467,33 +467,33 @@ install_gdm_theme() {
 
 install_wallpaper() {
   gum_or_echo "${CYAN}Installing Tahoe 26 5k wallpapers...${NC}"
-  gum_or_echo "${YELLOW}⚠️  This following operation will require sudo privileges, as the wallpapers will be installed globally.${NC}"
+  gum_or_echo "${YELLOW}⚠️  This operation requires sudo privileges to install wallpapers globally.${NC}"
 
   # Check if files exist
   local source_wallpaper_dir="$SCRIPT_DIR/.config/walls/Tahoe"
   local source_xml="$SCRIPT_DIR/.config/walls/Tahoe.xml"
-  
+
   if [ ! -d "$source_wallpaper_dir" ]; then
     gum_or_echo "${RED}✗ Source wallpaper directory not found: $source_wallpaper_dir${NC}"
     return 1
   fi
-  
+
   if [ ! -f "$source_xml" ]; then
     gum_or_echo "${RED}✗ Source XML file not found: $source_xml${NC}"
     return 1
   fi
 
-  # Create directories
-  gum_spin_run "Creating directories..." "
-    sudo mkdir -p \"/usr/share/backgrounds/\"
-    sudo mkdir -p \"/usr/share/gnome-background-properties/\"
-  "
+  # Pre-authenticate sudo before any operations (password prompt will be visible)
+  gum_or_echo "${YELLOW}⏳ Please enter your sudo password when prompted...${NC}"
+  if ! sudo -v; then
+    gum_or_echo "${RED}✗ Failed to authenticate with sudo${NC}"
+    return 1
+  fi
 
-  # Copy the wallpapers and xml file
-  gum_spin_run "Installing wallpapers..." "
-    sudo cp -r \"$source_wallpaper_dir\" \"/usr/share/backgrounds/\"
-    sudo cp \"$source_xml\" \"/usr/share/gnome-background-properties/\"
-  "
+  # Now run the actual commands - sudo is cached, no prompts during spinner
+  gum_spin_run "Creating directories..." "sudo mkdir -p /usr/share/backgrounds/ /usr/share/gnome-background-properties/"
+  gum_spin_run "Copying wallpapers..." "sudo cp -r \"$source_wallpaper_dir\" /usr/share/backgrounds/"
+  gum_spin_run "Copying metadata..." "sudo cp \"$source_xml\" /usr/share/gnome-background-properties/"
 
   gum_or_echo "✅ Wallpapers installed!"
   gum_or_echo "${GREEN}Wallpaper location: /usr/share/backgrounds/Tahoe${NC}"
@@ -514,18 +514,23 @@ connect_flatpak() {
   gum_or_echo "This will allow Flatpak apps to access your GTK themes."
   echo
 
-  gum_or_echo "${YELLOW}⚠️  The following operations will require sudo privileges.${NC}"
+  gum_or_echo "${YELLOW}⚠️  This operation requires sudo privileges.${NC}"
 
   if ! gum_confirm_or_read "Grant Flatpak apps permission to access GTK configs?"; then
     gum_or_echo "Flatpak connection cancelled."
     return 0
   fi
 
-  # Grant filesystem access to GTK config directories
+  # Pre-authenticate sudo before any operations
+  gum_or_echo "${YELLOW}⏳ Please enter your sudo password when prompted...${NC}"
+  if ! sudo -v; then
+    gum_or_echo "${RED}✗ Failed to authenticate with sudo${NC}"
+    return 1
+  fi
+
+  # Grant filesystem access to GTK config directories (sudo is now cached)
   gum_spin_run "Granting Flatpak access to GTK-3.0 config..." "sudo flatpak override --filesystem=xdg-config/gtk-3.0"
   gum_spin_run "Granting Flatpak access to GTK-4.0 config..." "sudo flatpak override --filesystem=xdg-config/gtk-4.0"
-
-  # Also grant access to themes directory
   gum_spin_run "Granting Flatpak access to themes..." "sudo flatpak override --filesystem=~/.themes"
 
   gum_or_echo "✅ Flatpak permissions configured successfully!"
@@ -549,7 +554,14 @@ disconnect_flatpak() {
     return 0
   fi
 
-  # Remove filesystem overrides
+  # Pre-authenticate sudo before any operations
+  gum_or_echo "${YELLOW}⏳ Please enter your sudo password when prompted...${NC}"
+  if ! sudo -v; then
+    gum_or_echo "${RED}✗ Failed to authenticate with sudo${NC}"
+    return 1
+  fi
+
+  # Remove filesystem overrides (sudo is now cached)
   gum_spin_run "Removing GTK-3.0 access..." "sudo flatpak override --nofilesystem=xdg-config/gtk-3.0 2>/dev/null || true"
   gum_spin_run "Removing GTK-4.0 access..." "sudo flatpak override --nofilesystem=xdg-config/gtk-4.0 2>/dev/null || true"
   gum_spin_run "Removing themes access..." "sudo flatpak override --nofilesystem=~/.themes 2>/dev/null || true"
@@ -712,22 +724,39 @@ interactive_menu() {
         fi
         install_libadwaita_override "${mode:-Light}" "$specific"
         ;;
-      "Install Extras (icons/cursors/ulauncher/GDM)")
+      "Install Extras (icons/wallpapers/cursors/ulauncher/GDM)")
         if command -v gum &>/dev/null; then
-          ex=$(gum choose "Install MacTahoe icons" "Install WhiteSur cursors" "Install Ulauncher theme" "Install WhiteSur GDM theme" "Install Tahoe Wallpapers" "Connect Flatpak themes" "Disconnect Flatpak themes" "Back")
+          ex=$(gum choose \
+            "Install MacTahoe icons" \
+            "Install WhiteSur cursors" \
+            "Install Ulauncher theme" \
+            "Install WhiteSur GDM theme" \
+            "Install Tahoe Wallpapers" \
+            "Connect Flatpak themes" \
+            "Disconnect Flatpak themes" \
+            "Back")
         else
-          echo "Extras: 1) icons 2) cursors 3) ulauncher 4) gdm 5) install wallpapers 6) connect flatpak 7) disconnect flatpak 8) back"
-          read -r ex
+          echo "Extras:"
+          echo "  1) Install MacTahoe icons"
+          echo "  2) Install WhiteSur cursors"
+          echo "  3) Install Ulauncher theme"
+          echo "  4) Install WhiteSur GDM theme"
+          echo "  5) Install Tahoe Wallpapers"
+          echo "  6) Connect Flatpak themes"
+          echo "  7) Disconnect Flatpak themes"
+          echo "  8) Back"
+          read -r -p "Enter choice (1-8): " ex
         fi
         case "$ex" in
-          "Install MacTahoe icons"|"1") install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b ;;
-          "Install WhiteSur cursors"|"2") install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
-          "Install Ulauncher theme"|"3") install_ulauncher_theme ;;
-          "Install WhiteSur GDM theme"|"4") install_gdm_theme ;;
-          "Install Tahoe Wallpapers"|"5") install_wallpaper ;;
-          "Connect Flatpak themes"|"6") connect_flatpak ;;
-          "Disconnect Flatpak themes"|"7") disconnect_flatpak ;;
-          "Back"|"8") : ;;
+          "Install MacTahoe icons"|1) install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b ;;
+          "Install WhiteSur cursors"|2) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
+          "Install Ulauncher theme"|3) install_ulauncher_theme ;;
+          "Install WhiteSur GDM theme"|4) install_gdm_theme ;;
+          "Install Tahoe Wallpapers"|5) install_wallpaper ;;
+          "Connect Flatpak themes"|6) connect_flatpak ;;
+          "Disconnect Flatpak themes"|7) disconnect_flatpak ;;
+          "Back"|8) : ;;
+          *) gum_or_echo "${YELLOW}Unrecognized option in Extras menu${NC}" ;;
         esac
         ;;
       "Uninstall themes") uninstall_all ;;
