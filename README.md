@@ -40,6 +40,8 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 **Run the installer — it will automatically install [Gum](https://github.com/charmbracelet/gum) if needed!**
 
 ```bash
+git clone https://github.com/kayozxo/GNOME-macOS-Tahoe
+cd GNOME-macOS-Tahoe
 ./install.sh
 ```
 
