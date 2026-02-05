@@ -100,13 +100,10 @@ curl -L https://github.com/samuelngs/apple-emoji-linux/releases/latest/download/
   -o ~/.local/share/fonts/AppleColorEmoji.ttf
 ```
 
-3. Configure font config
+3. Move the font config to ~/.config/fontconfig/conf.d
 
-Download [font config](https://github.com/kayozxo/GNOME-macOS-Tahoe/99-apple-emoji.conf) and put it in `~/.config/fontconfig/conf.d`
-
-```bashmkdir -p ~/.config/fontconfig/conf.d && \
-curl -L -o ~/.config/fontconfig/conf.d/99-apple-emoji.conf \
-  https://raw.githubusercontent.com/kayozxo/GNOME-macOS-Tahoe/main/99-apple-emoji.conf
+```bash
+mkdir -p ~/.config/fontconfig/conf.d && mv 99-apple-emoji.conf ~/.config/fontconfig/conf.d
 ```
 
 4. Rebuild the font cache and re-login
