@@ -1,1 +1,33 @@
 @import url("resource:///org/gnome/theme/gtk-dark.css");
+
+/* Liquid glass effect for GTK3 menus */
+.menu,
+.context-menu,
+.desktopmenu,
+.popup {
+  background-color: rgba(38, 44, 58, 0.45);
+  background-image: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: none;
+}
+
+.menu menuitem,
+.desktopmenu menuitem {
+  border-radius: 8px;
+  margin: 2px 4px;
+  padding: 6px 10px;
+  box-shadow: none;
+}
+
+.menu menuitem:hover,
+.desktopmenu menuitem:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.menu separator,
+.desktopmenu separator {
+  background-color: rgba(255, 255, 255, 0.1);
+}

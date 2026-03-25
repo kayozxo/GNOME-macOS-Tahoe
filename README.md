@@ -4,6 +4,16 @@
 <p align="center"> <b> A macOS Tahoe like theme for GNOME Desktops </b> </p>
 <br>
 
+> **Fork note:** This fork adds **liquid glass effects** inspired by macOS Tahoe's translucent UI. Changes include:
+> - Translucent glass effect on right-click context menus, quick settings panel, calendar/notifications, and popup menus
+> - Pill-shaped toggle buttons (9999px radius) matching macOS Control Center design
+> - Fixed wallpaper not visible on desktop (transparent `#overviewGroup`)
+> - Fixed quick settings button overlap issue
+> - Glass-styled hover states with subtle inset highlights
+> - Applied across GNOME Shell, GTK3, and GTK4 layers
+>
+> Based on [kayozxo/GNOME-macOS-Tahoe](https://github.com/kayozxo/GNOME-macOS-Tahoe). Recommended with [Blur My Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/) for panel and overview blur.
+
 ## Donate
 
 If you like my project, you can buy me a coffee, many thanks ❤️ !

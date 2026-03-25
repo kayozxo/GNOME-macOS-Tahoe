@@ -656,10 +656,14 @@ StWidget.focused .app-well-app-running-dot {
 .weather-button,
 .events-button {
   color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: 20px !important;
-  border: none;
-  box-shadow: inset 0 0 4px 0.2px rgba(255, 255, 255, 0.4) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 1px 0 1px rgba(255, 255, 255, 0.08),
+    inset -1px 0 1px rgba(255, 255, 255, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.15) !important;
   text-shadow: none;
 }
 
@@ -670,16 +674,21 @@ StWidget.focused .app-well-app-running-dot {
 .weather-button:focus,
 .events-button:focus {
   color: #dedede;
-  background-color: #454545;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    inset 1px 0 1px rgba(255, 255, 255, 0.1),
+    inset -1px 0 1px rgba(255, 255, 255, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
 .world-clocks-button:active,
 .weather-button:active,
 .events-button:active {
   color: #dedede;
-  background-color: rgba(64, 64, 64, 0.95);
-  box-shadow: none !important;
+  background-color: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
 }
 
 #calendarArea {
@@ -730,12 +739,14 @@ StWidget.focused .app-well-app-running-dot {
 .datemenu-today-button:hover,
 .datemenu-today-button:focus {
   color: #dedede;
-  background-color: #454545;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .datemenu-today-button:active {
   color: #dedede;
-  background-color: rgba(64, 64, 64, 0.95);
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .datemenu-today-button .day-label {
@@ -2758,11 +2769,15 @@ StEntry StLabel.hint-text {
 .popup-menu-content {
   padding: 4px;
   margin: 4px 12px 17px 12px;
-  background-color: rgba(0, 0, 0, 0.92);
-  border-radius: 30px;
-  border: solid rgba(0, 0, 0, 0);
-  border-width: 1px;
-  box-shadow: inset 1.6px 1.6px 4px -4px rgba(255, 255, 255, 0.6);
+  background-color: rgba(38, 44, 58, 0.55);
+  border-radius: 22px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    inset 1px 0 1px rgba(255, 255, 255, 0.12),
+    inset -1px 0 1px rgba(255, 255, 255, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /*
@@ -2775,10 +2790,15 @@ StEntry StLabel.hint-text {
 */
 
 .popup-menu-content #calendarArea .events-button {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.08);
   color: white;
   border-radius: 20px;
-  box-shadow: inset 0 0 4px 0.2px rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 1px 0 1px rgba(255, 255, 255, 0.08),
+    inset -1px 0 1px rgba(255, 255, 255, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /*
@@ -2793,37 +2813,38 @@ StEntry StLabel.hint-text {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   spacing: 4px;
-  margin: 6px 8px 6px 8px;
-  padding: 8px;
+  margin: 4px 6px;
+  padding: 8px 12px;
   color: #ffffff;
   text-shadow: none !important;
   icon-shadow: none !important;
-  border-radius: 9999px !important;
+  border-radius: 12px !important;
   font-weight: normal;
   transition: none;
 }
 
 .popup-menu .popup-menu-item:checked {
   font-weight: normal;
-  border-radius: 20px 20px 0 0 !important;
-  border: none;
+  border-radius: 12px 12px 0 0 !important;
   color: #ffffff !important;
   background-gradient-direction: none !important;
-  background-color: rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 0 4px 0.2px rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.05);
 }
 
 .popup-menu .popup-menu-item:checked:focus,
 .popup-menu .popup-menu-item:checked:hover,
 .popup-menu .popup-menu-item:checked:selected {
   color: white !important;
-  background-color: #0091ff !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
   background-gradient-direction: none !important;
 }
 
 .popup-menu .popup-menu-item:checked:active {
   color: white !important;
-  background-color: #0091ff !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .popup-menu .popup-menu-item:checked:insensitive {
@@ -2834,15 +2855,18 @@ StEntry StLabel.hint-text {
 .popup-menu .popup-menu-item:hover,
 .popup-menu .popup-menu-item:selected {
   color: white !important;
-  background-color: #0091ff !important;
-
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.05);
   transition-duration: 0ms !important;
 }
 
 .popup-menu .popup-menu-item:active,
 .popup-menu .popup-menu-item.selected:active {
   color: white !important;
-  background-color: #0091ff !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08);
 }
 
 .popup-menu .popup-menu-item:insensitive {
@@ -2858,19 +2882,21 @@ StEntry StLabel.hint-text {
 }
 
 .popup-sub-menu {
-  border-radius: 0 0 20px 20px !important;
-  border: none;
-  box-shadow: none;
-  margin: 0px 8px 6px 8px;
+  border-radius: 0 0 12px 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: none;
+  margin: 0px 6px 4px 6px;
   transition: none;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.06);
   color: white;
-  box-shadow: inset 0 0 4px 0.2px rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    inset 1px 0 1px rgba(255, 255, 255, 0.05),
+    inset -1px 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .popup-sub-menu .popup-menu-item {
-  margin: 4px;
-  border-radius: 9999px !important;
+  margin: 3px;
+  border-radius: 10px !important;
   background-color: transparent !important;
 }
 
@@ -2878,18 +2904,19 @@ StEntry StLabel.hint-text {
 .popup-sub-menu .popup-menu-item:hover,
 .popup-sub-menu .popup-menu-item:selected {
   color: white !important;
-  background-color: #0091ff !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
 .popup-sub-menu .popup-menu-item:first-child,
 .popup-sub-menu .popup-menu-item:first-child,
 .popup-sub-menu .popup-menu-item:first-child {
-  border-radius: 0 0 9999px 9999px;
+  border-radius: 0 0 10px 10px;
 }
 
 .popup-sub-menu .popup-menu-item:active {
   color: white !important;
-  background-color: #0091ff !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
 }
 
 .popup-ornamented-menu-item:ltr {
@@ -4076,22 +4103,34 @@ StWidget.focused .app-grid-running-dot {
   border-radius: 20px;
   padding: 4px;
   margin: 3px;
-  background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  box-shadow: inset 0 0 4px 0.1px rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.05),
+    inset 1px 0 1px rgba(255, 255, 255, 0.06),
+    inset -1px 0 1px rgba(255, 255, 255, 0.06);
   color: #afafaf;
 }
 
 .popup-menu .message:hover,
 .popup-menu .message:focus {
   color: #dedede;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    inset 1px 0 1px rgba(255, 255, 255, 0.08),
+    inset -1px 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .popup-menu .message:active {
   color: #dedede;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: none !important;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.1),
+    inset 1px 0 1px rgba(255, 255, 255, 0.1),
+    inset -1px 0 1px rgba(255, 255, 255, 0.1) !important;
 }
 
 .popup-menu .message:insensitive {
@@ -4355,7 +4394,7 @@ StWidget.focused .app-grid-running-dot {
 }
 
 #overviewGroup {
-  background-color: #2a2a2a;
+  background-color: transparent;
 }
 
 .osd-window {
@@ -4489,14 +4528,18 @@ StWidget.focused .app-grid-running-dot {
 }
 
 .quick-settings {
-  padding: 20px !important;
+  padding: 14px !important;
   padding-top: 8px !important;
-  border-radius: 33px !important;
+  border-radius: 28px !important;
   margin-top: 8px !important;
-  background: none;
-  border: none;
-  box-shadow: none;
-  border-image: url('assets/menu.svg') 30 30 30 30;
+  background-color: rgba(38, 44, 58, 0.55);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    inset 1px 0 1px rgba(255, 255, 255, 0.12),
+    inset -1px 0 1px rgba(255, 255, 255, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .quick-settings .icon-button,
@@ -4528,30 +4571,37 @@ StWidget.focused .app-grid-running-dot {
 
 .quick-toggle,
 .quick-toggle-has-menu {
-  min-width: 13em;
-  max-width: 13em;
-  min-height: 3.4em;
+  min-width: 0;
+  min-height: 3.2em;
   border: none;
-  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.35) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 1px 0 1px rgba(255, 255, 255, 0.08),
+    inset -1px 0 1px rgba(255, 255, 255, 0.08) !important;
   color: white;
 }
 
 .quick-toggle {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
   border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   color: white;
-  padding: 0 12px;
-  /* Move padding into the box; this is to allow menu arrows
-     to extend to the border */
+  padding: 0 10px;
 }
 
 .quick-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.1),
+    inset 1px 0 1px rgba(255, 255, 255, 0.1),
+    inset -1px 0 1px rgba(255, 255, 255, 0.1) !important;
   color: white;
 }
 
 .quick-toggle:active {
   background-color: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.35);
   color: white;
 }
 
@@ -4599,21 +4649,26 @@ StWidget.focused .app-grid-running-dot {
 }
 
 .quick-toggle-has-menu {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
   border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   padding: 4px 0;
 }
 
 .quick-toggle-has-menu:hover {
-  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    inset 1px 0 1px rgba(255, 255, 255, 0.1),
+    inset -1px 0 1px rgba(255, 255, 255, 0.1) !important;
 }
 
 .quick-toggle-has-menu:active {
-  background-color: rgba(255, 255, 255, 0.25) !important;
+  background-color: rgba(255, 255, 255, 0.22) !important;
 }
 
 .quick-toggle-has-menu:checked {
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .quick-toggle-has-menu .quick-toggle {
@@ -4632,9 +4687,9 @@ StWidget.focused .app-grid-running-dot {
 
 .quick-toggle-has-menu .quick-toggle .quick-toggle-icon {
   border-radius: 9999px;
-  min-height: 3.4em !important;
-  min-width: 3.4em !important;
-  background-color: rgba(255, 255, 255, 0.15);
+  min-height: 3.2em !important;
+  min-width: 3.2em !important;
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 .quick-toggle-has-menu .quick-toggle:hover .quick-toggle-icon {
@@ -4678,13 +4733,13 @@ StWidget.focused .app-grid-running-dot {
 
 .quick-toggle-has-menu .quick-toggle-menu-button {
   padding: 0;
-  min-width: 2.4em;
-  min-height: 2.4em;
-  margin: 1em;
+  min-width: 2em;
+  min-height: 2em;
+  margin: 0.4em;
   border-radius: 9999px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .quick-toggle-has-menu .quick-toggle-menu-button:hover {
@@ -4710,9 +4765,13 @@ StWidget.focused .app-grid-running-dot {
 }
 
 .quick-slider {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
-  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.35) !important;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 1px 0 1px rgba(255, 255, 255, 0.08),
+    inset -1px 0 1px rgba(255, 255, 255, 0.08) !important;
   padding: 1.636em 0.818em;
   color: white;
 }
@@ -4765,12 +4824,16 @@ StWidget.focused .app-grid-running-dot {
 }
 
 .quick-toggle-menu {
-  background-color: rgba(36, 36, 36, 0.92) !important;
+  background-color: rgba(38, 44, 58, 0.6) !important;
   border-radius: 20px;
   padding: 12px;
-  margin: 8px 28px 0;
-  border: none !important;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.18);
+  margin: 8px 20px 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 1px 0 1px rgba(255, 255, 255, 0.1),
+    inset -1px 0 1px rgba(255, 255, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .quick-toggle-menu .popup-menu-item {
@@ -4829,13 +4892,17 @@ StWidget.focused .app-grid-running-dot {
 .message .message-header .quick-settings-system-item .message-expand-button,
 .quick-settings-system-item .message .message-header .message-close-button,
 .message .message-header .quick-settings-system-item .message-close-button {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.08);
   color: white;
   border-radius: 9999px;
   min-height: 28px !important;
   min-width: 28px !important;
   padding: 0.818em;
-  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.35) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06),
+    inset 1px 0 1px rgba(255, 255, 255, 0.08),
+    inset -1px 0 1px rgba(255, 255, 255, 0.08) !important;
 }
 
 .quick-settings-system-item .icon-button:hover,
