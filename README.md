@@ -67,7 +67,8 @@ cd GNOME-macOS-Tahoe
 - 🖼️ Install generated accent variants to ~/.themes
 - ⚙️ Install libadwaita override (for modern GTK4 apps & GNOME Shell)
 - 🎯 Install extras: Tahoe icons, Tahoe wallpapers, WhiteSur cursors, Ulauncher theme, GDM theme, and Tahoe extension forks
-- 🧹 Uninstall themes
+- 🔴 Set macOS window button order: red close, yellow minimize, green fullscreen
+- 🧹 Uninstall Tahoe themes, icons, extension forks, and GTK overrides
 - 📖 Help & documentation
 
 ### Command-line Usage (Advanced)
@@ -79,6 +80,7 @@ If you prefer command-line flags over the interactive menu:
 ./install.sh -l    # Light theme only
 ./install.sh -d    # Dark theme only
 ./install.sh -u    # Uninstall
+./uninstall.sh     # Same uninstall flow, easier to find
 
 # Install wallpapers
 ./install.sh -w    # Tahoe 26 dynamic wallpapers

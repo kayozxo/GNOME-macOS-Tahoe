@@ -32,11 +32,24 @@ GTK_DIR="$SCRIPT_DIR/gtk"
 THEME_DIR="$HOME/.themes"
 GTK4_CONFIG_DIR="$HOME/.config/gtk-4.0"
 DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || echo "$HOME/Downloads")"
+TAHOE_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/gnome-macos-tahoe"
+BUTTON_LAYOUT_BACKUP="$TAHOE_CACHE_DIR/button-layout.before"
+TAHOE_BUTTON_LAYOUT="close,minimize,maximize:"
 TMP_DIR="$(mktemp -d -t tahoe-installer.XXXXXXXXXX)"
 APP_LAUNCHER="kayozxo/ulauncher-liquid-glass"
 TMP_ZIP_AL="ulauncher-liquid-glass.zip"
 
 AVAILABLE_COLORS=(blue green purple pink orange red teal indigo rose emerald violet amber cyan lime sky slate)
+TAHOE_EXTENSION_UUIDS=(
+  tahoe-open-bar@bobwdmai
+  tahoe-blur-my-shell@bobwdmai
+  tahoe-dash-to-dock@bobwdmai
+  tahoe-ui-tune@bobwdmai
+  tahoe-space-bar@bobwdmai
+  tahoe-tiling-shell@bobwdmai
+  tahoe-user-themes@bobwdmai
+  tahoe-vitals@bobwdmai
+)
 
 # Pretty colors for fallback output
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; CYAN='\033[0;36m'
@@ -167,7 +180,7 @@ cleanup_tmp() {
 
 trap cleanup_tmp EXIT
 
-mkdir -p "$TMP_DIR" "$THEME_DIR" "$DOWNLOADS_DIR" "$GTK4_CONFIG_DIR"
+mkdir -p "$TMP_DIR" "$THEME_DIR" "$DOWNLOADS_DIR" "$GTK4_CONFIG_DIR" "$TAHOE_CACHE_DIR"
 
 check_prereqs() {
   local missing=()
@@ -278,6 +291,42 @@ install_theme_copy() {
   gum_or_echo "✅ Installed $dest_name → $dest"
 }
 
+apply_tahoe_button_layout() {
+  if ! command -v gsettings &>/dev/null; then
+    return 0
+  fi
+
+  local schema="org.gnome.desktop.wm.preferences"
+  local key="button-layout"
+  local current
+  current=$(gsettings get "$schema" "$key" 2>/dev/null || true)
+
+  if [ -n "$current" ] && [ ! -f "$BUTTON_LAYOUT_BACKUP" ]; then
+    printf '%s\n' "$current" > "$BUTTON_LAYOUT_BACKUP"
+  fi
+
+  # macOS visual order: red close, yellow minimize, green fullscreen/maximize.
+  gsettings set "$schema" "$key" "$TAHOE_BUTTON_LAYOUT" 2>/dev/null || true
+}
+
+restore_button_layout() {
+  if ! command -v gsettings &>/dev/null; then
+    return 0
+  fi
+
+  local schema="org.gnome.desktop.wm.preferences"
+  local key="button-layout"
+
+  if [ -s "$BUTTON_LAYOUT_BACKUP" ]; then
+    local previous
+    previous="$(cat "$BUTTON_LAYOUT_BACKUP")"
+    gsettings set "$schema" "$key" "$previous" 2>/dev/null || true
+    rm -f "$BUTTON_LAYOUT_BACKUP"
+  else
+    gsettings reset "$schema" "$key" 2>/dev/null || true
+  fi
+}
+
 apply_theme() {
   # Activate a previously-installed Tahoe variant via gsettings.
   # Arg: theme name (e.g. "Tahoe-Light", "Tahoe-Dark", "Tahoe-Dark-Blue").
@@ -303,6 +352,8 @@ apply_theme() {
     *-Dark*)  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null || true ;;
     *-Light*) gsettings set org.gnome.desktop.interface color-scheme 'default'     2>/dev/null || true ;;
   esac
+
+  apply_tahoe_button_layout
 
   # GNOME Shell theme (requires User Themes extension)
   local shell_applied=false
@@ -844,7 +895,7 @@ disconnect_flatpak() {
 }
 
 uninstall_all() {
-  if ! gum_confirm_or_read "Are you sure you want to uninstall all Tahoe themes and GTK overrides?"; then
+  if ! gum_confirm_or_read "Are you sure you want to uninstall Tahoe themes, icons, extension forks, and GTK overrides?"; then
     gum_or_echo "Uninstall cancelled."
     return 0
   fi
@@ -869,8 +920,55 @@ uninstall_all() {
     if [ -d "'"$GTK4_CONFIG_DIR"'/windows-assets" ]; then rm -rf "'"$GTK4_CONFIG_DIR"'/windows-assets"; fi
   '
 
+  gum_spin_run "Removing Tahoe icons..." '
+    shopt -s nullglob
+    for d in "$HOME"/.local/share/icons/Tahoe*; do
+      [ -e "$d" ] && rm -rf "$d"
+    done
+  '
+
+  if command -v gsettings &>/dev/null; then
+    local current_gtk current_icons current_shell schema_dir
+    current_gtk=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | sed "s/^'//;s/'$//" || true)
+    current_icons=$(gsettings get org.gnome.desktop.interface icon-theme 2>/dev/null | sed "s/^'//;s/'$//" || true)
+
+    case "$current_gtk" in
+      Tahoe*) gsettings reset org.gnome.desktop.interface gtk-theme 2>/dev/null || true ;;
+    esac
+    case "$current_icons" in
+      Tahoe*) gsettings reset org.gnome.desktop.interface icon-theme 2>/dev/null || true ;;
+    esac
+
+    for uuid in "tahoe-user-themes@bobwdmai" "user-theme@gnome-shell-extensions.gcampax.github.com"; do
+      schema_dir="$HOME/.local/share/gnome-shell/extensions/$uuid/schemas"
+      if [ -d "$schema_dir" ]; then
+        current_shell=$(GSETTINGS_SCHEMA_DIR="$schema_dir" gsettings get org.gnome.shell.extensions.user-theme name 2>/dev/null | sed "s/^'//;s/'$//" || true)
+        case "$current_shell" in
+          Tahoe*) GSETTINGS_SCHEMA_DIR="$schema_dir" gsettings set org.gnome.shell.extensions.user-theme name "''" 2>/dev/null || true ;;
+        esac
+      else
+        current_shell=$(gsettings get org.gnome.shell.extensions.user-theme name 2>/dev/null | sed "s/^'//;s/'$//" || true)
+        case "$current_shell" in
+          Tahoe*) gsettings set org.gnome.shell.extensions.user-theme name "''" 2>/dev/null || true ;;
+        esac
+      fi
+    done
+  fi
+
+  gum_or_echo "${CYAN}Removing Tahoe GNOME extension forks...${NC}"
+  local uuid
+  for uuid in "${TAHOE_EXTENSION_UUIDS[@]}"; do
+    if command -v gnome-extensions &>/dev/null; then
+      gnome-extensions disable "$uuid" >/dev/null 2>&1 || true
+      gnome-extensions uninstall "$uuid" >/dev/null 2>&1 || true
+    fi
+    rm -rf "$HOME/.local/share/gnome-shell/extensions/$uuid"
+  done
+
+  restore_button_layout
+
   gum_or_echo "✅ Uninstallation complete."
-  gum_or_echo "${CYAN}Note: Icons, cursors, and GDM themes may need separate uninstallers.${NC}"
+  gum_or_echo "${CYAN}Note: WhiteSur cursors and GDM themes may need their upstream uninstallers if you installed them separately.${NC}"
   gum_or_echo "${CYAN}Check $DOWNLOADS_DIR for cloned repositories.${NC}"
 }
 
@@ -906,7 +1004,8 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
 - `--icons` - Install Tahoe icons and apply them
 
 ## Other Flags
-- `-u` or `--uninstall` - Uninstall all themes
+- `-u` or `--uninstall` - Uninstall Tahoe themes, icons, extension forks, and GTK overrides
+- `./uninstall.sh` - Same uninstall flow, easier to find
 - `-h` or `--help` - Show this help
 
 ## Menu Actions (Interactive Mode)
@@ -915,7 +1014,7 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
 - **Install generated variants** - Copy Tahoe-Light-<color> folders to ~/.themes
 - **Libadwaita override** - Install gtk-4.0 override to ~/.config/gtk-4.0
 - **Extras** - Install icons, cursors, Ulauncher theme, GDM theme, or connect Flatpak
-- **Uninstall** - Remove all installed themes and GTK overrides
+- **Uninstall** - Remove Tahoe themes, icons, extension forks, and GTK overrides
 
 ## Flatpak Support
 Flatpak apps run in a sandbox and need explicit permission to access themes:
@@ -945,7 +1044,7 @@ CLI flags:
                              Tahoe Vitals)
   --blur / --blur-my-shell  Install only Tahoe Blur
   --icons                   Install Tahoe icons and apply them
-  -u / --uninstall          Uninstall all
+  -u / --uninstall          Uninstall Tahoe themes/icons/extensions
   -h / --help               Show help
 
 Flatpak Support:
@@ -974,13 +1073,13 @@ interactive_menu() {
         "Apply: pick an installed theme as active" \
         "Install libadwaita override" \
         "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" \
-        "Uninstall themes" \
+        "Uninstall Tahoe" \
         "Force reload theme (clear cache)" \
         "Help" \
         "Exit")
     else
       echo "Choose an option:"
-      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Apply: pick an installed theme as active" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" "Uninstall themes" "Force reload theme" "Help" "Exit"; do break; done
+      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Apply: pick an installed theme as active" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" "Uninstall Tahoe" "Force reload theme" "Help" "Exit"; do break; done
     fi
 
     case "$selection" in
@@ -1074,7 +1173,7 @@ interactive_menu() {
           *) gum_or_echo "${YELLOW}Unrecognized option in Extras menu${NC}" ;;
         esac
         ;;
-      "Uninstall themes") uninstall_all ;;
+      "Uninstall themes"|"Uninstall Tahoe") uninstall_all ;;
       "Force reload theme"|"Force reload theme (clear cache)") force_reload_theme ;;
       "Help") show_help ;;
       "Exit") gum_or_echo "Goodbye — enjoy the theme! 🎉"; break ;;
