@@ -500,6 +500,34 @@ install_ulauncher_theme() {
   fi
 }
 
+install_mactahoe_icons() {
+  # Prefer the vendored copy in icons/MacTahoe/ over cloning vinceliuice's repo.
+  local local_src="$SCRIPT_DIR/icons/MacTahoe"
+  if [ ! -d "$local_src" ] || [ ! -x "$local_src/install.sh" ]; then
+    # Fall back to the upstream clone-and-install path
+    install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b
+    return $?
+  fi
+
+  gum_spin_run "Installing MacTahoe icons from local source..." "bash \"$local_src/install.sh\" -b"
+
+  # Activate it. Bold variant produced by `-b` lands at ~/.local/share/icons/MacTahoe (white folders).
+  if command -v gsettings &>/dev/null; then
+    local picked=""
+    for name in MacTahoe MacTahoe-light MacTahoe-dark; do
+      [ -d "$HOME/.local/share/icons/$name" ] && picked="$name" && break
+    done
+    if [ -n "$picked" ]; then
+      gsettings set org.gnome.desktop.interface icon-theme "$picked" 2>/dev/null || true
+      gum_or_echo "✅ MacTahoe icons installed and active ($picked)"
+    else
+      gum_or_echo "✅ MacTahoe icons installed — set the icon theme via Tweaks/Refine"
+    fi
+  else
+    gum_or_echo "✅ MacTahoe icons installed (gsettings unavailable; activate manually)"
+  fi
+}
+
 install_icons_or_cursors() {
   # args: repo_url clone_name [install_args...]
   local repo="$1"
@@ -602,11 +630,48 @@ install_wallpaper() {
   # wallpaper installer made by skittle0764 https://github.com/skittle0764
 }
 
+install_local_extension() {
+  # Build + install + enable an extension whose source lives under
+  # extensions/<UUID>/ in this repo. Args: UUID friendly_name
+  local uuid="$1"
+  local friendly="${2:-$uuid}"
+  local src="$SCRIPT_DIR/extensions/$uuid"
+
+  if [ ! -d "$src" ]; then
+    return 1   # signal "no local source"; caller may fall back to EGO
+  fi
+  if ! command -v gnome-extensions &>/dev/null; then
+    gum_or_echo "${RED}✗ gnome-extensions not found; can't install ${friendly}.${NC}"
+    return 1
+  fi
+
+  if [ -f "$src/Makefile" ]; then
+    gum_spin_run "Building ${friendly} from local source..." "make -C \"$src\" install"
+  else
+    # No Makefile — drop the source straight into the extensions dir.
+    local dest="$HOME/.local/share/gnome-shell/extensions/$uuid"
+    gum_spin_run "Installing ${friendly} from local source..." "rm -rf \"$dest\" && cp -a \"$src\" \"$dest\" && find \"$dest/schemas\" -name '*.gschema.xml' -execdir glib-compile-schemas . \;"
+  fi
+
+  if gnome-extensions enable "$uuid" 2>/dev/null; then
+    gum_or_echo "✅ ${friendly} installed & enabled (local · ${uuid})"
+  else
+    gum_or_echo "✅ ${friendly} installed (local · ${uuid}) — enable after restarting GNOME Shell"
+  fi
+}
+
 install_gnome_extension() {
-  # Install a GNOME Shell extension from extensions.gnome.org.
-  # Args: ext_id [friendly_name]
+  # Install a GNOME Shell extension. Prefers a local source in extensions/<UUID>/
+  # if a UUID is supplied (3rd arg); falls back to the extensions.gnome.org API.
+  # Args: ext_id [friendly_name] [known_uuid]
   local ext_id="$1"
   local friendly="${2:-extension $ext_id}"
+  local known_uuid="${3:-}"
+
+  # Local-first path
+  if [ -n "$known_uuid" ] && install_local_extension "$known_uuid" "$friendly"; then
+    return 0
+  fi
 
   for cmd in gnome-shell gnome-extensions curl python3; do
     if ! command -v "$cmd" &>/dev/null; then
@@ -651,21 +716,22 @@ install_gnome_extension() {
 }
 
 install_blur_my_shell() {
-  install_gnome_extension 3193 "Blur My Shell"
+  install_gnome_extension 3193 "Blur My Shell" "blur-my-shell@aunetx"
   gum_or_echo "${YELLOW}⚠️  Log out and back in (or press Alt+F2 → 'r' on X11) to activate.${NC}"
 }
 
 install_recommended_extensions() {
   gum_or_echo "${CYAN}Installing recommended GNOME Shell extensions...${NC}"
-  # ext_id : friendly_name (kept in sync with README "Recommended GNOME Shell extensions")
-  install_gnome_extension 6580 "Open Bar"                  || true
-  install_gnome_extension 3193 "Blur My Shell"             || true
-  install_gnome_extension 307  "Dash to Dock"              || true
-  install_gnome_extension 4158 "GNOME 4x UI Improvements"  || true
-  install_gnome_extension 5090 "Space Bar"                 || true
-  install_gnome_extension 7065 "Tiling Shell"              || true
-  install_gnome_extension 19   "User Themes"               || true
-  install_gnome_extension 1460 "Vitals"                    || true
+  # ext_id : friendly_name : UUID (the UUID enables local-first install
+  # when extensions/<UUID>/ is vendored in this repo).
+  install_gnome_extension 6580 "Open Bar"                  "openbar@neuromorph"                                 || true
+  install_gnome_extension 3193 "Blur My Shell"             "blur-my-shell@aunetx"                               || true
+  install_gnome_extension 307  "Dash to Dock"              "dash-to-dock@micxgx.gmail.com"                      || true
+  install_gnome_extension 4158 "GNOME 4x UI Improvements"  "gnome-40-ui-improvements@nilforooshan.com"          || true
+  install_gnome_extension 5090 "Space Bar"                 "space-bar@luchrioh"                                 || true
+  install_gnome_extension 7065 "Tiling Shell"              "tilingshell@ferrarodomenico.com"                    || true
+  install_gnome_extension 19   "User Themes"               "user-theme@gnome-shell-extensions.gcampax.github.com" || true
+  install_gnome_extension 1460 "Vitals"                    "Vitals@CoreCoding.com"                              || true
   gum_or_echo "${YELLOW}⚠️  Log out and back in to fully load the new extensions.${NC}"
 }
 
@@ -945,7 +1011,7 @@ interactive_menu() {
         case "$ex" in
           "Install all recommended GNOME extensions"|1) install_recommended_extensions ;;
           "Install Blur My Shell extension"|2) install_blur_my_shell ;;
-          "Install MacTahoe icons"|3) install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b ;;
+          "Install MacTahoe icons"|3) install_mactahoe_icons ;;
           "Install WhiteSur cursors"|4) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
           "Install Ulauncher theme"|5) install_ulauncher_theme ;;
           "Install WhiteSur GDM theme"|6) install_gdm_theme ;;

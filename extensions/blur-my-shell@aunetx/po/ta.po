@@ -1,0 +1,1171 @@
+# Blur-my-shell Tamil PO Translation.
+# Copyright (C) 2022 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the blur-my-shell@aunetx package.
+# K.B.Dharun Krishna <kbdharunkrishna@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: blur-my-shell@aunetx\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-09 10:41+0200\n"
+"PO-Revision-Date: 2025-04-28 03:02+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/blur-my-shell/blur-"
+"my-shell/ta/>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.12-dev\n"
+
+#: src/effects/effects.js:21
+msgid "Blur effects"
+msgstr "மங்கலான விளைவுகள்"
+
+#: src/effects/effects.js:29
+msgid "Texture effects"
+msgstr "அமைப்பு விளைவுகள்"
+
+#: src/effects/effects.js:43
+msgid "Shape effects"
+msgstr "வடிவ விளைவுகள்"
+
+#: src/effects/effects.js:59
+msgid "Native gaussian blur"
+msgstr "நேட்டிவ் காஸியன் மங்கல"
+
+#: src/effects/effects.js:60
+msgid ""
+"An optimized blur effect that smoothly blends pixels within a given radius."
+msgstr "கொடுக்கப்பட்ட ஆரத்திற்குள் பிக்சல்களை சீராக இணைக்கும் உகந்த மங்கலான விளைவு."
+
+#: src/effects/effects.js:64 src/effects/effects.js:93
+#: src/effects/effects.js:122 src/effects/effects.js:404
+msgid "Radius"
+msgstr "ஆரம்"
+
+#: src/effects/effects.js:65
+msgid "The intensity of the blur effect."
+msgstr "மங்கலான விளைவின் தீவிரம்."
+
+#: src/effects/effects.js:74 src/effects/effects.js:103
+#: src/effects/effects.js:140 resources/ui/applications.ui:93
+#: resources/ui/dash.ui:92 resources/ui/other.ui:77 resources/ui/overview.ui:75
+#: resources/ui/panel.ui:92
+msgid "Brightness"
+msgstr "பிரகாசம்"
+
+#: src/effects/effects.js:75 src/effects/effects.js:104
+#: src/effects/effects.js:141 resources/ui/applications.ui:94
+#: resources/ui/dash.ui:93 resources/ui/other.ui:78 resources/ui/overview.ui:76
+#: resources/ui/panel.ui:93
+msgid ""
+"The brightness of the blur effect, a high value might make the text harder "
+"to read."
+msgstr "மங்கலான விளைவின் பிரகாசம், அதிக மதிப்பு உரையைப் படிக்க கடினமாக்கலாம்."
+
+#: src/effects/effects.js:88
+msgid "Gaussian blur (advanced effect)"
+msgstr "காசியன் மங்கலானது (மேம்பட்ட விளைவு)"
+
+#: src/effects/effects.js:89
+msgid ""
+"A blur effect that smoothly blends pixels within a given radius. This effect "
+"is more precise, but way less optimized."
+msgstr ""
+"கொடுக்கப்பட்ட ஆரத்திற்குள் பிக்சல்களை சீராக இணைக்கும் மங்கலான விளைவு. இந்த விளைவு மிகவும் "
+"துல்லியமானது, ஆனால் குறைவான உகந்ததாக உள்ளது."
+
+#: src/effects/effects.js:94
+msgid ""
+"The intensity of the blur effect. The bigger it is, the slower it will be."
+msgstr "மங்கலான விளைவின் தீவிரம். அது பெரியதாக இருந்தால், அது மெதுவாக இருக்கும்."
+
+#: src/effects/effects.js:117
+msgid "Monte Carlo blur"
+msgstr "மான்டே கார்லோ மங்கல"
+
+#: src/effects/effects.js:118
+msgid ""
+"A blur effect that mimics a random walk, by picking pixels further and "
+"further away from its origin and mixing them all together."
+msgstr ""
+"பிக்சல்களை அதன் தோற்றத்திலிருந்து மேலும் தொலைவில் எடுத்து, அனைத்தையும் ஒன்றாகக் கலப்பதன் "
+"மூலம், சீரற்ற நடையைப் பிரதிபலிக்கும் மங்கலான விளைவு."
+
+#: src/effects/effects.js:123
+msgid ""
+"The maximum travel distance for each step in the random walk. A higher value "
+"will make the blur more randomized."
+msgstr ""
+"சீரற்ற நடையில் ஒவ்வொரு அடிக்கும் அதிகபட்ச பயண தூரம். அதிக மதிப்பு மங்கலை மேலும் சீரற்றதாக "
+"மாற்றும்."
+
+#: src/effects/effects.js:132
+msgid "Iterations"
+msgstr "மறுமுறைகள்"
+
+#: src/effects/effects.js:133
+msgid "The number of iterations. The more there are, the smoother the blur is."
+msgstr "மறுமுறைகளின் எண்ணிக்கை. அதிகமாக இருப்பதால், மங்கலானது மென்மையானது."
+
+#: src/effects/effects.js:150
+msgid "Use base pixel"
+msgstr "அடிப்படை பிக்சலைப் பயன்படுத்தவும்"
+
+#: src/effects/effects.js:151
+msgid ""
+"Whether or not the original pixel is counted for the blur. If it is, the "
+"image will be more legible."
+msgstr ""
+"மங்கலுக்கு அசல் பிக்சல் கணக்கிடப்படுகிறதா இல்லையா. அது இருந்தால், படம் இன்னும் தெளிவாக "
+"இருக்கும்."
+
+#: src/effects/effects.js:155
+msgid "Prefer closer pixels"
+msgstr "நெருக்கமான புள்ளிகளை விரும்பு"
+
+#: src/effects/effects.js:156
+msgid ""
+"Whether or not the pixels that are closer to the original pixel will have "
+"more weight."
+msgstr ""
+"அசல் புள்ளிகலுக்கு அருகில் இருக்கும் புள்ளிகள் அதிக எடையைக் கொண்டிருக்குமா இல்லையா."
+
+#: src/effects/effects.js:164 src/effects/effects.js:170
+#: src/effects/effects.js:196
+msgid "Color"
+msgstr "நிறம்"
+
+#: src/effects/effects.js:165
+msgid "An effect that blends a color into the pipeline."
+msgstr "குழாயில் ஒரு நிறத்தை கலக்கும் விளைவு."
+
+#: src/effects/effects.js:171
+msgid ""
+"The color to blend in. The blending amount is controled by the opacity of "
+"the color."
+msgstr "கலப்பதற்கான நிறம். கலப்பு அளவு நிறத்தின் ஒளிபுகாநிலையால் கட்டுப்படுத்தப்படுகிறது."
+
+#: src/effects/effects.js:176
+msgid "Blend mode"
+msgstr ""
+
+#: src/effects/effects.js:177
+msgid "How the color is blended in."
+msgstr ""
+
+#: src/effects/effects.js:180
+msgid "Normal"
+msgstr ""
+
+#: src/effects/effects.js:181
+msgid "Multiply"
+msgstr ""
+
+#: src/effects/effects.js:182
+msgid "Screen"
+msgstr ""
+
+#: src/effects/effects.js:183
+msgid "Overlay"
+msgstr ""
+
+#: src/effects/effects.js:184
+msgid "Darken"
+msgstr ""
+
+#: src/effects/effects.js:185
+msgid "Lighten"
+msgstr ""
+
+#: src/effects/effects.js:186
+msgid "Plus darker"
+msgstr ""
+
+#: src/effects/effects.js:187
+msgid "Plus lighter"
+msgstr ""
+
+#: src/effects/effects.js:188
+msgid "Color dodge"
+msgstr ""
+
+#: src/effects/effects.js:189
+msgid "Color burn"
+msgstr ""
+
+#: src/effects/effects.js:190
+msgid "Hard light"
+msgstr ""
+
+#: src/effects/effects.js:191
+msgid "Soft light"
+msgstr ""
+
+#: src/effects/effects.js:192
+msgid "Difference"
+msgstr ""
+
+#: src/effects/effects.js:193
+msgid "Exclusion"
+msgstr ""
+
+#: src/effects/effects.js:194
+msgid "Hue"
+msgstr ""
+
+#: src/effects/effects.js:195 src/effects/effects.js:250
+msgid "Saturation"
+msgstr ""
+
+#: src/effects/effects.js:197 src/effects/effects.js:205
+msgid "Luminosity"
+msgstr ""
+
+#: src/effects/effects.js:206
+msgid "An effect that affects the luminosity of the image."
+msgstr ""
+
+#: src/effects/effects.js:210
+msgid "Shift brightness"
+msgstr ""
+
+#: src/effects/effects.js:211
+msgid "The brightness to add of remove to the image."
+msgstr ""
+
+#: src/effects/effects.js:220
+msgid "Multiply brightness"
+msgstr ""
+
+#: src/effects/effects.js:221
+msgid ""
+"The brightness multiplicator of the image, so that 0 means no brightness and "
+"2 means infinite brightness."
+msgstr ""
+
+#: src/effects/effects.js:230
+msgid "Contrast"
+msgstr ""
+
+#: src/effects/effects.js:231
+msgid "The contrast of the image in regard to the center of the contrast."
+msgstr ""
+
+#: src/effects/effects.js:240
+msgid "Contrast center"
+msgstr ""
+
+#: src/effects/effects.js:241
+msgid "The center of the contrast to use."
+msgstr ""
+
+#: src/effects/effects.js:251
+msgid ""
+"The saturation of the image, so that 0 means no saturation and 2 means "
+"infinite saturation."
+msgstr ""
+
+#: src/effects/effects.js:264
+msgid "Pixelize"
+msgstr "பிக்சலைஸ்"
+
+#: src/effects/effects.js:265
+msgid "An effect that pixelizes the image."
+msgstr "படத்தை பிக்சலைஸ் செய்யும் விளைவு."
+
+#: src/effects/effects.js:269 src/effects/effects.js:296
+#: src/effects/effects.js:323
+msgid "Factor"
+msgstr "காரணி"
+
+#: src/effects/effects.js:270 src/effects/effects.js:297
+msgid "How much to scale down the image."
+msgstr "படத்தை எவ்வளவு குறைக்க வேண்டும்."
+
+#: src/effects/effects.js:277 src/effects/effects.js:304
+msgid "Downsampling mode"
+msgstr "வீழ்ச்சி பயன்முறை"
+
+#: src/effects/effects.js:278 src/effects/effects.js:305
+msgid "The downsampling method that is used."
+msgstr "பயன்படுத்தப்படும் வீழ்ச்சி முறை."
+
+#: src/effects/effects.js:281 src/effects/effects.js:308
+msgid "Boxcar"
+msgstr "பாக்ச் காரர்"
+
+#: src/effects/effects.js:282 src/effects/effects.js:309
+msgid "Triangular"
+msgstr "முக்கோண"
+
+#: src/effects/effects.js:283 src/effects/effects.js:310
+msgid "Dirac"
+msgstr "டிராக்"
+
+#: src/effects/effects.js:291
+msgid "Downscale (advanced effect)"
+msgstr "கீழ்நோக்கி (மேம்பட்ட விளைவு)"
+
+#: src/effects/effects.js:292
+msgid "An effect that downscales the image and put it on the top-left corner."
+msgstr "படத்தை குறைத்து, மேல்-இடது மூலையில் வைக்கும் ஒரு விளைவு."
+
+#: src/effects/effects.js:318
+msgid "Upscale (advanced effect)"
+msgstr "மேல்தட்டு (மேம்பட்ட விளைவு)"
+
+#: src/effects/effects.js:319
+msgid "An effect that upscales the image from the top-left corner."
+msgstr "மேல்-இடது மூலையிலிருந்து படத்தை உயர்த்தும் ஒரு விளைவு."
+
+#: src/effects/effects.js:324
+msgid "How much to scale up the image."
+msgstr "படத்தை எவ்வளவு அளவிட வேண்டும்."
+
+#: src/effects/effects.js:335
+msgid "Derivative"
+msgstr "சார்பியம்"
+
+#: src/effects/effects.js:336
+msgid "Apply a spatial derivative, or a laplacian."
+msgstr "ஒரு இடஞ்சார்ந்த வழித்தோன்றல் அல்லது ஒரு லாப்லாசியனைப் பயன்படுத்துங்கள்."
+
+#: src/effects/effects.js:340
+msgid "Operation"
+msgstr "செயல்பாடு"
+
+#: src/effects/effects.js:341
+msgid "The mathematical operation to apply."
+msgstr "விண்ணப்பிக்க கணித செயல்பாடு."
+
+#: src/effects/effects.js:344
+msgid "1-step derivative"
+msgstr "1-படி வழித்தோன்றல்"
+
+#: src/effects/effects.js:345
+msgid "2-step derivative"
+msgstr "2-படி வழித்தோன்றல்"
+
+#: src/effects/effects.js:346
+msgid "Laplacian"
+msgstr "லாப்லாசியன்"
+
+#: src/effects/effects.js:354 src/effects/effects.js:359
+msgid "Noise"
+msgstr "சத்தம்"
+
+#: src/effects/effects.js:355
+msgid ""
+"An effect that adds a random noise. Prefer the Monte Carlo blur for a more "
+"organic effect if needed."
+msgstr ""
+"ஒரு சீரற்ற சத்தத்தை சேர்க்கும் விளைவு. தேவைப்பட்டால், அதிக கரிம விளைவுக்காக மான்டே கார்லோ "
+"மங்கலைப் பயன்படுத்தவும்."
+
+#: src/effects/effects.js:360
+msgid "The amount of noise to add."
+msgstr "சேர்க்க வேண்டிய சத்தத்தின் அளவு."
+
+#: src/effects/effects.js:369
+msgid "Lightness"
+msgstr "லேசான தன்மை"
+
+#: src/effects/effects.js:370
+msgid ""
+"The luminosity of the noise. A setting of '1.0' will make the effect "
+"transparent."
+msgstr "சத்தத்தின் ஒளிர்வு. '1.0' அமைப்பானது, விளைவை வெளிப்படையானதாக மாற்றும்."
+
+#: src/effects/effects.js:383
+msgid "RGB to HSL (advanced effect)"
+msgstr "RGB முதல் HSL (மேம்பட்ட விளைவு)"
+
+#: src/effects/effects.js:384
+msgid "Converts the image from RGBA colorspace to HSLA."
+msgstr "படத்தை RGBA வண்ணங்களில் இருந்து HSLA ஆக மாற்றுகிறது."
+
+#: src/effects/effects.js:391
+msgid "HSL to RGB (advanced effect)"
+msgstr "HSL பெறுநர் RGB (மேம்பட்ட விளைவு)"
+
+#: src/effects/effects.js:392
+msgid "Converts the image from HSLA colorspace to RGBA."
+msgstr "படத்தை HSLA கலர்ச்பேசிலிருந்து RGBA ஆக மாற்றுகிறது."
+
+#: src/effects/effects.js:399
+msgid "Corner"
+msgstr "மூலை"
+
+#: src/effects/effects.js:400
+msgid ""
+"An effect that draws corners. Add it last not to have the other effects "
+"perturb the corners."
+msgstr ""
+"மூலைகளை ஈர்க்கும் விளைவு. மற்ற விளைவுகள் மூலைகளைத் தொந்தரவு செய்யாதபடி கடைசியாகச் "
+"சேர்க்கவும்."
+
+#: src/effects/effects.js:405
+msgid "The radius of the corner. GNOME apps use a radius of 12 px by default."
+msgstr "மூலையின் ஆரம். GNOME பயன்பாடுகள் இயல்பாக 12 px ஆரம் பயன்படுத்துகின்றன."
+
+#: src/effects/effects.js:412
+msgid "Top corners"
+msgstr "மேல் மூலைகள்"
+
+#: src/effects/effects.js:413
+msgid "Whether or not to round the top corners."
+msgstr "மேல் மூலைகளைச் சுற்றி வளைக்க வேண்டுமா இல்லையா."
+
+#: src/effects/effects.js:417
+msgid "Bottom corners"
+msgstr "கீழ் மூலைகள்"
+
+#: src/effects/effects.js:418
+msgid "Whether or not to round the bottom corners."
+msgstr "கீழ் மூலைகளை வட்டமிட வேண்டுமா இல்லையா."
+
+#: resources/ui/application-row.ui:4
+msgid "Window Name"
+msgstr "சாளரத்தின் பெயர்"
+
+#: resources/ui/application-row.ui:8
+msgid "Select window"
+msgstr "சாளரத்தைத் தேர்ந்தெடுக்கவும்"
+
+#: resources/ui/application-row.ui:9
+msgid "Pick a window or select it by its classname."
+msgstr "ஒரு சாளரத்தைத் தேர்ந்தெடுக்கவும் அல்லது அதன் வகுப்புப் பெயரால் தேர்ந்தெடுக்கவும்."
+
+#: resources/ui/applications.ui:5
+msgid "Applications"
+msgstr "பயன்பாடுகள்"
+
+#: resources/ui/applications.ui:10
+msgid "Applications blur"
+msgstr "பயன்பாடுகள் மங்கலாகின்றன"
+
+#: resources/ui/applications.ui:11
+msgid ""
+"Adds blur to the applications.\n"
+"To get the best results possible, although with reduced performances, you "
+"can choose the option “No artifact” in the “Other → Hack level” tab."
+msgstr ""
+"பயன்பாட்டில் மங்கலைச் சேர்க்கவும்.\n"
+"குறைந்த செயல்திறன் இருந்தாலும், சாத்தியமான சிறந்த முடிவுகளைப் பெற, \"பிற → ஹேக் "
+"லெவல்\" தாவலில் \"கலைப்பொருள் இல்லை\" என்ற விருப்பத்தை நீங்கள் தேர்வு செய்யலாம்."
+
+#: resources/ui/applications.ui:21 resources/ui/dash.ui:20
+#: resources/ui/panel.ui:20
+msgid "Blur type"
+msgstr "மங்கலான வகை"
+
+#: resources/ui/applications.ui:22
+msgid ""
+"The dynamic blur is slower and only compatible with a gaussian blur effect, "
+"but shows content behind windows."
+msgstr ""
+
+#: resources/ui/applications.ui:42 resources/ui/dash.ui:41
+#: resources/ui/panel.ui:41
+msgid "Static"
+msgstr "நிலையான"
+
+#: resources/ui/applications.ui:54 resources/ui/dash.ui:53
+#: resources/ui/panel.ui:53
+msgid "Dynamic"
+msgstr "மாறும்"
+
+#: resources/ui/applications.ui:72 resources/ui/dash.ui:71
+#: resources/ui/other.ui:56 resources/ui/overview.ui:54
+#: resources/ui/panel.ui:71
+msgid "Sigma"
+msgstr "சிக்மா"
+
+#: resources/ui/applications.ui:73 resources/ui/dash.ui:72
+#: resources/ui/other.ui:57 resources/ui/overview.ui:55
+#: resources/ui/panel.ui:72
+msgid "The intensity of the blur."
+msgstr "மங்கலின் தீவிரம்."
+
+#: resources/ui/applications.ui:114 resources/ui/applications.ui:131
+#: resources/ui/dash.ui:113 resources/ui/dash.ui:130 resources/ui/panel.ui:113
+#: resources/ui/panel.ui:130
+msgid "Corner radius"
+msgstr ""
+
+#: resources/ui/applications.ui:115 resources/ui/dash.ui:114
+#: resources/ui/panel.ui:114
+msgid ""
+"In order to use rounded corners, please install the GNOME Rounded Blur "
+"library."
+msgstr ""
+
+#: resources/ui/applications.ui:132 resources/ui/dash.ui:131
+#: resources/ui/panel.ui:131
+msgid "Radius for the corner rounding effect."
+msgstr ""
+
+#: resources/ui/applications.ui:140
+msgid "Enable corner rounding on maximized and fullscreen"
+msgstr ""
+
+#: resources/ui/applications.ui:141
+msgid ""
+"Corner rounding effect will keep being applied to maximized and fullscreen "
+"windows."
+msgstr ""
+
+#: resources/ui/applications.ui:155
+msgid "Opacity"
+msgstr "ஒளிபுகாநிலை"
+
+#: resources/ui/applications.ui:156
+msgid ""
+"The opacity of the window on top of the blur effect, a higher value will be "
+"more legible."
+msgstr ""
+"மங்கலான விளைவின் மேல் உள்ள சாளரத்தின் ஒளிபுகாநிலை, அதிக மதிப்பு இன்னும் தெளிவாகத் "
+"தெரியும்."
+
+#: resources/ui/applications.ui:177
+msgid "Opaque focused window"
+msgstr "ஒளிபுகா மையப்படுத்தப்பட்ட சாளரம்"
+
+#: resources/ui/applications.ui:178
+msgid ""
+"Makes the focused window opaque and the other ones blurred, helping with "
+"legibility."
+msgstr ""
+"ஃபோகஸ் செய்யப்பட்ட சாளரத்தை ஒளிபுகாதாக்குகிறது மற்றும் மற்றவற்றை மங்கலாக்குகிறது, "
+"தெளிவுக்கு உதவுகிறது."
+
+#: resources/ui/applications.ui:192
+msgid "Blur on overview"
+msgstr "மேலோட்டப் பார்வையில் மங்கலாக்கு"
+
+#: resources/ui/applications.ui:193
+msgid ""
+"Forces the blur to be properly shown on all workspaces on overview.\n"
+"This may cause some latency or performance issues."
+msgstr ""
+"மேலோட்டத்தில் அனைத்து பணியிடங்களிலும் மங்கலானது சரியாகக் காட்டப்பட வேண்டும்.\n"
+"இது சில தாமதம் அல்லது செயல்திறன் சிக்கல்களை ஏற்படுத்தலாம்."
+
+#: resources/ui/applications.ui:208
+msgid "Enable all by default"
+msgstr "முன்னிருப்பாக அனைத்தையும் இயக்கு"
+
+#: resources/ui/applications.ui:209
+msgid "Adds blur behind all windows by default."
+msgstr "முன்னிருப்பாக அனைத்து சாளரங்களின் பின்னும் மங்கலைச் சேர்க்கிறது."
+
+#: resources/ui/applications.ui:225
+msgid "Whitelist"
+msgstr "அனுமதிப்பட்டியல்"
+
+#: resources/ui/applications.ui:226
+msgid ""
+"A list of windows to blur.\n"
+"Use * to match any sequence of characters (e.g., Firefox* or *Code*), and ? "
+"for a single one."
+msgstr ""
+
+#: resources/ui/applications.ui:245 resources/ui/applications.ui:283
+msgid "Add Window"
+msgstr "சாளரத்தைச் சேர்க்கவும்"
+
+#: resources/ui/applications.ui:263
+msgid "Blacklist"
+msgstr "பிளாக்லிஸ்ட்"
+
+#: resources/ui/applications.ui:264
+msgid ""
+"A list of windows not to blur.\n"
+"Use * to match any sequence of characters (e.g., Firefox* or *Code*), and ? "
+"for a single one."
+msgstr ""
+
+#: resources/ui/dash.ui:5
+msgid "Dash"
+msgstr "கோடு"
+
+#: resources/ui/dash.ui:10
+msgid "Dash to Dock blur"
+msgstr "டேஷ் டு டாக் மங்கல்"
+
+#: resources/ui/dash.ui:11
+msgid "Blur the background of the Dash to Dock extension, if it is used."
+msgstr "டாஷ் டு டாக் நீட்டிப்பு பயன்படுத்தப்பட்டால் அதன் பின்புலத்தை மங்கலாக்குங்கள்."
+
+#: resources/ui/dash.ui:21 resources/ui/panel.ui:21
+msgid ""
+"The dynamic blur is slower and only compatible with a gaussian blur effect."
+msgstr ""
+"மாறும் மங்கலானது மெதுவாகவும், காஸியன் மங்கலான விளைவுடன் மட்டுமே இணக்கமாகவும் இருக்கும்."
+
+#: resources/ui/dash.ui:139 resources/ui/panel.ui:154
+msgid "Override background"
+msgstr "பின்னணியை மேலெழுதவும்"
+
+#: resources/ui/dash.ui:140
+msgid ""
+"Makes the background either transparent or semi-transparent, disable this to "
+"use Dash to Dock preferences instead."
+msgstr ""
+"பின்னணியை வெளிப்படையானதாகவோ அல்லது அரை-வெளிப்படையாகவோ மாற்றுகிறது, அதற்குப் பதிலாக "
+"டாஷ் டு டாக் விருப்பங்களைப் பயன்படுத்த இதை முடக்கவும்."
+
+#: resources/ui/dash.ui:146 resources/ui/panel.ui:162
+msgid "Background style"
+msgstr "பின்னணி நடை"
+
+#: resources/ui/dash.ui:147
+msgid "The transparent/semi-transparent style for the dock background."
+msgstr "கப்பல்துறை பின்னணிக்கான வெளிப்படையான/அரை-வெளிப்படையான பாணி."
+
+#: resources/ui/dash.ui:163 resources/ui/panel.ui:193
+msgid "Disable in overview"
+msgstr "மேலோட்டத்தில் முடக்கு"
+
+#: resources/ui/dash.ui:164
+msgid "Disables the blur from Dash to Dock when entering the overview."
+msgstr "மேலோட்டத்தை உள்ளிடும்போது டாஷ் முதல் டாக் வரை மங்கலை முடக்குகிறது."
+
+#: resources/ui/dash.ui:199 resources/ui/overview.ui:118
+#: resources/ui/overview.ui:138 resources/ui/panel.ui:248
+msgid "Transparent"
+msgstr "வெளிப்படை"
+
+#: resources/ui/dash.ui:200 resources/ui/overview.ui:116
+#: resources/ui/overview.ui:139 resources/ui/panel.ui:249
+msgid "Light"
+msgstr "ஒளி"
+
+#: resources/ui/dash.ui:201 resources/ui/overview.ui:117
+#: resources/ui/overview.ui:140 resources/ui/panel.ui:250
+msgid "Dark"
+msgstr "இருள்"
+
+#: resources/ui/effects-dialog.ui:4
+msgid "Effects"
+msgstr "விளைவுகள்"
+
+#: resources/ui/effects-dialog.ui:39
+msgid "Add Effect"
+msgstr "விளைவைச் சேர்க்கவும்"
+
+#: resources/ui/effects-dialog.ui:77
+msgid "Include advanced effects"
+msgstr "மேம்பட்ட விளைவுகளைச் சேர்க்கவும்"
+
+#: resources/ui/menu.ui:6
+msgid "Project page"
+msgstr "திட்டப் பக்கம்"
+
+#: resources/ui/menu.ui:10
+msgid "Report a Bug"
+msgstr "பிழையைப் புகாரளிக்கவும்"
+
+#: resources/ui/menu.ui:14
+msgid "License"
+msgstr "உரிமம்"
+
+#: resources/ui/menu.ui:18
+msgid "Donate"
+msgstr "நன்கொடையளி"
+
+#: resources/ui/other.ui:5
+msgid "Other"
+msgstr "மற்றவை"
+
+#: resources/ui/other.ui:10
+msgid "Lockscreen blur"
+msgstr "லாக்ஸ்கிரீன் மங்கலானது"
+
+#: resources/ui/other.ui:11
+msgid "Change the blur of the lockscreen to use this extension's preferences."
+msgstr "இந்த நீட்டிப்பு விருப்பங்களைப் பயன்படுத்த பூட்டுத் திரையின் மங்கலை மாற்றவும்."
+
+#: resources/ui/other.ui:28
+msgid "Screenshot blur"
+msgstr "ஸ்கிரீன்ஷாட் மங்கலானது"
+
+#: resources/ui/other.ui:29
+msgid "Add blur to the background of the window selector in the screenshot UI."
+msgstr "ஸ்கிரீன்ஷாட் UI இல் சாளரத் தேர்வியின் பின்னணியில் மங்கலைச் சேர்க்கவும்."
+
+#: resources/ui/other.ui:46
+msgid "Window list extension blur"
+msgstr "சாளர பட்டியல் நீட்டிப்பு மங்கலானது"
+
+#: resources/ui/other.ui:47
+msgid "Make the window-list extension blurred, if it is used."
+msgstr "சாளரப் பட்டியல் நீட்டிப்பைப் பயன்படுத்தினால், அதை மங்கலாக்கவும்."
+
+#: resources/ui/other.ui:100
+msgid "Coverflow Alt-Tab extension blur"
+msgstr "கவர்ஃப்ளோ ஆல்ட்-டேப் நீட்டிப்பு மங்கலானது"
+
+#: resources/ui/other.ui:101
+msgid "Make the coverflow alt-tab extension blurred, if it is used."
+msgstr "கவர்ஃப்ளோ ஆல்ட்-டேப் நீட்டிப்பு பயன்படுத்தப்பட்டால், அது மங்கலானது."
+
+#: resources/ui/other.ui:118
+msgid "Performance"
+msgstr "செயலாக்கம்"
+
+#: resources/ui/other.ui:119
+msgid "Various options to tweak the performance."
+msgstr "செயல்திறனை மாற்றுவதற்கான பல்வேறு விருப்பங்கள்."
+
+#: resources/ui/other.ui:123
+msgid "Hack level"
+msgstr "ஹேக் லெவல்"
+
+#: resources/ui/other.ui:124
+msgid ""
+"Changes the behaviour of the dynamic blur effect. The default value is "
+"highly recommended.\n"
+"The “No artifact” option will entirely disable clipped redraws in GNOME "
+"shell, and will impact your computer performances significantly."
+msgstr ""
+"மாறும் மங்கலான விளைவின் நடத்தையை மாற்றுகிறது. இயல்புநிலை மதிப்பு மிகவும் "
+"பரிந்துரைக்கப்படுகிறது.\n"
+"\"கலைப்பொருள் இல்லை\" விருப்பம் GNOME ஷெல்லில் கிளிப் செய்யப்பட்ட ரீடிராக்களை முழுவதுமாக "
+"முடக்கும், மேலும் உங்கள் கணினியின் செயல்திறனை கணிசமாக பாதிக்கும்."
+
+#: resources/ui/other.ui:138
+msgid "Debug"
+msgstr "பிழைத்திருத்தம் செய்"
+
+#: resources/ui/other.ui:139
+msgid ""
+"Makes the extension verbose in logs, activate when you need to report an "
+"issue."
+msgstr ""
+"பதிவுகளில் நீட்டிப்பை வாய்மொழியாக மாற்றுகிறது, சிக்கலைப் புகாரளிக்க வேண்டியிருக்கும் "
+"போது செயல்படுத்தவும்."
+
+#: resources/ui/other.ui:154
+msgid "Reset preferences"
+msgstr "விருப்பங்களை மீட்டமைக்கவும்"
+
+#: resources/ui/other.ui:155
+msgid "Resets preferences of Blur my Shell irreversibly."
+msgstr "மங்கலான எனது ஷெல்லின் விருப்பங்களை மீளமுடியாமல் மீட்டமைக்கிறது."
+
+#: resources/ui/other.ui:174
+msgid "Reset"
+msgstr "மீட்டமைக்கவும்"
+
+#: resources/ui/other.ui:203
+msgid "High performances"
+msgstr "உயர் செயல்திறன்"
+
+#: resources/ui/other.ui:204
+msgid "Default"
+msgstr "இயல்புநிலை"
+
+#: resources/ui/other.ui:205
+msgid "No artifact"
+msgstr "கலைப்பொருள் இல்லை"
+
+#: resources/ui/overview.ui:5
+msgid "Overview"
+msgstr "கண்ணோட்டம்"
+
+#: resources/ui/overview.ui:10
+msgid "Background blur"
+msgstr "பின்னணி தெளிவின்மை"
+
+#: resources/ui/overview.ui:11
+msgid "Add blur to the overview background, using the wallpaper picture."
+msgstr "வால்பேப்பர் படத்தைப் பயன்படுத்தி மேலோட்டப் பின்னணியில் மங்கலைச் சேர்க்கவும்."
+
+#: resources/ui/overview.ui:26
+msgid "Overview components style"
+msgstr "மேலோட்டக் கூறுகளின் பாணி"
+
+#: resources/ui/overview.ui:27
+msgid ""
+"The semi-transparent style for the dash, search entry/results, and "
+"application folders."
+msgstr ""
+"கோடு, தேடல் உள்ளீடு/முடிவுகள் மற்றும் பயன்பாட்டுக் கோப்புறைகளுக்கான அரை-வெளிப்படையான "
+"பாணி."
+
+#: resources/ui/overview.ui:44
+msgid "Application folder blur"
+msgstr "பயன்பாட்டுக் கோப்புறை மங்கல்"
+
+#: resources/ui/overview.ui:45
+msgid "Makes the background of application folder dialogs blurred."
+msgstr "பயன்பாட்டு கோப்புறை உரையாடலின் பின்னணியை மங்கலாக்கும்."
+
+#: resources/ui/overview.ui:96
+msgid "Application folder dialogs style"
+msgstr "பயன்பாட்டு கோப்புறை உரையாடல்கள் நடை"
+
+#: resources/ui/overview.ui:97
+msgid "The semi-transparent style for the application folder dialogs."
+msgstr "பயன்பாட்டு கோப்புறை உரையாடல்களுக்கான அரை-வெளிப்படையான பாணி."
+
+#: resources/ui/overview.ui:115 resources/ui/overview.ui:137
+msgid "Do not style"
+msgstr "ஸ்டைல் வேண்டாம்"
+
+#: resources/ui/panel.ui:5
+msgid "Panel"
+msgstr "பேனல்"
+
+#: resources/ui/panel.ui:10
+msgid "Panel blur"
+msgstr "பேனல் தெளிவின்மை"
+
+#: resources/ui/panel.ui:11
+msgid "Blur the top panel using the background image."
+msgstr "பின்னணி படத்தைப் பயன்படுத்தி மேல் பேனலை மங்கலாக்குங்கள்."
+
+#: resources/ui/panel.ui:139
+msgid "Force light text"
+msgstr "ஒளி உரையை கட்டாயப்படுத்துங்கள்"
+
+#: resources/ui/panel.ui:140
+msgid ""
+"Use a light text for the panel, useful when using gnome-shell's light theme."
+msgstr ""
+"பேனலுக்கு ஒளி உரையைப் பயன்படுத்தவும், gnome-ஷெல்லின் ஒளி தோற்றம் பயன்படுத்தும் போது "
+"பயனுள்ளதாக இருக்கும்."
+
+#: resources/ui/panel.ui:155
+msgid ""
+"Override the background of the panel to use a transparent or semi-"
+"transparent one.\n"
+"Recommended unless you want to customize your GNOME theme."
+msgstr ""
+"வெளிப்படையான அல்லது அரை-வெளிப்படையான ஒன்றைப் பயன்படுத்த பேனலின் பின்னணியை "
+"மேலெழுதவும். \n"
+"உங்கள் GNOME தோற்றம் தனிப்பயனாக்க விரும்பினால் தவிர பரிந்துரைக்கப்படுகிறது."
+
+#: resources/ui/panel.ui:163
+msgid "The transparent/semi-transparent style for the panel background."
+msgstr "பேனல் பின்னணிக்கான வெளிப்படையான/அரை-வெளிப்படையான பாணி."
+
+#: resources/ui/panel.ui:177
+msgid "Disable when a window is near"
+msgstr "ஒரு சாளரம் அருகில் இருக்கும்போது முடக்கவும்"
+
+#: resources/ui/panel.ui:178
+msgid "Disables the transparency of the panel when a window is near it."
+msgstr "சாளரம் அருகில் இருக்கும்போது பேனலின் வெளிப்படைத்தன்மையை முடக்குகிறது."
+
+#: resources/ui/panel.ui:194
+msgid "Disables the blur from the panel when entering the overview."
+msgstr "மேலோட்டப் பார்வையை உள்ளிடும்போது பேனலில் இருந்து மங்கலானதை முடக்கும்."
+
+#: resources/ui/panel.ui:210
+msgid "Compatibility"
+msgstr "இணக்கத்தன்மை"
+
+#: resources/ui/panel.ui:211
+msgid "Various options to provide compatibility with other extensions."
+msgstr "பிற நீட்டிப்புகளுடன் இணக்கத்தன்மையை வழங்க பல்வேறு விருப்பங்கள்."
+
+#: resources/ui/panel.ui:216
+msgid "Hidetopbar extension"
+msgstr "ஹைடோப்பார் நீட்டிப்பு"
+
+#: resources/ui/panel.ui:217
+msgid "Does not disable the blur in overview, best used with static blur."
+msgstr "மேலோட்டத்தில் மங்கலை முடக்காது, நிலையான மங்கலுடன் சிறப்பாகப் பயன்படுத்தப்படுகிறது."
+
+#: resources/ui/panel.ui:231
+msgid "Blur original panel with Dash to Panel"
+msgstr "Dash to Panel உடன் அசல் பேனலை மங்கலாக்கு"
+
+#: resources/ui/panel.ui:232
+msgid ""
+"Enables the blurring of the original panel with Dash to Panel, if selected "
+"in the extension's options."
+msgstr ""
+"நீட்டிப்பின் விருப்பங்களில் தேர்ந்தெடுக்கப்பட்டால், Dash to Panel உடன் அசல் பேனலை மங்கலாக்கும்."
+
+#: resources/ui/panel.ui:251
+msgid "Contrasted"
+msgstr "மாறுபட்டது"
+
+#: resources/ui/pipeline-choose-row.ui:4
+msgid "Pipeline"
+msgstr "குழாய்வரி"
+
+#: resources/ui/pipeline-choose-row.ui:5
+msgid "The pipeline to be used with this component."
+msgstr "இந்த கூறுகளுடன் பயன்படுத்தப்படும் குழாய்வரி."
+
+#: resources/ui/pipeline-group.ui:6
+msgid "Pipeline name"
+msgstr "குழாய்வரி பெயர்"
+
+#: resources/ui/pipeline-group.ui:20
+msgid "Manage effects"
+msgstr "விளைவுகளை நிர்வகிக்கவும்"
+
+#: resources/ui/pipelines.ui:5
+msgid "Pipelines"
+msgstr "குழாய்வரிகள்"
+
+#: resources/ui/pipelines.ui:10
+msgid ""
+"Each component uses a pipeline, which can be chosen in the corresponding "
+"tab. Here you can create, modify and delete the pipelines and their effects."
+msgstr ""
+"ஒவ்வொரு கூறுகளும் குழாய்வறியைப் பயன்படுத்துகின்றன, அதை தொடர்புடைய தாவலில் "
+"தேர்ந்தெடுக்கலாம். இங்கே நீங்கள் குழாய்வறிகளையும் அவற்றின் விளைவுகளையும் உருவாக்கலாம், "
+"மாற்றலாம் மற்றும் நீக்கலாம்."
+
+#: resources/ui/pipelines.ui:29
+msgid "Add Pipeline"
+msgstr "பைப்லைனைச் சேர்க்கவும்"
+
+#~ msgid "A list of windows to blur."
+#~ msgstr "மங்கலாக்க வேண்டிய சாளரங்களின் பட்டியல்."
+
+#~ msgid "A list of windows not to blur."
+#~ msgstr "மங்கலாக்கப்படக் கூடாத சாளரங்களின் பட்டியல்."
+
+#~ msgid "Gaussian blur"
+#~ msgstr "காஸியன் தெளிவின்மை"
+
+#~ msgid "Divider"
+#~ msgstr "பிரிப்பான்"
+
+#~ msgid "Applications blur (beta)"
+#~ msgstr "பயன்பாடுகள் மங்கலாக்குதல் (பீட்டா)"
+
+#~ msgid ""
+#~ "Adds blur to the applications. This is still beta functionality.\n"
+#~ "To get the best results possible, make sure to choose the option “No "
+#~ "artifact” in the “General → Hack level” preference.\n"
+#~ "        "
+#~ msgstr ""
+#~ "பயன்பாட்டில் மங்கலைச் சேர்க்கவும். இது இன்னும் பீட்டா செயல்பாடு. \n"
+#~ "சாத்தியமான சிறந்த முடிவுகளைப் பெற, \"பொது → ஹேக் லெவல்\" விருப்பத்தேர்வில் "
+#~ "\"ஆர்ட்டிஃபாக்ட் இல்லை\" என்ற விருப்பத்தைத் தேர்வுசெய்யவும்.\n"
+#~ "        "
+
+#~ msgid ""
+#~ "Adds blur behind all windows by default.\n"
+#~ "Not recommended because of performance and stability issues."
+#~ msgstr ""
+#~ "முன்னிருப்பாக எல்லா சாளரங்களுக்கும் பின்னால் மங்கலைச் சேர்க்கிறது.\n"
+#~ "செயல்திறன் மற்றும் நிலைப்புத்தன்மை பிரச்சனைகள் காரணமாக பரிந்துரைக்கப்படவில்லை."
+
+#~ msgid "Customize properties"
+#~ msgstr "பண்புகளைத் தனிப்பயனாக்குங்கள்"
+
+#~ msgid ""
+#~ "Uses customized blur properties, instead of the ones set in the General "
+#~ "page."
+#~ msgstr ""
+#~ "பொதுப் பக்கத்தில் அமைக்கப்படுவதற்குப் பதிலாக தனிப்பயனாக்கப்பட்ட மங்கலான பண்புகளைப் "
+#~ "பயன்படுத்துகிறது."
+
+#~ msgid ""
+#~ "Changes the color of the blur. The opacity of the color controls how much "
+#~ "it is blended into the blur effect."
+#~ msgstr ""
+#~ "மங்கலின் நிறத்தை மாற்றுகிறது. வண்ணத்தின் ஒளிபுகாநிலை, அது மங்கலான விளைவுடன் எவ்வளவு "
+#~ "கலக்கப்படுகிறது என்பதைக் கட்டுப்படுத்துகிறது."
+
+#~ msgid "Noise amount"
+#~ msgstr "சத்தம் அளவு"
+
+#~ msgid ""
+#~ "The amount of noise to add to the blur effect, useful on low-contrast "
+#~ "screens or for aesthetic purpose."
+#~ msgstr ""
+#~ "மங்கலான விளைவைச் சேர்க்கும் சத்தத்தின் அளவு, குறைந்த-கான்ட்ராஸ்ட் திரைகளில் அல்லது "
+#~ "அழகியல் நோக்கத்திற்காக பயனுள்ளதாக இருக்கும்."
+
+#~ msgid "Noise lightness"
+#~ msgstr "இரைச்சல் லேசான தன்மை"
+
+#~ msgid "The lightness of the noise added to the blur effect."
+#~ msgstr "சத்தத்தின் லேசான தன்மை மங்கலான விளைவைக் கூட்டியது."
+
+#~ msgid "Notice"
+#~ msgstr "அறிவிப்பு"
+
+#~ msgid ""
+#~ "Noise and color can't be activated on dynamically blurred components, "
+#~ "such as this one."
+#~ msgstr ""
+#~ "இது போன்ற மாறும் மங்கலான கூறுகளில் இரைச்சல் மற்றும் வண்ணத்தை செயல்படுத்த முடியாது."
+
+#~ msgid "Static blur"
+#~ msgstr "நிலையான தெளிவின்மை"
+
+#~ msgid "Rounded corner radius"
+#~ msgstr "வட்டமான மூலை ஆரம்"
+
+#~ msgid "The radius for the rounding effect. Only available with static blur."
+#~ msgstr "சுற்று விளைவுக்கான ஆரம். நிலையான மங்கலத்துடன் மட்டுமே கிடைக்கும்."
+
+#~ msgid "General"
+#~ msgstr "பொது"
+
+#~ msgid "Blur preferences"
+#~ msgstr "மங்கலான விருப்பத்தேர்வுகள்"
+
+#~ msgid "Global blur preferences, used by all components by default."
+#~ msgstr ""
+#~ "உலகளாவிய மங்கலான விருப்பத்தேர்வுகள், இயல்பாகவே அனைத்து கூறுகளாலும் "
+#~ "பயன்படுத்தப்படுகின்றன."
+
+#~ msgid "Color and noise effects"
+#~ msgstr "நிறம் மற்றும் இரைச்சல் விளைவுகள்"
+
+#~ msgid ""
+#~ "Globally disables noise and color effects which may improve performance "
+#~ "on low-end systems."
+#~ msgstr ""
+#~ "உலகளவில் சத்தம் மற்றும் வண்ண விளைவுகளை முடக்குகிறது, இது குறைந்த-இறுதி அமைப்புகளில் "
+#~ "செயல்திறனை மேம்படுத்தலாம்."
+
+#~ msgid ""
+#~ "Changes the behaviour of the dynamic blur effect.\n"
+#~ "The default value is highly recommended unless you use application blur, "
+#~ "in which case “No artifact” is better.\n"
+#~ "This option will entirely disable clipped redraws in GNOME shell, and may "
+#~ "impact performance significantly but will completely fix the blur effect."
+#~ msgstr ""
+#~ "டைனமிக் மங்கலான விளைவின் நடத்தையை மாற்றுகிறது. \n"
+#~ "நீங்கள் பயன்பாட்டு மங்கலைப் பயன்படுத்தாத வரை, இயல்புநிலை மதிப்பு மிகவும் "
+#~ "பரிந்துரைக்கப்படுகிறது, இதில் \"கலைப்பொருள் இல்லை\" என்பது சிறந்தது. \n"
+#~ "இந்த விருப்பம் GNOME ஷெல்லில் கிளிப் செய்யப்பட்ட ரீடிராக்களை முழுவதுமாக முடக்கும், "
+#~ "மேலும் செயல்திறனை கணிசமாக பாதிக்கலாம் ஆனால் மங்கலான விளைவை முழுமையாக சரி செய்யும்."
+
+#~ msgid "High quality"
+#~ msgstr "உயர் தரம்"
+
+#~ msgid "Uses a static blurred image, more performant and stable."
+#~ msgstr ""
+#~ "நிலையான மங்கலான படத்தைப் பயன்படுத்துகிறது, அதிக செயல்திறன் மற்றும் நிலையானது."
+
+#~ msgid "Uses a static blurred image, can be used with rounding effect."
+#~ msgstr ""
+#~ "நிலையான மங்கலான படத்தைப் பயன்படுத்துகிறது, வட்டமிடுதல் விளைவுடன் பயன்படுத்தலாம்."
+
+#~ msgid ""
+#~ "Add blur to the applications. This is still a beta functionnality.\n"
+#~ "To get the best results possible, make sure to choose option “No "
+#~ "artefact” in the “General → Hack level” preference.\n"
+#~ "        "
+#~ msgstr ""
+#~ "பயன்பாடுகளில் மங்கலைச் சேர்க்கவும். இது இன்னும் பீட்டா செயல்பாடுதான்.\n"
+#~ "சாத்தியமான சிறந்த முடிவுகளைப் பெற, \"பொது → ஹேக் லெவல்\" விருப்பத்தேர்வில் "
+#~ "\"கலைப்பொருள் இல்லை\" என்ற விருப்பத்தைத் தேர்ந்தெடுக்கவும்.\n"
+#~ "        "
+
+#~ msgid ""
+#~ "Makes the background semi-transparent, disable this to use Dash to Dock "
+#~ "preferences instead."
+#~ msgstr ""
+#~ "பின்னணியை அரை-வெளிப்படையாக்குகிறது, அதற்குப் பதிலாக டாஷ் டு டாக் விருப்பங்களைப் "
+#~ "பயன்படுத்த இதை முடக்கவும்."
+
+#~ msgid "Performances"
+#~ msgstr "செயல்திறன்"
+
+#~ msgid "Various options to tweak the performances."
+#~ msgstr "செயல்திறனை மாற்ற பல்வேறு விருப்பங்கள்."
+
+#~ msgid ""
+#~ "Permits to disable globally the use of noise and color effects, this may "
+#~ "improve performances for low-end graphic."
+#~ msgstr ""
+#~ "சத்தம் மற்றும் வண்ண விளைவுகளின் பயன்பாட்டை உலகளவில் முடக்குவதற்கு அனுமதி அளிக்கிறது, "
+#~ "இது குறைந்த-இறுதி வரைகலையின் செயல்திறனை மேம்படுத்தலாம்."
+
+#~ msgid ""
+#~ "Changes the behaviour of dynamic blur effect.\n"
+#~ "Default value is very recommended, unless you use application blur in "
+#~ "which case “No artefact” is better.\n"
+#~ "This option will entirely disable clipped redraws from GNOME shell, and "
+#~ "may impact performances significantly but will entirely fix the blur "
+#~ "effect."
+#~ msgstr ""
+#~ "டைனமிக் மங்கலான விளைவின் நடத்தையை மாற்றுகிறது.\n"
+#~ "இயல்புநிலை மதிப்பு மிகவும் பரிந்துரைக்கப்படுகிறது, நீங்கள் பயன்பாட்டு மங்கலைப் "
+#~ "பயன்படுத்தாவிட்டால், \"கலைப்பொருள் இல்லை\" சிறந்தது.\n"
+#~ "இந்த விருப்பம் க்னோம் ஷெல்லில் இருந்து க்ளிப் செய்யப்பட்ட மறு வரைவுகளை முழுவதுமாக "
+#~ "முடக்கும், மேலும் செயல்திறனை கணிசமாக பாதிக்கலாம் ஆனால் மங்கலான விளைவை முழுவதுமாக "
+#~ "சரிசெய்யும்."
+
+#~ msgid "No artefact"
+#~ msgstr "கலைப்பொருள் இல்லை"
+
+#~ msgid ""
+#~ "The semi-transparent style for the dash, search entry/results, and "
+#~ "applications folders."
+#~ msgstr ""
+#~ "கோடு, தேடல் நுழைவு/முடிவுகள் மற்றும் பயன்பாடுகள் கோப்புறைகளுக்கான அரை-வெளிப்படையான "
+#~ "பாணி."
+
+#~ msgid "Applications folder blur"
+#~ msgstr "பயன்பாடுகளின் கோப்புறை மங்கலாகிறது"
+
+#~ msgid "Makes the background of folder icons blurred."
+#~ msgstr "கோப்புறை ஐகான்களின் பின்னணியை மங்கலாக்குகிறது."
+
+#~ msgid "Dialog opacity"
+#~ msgstr "உரையாடல் ஒளிபுகாநிலை"
+
+#~ msgid "The opacity of the applications folder popup."
+#~ msgstr "பயன்பாடுகள் கோப்புறை பாப்அப்பின் ஒளிபுகாநிலை."
+
+#~ msgid ""
+#~ "Override the background of the panel to use a transparent one.\n"
+#~ "Recommended unless you want to customize your GNOME theme."
+#~ msgstr ""
+#~ "வெளிப்படையான ஒன்றைப் பயன்படுத்த பேனலின் பின்னணியை மேலெழுதவும்.\n"
+#~ "உங்கள் க்னோம் தீம் தனிப்பயனாக்க விரும்பினால் தவிர பரிந்துரைக்கப்படுகிறது."
+
+#~ msgid ""
+#~ "Add blur to the applications. This is still a beta functionnality, is "
+#~ "quite buggy and is only applied to the apps that ask it, or to the ones "
+#~ "set in the whitelist below."
+#~ msgstr ""
+#~ "பயன்பாடுகளில் மங்கலைச் சேர்க்கவும். இது இன்னும் ஒரு பீட்டா செயல்பாடாகும், மிகவும் "
+#~ "தரமற்றதாக உள்ளது மற்றும் அதைக் கேட்கும் பயன்பாடுகள் அல்லது கீழே உள்ள அனுமதிப்பட்டியலில் "
+#~ "அமைக்கப்பட்டுள்ளவற்றுக்கு மட்டுமே இது பொருந்தும்."
+
+#~ msgid ""
+#~ "Adds blur behind all windows by default. Not recommended because of "
+#~ "performance and stability issues."
+#~ msgstr ""
+#~ "முன்னிருப்பாக அனைத்து சாளரங்களுக்கும் பின்னால் மங்கலைச் சேர்க்கிறது. செயல்திறன் மற்றும் "
+#~ "நிலைத்தன்மை சிக்கல்கள் காரணமாக பரிந்துரைக்கப்படவில்லை."
+
+#~ msgid ""
+#~ "Changes the behaviour of dynamic blur effect. Default value is very "
+#~ "recommended."
+#~ msgstr ""
+#~ "டைனமிக் மங்கலான விளைவின் நடத்தையை மாற்றுகிறது. இயல்புநிலை மதிப்பு மிகவும் "
+#~ "பரிந்துரைக்கப்படுகிறது."
+
+#~ msgid "Disables the blur from the panel when a window is near it."
+#~ msgstr ""
+#~ "ஒரு சாளரம் அதன் அருகில் இருக்கும்போது பேனலில் இருந்து மங்கலானதை முடக்குகிறது."
+
+#~ msgid ""
+#~ "A list of the applications to blur, one per line. To get an application "
+#~ "class name, under xorg you can use `xprop|grep WM_CLASS` and paste the "
+#~ "last name here."
+#~ msgstr ""
+#~ "மங்கலாக்க வேண்டிய பயன்பாடுகளின் பட்டியல், வரிக்கு ஒன்று. பயன்பாட்டு வகுப்பின் பெயரைப் "
+#~ "பெற, xorg இன் கீழ் நீங்கள் `xprop|grep WM_CLASS` ஐப் பயன்படுத்தி கடைசி பெயரை இங்கே "
+#~ "ஒட்டலாம்."

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ns1="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:ns2="http://www.inkscape.org/namespaces/inkscape" width="32" height="32" viewBox="0 0 32 32" version="1.1" id="svg19" ns1:docname="progress-22.svg" ns2:version="1.4.2 (ebf0e940d0, 2025-05-08)">
+  <defs id="defs12">
+    <filter id="a" width="1.2941091" height="1.2941091" x="-0.14705455" y="-0.14705455" style="color-interpolation-filters:sRGB">
+      <feGaussianBlur stdDeviation=".674" id="feGaussianBlur12" />
+    </filter>
+  <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceAlpha" stdDeviation="1" /><feOffset dx="1.5" dy="1.5" result="offsetblur" /><feComponentTransfer><feFuncA type="linear" slope="0.3" /></feComponentTransfer><feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+  <g filter="url(#shadow)"><ns1:namedview id="namedview19" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" ns2:showpageshadow="2" ns2:pageopacity="0.0" ns2:pagecheckerboard="0" ns2:deskcolor="#d1d1d1" ns2:zoom="15.556349" ns2:cx="7.7781746" ns2:cy="24.973726" ns2:window-width="1920" ns2:window-height="1006" ns2:window-x="0" ns2:window-y="0" ns2:window-maximized="1" ns2:current-layer="svg19" />
+  <circle cx="13.5" cy="24.5" r="5.5" style="opacity:.3;fill:#000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:url(#a)" id="circle12" />
+  <path fill="#fff" fill-rule="evenodd" d="m5.502 3.742 8.383 8.4c1.053 1.057.306 2.859-1.185 2.859l-3.447-.002-2.468 2.185C5.704 18.14 4 17.375 4 15.93V4.364c0-.784.947-1.176 1.5-.621" clip-rule="evenodd" style="fill:#fff;fill-opacity:1" id="path18" />
+  <path fill-rule="evenodd" d="M5 5.01v10.898c0 .59.697.904 1.139.513L8.874 14h3.8c.61 0 .916-.736.485-1.168L5.251 4.907A.147.147 0 0 0 5 5.01" clip-rule="evenodd" style="fill:#000;fill-opacity:1" id="path19" />
+  <g id="g19" transform="rotate(-30,13.5,23.500002)">
+    <path d="M 12.046,7.544 A 6,6 0 0 1 16.5,16.5 6,6 0 0 0 6.52,15.877 10,10 0 0 1 12.046,7.544" style="fill:#ffd305;fill-opacity:1" transform="matrix(0.55,0,0,0.55,4.425,14.425)" id="path12" />
+    <path d="M 6.52,15.877 A 6,6 0 0 1 16.5,16.5 6,6 0 0 0 10.97,24.834 9.99,9.99 0 0 1 6.52,15.877" style="fill:#52cf30;fill-opacity:1" transform="matrix(0.55,0,0,0.55,4.425,14.425)" id="path13" />
+    <path d="M 10.97,24.834 A 6,6 0 0 1 16.5,16.5 6,6 0 0 0 20.955,25.455 9.96,9.96 0 0 1 16.5,26.5 9.95,9.95 0 0 1 10.97,24.834" style="fill:#14adf6;fill-opacity:1" transform="matrix(0.55,0,0,0.55,4.425,14.425)" id="path14" />
+    <path d="M 20.955,25.456 A 6,6 0 0 1 16.5,16.5 a 6,6 0 0 0 9.98,0.622 10,10 0 0 1 -5.527,8.333" style="fill:#ca70e1;fill-opacity:1" transform="matrix(0.55,0,0,0.55,4.425,14.425)" id="path15" />
+    <path d="M 26.48,17.123 A 6,6 0 0 1 16.5,16.5 a 6,6 0 0 0 5.53,-8.334 9.99,9.99 0 0 1 4.45,8.957" style="fill:#ff645d;fill-opacity:1" transform="matrix(0.55,0,0,0.55,4.425,14.425)" id="path16" />
+    <path d="M 22.03,8.166 A 6,6 0 0 1 16.5,16.5 6,6 0 0 0 12.046,7.544 9.96,9.96 0 0 1 16.5,6.5 c 2.044,0 3.946,0.613 5.53,1.666" style="fill:#fbb114;fill-opacity:1" transform="matrix(0.55,0,0,0.55,4.425,14.425)" id="path17" />
+  </g>
+</g></svg>

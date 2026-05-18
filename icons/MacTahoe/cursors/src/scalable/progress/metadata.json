@@ -1,0 +1,93 @@
+[
+    {
+        "filename": "progress.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-01.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-02.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-03.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-04.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-05.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-06.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-07.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-08.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-09.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-10.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-11.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    },
+    {
+        "filename": "progress-12.svg",
+        "delay": 30,
+        "hotspot_x": 4,
+        "hotspot_y": 4,
+        "nominal_size": 24
+    }
+]
