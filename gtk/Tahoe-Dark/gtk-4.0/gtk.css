@@ -146,7 +146,6 @@ headerbar button:not(.suggested-action):not(.destructive-action),
 button.close,
 button.circular {
   border-radius: 9999px;
-  -gtk-outline-radius: 9999px;
 }
 
 button.image-button.toggle {

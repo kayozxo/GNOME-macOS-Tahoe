@@ -4,6 +4,17 @@
 <p align="center"> <b> A macOS Tahoe like theme for GNOME Desktops </b> </p>
 <br>
 
+## Compatibility
+
+Tested against the current and upcoming Ubuntu releases:
+
+| Distribution     | GNOME Shell | libadwaita | Status            |
+| ---------------- | ----------- | ---------- | ----------------- |
+| Ubuntu 25.10     | 49.0        | 1.9        | ✅ Tested         |
+| Ubuntu 26.04 LTS | 50.x        | 1.9+       | ✅ Tested         |
+
+Should also work on other distros shipping GNOME 47–50 (Fedora 41+, Arch, openSUSE Tumbleweed). The installer detects your GNOME version on startup and warns if it's outside the tested range. Older GNOME (≤46) is not actively supported — file an issue if you run into trouble.
+
 ## Donate
 
 If you like my project, you can buy me a coffee, many thanks ❤️ !

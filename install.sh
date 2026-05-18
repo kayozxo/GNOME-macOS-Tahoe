@@ -60,10 +60,16 @@ check_and_install_gum() {
     elif command -v pacman &>/dev/null; then
       sudo pacman -S --noconfirm gum
     elif command -v apt &>/dev/null; then
-      sudo mkdir -p /etc/apt/keyrings
-      curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
-      echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list >/dev/null
-      sudo apt update && sudo apt install -y gum
+      # Ubuntu 24.04+ and Debian 13+ ship gum in universe — try the
+      # official archive first, fall back to charm.sh only if that misses.
+      if sudo apt update && sudo apt install -y gum 2>/dev/null; then
+        :
+      else
+        sudo mkdir -p /etc/apt/keyrings
+        curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list >/dev/null
+        sudo apt update && sudo apt install -y gum
+      fi
     else
       echo "No known package manager — please install gum manually: https://github.com/charmbracelet/gum"
     fi
@@ -174,6 +180,40 @@ check_prereqs() {
   if [ ${#missing[@]} -gt 0 ]; then
     gum_or_echo "${YELLOW}Warning: Missing commands: ${missing[*]}${NC}"
     gum_or_echo "${YELLOW}Some features may not work properly.${NC}"
+  fi
+}
+
+# Tested-on matrix — keep in sync with README compatibility table.
+TESTED_GNOME_MIN=49
+TESTED_GNOME_MAX=50
+
+check_distro_and_shell() {
+  local distro="" version_id="" shell_ver=""
+
+  if [ -r /etc/os-release ]; then
+    # shellcheck disable=SC1091
+    . /etc/os-release
+    distro="${PRETTY_NAME:-${NAME:-unknown}}"
+    version_id="${VERSION_ID:-}"
+  fi
+
+  if command -v gnome-shell &>/dev/null; then
+    shell_ver=$(gnome-shell --version 2>/dev/null | awk '{print $3}' | cut -d. -f1)
+  fi
+
+  gum_or_echo "${CYAN}Detected: ${distro}${version_id:+ (}${version_id}${version_id:+)}${shell_ver:+ — GNOME Shell }${shell_ver}${NC}"
+
+  if [ -n "$shell_ver" ] && [[ "$shell_ver" =~ ^[0-9]+$ ]]; then
+    if (( shell_ver < TESTED_GNOME_MIN )); then
+      gum_or_echo "${YELLOW}⚠️  GNOME Shell $shell_ver is older than the tested range (${TESTED_GNOME_MIN}–${TESTED_GNOME_MAX}). The shell theme may render but expect minor glitches.${NC}"
+    elif (( shell_ver > TESTED_GNOME_MAX )); then
+      gum_or_echo "${YELLOW}⚠️  GNOME Shell $shell_ver is newer than the tested range (${TESTED_GNOME_MIN}–${TESTED_GNOME_MAX}). Some selectors may not match the latest Shell API.${NC}"
+    fi
+
+    # GNOME 49+ documented quirk: libadwaita override clobbers Nautilus emblem assets.
+    if (( shell_ver >= 49 )); then
+      gum_or_echo "${YELLOW}ℹ️  Heads-up for GNOME 49+: if Nautilus file emblems disappear after running with -la, remove ~/.config/gtk-4.0 and reinstall without the libadwaita override.${NC}"
+    fi
   fi
 }
 
@@ -988,6 +1028,7 @@ fi
 ### ----------------------------
 check_and_install_gum
 check_prereqs
+check_distro_and_shell
 
 if command -v gum &>/dev/null; then
   gum style --border double --padding "1 2" --margin "1" --foreground 212 "🌄 macOS Tahoe Theme Installer" "Welcome! Let's make your desktop beautiful."
