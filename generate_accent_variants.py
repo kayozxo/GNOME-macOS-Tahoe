@@ -226,19 +226,12 @@ button.suggested-action:active {{
         hover_color = colors['hover']
         active_color = colors['active']
 
-        # Replace hardcoded accent colors with the new color
-        # Replace #0091ff (default blue) with the accent color
-        content = re.sub(r'#0091ff', base_color, content)
+        # Replace #0088ff (default blue used throughout gnome-shell.css) with the accent color.
+        # This also rewrites occurrences inside st-lighten/st-darken/st-transparentize/st-mix.
+        content = re.sub(r'#0088ff', base_color, content, flags=re.IGNORECASE)
 
-        # Replace #3484e2 (lighter blue) with hover color
-        content = re.sub(r'#3484e2', hover_color, content)
-
-        # Replace any remaining hardcoded accent colors that might be variations
-        # This handles cases where colors are mixed or modified
-        content = re.sub(r'st-lighten\(#0091ff', f'st-lighten({base_color}', content)
-        content = re.sub(r'st-darken\(#0091ff', f'st-darken({base_color}', content)
-        content = re.sub(r'st-transparentize\(#0091ff', f'st-transparentize({base_color}', content)
-        content = re.sub(r'st-mix\([^,]+,\s*#0091ff', f'st-mix(white, {base_color}', content)
+        # Replace #3484e2 (hover/secondary blue) with hover color
+        content = re.sub(r'#3484e2', hover_color, content, flags=re.IGNORECASE)
 
         with open(css_file, 'w') as f:
             f.write(content)
