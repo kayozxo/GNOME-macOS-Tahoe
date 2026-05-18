@@ -15,6 +15,8 @@ Tested against the current and upcoming Ubuntu releases:
 
 Should also work on other distros shipping GNOME 47–50 (Fedora 41+, Arch, openSUSE Tumbleweed). The installer detects your GNOME version on startup and warns if it's outside the tested range. Older GNOME (≤46) is not actively supported — file an issue if you run into trouble.
 
+> ⚠️ **GNOME 49+ caveat**: the libadwaita override (`-la`) can hide Nautilus file emblems on GNOME 49 / Nautilus 49.1. If you hit this, remove `~/.config/gtk-4.0` and reinstall without `-la`. ([upstream bug](https://github.com/vinceliuice/WhiteSur-gtk-theme/issues/1370))
+
 ## Donate
 
 If you like my project, you can buy me a coffee, many thanks ❤️ !

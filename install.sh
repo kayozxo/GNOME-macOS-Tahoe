@@ -278,6 +278,47 @@ install_theme_copy() {
   gum_or_echo "✅ Installed $dest_name → $dest"
 }
 
+apply_theme() {
+  # Activate a previously-installed Tahoe variant via gsettings.
+  # Arg: theme name (e.g. "Tahoe-Light", "Tahoe-Dark", "Tahoe-Dark-Blue").
+  local theme_name="$1"
+  if [ -z "$theme_name" ]; then
+    gum_or_echo "${RED}apply_theme: missing theme name.${NC}"
+    return 1
+  fi
+  if ! command -v gsettings &>/dev/null; then
+    gum_or_echo "${YELLOW}gsettings not found — install themes copied, but couldn't auto-apply.${NC}"
+    return 1
+  fi
+  if [ ! -d "$THEME_DIR/$theme_name" ]; then
+    gum_or_echo "${YELLOW}$theme_name not found in $THEME_DIR — copy it first.${NC}"
+    return 1
+  fi
+
+  # GTK3 / fallback theme
+  gsettings set org.gnome.desktop.interface gtk-theme "$theme_name" 2>/dev/null || true
+
+  # libadwaita / GTK4 color-scheme flag
+  case "$theme_name" in
+    *-Dark*)  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null || true ;;
+    *-Light*) gsettings set org.gnome.desktop.interface color-scheme 'default'     2>/dev/null || true ;;
+  esac
+
+  # GNOME Shell theme (requires User Themes extension)
+  local shell_applied=false
+  if command -v gnome-extensions &>/dev/null && \
+     gnome-extensions list 2>/dev/null | grep -q "^user-theme@gnome-shell-extensions\.gcampax\.github\.com$"; then
+    gsettings set org.gnome.shell.extensions.user-theme name "$theme_name" 2>/dev/null && shell_applied=true || true
+  fi
+
+  if $shell_applied; then
+    gum_or_echo "✅ Applied $theme_name (GTK + Shell). ${YELLOW}Log out and back in for the Shell theme to take effect.${NC}"
+  else
+    gum_or_echo "✅ Applied $theme_name (GTK only)."
+    gum_or_echo "${YELLOW}For Shell theming: install + enable the User Themes extension, then re-run this option. (Try --extensions for the full bundle.)${NC}"
+  fi
+}
+
 install_base_themes() {
   # args: install_light install_dark
   local do_light=$1
@@ -288,6 +329,23 @@ install_base_themes() {
   fi
   if $do_dark; then
     install_theme_copy "$GTK_DIR/Tahoe-Dark" "Tahoe-Dark"
+  fi
+
+  # Activate it. If both were installed, dark wins (most users want dark by default
+  # on Tahoe); --no-apply skips the prompt for headless automation.
+  local active=""
+  if $do_dark; then
+    active="Tahoe-Dark"
+  elif $do_light; then
+    active="Tahoe-Light"
+  fi
+
+  if [ -n "$active" ] && [ "${SKIP_APPLY:-false}" != "true" ]; then
+    if gum_confirm_or_read "Apply $active as the active theme now?"; then
+      apply_theme "$active"
+    else
+      gum_or_echo "${CYAN}Skipped — set the theme later via Tweaks/Refine or 'gsettings set org.gnome.desktop.interface gtk-theme $active'.${NC}"
+    fi
   fi
 }
 
@@ -801,6 +859,7 @@ interactive_menu() {
         "Generate: All accent variants" \
         "Generate: Specific accent variant" \
         "Install generated accent variants into ~/.themes" \
+        "Apply: pick an installed theme as active" \
         "Install libadwaita override" \
         "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" \
         "Uninstall themes" \
@@ -809,7 +868,7 @@ interactive_menu() {
         "Exit")
     else
       echo "Choose an option:"
-      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" "Uninstall themes" "Force reload theme" "Help" "Exit"; do break; done
+      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Apply: pick an installed theme as active" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" "Uninstall themes" "Force reload theme" "Help" "Exit"; do break; done
     fi
 
     case "$selection" in
@@ -830,6 +889,20 @@ interactive_menu() {
         fi
         ;;
       "Install generated accent variants into ~/.themes") install_color_variants_from_gtkdir ;;
+      "Apply: pick an installed theme as active")
+        # List Tahoe-* dirs in ~/.themes and let user pick
+        mapfile -t _installed < <(find "$THEME_DIR" -mindepth 1 -maxdepth 1 -type d -name "Tahoe-*" -printf "%f\n" 2>/dev/null | sort)
+        if [ ${#_installed[@]} -eq 0 ]; then
+          gum_or_echo "${YELLOW}No installed Tahoe themes found in $THEME_DIR. Install one first.${NC}"
+        else
+          if command -v gum &>/dev/null; then
+            _picked=$(printf '%s\n' "${_installed[@]}" | gum choose --cursor ">" --height 12)
+          else
+            select _picked in "${_installed[@]}"; do break; done
+          fi
+          [ -n "${_picked:-}" ] && apply_theme "$_picked"
+        fi
+        ;;
       "Install libadwaita override")
         if command -v gum &>/dev/null; then
           mode=$(gum choose "Light" "Dark")
@@ -968,6 +1041,20 @@ if [[ $# -gt 0 ]]; then
       --install-both)
         INSTALL_LIGHT=true
         INSTALL_DARK=true
+        shift
+        ;;
+      --apply)
+        if [ -n "${2:-}" ] && [[ "$2" != -* ]]; then
+          apply_theme "$2"
+          shift 2
+        else
+          gum_or_echo "${YELLOW}--apply needs a theme name (e.g. Tahoe-Dark, Tahoe-Light-Blue)${NC}"
+          exit 1
+        fi
+        exit 0
+        ;;
+      --no-apply)
+        SKIP_APPLY=true
         shift
         ;;
       --blur|--blur-my-shell)
