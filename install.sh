@@ -19,6 +19,7 @@ set -euo pipefail
 #   ./install.sh -la        -> install libadwaita override (requires -l or -d)
 #   ./install.sh --no-icons -> skip automatic Tahoe icon install/apply
 #   ./install.sh --force-icons -> rebuild Tahoe icons even when cached
+#   ./install.sh --ai       -> install Tahoe Intelligence OpenAI helper
 #   ./install.sh --colors   -> generate all accent color variants
 #   ./install.sh --color blue -> generate specific accent
 #   ./install.sh -u         -> uninstall
@@ -39,6 +40,12 @@ ICON_CACHE_DIR="$TAHOE_CACHE_DIR/icons"
 EXTENSION_CACHE_DIR="$TAHOE_CACHE_DIR/extensions"
 BUTTON_LAYOUT_BACKUP="$TAHOE_CACHE_DIR/button-layout.before"
 TAHOE_BUTTON_LAYOUT="close,minimize,maximize:"
+AI_BIN_DIR="$HOME/.local/bin"
+AI_DESKTOP_DIR="$HOME/.local/share/applications"
+AI_BIN_PATH="$AI_BIN_DIR/tahoe-intelligence"
+AI_DESKTOP_FILE="$AI_DESKTOP_DIR/tahoe-intelligence.desktop"
+AI_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gnome-macos-tahoe"
+AI_ENV_FILE="$AI_CONFIG_DIR/openai.env"
 TMP_DIR="$(mktemp -d -t tahoe-installer.XXXXXXXXXX)"
 APP_LAUNCHER="kayozxo/ulauncher-liquid-glass"
 TMP_ZIP_AL="ulauncher-liquid-glass.zip"
@@ -735,6 +742,41 @@ install_mactahoe_icons() {
   fi
 }
 
+install_tahoe_intelligence() {
+  local src="$SCRIPT_DIR/scripts/tahoe-intelligence.sh"
+
+  if [ ! -f "$src" ]; then
+    gum_or_echo "${RED}✗ Tahoe Intelligence helper missing: $src${NC}"
+    return 1
+  fi
+
+  mkdir -p "$AI_BIN_DIR" "$AI_DESKTOP_DIR"
+  install -m 0755 "$src" "$AI_BIN_PATH"
+
+  cat > "$AI_DESKTOP_FILE" <<EOF
+[Desktop Entry]
+Type=Application
+Name=Tahoe Intelligence
+Comment=Ask OpenAI from your Tahoe desktop
+Exec=$AI_BIN_PATH
+Icon=preferences-system-search
+Terminal=false
+Categories=Utility;Office;
+Keywords=AI;OpenAI;ChatGPT;Apple Intelligence;Tahoe;
+StartupNotify=true
+EOF
+
+  update-desktop-database "$AI_DESKTOP_DIR" >/dev/null 2>&1 || true
+
+  gum_or_echo "✅ Tahoe Intelligence installed."
+  gum_or_echo "${CYAN}It uses the user's OpenAI API key (OPENAI_API_KEY, GNOME Keyring, or $AI_ENV_FILE).${NC}"
+  gum_or_echo "${CYAN}Run: tahoe-intelligence --setup-key${NC}"
+
+  if gum_confirm_or_read "Set up the OpenAI API key now?"; then
+    "$AI_BIN_PATH" --setup-key
+  fi
+}
+
 apply_icon_overrides() {
   local override_dir="$SCRIPT_DIR/icons/overrides/apps"
   [ -d "$override_dir" ] || return 0
@@ -1116,6 +1158,14 @@ uninstall_all() {
     done
   '
 
+  gum_spin_run "Removing Tahoe Intelligence..." '
+    rm -f "'"$AI_BIN_PATH"'" "'"$AI_DESKTOP_FILE"'"
+    rm -f "'"$AI_ENV_FILE"'"
+    if command -v secret-tool >/dev/null 2>&1; then
+      secret-tool clear application gnome-macos-tahoe credential openai-api-key >/dev/null 2>&1 || true
+    fi
+  '
+
   if command -v gsettings &>/dev/null; then
     local current_gtk current_icons current_shell schema_dir
     current_gtk=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | sed "s/^'//;s/'$//" || true)
@@ -1194,6 +1244,7 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
 - `--icons` - Install Tahoe icons and apply them
 - `--no-icons` - Skip automatic Tahoe icon install when installing a theme
 - `--force-icons` - Rebuild Tahoe icons even if cached
+- `--ai` or `--intelligence` - Install Tahoe Intelligence (OpenAI helper)
 
 ## Other Flags
 - `-u` or `--uninstall` - Uninstall Tahoe themes, icons, extension forks, and GTK overrides
@@ -1205,8 +1256,8 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
 - **Generate accent variants** - Run generate_accent_variants.py
 - **Install generated variants** - Copy Tahoe-Light-<color> folders to ~/.themes
 - **Libadwaita override** - Install gtk-4.0 override to ~/.config/gtk-4.0
-- **Extras** - Install icons, cursors, Ulauncher theme, GDM theme, or connect Flatpak
-- **Uninstall** - Remove Tahoe themes, icons, extension forks, and GTK overrides
+- **Extras** - Install icons, cursors, Ulauncher theme, GDM theme, Tahoe Intelligence, or connect Flatpak
+- **Uninstall** - Remove Tahoe themes, icons, extension forks, Tahoe Intelligence, and GTK overrides
 
 ## Flatpak Support
 Flatpak apps run in a sandbox and need explicit permission to access themes:
@@ -1239,7 +1290,8 @@ CLI flags:
   --icons                   Install Tahoe icons and apply them
   --no-icons                Skip automatic Tahoe icon install
   --force-icons             Rebuild Tahoe icons even if cached
-  -u / --uninstall          Uninstall Tahoe themes/icons/extensions
+  --ai / --intelligence     Install Tahoe Intelligence (OpenAI helper)
+  -u / --uninstall          Uninstall Tahoe themes/icons/extensions/AI helper
   -h / --help               Show help
 
 Flatpak Support:
@@ -1267,14 +1319,14 @@ interactive_menu() {
         "Install generated accent variants into ~/.themes" \
         "Apply: pick an installed theme as active" \
         "Install libadwaita override" \
-        "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" \
+        "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions/AI)" \
         "Uninstall Tahoe" \
         "Force reload theme (clear cache)" \
         "Help" \
         "Exit")
     else
       echo "Choose an option:"
-      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Apply: pick an installed theme as active" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" "Uninstall Tahoe" "Force reload theme" "Help" "Exit"; do break; done
+      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Apply: pick an installed theme as active" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions/AI)" "Uninstall Tahoe" "Force reload theme" "Help" "Exit"; do break; done
     fi
 
     case "$selection" in
@@ -1321,12 +1373,13 @@ interactive_menu() {
         fi
         install_libadwaita_override "${mode:-Light}" "$specific"
         ;;
-      "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)")
+      "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)"|"Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions/AI)")
         if command -v gum &>/dev/null; then
           ex=$(gum choose \
             "Install all recommended GNOME extensions" \
             "Install Tahoe Blur extension" \
             "Install Tahoe icons" \
+            "Install Tahoe Intelligence (OpenAI)" \
             "Install WhiteSur cursors" \
             "Install Ulauncher theme" \
             "Install WhiteSur GDM theme" \
@@ -1339,14 +1392,15 @@ interactive_menu() {
           echo "  1) Install all recommended GNOME extensions"
           echo "  2) Install Tahoe Blur extension"
           echo "  3) Install Tahoe icons"
-          echo "  4) Install WhiteSur cursors"
-          echo "  5) Install Ulauncher theme"
-          echo "  6) Install WhiteSur GDM theme"
-          echo "  7) Install Tahoe Wallpapers"
-          echo "  8) Connect Flatpak themes"
-          echo "  9) Disconnect Flatpak themes"
-          echo " 10) Back"
-          read -r -p "Enter choice (1-10): " ex
+          echo "  4) Install Tahoe Intelligence (OpenAI)"
+          echo "  5) Install WhiteSur cursors"
+          echo "  6) Install Ulauncher theme"
+          echo "  7) Install WhiteSur GDM theme"
+          echo "  8) Install Tahoe Wallpapers"
+          echo "  9) Connect Flatpak themes"
+          echo " 10) Disconnect Flatpak themes"
+          echo " 11) Back"
+          read -r -p "Enter choice (1-11): " ex
         fi
         case "$ex" in
           "Install all recommended GNOME extensions"|1) install_recommended_extensions ;;
@@ -1358,13 +1412,14 @@ interactive_menu() {
             fi
             install_mactahoe_icons "${_icon_color:-blue}"
             ;;
-          "Install WhiteSur cursors"|4) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
-          "Install Ulauncher theme"|5) install_ulauncher_theme ;;
-          "Install WhiteSur GDM theme"|6) install_gdm_theme ;;
-          "Install Tahoe Wallpapers"|7) install_wallpaper ;;
-          "Connect Flatpak themes"|8) connect_flatpak ;;
-          "Disconnect Flatpak themes"|9) disconnect_flatpak ;;
-          "Back"|10) : ;;
+          "Install Tahoe Intelligence (OpenAI)"|4) install_tahoe_intelligence ;;
+          "Install WhiteSur cursors"|5) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
+          "Install Ulauncher theme"|6) install_ulauncher_theme ;;
+          "Install WhiteSur GDM theme"|7) install_gdm_theme ;;
+          "Install Tahoe Wallpapers"|8) install_wallpaper ;;
+          "Connect Flatpak themes"|9) connect_flatpak ;;
+          "Disconnect Flatpak themes"|10) disconnect_flatpak ;;
+          "Back"|11) : ;;
           *) gum_or_echo "${YELLOW}Unrecognized option in Extras menu${NC}" ;;
         esac
         ;;
@@ -1411,6 +1466,7 @@ if [[ $# -gt 0 ]]; then
   INSTALL_BLUR=false
   INSTALL_EXTENSIONS=false
   INSTALL_ICONS=false
+  INSTALL_AI=false
   SKIP_ICONS=false
   FORCE_ICONS=false
   FORCE_EXTENSIONS=false
@@ -1490,6 +1546,10 @@ if [[ $# -gt 0 ]]; then
         INSTALL_ICONS=true
         shift
         ;;
+      --ai|--intelligence|--tahoe-intelligence)
+        INSTALL_AI=true
+        shift
+        ;;
       --no-icons)
         SKIP_ICONS=true
         shift
@@ -1543,6 +1603,10 @@ if [[ $# -gt 0 ]]; then
     install_recommended_extensions
   elif $INSTALL_BLUR; then
     install_blur_my_shell
+  fi
+
+  if $INSTALL_AI; then
+    install_tahoe_intelligence
   fi
 
   exit 0

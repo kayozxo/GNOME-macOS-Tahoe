@@ -67,6 +67,7 @@ cd GNOME-macOS-Tahoe
 - 🖼️ Install generated accent variants to ~/.themes
 - ⚙️ Install libadwaita override (for modern GTK4 apps & GNOME Shell)
 - 🎯 Install extras: Tahoe icons, Tahoe wallpapers, WhiteSur cursors, Ulauncher theme, GDM theme, and Tahoe extension forks
+- ✨ Install Tahoe Intelligence, an Apple Intelligence-style OpenAI helper for selected text and quick prompts
 - 🔴 Set macOS window button order: red close, yellow minimize, green fullscreen
 - 🧹 Uninstall Tahoe themes, icons, extension forks, and GTK overrides
 - 📖 Help & documentation
@@ -92,6 +93,7 @@ If you prefer command-line flags over the interactive menu:
 ./install.sh --color red --icons   # Tahoe-red icons
 ./install.sh -d --no-icons     # Dark theme without changing icons
 ./install.sh --force-icons     # Rebuild Tahoe icons if the cache should be refreshed
+./install.sh --ai              # Tahoe Intelligence (OpenAI helper)
 
 # Generate accent colors
 ./install.sh --colors        # Generate all 16 variants
@@ -111,6 +113,26 @@ To replace individual app icons with higher-resolution images you are allowed to
 ```
 
 PNG overrides are resized to `512x512` when ImageMagick is installed. Do not commit random Google Images unless you have redistribution rights.
+
+### Tahoe Intelligence
+
+Tahoe Intelligence is an optional Apple Intelligence-style helper that talks to OpenAI using **the user's own OpenAI API key**. It does not ask for a ChatGPT password and does not scrape browser cookies. OpenAI's API is authenticated with `OPENAI_API_KEY`, and API usage is billed separately from ChatGPT subscriptions.
+
+```bash
+./install.sh --ai
+tahoe-intelligence --setup-key
+tahoe-intelligence "rewrite this to sound polished"
+wl-paste | tahoe-intelligence "summarize this"
+tahoe-intelligence --clipboard "make this friendlier" --copy
+```
+
+Defaults are tuned for speed (`gpt-5-mini`, low reasoning, low verbosity). Users can choose a different model for their account:
+
+```bash
+OPENAI_MODEL=gpt-5.5 tahoe-intelligence "think harder about this"
+```
+
+Official OpenAI references: [API key setup](https://developers.openai.com/api/docs/quickstart), [Responses API](https://platform.openai.com/docs/api-reference/responses/create), and [ChatGPT vs API billing](https://help.openai.com/en/articles/8156019-is-api-usage-included-in-chatgpt-subscriptions-even-if-i-have-a-paid-chatgpt-account).
 
 ### Updating
 
