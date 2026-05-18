@@ -1,0 +1,207 @@
+.custom-tile-preview {
+  border-radius: 8px;
+}
+.top-left-border-radius {
+  border-radius: 8px 0 0 0;
+}
+.top-right-border-radius {
+  border-radius: 0 8px 0 0;
+}
+.bottom-right-border-radius {
+  border-radius: 0 0 8px 0;
+}
+.bottom-left-border-radius {
+  border-radius: 0 0 0 8px;
+}
+.top-left-border-radius.top-right-border-radius {
+  border-radius: 8px 8px 0 0;
+}
+.top-right-border-radius.bottom-right-border-radius {
+  border-radius: 0 8px 8px 0;
+}
+.bottom-right-border-radius.bottom-left-border-radius {
+  border-radius: 0 0 8px 8px;
+}
+.top-left-border-radius.bottom-left-border-radius {
+  border-radius: 8px 0 0 8px;
+}
+.top-left-border-radius.top-right-border-radius.bottom-right-border-radius.bottom-left-border-radius {
+  border-radius: 8px;
+}
+.selection-tile-preview {
+}
+.blur-tile-preview {
+  border: 0;
+  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.2);
+}
+.snap-assistant {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+  border: 0;
+  border-radius: 10px;
+  padding-value: 16px;
+}
+.snap-assist-tile {
+  transition: 300ms ease all;
+  border-radius-value: 6px;
+  border-width-value: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.snap-assist-tile:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.snap-assist-tile.dark {
+  border-color: rgba(128, 128, 128, 0.65);
+  background-color: rgba(180, 180, 180, 0.45);
+}
+.snap-assist-tile.dark:hover {
+  border-color: rgba(94, 94, 94, 0.7);
+  background-color: rgba(154, 154, 154, 0.6);
+}
+.indicator-menu-item {
+  background-color: transparent !important;
+}
+.indicator-menu-item .buttons-box-layout {
+  spacing: 8px;
+}
+.indicator-menu-item .popup-menu-ornament {
+  width: 0;
+  height: 0;
+}
+.indicator-menu-item .snap-assist-tile {
+  border-radius-value: 5px;
+  border-width-value: 0.5px;
+}
+.default-menu-container {
+  spacing: 16px;
+}
+.monitor-layouts-title {
+  font-size: 0.818em;
+  text-align: center;
+}
+.layouts-box-layout {
+  spacing: 12px;
+}
+.layout-button {
+  transition: 100ms ease all;
+  padding: 0.2045em;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: transparent;
+}
+.layout-button .snap-assist-tile {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.layout-button .snap-assist-tile.dark {
+  border-color: #939393;
+  background-color: #e2e2e2;
+}
+.layout-button:hover,
+.layout-button:checked {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.layout-button:hover .snap-assist-tile,
+.layout-button:checked .snap-assist-tile {
+  border-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.layout-button:hover .snap-assist-tile.dark,
+.layout-button:checked .snap-assist-tile.dark {
+  border-color: #6c6c6c;
+  background-color: #c4c4c4;
+}
+.layout-editor {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+.layout-editor-slider {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  border: 2px solid rgba(65, 65, 65, 0.8);
+}
+.editable-tile-preview-button {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+.editor-dialog .layouts-box-layout {
+  spacing: 18px;
+}
+.editor-dialog .layout-button-container {
+  spacing: 8px;
+}
+.editor-dialog .delete-layout-button {
+  padding: 0.409em;
+}
+.editor-dialog .editor-dialog-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.364em;
+}
+.editor-dialog .legend {
+  spacing: 12px;
+}
+.editor-dialog .kbd {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  font-family: monospace;
+  padding: 0.1363333333em 0.818em;
+  box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.2);
+}
+.hover-line {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.window-menu-layout .snap-assist-tile {
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius-value: 4px;
+  border-width-value: 0.5px;
+}
+.window-menu-layout .snap-assist-tile.dark {
+  border-color: rgba(121, 121, 121, 0.2);
+  background-color: rgba(121, 121, 121, 0.2);
+}
+.window-menu-layout .snap-assist-tile:hover {
+  border-color: rgba(255, 255, 255, 0.78);
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.window-menu-layout .snap-assist-tile.dark:hover {
+  border-color: rgba(81, 81, 81, 0.78);
+  background-color: rgba(81, 81, 81, 0.6);
+}
+.layout-icon .snap-assist-tile {
+  border-radius-value: 5px;
+  border-width-value: 0.5px;
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.layout-icon .snap-assist-tile.dark {
+  border-color: rgba(121, 121, 121, 0.2);
+  background-color: rgba(121, 121, 121, 0.2);
+}
+.layout-icon .snap-assist-tile.important {
+  border-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.layout-icon .snap-assist-tile.dark.important {
+  border-color: rgba(121, 121, 121, 0.6);
+  background-color: rgba(121, 121, 121, 0.6);
+}
+.window-border {
+  transition: 200ms ease all;
+  border-style: solid;
+  border-color: none;
+}
+.popup-window-preview-container {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 6px;
+}
+.layout-switcher-list .snap-assist-tile {
+  border-radius-value: 6px;
+  border-width-value: 1px;
+}

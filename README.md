@@ -34,15 +34,17 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 
 <details> <summary> Recommended GNOME Shell extensions </summary>
 
-- [Open Bar](https://extensions.gnome.org/extension/6580/open-bar/)
-- [Blur My Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
-- [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
-- [Gnome 4x UI Improvements](https://extensions.gnome.org/extension/4158/gnome-40-ui-improvements/)
-- [Space bar](https://extensions.gnome.org/extension/5090/space-bar/)
-- [Tiling Shell](https://extensions.gnome.org/extension/7065/tiling-shell/)
-- [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
-- [Vitals](https://extensions.gnome.org/extension/1460/vitals/)
+- Tahoe Open Bar (fork of [Open Bar](https://extensions.gnome.org/extension/6580/open-bar/))
+- Tahoe Blur (fork of [Blur My Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/))
+- Tahoe Dock (fork of [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/))
+- Tahoe UI Tune (fork of [Gnome 4x UI Improvements](https://extensions.gnome.org/extension/4158/gnome-40-ui-improvements/))
+- Tahoe Space Bar (fork of [Space bar](https://extensions.gnome.org/extension/5090/space-bar/))
+- Tahoe Tiling Shell (fork of [Tiling Shell](https://extensions.gnome.org/extension/7065/tiling-shell/))
+- Tahoe User Themes (fork of [User Themes](https://extensions.gnome.org/extension/19/user-themes/))
+- Tahoe Vitals (fork of [Vitals](https://extensions.gnome.org/extension/1460/vitals/))
 - [Wallpapers](./.config/walls)
+
+The installer uses the vendored Tahoe forks in `extensions/` first, so these work offline after cloning the repo. Upstream UUIDs are disabled after the Tahoe fork is enabled to avoid duplicate behavior.
 
 </details>
 
@@ -53,7 +55,7 @@ If you like my project, you can buy me a coffee, many thanks ❤️ !
 **Run the installer — it will automatically install [Gum](https://github.com/charmbracelet/gum) if needed!**
 
 ```bash
-git clone https://github.com/kayozxo/GNOME-macOS-Tahoe
+git clone https://github.com/bobwdmai/GNOME-macOS-Tahoe
 cd GNOME-macOS-Tahoe
 ./install.sh
 ```
@@ -64,7 +66,7 @@ cd GNOME-macOS-Tahoe
 - 🌈 Generate and install accent color variants (all 16 or specific)
 - 🖼️ Install generated accent variants to ~/.themes
 - ⚙️ Install libadwaita override (for modern GTK4 apps & GNOME Shell)
-- 🎯 Install extras: MacTahoe icons, MacTahoe wallpapers, WhiteSur cursors, Ulauncher theme and GDM theme
+- 🎯 Install extras: Tahoe icons, Tahoe wallpapers, WhiteSur cursors, Ulauncher theme, GDM theme, and Tahoe extension forks
 - 🧹 Uninstall themes
 - 📖 Help & documentation
 
@@ -80,6 +82,11 @@ If you prefer command-line flags over the interactive menu:
 
 # Install wallpapers
 ./install.sh -w    # Tahoe 26 dynamic wallpapers
+
+# Install built-in Tahoe extras
+./install.sh --extensions      # Tahoe-branded GNOME extension forks
+./install.sh --icons           # Tahoe icon theme
+./install.sh --color red --icons   # Tahoe-red icons
 
 # Generate accent colors
 ./install.sh --colors        # Generate all 16 variants

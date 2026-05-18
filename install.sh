@@ -8,7 +8,7 @@ set -euo pipefail
 #  - Install generated color variants
 #  - Libadwaita override installation (supports specific accent variant)
 #  - Install Ulauncher theme from GitHub releases
-#  - Install MacTahoe icons / WhiteSur cursors / WhiteSur GDM
+#  - Install Tahoe icons / WhiteSur cursors / WhiteSur GDM
 #  - Uninstall everything (with confirmation)
 #  - Fully uses gum where available; falls back to echo/read when not present
 #
@@ -306,9 +306,19 @@ apply_theme() {
 
   # GNOME Shell theme (requires User Themes extension)
   local shell_applied=false
-  if command -v gnome-extensions &>/dev/null && \
-     gnome-extensions list 2>/dev/null | grep -q "^user-theme@gnome-shell-extensions\.gcampax\.github\.com$"; then
-    gsettings set org.gnome.shell.extensions.user-theme name "$theme_name" 2>/dev/null && shell_applied=true || true
+  local user_theme_schema="org.gnome.shell.extensions.user-theme"
+  if command -v gnome-extensions &>/dev/null; then
+    for uuid in "tahoe-user-themes@bobwdmai" "user-theme@gnome-shell-extensions.gcampax.github.com"; do
+      if gnome-extensions list 2>/dev/null | grep -qx "$uuid"; then
+        local schema_dir="$HOME/.local/share/gnome-shell/extensions/$uuid/schemas"
+        if [ -d "$schema_dir" ]; then
+          GSETTINGS_SCHEMA_DIR="$schema_dir" gsettings set "$user_theme_schema" name "$theme_name" 2>/dev/null && shell_applied=true || true
+        else
+          gsettings set "$user_theme_schema" name "$theme_name" 2>/dev/null && shell_applied=true || true
+        fi
+        $shell_applied && break
+      fi
+    done
   fi
 
   if $shell_applied; then
@@ -502,29 +512,53 @@ install_ulauncher_theme() {
 
 install_mactahoe_icons() {
   # Prefer the vendored copy in icons/MacTahoe/ over cloning vinceliuice's repo.
+  # Install it under the Tahoe name so GTK theme + icon theme read as one set.
+  local accent="${1:-blue}"
+  local icon_variant
+  case "$accent" in
+    blue|purple|green|red|orange) icon_variant="$accent" ;;
+    amber) icon_variant="yellow" ;;
+    slate) icon_variant="grey" ;;
+    *) icon_variant="blue" ;;
+  esac
+
   local local_src="$SCRIPT_DIR/icons/MacTahoe"
   if [ ! -d "$local_src" ] || [ ! -x "$local_src/install.sh" ]; then
     # Fall back to the upstream clone-and-install path
-    install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b
+    install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b -n Tahoe -t "$icon_variant"
     return $?
   fi
 
-  gum_spin_run "Installing MacTahoe icons from local source..." "bash \"$local_src/install.sh\" -b"
+  gum_spin_run "Installing Tahoe icons from local source..." "bash \"$local_src/install.sh\" -b -n Tahoe -t \"$icon_variant\""
 
-  # Activate it. Bold variant produced by `-b` lands at ~/.local/share/icons/MacTahoe (white folders).
+  # Activate it. The vendored installer creates Tahoe, Tahoe-light, Tahoe-dark,
+  # and accent variants such as Tahoe-red / Tahoe-red-dark.
   if command -v gsettings &>/dev/null; then
     local picked=""
-    for name in MacTahoe MacTahoe-light MacTahoe-dark; do
-      [ -d "$HOME/.local/share/icons/$name" ] && picked="$name" && break
-    done
+    local color_scheme
+    color_scheme=$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null || true)
+    if [[ "$color_scheme" == *prefer-dark* ]]; then
+      for name in "Tahoe-${icon_variant}-dark" "Tahoe-${icon_variant}" Tahoe-dark Tahoe; do
+        [ -d "$HOME/.local/share/icons/$name" ] && picked="$name" && break
+      done
+    else
+      for name in "Tahoe-${icon_variant}" "Tahoe-${icon_variant}-light" Tahoe Tahoe-light; do
+        [ -d "$HOME/.local/share/icons/$name" ] && picked="$name" && break
+      done
+    fi
+    if [ -z "$picked" ]; then
+      for name in Tahoe Tahoe-light Tahoe-dark; do
+        [ -d "$HOME/.local/share/icons/$name" ] && picked="$name" && break
+      done
+    fi
     if [ -n "$picked" ]; then
       gsettings set org.gnome.desktop.interface icon-theme "$picked" 2>/dev/null || true
-      gum_or_echo "✅ MacTahoe icons installed and active ($picked)"
+      gum_or_echo "✅ Tahoe icons installed and active ($picked)"
     else
-      gum_or_echo "✅ MacTahoe icons installed — set the icon theme via Tweaks/Refine"
+      gum_or_echo "✅ Tahoe icons installed — set the icon theme via Tweaks/Refine"
     fi
   else
-    gum_or_echo "✅ MacTahoe icons installed (gsettings unavailable; activate manually)"
+    gum_or_echo "✅ Tahoe icons installed (gsettings unavailable; activate manually)"
   fi
 }
 
@@ -626,8 +660,8 @@ install_wallpaper() {
   gum_or_echo "${GREEN}XML location: /usr/share/gnome-background-properties/Tahoe.xml${NC}"
   gum_or_echo "${CYAN}Note: You can apply the wallpaper in your settings under Appearance.${NC}"
 
-  # Pretty irrelevant information, but so i know you actually check the code: I like kissing boys :3
-  # wallpaper installer made by skittle0764 https://github.com/skittle0764
+  # Wallpaper installer originally contributed by skittle0764:
+  # https://github.com/skittle0764
 }
 
 install_local_extension() {
@@ -650,13 +684,22 @@ install_local_extension() {
   else
     # No Makefile — drop the source straight into the extensions dir.
     local dest="$HOME/.local/share/gnome-shell/extensions/$uuid"
-    gum_spin_run "Installing ${friendly} from local source..." "rm -rf \"$dest\" && cp -a \"$src\" \"$dest\" && find \"$dest/schemas\" -name '*.gschema.xml' -execdir glib-compile-schemas . \;"
+    gum_spin_run "Installing ${friendly} from local source..." "rm -rf \"$dest\" && cp -a \"$src\" \"$dest\" && { [ ! -d \"$dest/schemas\" ] || glib-compile-schemas \"$dest/schemas\"; }"
   fi
 
   if gnome-extensions enable "$uuid" 2>/dev/null; then
     gum_or_echo "✅ ${friendly} installed & enabled (local · ${uuid})"
   else
     gum_or_echo "✅ ${friendly} installed (local · ${uuid}) — enable after restarting GNOME Shell"
+  fi
+
+  local upstream_uuid=""
+  if command -v python3 &>/dev/null && [ -f "$src/metadata.json" ]; then
+    upstream_uuid=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("upstream-uuid", ""))' "$src/metadata.json" 2>/dev/null || true)
+  fi
+  if [ -n "$upstream_uuid" ] && [ "$upstream_uuid" != "$uuid" ] && gnome-extensions info "$upstream_uuid" &>/dev/null; then
+    gnome-extensions disable "$upstream_uuid" 2>/dev/null || true
+    gum_or_echo "${CYAN}Disabled upstream ${friendly} source ($upstream_uuid) to avoid duplicate behavior.${NC}"
   fi
 }
 
@@ -716,7 +759,7 @@ install_gnome_extension() {
 }
 
 install_blur_my_shell() {
-  install_gnome_extension 3193 "Blur My Shell" "blur-my-shell@aunetx"
+  install_gnome_extension 3193 "Tahoe Blur" "tahoe-blur-my-shell@bobwdmai"
   gum_or_echo "${YELLOW}⚠️  Log out and back in (or press Alt+F2 → 'r' on X11) to activate.${NC}"
 }
 
@@ -724,14 +767,14 @@ install_recommended_extensions() {
   gum_or_echo "${CYAN}Installing recommended GNOME Shell extensions...${NC}"
   # ext_id : friendly_name : UUID (the UUID enables local-first install
   # when extensions/<UUID>/ is vendored in this repo).
-  install_gnome_extension 6580 "Open Bar"                  "openbar@neuromorph"                                 || true
-  install_gnome_extension 3193 "Blur My Shell"             "blur-my-shell@aunetx"                               || true
-  install_gnome_extension 307  "Dash to Dock"              "dash-to-dock@micxgx.gmail.com"                      || true
-  install_gnome_extension 4158 "GNOME 4x UI Improvements"  "gnome-40-ui-improvements@nilforooshan.com"          || true
-  install_gnome_extension 5090 "Space Bar"                 "space-bar@luchrioh"                                 || true
-  install_gnome_extension 7065 "Tiling Shell"              "tilingshell@ferrarodomenico.com"                    || true
-  install_gnome_extension 19   "User Themes"               "user-theme@gnome-shell-extensions.gcampax.github.com" || true
-  install_gnome_extension 1460 "Vitals"                    "Vitals@CoreCoding.com"                              || true
+  install_gnome_extension 6580 "Tahoe Open Bar"            "tahoe-open-bar@bobwdmai"                            || true
+  install_blur_my_shell                                                                                          || true
+  install_gnome_extension 307  "Tahoe Dock"                "tahoe-dash-to-dock@bobwdmai"                        || true
+  install_gnome_extension 4158 "Tahoe UI Tune"             "tahoe-ui-tune@bobwdmai"                             || true
+  install_gnome_extension 5090 "Tahoe Space Bar"           "tahoe-space-bar@bobwdmai"                           || true
+  install_gnome_extension 7065 "Tahoe Tiling Shell"        "tahoe-tiling-shell@bobwdmai"                        || true
+  install_gnome_extension 19   "Tahoe User Themes"         "tahoe-user-themes@bobwdmai"                         || true
+  install_gnome_extension 1460 "Tahoe Vitals"              "tahoe-vitals@bobwdmai"                              || true
   gum_or_echo "${YELLOW}⚠️  Log out and back in to fully load the new extensions.${NC}"
 }
 
@@ -857,9 +900,10 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
 
 ## GNOME Extension Flags
 - `--extensions` - Install all recommended GNOME Shell extensions
-  (Open Bar, Blur My Shell, Dash to Dock, GNOME 4x UI Improvements,
-   Space Bar, Tiling Shell, User Themes, Vitals)
-- `--blur` or `--blur-my-shell` - Install only the Blur My Shell extension
+  (Tahoe Open Bar, Tahoe Blur, Tahoe Dock, Tahoe UI Tune,
+   Tahoe Space Bar, Tahoe Tiling Shell, Tahoe User Themes, Tahoe Vitals)
+- `--blur` or `--blur-my-shell` - Install only Tahoe Blur
+- `--icons` - Install Tahoe icons and apply them
 
 ## Other Flags
 - `-u` or `--uninstall` - Uninstall all themes
@@ -895,10 +939,12 @@ CLI flags:
   --flatpak                 Connect Flatpak themes
   --flatpak-disconnect      Disconnect Flatpak themes
   --extensions              Install recommended GNOME Shell extensions
-                            (Open Bar, Blur My Shell, Dash to Dock,
-                             GNOME 4x UI Improvements, Space Bar,
-                             Tiling Shell, User Themes, Vitals)
-  --blur / --blur-my-shell  Install only Blur My Shell
+                            (Tahoe Open Bar, Tahoe Blur, Tahoe Dock,
+                             Tahoe UI Tune, Tahoe Space Bar,
+                             Tahoe Tiling Shell, Tahoe User Themes,
+                             Tahoe Vitals)
+  --blur / --blur-my-shell  Install only Tahoe Blur
+  --icons                   Install Tahoe icons and apply them
   -u / --uninstall          Uninstall all
   -h / --help               Show help
 
@@ -985,8 +1031,8 @@ interactive_menu() {
         if command -v gum &>/dev/null; then
           ex=$(gum choose \
             "Install all recommended GNOME extensions" \
-            "Install Blur My Shell extension" \
-            "Install MacTahoe icons" \
+            "Install Tahoe Blur extension" \
+            "Install Tahoe icons" \
             "Install WhiteSur cursors" \
             "Install Ulauncher theme" \
             "Install WhiteSur GDM theme" \
@@ -997,8 +1043,8 @@ interactive_menu() {
         else
           echo "Extras:"
           echo "  1) Install all recommended GNOME extensions"
-          echo "  2) Install Blur My Shell extension"
-          echo "  3) Install MacTahoe icons"
+          echo "  2) Install Tahoe Blur extension"
+          echo "  3) Install Tahoe icons"
           echo "  4) Install WhiteSur cursors"
           echo "  5) Install Ulauncher theme"
           echo "  6) Install WhiteSur GDM theme"
@@ -1010,8 +1056,14 @@ interactive_menu() {
         fi
         case "$ex" in
           "Install all recommended GNOME extensions"|1) install_recommended_extensions ;;
-          "Install Blur My Shell extension"|2) install_blur_my_shell ;;
-          "Install MacTahoe icons"|3) install_mactahoe_icons ;;
+          "Install Tahoe Blur extension"|2) install_blur_my_shell ;;
+          "Install Tahoe icons"|3)
+            _icon_color=""
+            if gum_confirm_or_read "Match icons to a Tahoe accent color?"; then
+              _icon_color="$(choose_accent_color)"
+            fi
+            install_mactahoe_icons "${_icon_color:-blue}"
+            ;;
           "Install WhiteSur cursors"|4) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
           "Install Ulauncher theme"|5) install_ulauncher_theme ;;
           "Install WhiteSur GDM theme"|6) install_gdm_theme ;;
@@ -1064,6 +1116,7 @@ if [[ $# -gt 0 ]]; then
   INSTALL_WALLPAPER=false
   INSTALL_BLUR=false
   INSTALL_EXTENSIONS=false
+  INSTALL_ICONS=false
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -1131,6 +1184,10 @@ if [[ $# -gt 0 ]]; then
         INSTALL_EXTENSIONS=true
         shift
         ;;
+      --icons|--icon-theme)
+        INSTALL_ICONS=true
+        shift
+        ;;
       *)
         gum_or_echo "${YELLOW}Unknown option: $1${NC}"
         print_usage_and_exit
@@ -1165,6 +1222,10 @@ if [[ $# -gt 0 ]]; then
 
   if $INSTALL_WALLPAPER; then
     install_wallpaper
+  fi
+
+  if $INSTALL_ICONS; then
+    install_mactahoe_icons "${SPECIFIC_COLOR:-blue}"
   fi
 
   if $INSTALL_EXTENSIONS; then

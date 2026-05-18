@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="openbar">
+  <schema id="org.gnome.shell.extensions.openbar" path="/org/gnome/shell/extensions/openbar/">
+
+    <key type="s" name="bartype">
+      <default>"Floating"</default>
+      <summary>Type of Top Bar</summary>
+      <description>Type of Top Bar.</description>
+    </key>
+    <key type="s" name="position">
+      <default>"Top"</default>
+      <summary>Position of Top Bar</summary>
+      <description>Position of Top Bar.</description>
+    </key>
+    <key type="as" name="fgcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>FG Color (RGBA)</summary>
+      <description>FG Color of Top Bar.</description>
+    </key>
+    <key type="as" name="dark-fgcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>FG Color (RGBA)</summary>
+      <description>FG Color of Top Bar.</description>
+    </key>
+    <key type="as" name="light-fgcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>FG Color (RGBA)</summary>
+      <description>FG Color of Top Bar.</description>
+    </key>
+    <key type="d" name="fgalpha">
+      <default>1.0</default>
+      <summary>Transparency (alpha) foreground</summary>
+      <description>Transparency of foreground.</description>
+    </key>
+    <key type="as" name="bgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB)</summary>
+      <description>Background Color of Top Bar.</description>
+    </key>
+    <key type="as" name="dark-bgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB)</summary>
+      <description>Background Color of Top Bar.</description>
+    </key>
+    <key type="as" name="light-bgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB)</summary>
+      <description>Background Color of Top Bar.</description>
+    </key>
+    <key type="d" name="bgalpha">
+      <default>0.95</default>
+      <summary>Transparency (alpha)</summary>
+      <description>Transparency of Top Bar.</description>
+    </key>
+    <key type="as" name="bgcolor2">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Gradient end color (RGB)</summary>
+      <description>Gradient end color of Top Bar background.</description>
+    </key>
+    <key type="as" name="dark-bgcolor2">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Gradient end color (RGB)</summary>
+      <description>Gradient end color of Top Bar background.</description>
+    </key>
+    <key type="as" name="light-bgcolor2">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Gradient end color (RGB)</summary>
+      <description>Gradient end color of Top Bar background.</description>
+    </key>
+    <key type="d" name="bgalpha2">
+      <default>0.7</default>
+      <summary>Transparency (alpha) gradient 2</summary>
+      <description>Transparency of gradient end color.</description>
+    </key>
+    <key type="s" name="gradient-direction">
+      <default>"vertical"</default>
+      <summary>Gradient direction</summary>
+      <description>Gradient direction of Top Bar background.</description>
+    </key>
+    <key type="as" name="iscolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Islands BG Color (RGB)</summary>
+      <description>Background Color of Islands.</description>
+    </key>
+    <key type="as" name="dark-iscolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Islands BG Color (RGB)</summary>
+      <description>Background Color of Islands.</description>
+    </key>
+    <key type="as" name="light-iscolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Islands BG Color (RGB)</summary>
+      <description>Background Color of Islands.</description>
+    </key>
+    <key type="d" name="isalpha">
+      <default>0.95</default>
+      <summary>Transparency (alpha) Islands</summary>
+      <description>Transparency of Islands.</description>
+    </key>
+    <key type="b" name="shadow">
+      <default>false</default>
+      <summary>Box Shadow</summary>
+      <description>Box Shadow of Top Bar.</description>
+    </key>
+    <key type="as" name="shcolor">
+      <default>['0', '0', '0']</default>
+      <summary>Panel shadow Color (RGBA)</summary>
+      <description>Shadow color of Top Bar.</description>
+    </key>
+    <key type="as" name="dark-shcolor">
+      <default>['0', '0', '0']</default>
+      <summary>Panel shadow Color (RGBA)</summary>
+      <description>Shadow color of Top Bar.</description>
+    </key>
+    <key type="as" name="light-shcolor">
+      <default>['0', '0', '0']</default>
+      <summary>Panel shadow Color (RGBA)</summary>
+      <description>Shadow color of Top Bar.</description>
+    </key>
+    <key type="d" name="shalpha">
+      <default>0.2</default>
+      <summary>Transparency (alpha) shadow</summary>
+      <description>Transparency of panel shadow.</description>
+    </key>
+    <key type="s" name="bordertype">
+      <default>"solid"</default>
+      <summary>Type of Border</summary>
+      <description>Type of Border.</description>
+    </key>
+    <key type="d" name="bradius">
+      <default>30.0</default>
+      <summary>Border Radius</summary>
+      <description>Convert between rectangle and pill shapes.</description>
+    </key>
+    <key type="d" name="bwidth">
+      <default>2</default>
+      <summary>Border Width</summary>
+      <description>Border thickness or width.</description>
+    </key>
+    <key type="as" name="bcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Border Color (RGBA)</summary>
+      <description>Color of Top Bar Border.</description>
+    </key>
+    <key type="as" name="dark-bcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Border Color (RGBA)</summary>
+      <description>Color of Top Bar Border.</description>
+    </key>
+    <key type="as" name="light-bcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Border Color (RGBA)</summary>
+      <description>Color of Top Bar Border.</description>
+    </key>
+    <key type="d" name="balpha">
+      <default>0.85</default>
+      <summary>Transparency (alpha) border</summary>
+      <description>Transparency of border.</description>
+    </key>
+    <key type="b" name="neon">
+      <default>true</default>
+      <summary>Neon Effect</summary>
+      <description>Neon Effect.</description>
+    </key>
+    <key type="b" name="set-overview">
+      <default>false</default>
+      <summary>Apply in overview</summary>
+      <description>Whether customization is applied in overview.</description>
+    </key>
+    <key type="b" name="set-notifications">
+      <default>false</default>
+      <summary>Apply to notification popups</summary>
+      <description>Whether customization is applied to notifications.</description>
+    </key>
+    <key type="b" name="set-notif-position">
+      <default>false</default>
+      <summary>Move notification popups along with the bar (Top/Bottom)</summary>
+      <description>Move notification popups along with the bar (Top/Bottom).</description>
+    </key>
+    <key type="b" name="gradient">
+      <default>false</default>
+      <summary>Gradient Effect</summary>
+      <description>Gradient Effect.</description>
+    </key>
+    <key type="s" name="monitors">
+      <default>"all"</default>
+      <summary>Monitors for Top Bar</summary>
+      <description>Monitors to show Top Bar display on.</description>
+    </key>
+    <key type="d" name="height">
+      <default>35.0</default>
+      <summary>Top Bar height</summary>
+      <description>Top Bar height.</description>
+    </key>
+    <key type="d" name="margin">
+      <default>6.5</default>
+      <summary>Top Bar margin</summary>
+      <description>Top Bar margin.</description>
+    </key>
+    <key type="b" name="set-bottom-margin">
+      <default>false</default>
+      <summary>Top Bar bottom margin switch</summary>
+      <description>Whether separate Top Bar bottom margin is enabled.</description>
+    </key>
+    <key type="d" name="bottom-margin">
+      <default>6.5</default>
+      <summary>Top Bar bottom margin</summary>
+      <description>Top Bar bottom margin.</description>
+    </key>
+    <key type="s" name="font">
+      <default>""</default>
+      <summary>Font</summary>
+      <description>Font of Top Bar.</description>
+    </key>
+    <key type="s" name="default-font">
+      <default>""</default>
+      <summary>Default Font</summary>
+      <description>Default Font of Top Bar.</description>
+    </key>
+    <key type="as" name="hcolor">
+      <default>['0', '0.7', '0.9']</default>
+      <summary>Highlight Color (RGBA)</summary>
+      <description>Highlight of Top Bar widgets.</description>
+    </key>
+    <key type="as" name="dark-hcolor">
+      <default>['0', '0.7', '0.9']</default>
+      <summary>Highlight Color (RGBA)</summary>
+      <description>Highlight of Top Bar widgets.</description>
+    </key>
+    <key type="as" name="light-hcolor">
+      <default>['0', '0.7', '0.9']</default>
+      <summary>Highlight Color (RGBA)</summary>
+      <description>Highlight of Top Bar widgets.</description>
+    </key>
+    <key type="d" name="halpha">
+      <default>0.5</default>
+      <summary>Transparency (alpha) Highlight</summary>
+      <description>Transparency of highlight.</description>
+    </key>
+    <key type="d" name="hpad">
+      <default>1</default>
+      <summary>Horizontal button-padding</summary>
+      <description>Horizontal button-padding.</description>
+    </key>
+    <key type="d" name="vpad">
+      <default>4</default>
+      <summary>Vertical button-padding</summary>
+      <description>Vertical button-padding.</description>
+    </key>
+    <key type="b" name="heffect">
+      <default>false</default>
+      <summary>Highlight effect</summary>
+      <description>Highlight effect of Top Bar buttons.</description>
+    </key>
+    <key type="as" name="mfgcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu foreground Color (RGBA)</summary>
+      <description>Menu foreground Color.</description>
+    </key>
+    <key type="as" name="dark-mfgcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu foreground Color (RGBA)</summary>
+      <description>Menu foreground Color.</description>
+    </key>
+    <key type="as" name="light-mfgcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu foreground Color (RGBA)</summary>
+      <description>Menu foreground Color.</description>
+    </key>
+    <key type="d" name="mfgalpha">
+      <default>1.0</default>
+      <summary>Transparency (alpha) Menu foreground</summary>
+      <description>Transparency of Menu foreground.</description>
+    </key>
+    <key type="as" name="mbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Menu background Color (RGBA)</summary>
+      <description>Menu background color.</description>
+    </key>
+    <key type="as" name="dark-mbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Menu background Color (RGBA)</summary>
+      <description>Menu background color.</description>
+    </key>
+    <key type="as" name="light-mbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Menu background Color (RGBA)</summary>
+      <description>Menu background color.</description>
+    </key>
+    <key type="d" name="mbgalpha">
+      <default>0.95</default>
+      <summary>Transparency (alpha) Menu background</summary>
+      <description>Transparency of Menu background.</description>
+    </key>
+    <key type="b" name="smbgoverride">
+      <default>false</default>
+      <summary>Override Sub/Secondary menu BG Color?</summary>
+      <description>Whether to Override Sub/Secondary menu BG Color.</description>
+    </key>
+    <key type="as" name="smbgcolor">
+      <default>['0.25', '0.30', '0.30']</default>
+      <summary>Sub/Secondary menu BG Color (RGBA)</summary>
+      <description>Sub/Secondary menu BG Color.</description>
+    </key>
+    <key type="as" name="dark-smbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Sub/Secondary menu BG Color (RGBA)</summary>
+      <description>Sub/Secondary menu BG Color.</description>
+    </key>
+    <key type="as" name="light-smbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>Sub/Secondary menu BG Color (RGBA)</summary>
+      <description>Sub/Secondary menu BG Color.</description>
+    </key>
+    <key type="d" name="smbgalpha">
+      <default>0.95</default>
+      <summary>Transparency (alpha) Submenu BG</summary>
+      <description>Transparency of Submenu BG.</description>
+    </key>
+    <key type="as" name="mbcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu border Color (RGBA)</summary>
+      <description>Menu border color.</description>
+    </key>
+    <key type="as" name="dark-mbcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu border Color (RGBA)</summary>
+      <description>Menu border color.</description>
+    </key>
+    <key type="as" name="light-mbcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu border Color (RGBA)</summary>
+      <description>Menu border color.</description>
+    </key>
+    <key type="d" name="mbalpha">
+      <default>0.6</default>
+      <summary>Transparency (alpha) Menu border</summary>
+      <description>Transparency of Menu border.</description>
+    </key>
+    <key type="as" name="mhcolor">
+      <default>['0', '0.7', '0.9']</default>
+      <summary>Menu highlight Color (RGBA)</summary>
+      <description>Highlight of Top Bar menus.</description>
+    </key>
+    <key type="as" name="dark-mhcolor">
+      <default>['0', '0.7', '0.9']</default>
+      <summary>Menu highlight Color (RGBA)</summary>
+      <description>Highlight of Top Bar menus.</description>
+    </key>
+    <key type="as" name="light-mhcolor">
+      <default>['0', '0.7', '0.9']</default>
+      <summary>Menu highlight Color (RGBA)</summary>
+      <description>Highlight of Top Bar menus.</description>
+    </key>
+    <key type="d" name="mhalpha">
+      <default>0.3</default>
+      <summary>Transparency (alpha) Menu Highlight</summary>
+      <description>Transparency of menu highlight.</description>
+    </key>
+    <key type="as" name="mshcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu shadow Color (RGBA)</summary>
+      <description>Shadow color of Top Bar menus.</description>
+    </key>
+    <key type="as" name="dark-mshcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu shadow Color (RGBA)</summary>
+      <description>Shadow color of Top Bar menus.</description>
+    </key>
+    <key type="as" name="light-mshcolor">
+      <default>['1.0', '1.0', '1.0']</default>
+      <summary>Menu shadow Color (RGBA)</summary>
+      <description>Shadow color of Top Bar menus.</description>
+    </key>
+    <key type="d" name="mshalpha">
+      <default>0.16</default>
+      <summary>Transparency (alpha) Menu shadow</summary>
+      <description>Transparency of menu shadow.</description>
+    </key>
+    <key type="as" name="mscolor">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Menu selection Color (RGBA)</summary>
+      <description>Selection color of Top Bar menus.</description>
+    </key>
+    <key type="as" name="dark-mscolor">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Menu selection Color (RGBA)</summary>
+      <description>Selection color of Top Bar menus.</description>
+    </key>
+    <key type="as" name="light-mscolor">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Menu selection Color (RGBA)</summary>
+      <description>Selection color of Top Bar menus.</description>
+    </key>
+    <key type="d" name="msalpha">
+      <default>0.85</default>
+      <summary>Transparency (alpha) Menu selection</summary>
+      <description>Transparency of menu selection.</description>
+    </key>
+    <key type="b" name="menustyle">
+      <default>true</default>
+      <summary>Apply menu styles?</summary>
+      <description>Enable/disable menu style customizations.</description>
+    </key>
+    <key type="b" name="reloadstyle">
+      <default>false</default>
+      <summary>Reload stylesheet</summary>
+      <description>Reload stylesheet to apply menu style customizations.</description>
+    </key>
+    <key type="b" name="removestyle">
+      <default>false</default>
+      <summary>Remove menu style</summary>
+      <description>Remove menu style customizations.</description>
+    </key>
+    <key type="as" name="prominent1">
+      <default>['100', '100', '100']</default>
+      <summary>BG Prominent Color 1 (RGB)</summary>
+      <description>Prominent Color 1 of background image.</description>
+    </key>
+    <key type="as" name="prominent2">
+      <default>['100', '100', '100']</default>
+      <summary>BG Prominent Color 2 (RGB)</summary>
+      <description>Prominent Color 2 of background image.</description>
+    </key>
+    <key type="as" name="prominent3">
+      <default>['100', '100', '100']</default>
+      <summary>BG Prominent Color 3 (RGB)</summary>
+      <description>Prominent Color 3 of background image.</description>
+    </key>
+    <key type="as" name="prominent4">
+      <default>['100', '100', '100']</default>
+      <summary>BG Prominent Color 4 (RGB)</summary>
+      <description>Prominent Color 4 of background image.</description>
+    </key>
+    <key type="as" name="prominent5">
+      <default>['100', '100', '100']</default>
+      <summary>BG Prominent Color 5 (RGB)</summary>
+      <description>Prominent Color 5 of background image.</description>
+    </key>
+    <key type="as" name="prominent6">
+      <default>['100', '100', '100']</default>
+      <summary>BG Prominent Color 6 (RGB)</summary>
+      <description>Prominent Color 6 of background image.</description>
+    </key>
+    <key type="as" name="palette1">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 1 (RGB)</summary>
+      <description>Palette Color 1 of background image.</description>
+    </key>
+    <key type="as" name="palette2">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 2 (RGB)</summary>
+      <description>Palette Color 2 of background image.</description>
+    </key>
+    <key type="as" name="palette3">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 3 (RGB)</summary>
+      <description>Palette Color 3 of background image.</description>
+    </key>
+    <key type="as" name="palette4">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 4 (RGB)</summary>
+      <description>Palette Color 4 of background image.</description>
+    </key>
+    <key type="as" name="palette5">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 5 (RGB)</summary>
+      <description>Palette Color 5 of background image.</description>
+    </key>
+    <key type="as" name="palette6">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 6 (RGB)</summary>
+      <description>Palette Color 6 of background image.</description>
+    </key>
+    <key type="as" name="palette7">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 7 (RGB)</summary>
+      <description>Palette Color 7 of background image.</description>
+    </key>
+    <key type="as" name="palette8">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 8 (RGB)</summary>
+      <description>Palette Color 8 of background image.</description>
+    </key>
+    <key type="as" name="palette9">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 9 (RGB)</summary>
+      <description>Palette Color 9 of background image.</description>
+    </key>
+    <key type="as" name="palette10">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 10 (RGB)</summary>
+      <description>Palette Color 10 of background image.</description>
+    </key>
+    <key type="as" name="palette11">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 11 (RGB)</summary>
+      <description>Palette Color 11 of background image.</description>
+    </key>
+    <key type="as" name="palette12">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 12 (RGB)</summary>
+      <description>Palette Color 12 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette1">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 1 (RGB)</summary>
+      <description>Palette Color 1 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette2">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 2 (RGB)</summary>
+      <description>Palette Color 2 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette3">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 3 (RGB)</summary>
+      <description>Palette Color 3 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette4">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 4 (RGB)</summary>
+      <description>Palette Color 4 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette5">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 5 (RGB)</summary>
+      <description>Palette Color 5 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette6">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 6 (RGB)</summary>
+      <description>Palette Color 6 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette7">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 7 (RGB)</summary>
+      <description>Palette Color 7 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette8">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 8 (RGB)</summary>
+      <description>Palette Color 8 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette9">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 9 (RGB)</summary>
+      <description>Palette Color 9 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette10">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 10 (RGB)</summary>
+      <description>Palette Color 10 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette11">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 11 (RGB)</summary>
+      <description>Palette Color 11 of background image.</description>
+    </key>
+    <key type="as" name="dark-palette12">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 12 (RGB)</summary>
+      <description>Palette Color 12 of background image.</description>
+    </key>
+    <key type="as" name="light-palette1">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 1 (RGB)</summary>
+      <description>Palette Color 1 of background image.</description>
+    </key>
+    <key type="as" name="light-palette2">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 2 (RGB)</summary>
+      <description>Palette Color 2 of background image.</description>
+    </key>
+    <key type="as" name="light-palette3">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 3 (RGB)</summary>
+      <description>Palette Color 3 of background image.</description>
+    </key>
+    <key type="as" name="light-palette4">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 4 (RGB)</summary>
+      <description>Palette Color 4 of background image.</description>
+    </key>
+    <key type="as" name="light-palette5">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 5 (RGB)</summary>
+      <description>Palette Color 5 of background image.</description>
+    </key>
+    <key type="as" name="light-palette6">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 6 (RGB)</summary>
+      <description>Palette Color 6 of background image.</description>
+    </key>
+    <key type="as" name="light-palette7">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 7 (RGB)</summary>
+      <description>Palette Color 7 of background image.</description>
+    </key>
+    <key type="as" name="light-palette8">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 8 (RGB)</summary>
+      <description>Palette Color 8 of background image.</description>
+    </key>
+    <key type="as" name="light-palette9">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 9 (RGB)</summary>
+      <description>Palette Color 9 of background image.</description>
+    </key>
+    <key type="as" name="light-palette10">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 10 (RGB)</summary>
+      <description>Palette Color 10 of background image.</description>
+    </key>
+    <key type="as" name="light-palette11">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 11 (RGB)</summary>
+      <description>Palette Color 11 of background image.</description>
+    </key>
+    <key type="as" name="light-palette12">
+      <default>['100', '100', '100']</default>
+      <summary>BG Palette Color 12 (RGB)</summary>
+      <description>Palette Color 12 of background image.</description>
+    </key>
+    <key type="i" name="count1">
+      <default>0</default>
+      <summary>BG Palette Color-Count 1 (RGB)</summary>
+      <description>Palette Color-Count 1 of background image.</description>
+    </key>
+    <key type="i" name="count2">
+      <default>0</default>
+      <summary>BG Palette Color-Count 2 (RGB)</summary>
+      <description>Palette Color-Count 2 of background image.</description>
+    </key>
+    <key type="i" name="count3">
+      <default>0</default>
+      <summary>BG Palette Color-Count 3 (RGB)</summary>
+      <description>Palette Color-Count 3 of background image.</description>
+    </key>
+    <key type="i" name="count4">
+      <default>0</default>
+      <summary>BG Palette Color-Count 4 (RGB)</summary>
+      <description>Palette Color-Count 4 of background image.</description>
+    </key>
+    <key type="i" name="count5">
+      <default>0</default>
+      <summary>BG Palette Color-Count 5 (RGB)</summary>
+      <description>Palette Color-Count 5 of background image.</description>
+    </key>
+    <key type="i" name="count6">
+      <default>0</default>
+      <summary>BG Palette Color-Count 6 (RGB)</summary>
+      <description>Palette Color-Count 6 of background image.</description>
+    </key>
+    <key type="i" name="count7">
+      <default>0</default>
+      <summary>BG Palette Color-Count 7 (RGB)</summary>
+      <description>Palette Color-Count 7 of background image.</description>
+    </key>
+    <key type="i" name="count8">
+      <default>0</default>
+      <summary>BG Palette Color-Count 8 (RGB)</summary>
+      <description>Palette Color-Count 8 of background image.</description>
+    </key>
+    <key type="i" name="count9">
+      <default>0</default>
+      <summary>BG Palette Color-Count 9 (RGB)</summary>
+      <description>Palette Color-Count 9 of background image.</description>
+    </key>
+    <key type="i" name="count10">
+      <default>0</default>
+      <summary>BG Palette Color-Count 10 (RGB)</summary>
+      <description>Palette Color-Count 10 of background image.</description>
+    </key>
+    <key type="i" name="count11">
+      <default>0</default>
+      <summary>BG Palette Color-Count 11 (RGB)</summary>
+      <description>Palette Color-Count 11 of background image.</description>
+    </key>
+    <key type="i" name="count12">
+      <default>0</default>
+      <summary>BG Palette Color-Count 12 (RGB)</summary>
+      <description>Palette Color-Count 12 of background image.</description>
+    </key>
+    <key type="b" name="bgpalette">
+      <default>true</default>
+      <summary>Trigger generation BG palette</summary>
+      <description>Trigger generation of desktop background color palette.</description>
+    </key>
+    <key type="s" name="bguri">
+      <default>""</default>
+      <summary>Desktop Background uri</summary>
+      <description>Desktop background image file uri.</description>
+    </key>
+    <key type="s" name="dark-bguri">
+      <default>""</default>
+      <summary>Desktop Background uri</summary>
+      <description>Desktop background image file uri.</description>
+    </key>
+    <key type="s" name="light-bguri">
+      <default>""</default>
+      <summary>Desktop Background uri</summary>
+      <description>Desktop background image file uri.</description>
+    </key>
+    <key type="b" name="candybar">
+      <default>false</default>
+      <summary>Apply candybar pallete</summary>
+      <description>Apply candybar pallete to panel buttons.</description>
+    </key>
+    <key type="as" name="candy1">
+      <default>['0', '0.61', '0.74']</default>
+      <summary>Candy Palette Color 1 (RGB)</summary>
+      <description>Candy color 1 of candybar.</description>
+    </key>
+    <key type="as" name="candy2">
+      <default>['1', '0.41', '0.41']</default>
+      <summary>Candy Palette Color 2 (RGB)</summary>
+      <description>Candy color 2 of candybar.</description>
+    </key>
+    <key type="as" name="candy3">
+      <default>['0.63', '0.16', '0.8']</default>
+      <summary>Candy Palette Color 3 (RGB)</summary>
+      <description>Candy color 3 of candybar.</description>
+    </key>
+    <key type="as" name="candy4">
+      <default>['0.94', '0.60', '0.23']</default>
+      <summary>Candy Palette Color 4 (RGB)</summary>
+      <description>Candy color 4 of candybar.</description>
+    </key>
+    <key type="as" name="candy5">
+      <default>['0.03', '0.41', '0.62']</default>
+      <summary>Candy Palette Color 5 (RGB)</summary>
+      <description>Candy color 5 of candybar.</description>
+    </key>
+    <key type="as" name="candy6">
+      <default>['0.56', '0.18', '0.43']</default>
+      <summary>Candy Palette Color 6 (RGB)</summary>
+      <description>Candy color 6 of candybar.</description>
+    </key>
+    <key type="as" name="candy7">
+      <default>['0.95', '0.12', '0.67']</default>
+      <summary>Candy Palette Color 7 (RGB)</summary>
+      <description>Candy color 7 of candybar.</description>
+    </key>
+    <key type="as" name="candy8">
+      <default>['0.18', '0.76', '0.49']</default>
+      <summary>Candy Palette Color 8 (RGB)</summary>
+      <description>Candy color 8 of candybar.</description>
+    </key>
+    <key type="as" name="candy9">
+      <default>['0.93', '0.20', '0.23']</default>
+      <summary>Candy Palette Color 9 (RGB)</summary>
+      <description>Candy color 9 of candybar.</description>
+    </key>
+    <key type="as" name="candy10">
+      <default>['0.09', '0.19', '0.72']</default>
+      <summary>Candy Palette Color 10 (RGB)</summary>
+      <description>Candy color 10 of candybar.</description>
+    </key>
+    <key type="as" name="candy11">
+      <default>['0.75', '0.49', '0.44']</default>
+      <summary>Candy Palette Color 11 (RGB)</summary>
+      <description>Candy color 11 of candybar.</description>
+    </key>
+    <key type="as" name="candy12">
+      <default>['1', '0.92', '0.12']</default>
+      <summary>Candy Palette Color 12 (RGB)</summary>
+      <description>Candy color 12 of candybar.</description>
+    </key>
+    <key type="as" name="candy13">
+      <default>['0.38', '0.63', '0.92']</default>
+      <summary>Candy Palette Color 13 (RGB)</summary>
+      <description>Candy color 13 of candybar.</description>
+    </key>
+    <key type="as" name="candy14">
+      <default>['0.37', '0.36', '0.39']</default>
+      <summary>Candy Palette Color 14 (RGB)</summary>
+      <description>Candy color 14 of candybar.</description>
+    </key>
+    <key type="as" name="candy15">
+      <default>['0.40', '0.23', '0.72']</default>
+      <summary>Candy Palette Color 15 (RGB)</summary>
+      <description>Candy color 15 of candybar.</description>
+    </key>
+    <key type="as" name="candy16">
+      <default>['1', '0.32', '0.32']</default>
+      <summary>Candy Palette Color 16 (RGB)</summary>
+      <description>Candy color 16 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy1">
+      <default>['0', '0.61', '0.74']</default>
+      <summary>Candy Palette Color 1 (RGB)</summary>
+      <description>Candy color 1 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy2">
+      <default>['1', '0.41', '0.41']</default>
+      <summary>Candy Palette Color 2 (RGB)</summary>
+      <description>Candy color 2 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy3">
+      <default>['0.63', '0.16', '0.8']</default>
+      <summary>Candy Palette Color 3 (RGB)</summary>
+      <description>Candy color 3 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy4">
+      <default>['0.94', '0.60', '0.23']</default>
+      <summary>Candy Palette Color 4 (RGB)</summary>
+      <description>Candy color 4 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy5">
+      <default>['0.03', '0.41', '0.62']</default>
+      <summary>Candy Palette Color 5 (RGB)</summary>
+      <description>Candy color 5 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy6">
+      <default>['0.56', '0.18', '0.43']</default>
+      <summary>Candy Palette Color 6 (RGB)</summary>
+      <description>Candy color 6 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy7">
+      <default>['0.95', '0.12', '0.67']</default>
+      <summary>Candy Palette Color 7 (RGB)</summary>
+      <description>Candy color 7 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy8">
+      <default>['0.18', '0.76', '0.49']</default>
+      <summary>Candy Palette Color 8 (RGB)</summary>
+      <description>Candy color 8 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy9">
+      <default>['0.93', '0.20', '0.23']</default>
+      <summary>Candy Palette Color 9 (RGB)</summary>
+      <description>Candy color 9 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy10">
+      <default>['0.09', '0.19', '0.72']</default>
+      <summary>Candy Palette Color 10 (RGB)</summary>
+      <description>Candy color 10 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy11">
+      <default>['0.75', '0.49', '0.44']</default>
+      <summary>Candy Palette Color 11 (RGB)</summary>
+      <description>Candy color 11 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy12">
+      <default>['1', '0.92', '0.12']</default>
+      <summary>Candy Palette Color 12 (RGB)</summary>
+      <description>Candy color 12 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy13">
+      <default>['0.38', '0.63', '0.92']</default>
+      <summary>Candy Palette Color 13 (RGB)</summary>
+      <description>Candy color 13 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy14">
+      <default>['0.37', '0.36', '0.39']</default>
+      <summary>Candy Palette Color 14 (RGB)</summary>
+      <description>Candy color 14 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy15">
+      <default>['0.40', '0.23', '0.72']</default>
+      <summary>Candy Palette Color 15 (RGB)</summary>
+      <description>Candy color 15 of candybar.</description>
+    </key>
+    <key type="as" name="dark-candy16">
+      <default>['1', '0.32', '0.32']</default>
+      <summary>Candy Palette Color 16 (RGB)</summary>
+      <description>Candy color 16 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy1">
+      <default>['0', '0.61', '0.74']</default>
+      <summary>Candy Palette Color 1 (RGB)</summary>
+      <description>Candy color 1 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy2">
+      <default>['1', '0.41', '0.41']</default>
+      <summary>Candy Palette Color 2 (RGB)</summary>
+      <description>Candy color 2 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy3">
+      <default>['0.63', '0.16', '0.8']</default>
+      <summary>Candy Palette Color 3 (RGB)</summary>
+      <description>Candy color 3 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy4">
+      <default>['0.94', '0.60', '0.23']</default>
+      <summary>Candy Palette Color 4 (RGB)</summary>
+      <description>Candy color 4 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy5">
+      <default>['0.03', '0.41', '0.62']</default>
+      <summary>Candy Palette Color 5 (RGB)</summary>
+      <description>Candy color 5 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy6">
+      <default>['0.56', '0.18', '0.43']</default>
+      <summary>Candy Palette Color 6 (RGB)</summary>
+      <description>Candy color 6 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy7">
+      <default>['0.95', '0.12', '0.67']</default>
+      <summary>Candy Palette Color 7 (RGB)</summary>
+      <description>Candy color 7 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy8">
+      <default>['0.18', '0.76', '0.49']</default>
+      <summary>Candy Palette Color 8 (RGB)</summary>
+      <description>Candy color 8 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy9">
+      <default>['0.93', '0.20', '0.23']</default>
+      <summary>Candy Palette Color 9 (RGB)</summary>
+      <description>Candy color 9 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy10">
+      <default>['0.09', '0.19', '0.72']</default>
+      <summary>Candy Palette Color 10 (RGB)</summary>
+      <description>Candy color 10 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy11">
+      <default>['0.75', '0.49', '0.44']</default>
+      <summary>Candy Palette Color 11 (RGB)</summary>
+      <description>Candy color 11 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy12">
+      <default>['1', '0.92', '0.12']</default>
+      <summary>Candy Palette Color 12 (RGB)</summary>
+      <description>Candy color 12 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy13">
+      <default>['0.38', '0.63', '0.92']</default>
+      <summary>Candy Palette Color 13 (RGB)</summary>
+      <description>Candy color 13 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy14">
+      <default>['0.37', '0.36', '0.39']</default>
+      <summary>Candy Palette Color 14 (RGB)</summary>
+      <description>Candy color 14 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy15">
+      <default>['0.40', '0.23', '0.72']</default>
+      <summary>Candy Palette Color 15 (RGB)</summary>
+      <description>Candy color 15 of candybar.</description>
+    </key>
+    <key type="as" name="light-candy16">
+      <default>['1', '0.32', '0.32']</default>
+      <summary>Candy Palette Color 16 (RGB)</summary>
+      <description>Candy color 16 of candybar.</description>
+    </key>
+    <key type="d" name="candyalpha">
+      <default>0.99</default>
+      <summary>Transparency (alpha) of candy colors</summary>
+      <description>Transparency of candy colors.</description>
+    </key>
+    <key type="b" name="wmaxbar">
+      <default>false</default>
+      <summary>Change bar when window maximized</summary>
+      <description>Change bar when window maximized.</description>
+    </key>
+    <key type="as" name="bgcolor-wmax">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB) WMax</summary>
+      <description>Background Color of WMax Top Bar.</description>
+    </key>
+    <key type="as" name="dark-bgcolor-wmax">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB) WMax</summary>
+      <description>Background Color of WMax Top Bar.</description>
+    </key>
+    <key type="as" name="light-bgcolor-wmax">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB) WMax</summary>
+      <description>Background Color of WMax Top Bar.</description>
+    </key>
+    <key type="d" name="bgalpha-wmax">
+      <default>1.0</default>
+      <summary>Transparency (alpha) WMax</summary>
+      <description>Transparency of WMax Top Bar.</description>
+    </key>
+    <key type="b" name="wmax-hbarhint">
+      <default>false</default>
+      <summary>Match wmax bgcolor with Gtk headerbar hint</summary>
+      <description>Match wmax bgcolor with Gtk headerbar hint.</description>
+    </key>
+    <key type="b" name="cust-margin-wmax">
+      <default>false</default>
+      <summary>Customize bar margin when window maximized?</summary>
+      <description>Customize bar margin when window maximized?</description>
+    </key>
+    <key type="d" name="margin-wmax">
+      <default>2</default>
+      <summary>WMax bar margin for panel buttons</summary>
+      <description>WMax bar margin for panel buttons.</description>
+    </key>
+    <key type="b" name="buttonbg-wmax">
+      <default>true</default>
+      <summary>Keep BG color for buttons when window maximized</summary>
+      <description>Keep BG color for buttons when window maximized.</description>
+    </key>
+    <key type="b" name="border-wmax">
+      <default>false</default>
+      <summary>Border for buttons when window maximized</summary>
+      <description>Border for buttons when window maximized.</description>
+    </key>
+    <key type="b" name="neon-wmax">
+      <default>false</default>
+      <summary>Neon for buttons when window maximized</summary>
+      <description>Neon for buttons when window maximized.</description>
+    </key>
+    <!-- <key type="b" name="savestyle">
+      <default>false</default>
+      <summary>Save stylesheet on extension enabled</summary>
+      <description>Save stylesheet on extension enabled and trigger reload.</description>
+    </key> -->
+    <key type="s" name="color-scheme">
+      <default>"prefer-dark"</default>
+      <summary>Gnome interface-scheme aka Light/Dark mode</summary>
+      <description>Gnome interface-scheme aka Light/Dark mode.</description>
+    </key>
+    <key type="s" name="autotheme-dark">
+      <default>"Select Theme"</default>
+      <summary>Desktop Background based auto theme type for Dark mode</summary>
+      <description>Desktop Background based auto theme type for Dark mode.</description>
+    </key>
+    <key type="s" name="autotheme-light">
+      <default>"Select Theme"</default>
+      <summary>Desktop Background based auto theme type for Light mode</summary>
+      <description>Desktop Background based auto theme type for Light mode.</description>
+    </key>
+    <key type="b" name="autotheme-refresh">
+      <default>false</default>
+      <summary>Refresh auto theme on change of Desktop Background</summary>
+      <description>Refresh auto theme on change of Desktop Background.</description>
+    </key>
+    <key type="b" name="auto-bgalpha">
+      <default>true</default>
+      <summary>Auto set Bar/Margins/Islands alpha in autotheme</summary>
+      <description>Auto set Bar/Margins/Islands Alpha when setting autotheme.</description>
+    </key>
+    <key type="b" name="autotheme-font">
+      <default>false</default>
+      <summary>Turned On when Autotheme is applied and Off when font changed by user</summary>
+      <description>Turned On when Autotheme is applied and Off when font changed by user.</description>
+    </key>
+    <key type="b" name="autohg-bar">
+      <default>true</default>
+      <summary>Turned On by user or when Autotheme is applied and Off when changed by user</summary>
+      <description>Turned On by user or when Autotheme is applied and Off when changed by user.</description>
+    </key>
+    <key type="b" name="autohg-menu">
+      <default>true</default>
+      <summary>Turned On when Autotheme is applied and Off when changed by user</summary>
+      <description>Turned On when Autotheme is applied and Off when changed by user.</description>
+    </key>
+    <key type="b" name="bg-change">
+      <default>false</default>
+      <summary>Toggle setting to indicate background change</summary>
+      <description>Toggle setting to indicate background change.</description>
+    </key>
+    <key type="b" name="accent-override">
+      <default>false</default>
+      <summary>Whether to override accent color in auto theme</summary>
+      <description>Whether to override accent color in auto theme.</description>
+    </key>
+    <key type="as" name="accent-color">
+      <default>['0', '0.75', '0.75']</default>
+      <summary>Accent color (manual override) in auto theme (RGB)</summary>
+      <description>Accent color (manual override) in auto theme.</description>
+    </key>
+    <key type="as" name="dark-accent-color">
+      <default>['0', '0.75', '0.75']</default>
+      <summary>Accent color (manual override) in auto theme (RGB)</summary>
+      <description>Accent color (manual override) in auto theme.</description>
+    </key>
+    <key type="as" name="light-accent-color">
+      <default>['0', '0.75', '0.75']</default>
+      <summary>Accent color (manual override) in auto theme (RGB)</summary>
+      <description>Accent color (manual override) in auto theme.</description>
+    </key>
+    <key type="d" name="menu-radius">
+      <default>21</default>
+      <summary>Radius of Menu panels</summary>
+      <description>Radius of all Menu panels.</description>
+    </key>
+    <key type="d" name="notif-radius">
+      <default>10</default>
+      <summary>Radius of Notifications panel buttons</summary>
+      <description>Radius of Notifications panel buttons.</description>
+    </key>
+    <key type="d" name="qtoggle-radius">
+      <default>50</default>
+      <summary>Radius of Quick toggle buttons</summary>
+      <description>Radius of Quick toggle buttons in Quick Panel.</description>
+    </key>
+    <key type="d" name="slider-height">
+      <default>4</default>
+      <summary>Height of sliders (px)</summary>
+      <description>Height of sliders (px).</description>
+    </key>
+    <key type="d" name="handle-border">
+      <default>3</default>
+      <summary>Width of slider handle border (px)</summary>
+      <description>Width of slider handle border (px).</description>
+    </key>
+    <key type="b" name="pause-reload">
+      <default>false</default>
+      <summary>Indicator to pause style reload</summary>
+      <description>Indicator to pause style reload e.g. during auto-theme update.</description>
+    </key>
+    <key type="b" name="trigger-reload">
+      <default>false</default>
+      <summary>Trigger to cause style reload</summary>
+      <description>Trigger to cause style reload e.g. after auto-theme update.</description>
+    </key>
+    <key type="b" name="import-export">
+      <default>false</default>
+      <summary>Indicator to indicate running of Import or Export</summary>
+      <description>Indicator to indicate running of Import or Export e.g. to pause multiple style reloads.</description>
+    </key>
+    <key type="b" name="trigger-autotheme">
+      <default>false</default>
+      <summary>Trigger creation and application of auto-theme</summary>
+      <description>Trigger creation and application of auto-theme from background.</description>
+    </key>
+    <key type="as" name="boxcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB)</summary>
+      <description>Background Color of Top Bar Panel Box.</description>
+    </key>
+    <key type="as" name="dark-boxcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB)</summary>
+      <description>Background Color of Top Bar Panel Box.</description>
+    </key>
+    <key type="as" name="light-boxcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB)</summary>
+      <description>Background Color of Top Bar Panel Box.</description>
+    </key>
+    <key type="d" name="boxalpha">
+      <default>0</default>
+      <summary>Transparency (alpha)</summary>
+      <description>Transparency of Top Bar Panel Box.</description>
+    </key>
+    <key type="b" name="mbg-gradient">
+      <default>false</default>
+      <summary>Light gradient from top left for menu BG</summary>
+      <description>Light gradient from top left for menu popups using an SVG.</description>
+    </key>
+    <key type="b" name="autofg-bar">
+      <default>true</default>
+      <summary>Auto switch between white/black bar FG color based on bar/button background</summary>
+      <description>Auto switch between white/black bar FG color based on bar/button background.</description>
+    </key>
+    <key type="b" name="autofg-menu">
+      <default>true</default>
+      <summary>Auto switch between white/black menu FG color based on menu widget background</summary>
+      <description>Auto switch between white/black menu FG color based on menu widget background.</description>
+    </key>
+    <key type="b" name="width-top">
+      <default>true</default>
+      <summary>Apply border width to Top side</summary>
+      <description>Apply border width to Top side.</description>
+    </key>
+    <key type="b" name="width-bottom">
+      <default>true</default>
+      <summary>Apply border width to Bottom side</summary>
+      <description>Apply border width to Bottom side.</description>
+    </key>
+    <key type="b" name="width-left">
+      <default>true</default>
+      <summary>Apply border width to Left side</summary>
+      <description>Apply border width to Left side.</description>
+    </key>
+    <key type="b" name="width-right">
+      <default>true</default>
+      <summary>Apply border width to Right side</summary>
+      <description>Apply border width to Right side.</description>
+    </key>
+    <key type="b" name="radius-topleft">
+      <default>true</default>
+      <summary>Apply border radius to Top Left corner</summary>
+      <description>Apply border radius to Top Left corner.</description>
+    </key>
+    <key type="b" name="radius-topright">
+      <default>true</default>
+      <summary>Apply border radius to Top Right corner</summary>
+      <description>Apply border radius to Top Right corner.</description>
+    </key>
+    <key type="b" name="radius-bottomleft">
+      <default>true</default>
+      <summary>Apply border radius to Bottom Left corner</summary>
+      <description>Apply border radius to Bottom Left corner.</description>
+    </key>
+    <key type="b" name="radius-bottomright">
+      <default>true</default>
+      <summary>Apply border radius to Bottom Right corner</summary>
+      <description>Apply border radius to Bottom Right corner.</description>
+    </key>
+    <key type="b" name="set-fullscreen">
+      <default>true</default>
+      <summary>Apply in fullscreen</summary>
+      <description>Whether customization is applied in fullscreen.</description>
+    </key>
+    <key type="b" name="fitts-widgets">
+      <default>true</default>
+      <summary>Enable Fitts Law Widgets for Panel buttons</summary>
+      <description>Enable Fitts Law Widgets for Panel buttons.</description>
+    </key>
+    <key type="b" name="apply-menu-shell">
+      <default>false</default>
+      <summary>Apply menu styles to all shell pop-ups</summary>
+      <description>Apply menu styles to all shell pop-ups.</description>
+    </key>
+    <key type="b" name="apply-accent-shell">
+      <default>false</default>
+      <summary>Apply menu accent color to the Gnome shell</summary>
+      <description>Apply menu accent color to the Gnome shell.</description>
+    </key>
+    <key type="b" name="apply-all-shell">
+      <default>false</default>
+      <summary>Apply menu styles to the Gnome shell</summary>
+      <description>Apply menu styles to the Gnome shell.</description>
+    </key>
+    <key type="b" name="apply-menu-notif">
+      <default>false</default>
+      <summary>Apply message styles to Notifications</summary>
+      <description>Apply message styles to Notifications.</description>
+    </key>
+    <key type="s" name="dashdock-style">
+      <default>"Default"</default>
+      <summary>Dash-Dock style like bar or menu or custom</summary>
+      <description>Dash-Dock style like bar or menu or custom.</description>
+    </key>
+    <key type="as" name="dbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB) of Dash</summary>
+      <description>Background Color of Dash or Dock.</description>
+    </key>
+    <key type="as" name="dark-dbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB) of Dash</summary>
+      <description>Background Color of Dash or Dock.</description>
+    </key>
+    <key type="as" name="light-dbgcolor">
+      <default>['0.125', '0.125', '0.125']</default>
+      <summary>BG Color (RGB) of Dash</summary>
+      <description>Background Color of Dash or Dock.</description>
+    </key>
+    <key type="d" name="dbgalpha">
+      <default>0.85</default>
+      <summary>Transparency (alpha) of Dash</summary>
+      <description>Transparency of Dash or Dock.</description>
+    </key>
+    <key type="d" name="dbradius">
+      <default>100</default>
+      <summary>Radius of Dash</summary>
+      <description>Radius of Dash or Dock.</description>
+    </key>
+    <key type="d" name="disize">
+      <default>48</default>
+      <summary>Icon size of Dash</summary>
+      <description>Icon size of Dash or Dock.</description>
+    </key>
+    <key type="b" name="dborder">
+      <default>true</default>
+      <summary>Dash border On-Off</summary>
+      <description>Show border of Dash or Dock.</description>
+    </key>
+    <key type="b" name="dshadow">
+      <default>true</default>
+      <summary>Dash shadow On-Off</summary>
+      <description>Show shadow of Dash or Dock.</description>
+    </key>
+    <key type="b" name="apply-gtk">
+      <default>false</default>
+      <summary>Apply accent color to Gtk apps</summary>
+      <description>Apply accent color to Gtk apps.</description>
+    </key>
+    <key type="as" name="hscd-color">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Headerbar/Sidebar/Card/Dialog Color (RGB) of Gtk window</summary>
+      <description>Headerbar/Sidebar/Card/Dialog Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="as" name="dark-hscd-color">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Headerbar/Sidebar/Card/Dialog Color (RGB) of Gtk window</summary>
+      <description>Headerbar/Sidebar/Card/Dialog Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="as" name="light-hscd-color">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Headerbar/Sidebar/Card/Dialog Color (RGB) of Gtk window</summary>
+      <description>Headerbar/Sidebar/Card/Dialog Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="i" name="headerbar-hint">
+      <default>0</default>
+      <summary>Add hint of accent color to headerbars</summary>
+      <description>Add hint of accent color to headerbars.</description>
+    </key>
+    <key type="b" name="hbar-gtk3only">
+      <default>false</default>
+      <summary>Apply headerbar hint only to Gtk3 apps</summary>
+      <description>Apply headerbar hint only to Gtk3 apps.</description>
+    </key>
+    <key type="i" name="sidebar-hint">
+      <default>10</default>
+      <summary>Add hint of accent color to sidebars</summary>
+      <description>Add hint of accent color to sidebars.</description>
+    </key>
+    <key type="s" name="sbar-gradient">
+      <default>"none"</default>
+      <summary>Type/direction for Gtk sidebar gradient</summary>
+      <description>Type/direction for Gtk sidebar gradient.</description>
+    </key>
+    <key type="i" name="card-hint">
+      <default>10</default>
+      <summary>Add hint of accent color to cards and dialogs</summary>
+      <description>Add hint of accent color to cards and dialogs.</description>
+    </key>
+    <key type="as" name="vw-color">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>View/Window Color (RGB) of Gtk window</summary>
+      <description>View/Window Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="as" name="dark-vw-color">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>View/Window Color (RGB) of Gtk window</summary>
+      <description>View/Window Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="as" name="light-vw-color">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>View/Window Color (RGB) of Gtk window</summary>
+      <description>View/Window Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="i" name="view-hint">
+      <default>0</default>
+      <summary>Add hint of accent color to view pane</summary>
+      <description>Add hint of accent color to view pane.</description>
+    </key>
+    <key type="i" name="window-hint">
+      <default>0</default>
+      <summary>Add hint of accent color to window</summary>
+      <description>Add hint of accent color to window.</description>
+    </key>
+    <key type="d" name="gtk-transparency">
+      <default>1.0</default>
+      <summary>Add transparency to gtk app window</summary>
+      <description>Add transparency to gtk app window.</description>
+    </key>
+    <key type="b" name="traffic-light">
+      <default>false</default>
+      <summary>Traffic light window controls for Gtk apps</summary>
+      <description>Traffic light window controls for Gtk apps.</description>
+    </key>
+    <key type="b" name="gtk-popover">
+      <default>false</default>
+      <summary>Apply menu styles to Gtk popovers</summary>
+      <description>Apply menu styles to Gtk popovers.</description>
+    </key>
+    <key type="b" name="set-yarutheme">
+      <default>false</default>
+      <summary>Whether to set Yaru theme closest to OpenBar accent</summary>
+      <description>Whether to set Yaru theme closest to OpenBar accent (Ubuntu).</description>
+    </key>
+    <key type="as" name="winbcolor">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Border Color (RGB) of Gtk window</summary>
+      <description>Border Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="as" name="dark-winbcolor">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Border Color (RGB) of Gtk window</summary>
+      <description>Border Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="as" name="light-winbcolor">
+      <default>['0', '0.7', '0.75']</default>
+      <summary>Border Color (RGB) of Gtk window</summary>
+      <description>Border Color (RGB) of Gtk window.</description>
+    </key>
+    <key type="d" name="winbalpha">
+      <default>0.75</default>
+      <summary>Transparency (alpha) of gtk window border</summary>
+      <description>Transparency of gtk window border.</description>
+    </key>
+    <key type="d" name="winbwidth">
+      <default>0</default>
+      <summary>Border width of gtk window</summary>
+      <description>Border width of gtk window.</description>
+    </key>
+    <key type="b" name="corner-radius">
+      <default>false</default>
+      <summary>Apply corner radius to Gtk window</summary>
+      <description>Apply corner radius to Gtk window.</description>
+    </key>
+    <key type="d" name="winbradius">
+      <default>15</default>
+      <summary>Border/Corner radius of gtk window</summary>
+      <description>Border/Corner radius of gtk window.</description>
+    </key>
+    <key type="s" name="gtk-shadow">
+      <default>"Default"</default>
+      <summary>Type of shadow for Gtk Window</summary>
+      <description>Type of shadow for Gtk Window.</description>
+    </key>
+    <key type="b" name="apply-flatpak">
+      <default>false</default>
+      <summary>Apply accent color to Flatpak apps</summary>
+      <description>Apply accent color to Flatpak apps.</description>
+    </key>
+    <key type="as" name="warning-color">
+      <default>['0.96', '0.83', '0.17']</default>
+      <summary>Warning Color</summary>
+      <description>Shell warning color.</description>
+    </key>
+    <key type="as" name="destruct-color">
+      <default>['0.75', '0.11', '0.16']</default>
+      <summary>Destructive Color</summary>
+      <description>Shell destructive color.</description>
+    </key>
+    <key type="as" name="success-color">
+      <default>['0.15', '0.635', '0.41']</default>
+      <summary>Success Color</summary>
+      <description>Shell success color.</description>
+    </key>
+    <key type="i" name="monitor-height">
+      <default>1000</default>
+      <summary>Monitor height</summary>
+      <description>Monitor height.</description>
+    </key>
+    <key type="i" name="monitor-width">
+      <default>1000</default>
+      <summary>Monitor width</summary>
+      <description>Monitor width.</description>
+    </key>
+  </schema>
+</schemalist>

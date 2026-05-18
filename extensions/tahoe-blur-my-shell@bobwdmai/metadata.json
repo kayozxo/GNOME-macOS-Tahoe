@@ -1,0 +1,32 @@
+{
+    "description": "Tahoe-branded fork of Blur my Shell tuned for the GNOME-macOS-Tahoe theme.",
+    "name": "Tahoe Blur",
+    "shell-version": [
+        "46",
+        "47",
+        "48",
+        "49",
+        "50"
+    ],
+    "url": "https://github.com/bobwdmai/GNOME-macOS-Tahoe",
+    "uuid": "tahoe-blur-my-shell@bobwdmai",
+    "gettext-domain": "tahoe-blur-my-shell@bobwdmai",
+    "settings-schema": "org.gnome.shell.extensions.tahoe-blur-my-shell",
+    "session-modes": [
+        "unlock-dialog",
+        "user"
+    ],
+    "original-authors": [
+        "me@aunetx.dev"
+    ],
+    "donations": {
+        "github": "aunetx",
+        "kofi": "aunetx"
+    },
+    "version": 72,
+    "tahoe-fork": true,
+    "upstream-uuid": "blur-my-shell@aunetx",
+    "upstream-name": "Blur my Shell",
+    "upstream-extension-id": 3193,
+    "upstream-url": "https://github.com/aunetx/blur-my-shell"
+}

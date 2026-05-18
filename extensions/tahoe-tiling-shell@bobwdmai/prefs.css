@@ -1,0 +1,18 @@
+.edge-tiling-behaviour .content {
+  border-radius: 12px;
+  background-color: transparent;
+  border: 2px solid rgba(128, 128, 128, 0.8);
+}
+.edge-tiling-behaviour .option {
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+.edge-tiling-behaviour .option:hover {
+  background-color: alpha(@accent_color, 0.2);
+  border: 2px solid @accent_color;
+}
+.edge-tiling-behaviour .option:checked {
+  background-color: alpha(@accent_color, 0.4);
+  border: 2px solid @accent_color;
+}

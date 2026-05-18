@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema id="org.gnome.shell.extensions.space-bar.state" path="/org/gnome/shell/extensions/space-bar/state/">
+        <key name="version" type="i">
+            <default>0</default>
+        </key>
+        <key name="workspace-names-map" type="s">
+            <default><![CDATA['{}']]></default>
+        </key>
+    </schema>
+    <schema id="org.gnome.shell.extensions.space-bar.behavior" path="/org/gnome/shell/extensions/space-bar/behavior/">
+        <key name="indicator-style" type="s">
+            <choices>
+                <!-- Not valid anymore, included for migration. -->
+                <choice value="current-workspace-name"/>
+                <choice value="current-workspace"/>
+                <choice value="workspaces-bar"/>
+            </choices>
+            <default>"workspaces-bar"</default>
+            <summary>Indicator style</summary>
+        </key>
+        <key name="enable-custom-label" type="b">
+            <default>false</default>
+        </key>
+        <key name="enable-custom-label-in-menu" type="b">
+            <default>false</default>
+        </key>
+        <key name="custom-label-named" type="s">
+            <default>'{{name}}'</default>
+        </key>
+        <key name="custom-label-unnamed" type="s">
+            <default>'Workspace {{number}}'</default>
+        </key>
+        <key name="position" type="s">
+            <choices>
+                <choice value="left"/>
+                <choice value="center"/>
+                <choice value="right"/>
+            </choices>
+            <default>"left"</default>
+            <summary>Position in top panel</summary>
+        </key>
+        <key name="system-workspace-indicator" type="b">
+            <default>false</default>
+        </key>
+        <key name="position-index" type="i">
+            <range min="0" max="100" />
+            <default>1</default>
+            <summary>Position index</summary>
+            <description>Order relative to other elements</description>
+        </key>
+        <key name="always-show-numbers" type="b">
+            <default>false</default>
+        </key>
+        <key name="show-empty-workspaces" type="b">
+            <default>true</default>
+        </key>
+        <key name="toggle-overview" type="b">
+            <default>true</default>
+        </key>
+        <key name="scroll-wheel" type="s">
+            <choices>
+                <choice value="panel"/>
+                <choice value="workspaces-bar"/>
+                <choice value="disabled"/>
+            </choices>
+            <default>"panel"</default>
+            <summary>Switch workspaces with scroll wheel</summary>
+        </key>
+        <key name="scroll-wheel-debounce" type="b">
+            <default>true</default>
+        </key>
+        <key name="scroll-wheel-debounce-time" type="i">
+            <default>200</default>
+        </key>
+        <key name="scroll-wheel-vertical" type="s">
+            <choices>
+                <choice value="normal"/>
+                <choice value="inverted"/>
+                <choice value="disabled"/>
+            </choices>
+            <default>"normal"</default>
+        </key>
+        <key name="scroll-wheel-horizontal" type="s">
+            <choices>
+                <choice value="normal"/>
+                <choice value="inverted"/>
+                <choice value="disabled"/>
+            </choices>
+            <default>"disabled"</default>
+        </key>
+        <key name="scroll-wheel-wrap-around" type="b">
+            <default>false</default>
+        </key>
+        <key name="smart-workspace-names" type="b">
+            <default>false</default>
+        </key>
+        <key name="reevaluate-smart-workspace-names" type="b">
+            <default>true</default>
+        </key>
+    </schema>
+
+    <schema id="org.gnome.shell.extensions.space-bar.appearance" path="/org/gnome/shell/extensions/space-bar/appearance/">
+        <!-- General Appearance Settings -->
+        <key name="workspaces-bar-padding" type="i">
+            <default>12</default>
+        </key>
+        <key name="workspace-margin" type="i">
+            <default>4</default>
+        </key>
+        <!-- Active Workspace Appearance Settings -->
+        <key name="active-workspace-background-color" type="s">
+            <default>'rgba(255,255,255,0.3)'</default>
+        </key>
+        <key name="active-workspace-text-color" type="s">
+            <default>'rgba(255,255,255,1)'</default>
+        </key>
+        <key name="active-workspace-border-color" type="s">
+            <default>'rgba(0,0,0,0)'</default>
+        </key>
+        <key name="active-workspace-font-size" type="i">
+            <default>-1</default>
+        </key>
+        <key name="active-workspace-font-size-user" type="i">
+            <default>11</default>
+        </key>
+        <key name="active-workspace-font-size-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="active-workspace-font-weight" type="s">
+            <choices>
+                <choice value="100" />
+                <choice value="200" />
+                <choice value="300" />
+                <choice value="400" />
+                <choice value="500" />
+                <choice value="600" />
+                <choice value="700" />
+                <choice value="800" />
+                <choice value="900" />
+            </choices>
+            <default>"700"</default>
+            <summary>Font weight used for the active workspace</summary>
+        </key>
+        <key name="active-workspace-border-radius" type="i">
+            <default>4</default>
+        </key>
+        <key name="active-workspace-border-width" type="i">
+            <default>0</default>
+        </key>
+        <key name="active-workspace-padding-h" type="i">
+            <default>8</default>
+        </key>
+        <key name="active-workspace-padding-v" type="i">
+            <default>3</default>
+        </key>
+        <!-- Inactive Workspace Appearance Settings -->
+        <key name="inactive-workspace-background-color" type="s">
+            <default>'rgba(0,0,0,0)'</default>
+        </key>
+        <key name="inactive-workspace-text-color" type="s">
+            <default>'rgba(255,255,255,1)'</default>
+        </key>
+        <key name="inactive-workspace-border-color" type="s">
+            <default>'rgba(0,0,0,0)'</default>
+        </key>
+        <key name="inactive-workspace-text-color-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="inactive-workspace-font-size" type="i">
+            <default>-1</default>
+        </key>
+        <key name="inactive-workspace-font-size-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="inactive-workspace-font-weight" type="s">
+            <choices>
+                <choice value="100" />
+                <choice value="200" />
+                <choice value="300" />
+                <choice value="400" />
+                <choice value="500" />
+                <choice value="600" />
+                <choice value="700" />
+                <choice value="800" />
+                <choice value="900" />
+            </choices>
+            <default>"700"</default>
+            <summary>Font weight used for inactive workspaces</summary>
+        </key>
+        <key name="inactive-workspace-font-weight-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="inactive-workspace-border-radius" type="i">
+            <default>4</default>
+        </key>
+        <key name="inactive-workspace-border-width" type="i">
+            <default>0</default>
+        </key>
+        <key name="inactive-workspace-border-width-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="inactive-workspace-border-radius-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="inactive-workspace-padding-h" type="i">
+            <default>8</default>
+        </key>
+        <key name="inactive-workspace-padding-h-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="inactive-workspace-padding-v" type="i">
+            <default>3</default>
+        </key>
+        <key name="inactive-workspace-padding-v-active" type="b">
+            <default>false</default>
+        </key>
+        <!-- Empty And Inactive Workspace Appearance Settings -->
+        <key name="empty-workspace-background-color" type="s">
+            <default>'rgba(0,0,0,0)'</default>
+        </key>
+        <key name="empty-workspace-text-color" type="s">
+            <default>'rgba(255,255,255,0.5)'</default>
+        </key>
+        <key name="empty-workspace-border-color" type="s">
+            <default>'rgba(0,0,0,0)'</default>
+        </key>
+        <key name="empty-workspace-font-size" type="i">
+            <default>-1</default>
+        </key>
+        <key name="empty-workspace-font-size-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="empty-workspace-font-weight" type="s">
+            <choices>
+                <choice value="100" />
+                <choice value="200" />
+                <choice value="300" />
+                <choice value="400" />
+                <choice value="500" />
+                <choice value="600" />
+                <choice value="700" />
+                <choice value="800" />
+                <choice value="900" />
+            </choices>
+            <default>"700"</default>
+            <summary>Font weight used for empty workspaces</summary>
+        </key>
+        <key name="empty-workspace-font-weight-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="empty-workspace-border-radius" type="i">
+            <default>4</default>
+        </key>
+        <key name="empty-workspace-border-width" type="i">
+            <default>0</default>
+        </key>
+        <key name="empty-workspace-border-width-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="empty-workspace-border-radius-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="empty-workspace-padding-h" type="i">
+            <default>8</default>
+        </key>
+        <key name="empty-workspace-padding-h-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="empty-workspace-padding-v" type="i">
+            <default>3</default>
+        </key>
+        <key name="empty-workspace-padding-v-active" type="b">
+            <default>false</default>
+        </key>
+        <key name="application-styles" type="s">
+            <default>''</default>
+        </key>
+        <key name="custom-styles-enabled" type="b">
+            <default>false</default>
+        </key>
+        <key name="custom-styles-failed" type="b">
+            <default>false</default>
+        </key>
+        <key name="custom-styles" type="s">
+            <default>''</default>
+        </key>
+    </schema>
+
+    <schema id="org.gnome.shell.extensions.space-bar.shortcuts" path="/org/gnome/shell/extensions/space-bar/shortcuts/">
+        <key name="enable-activate-workspace-shortcuts" type="b">
+            <default>true</default>
+        </key>
+        <key name="back-and-forth" type="b">
+            <default>false</default>
+        </key>
+        <key name="enable-move-to-workspace-shortcuts" type="b">
+            <default>false</default>
+        </key>
+
+        <key name="move-workspace-left" type="as">
+            <default><![CDATA[['<Control><Alt><Super>Left']]]></default>
+        </key>
+        <key name="move-workspace-right" type="as">
+            <default><![CDATA[['<Control><Alt><Super>Right']]]></default>
+        </key>
+        <key name="activate-previous-key" type="as">
+            <default><![CDATA[['<Super>grave']]]></default>
+            <!-- <default><![CDATA[['<Super>Above_Tab']]]></default> -->
+            <summary>Keybinding to activate the previous workspace.</summary>
+        </key>
+        <key name="activate-empty-key" type="as">
+            <default><![CDATA[['<Super>n']]]></default>
+            <summary>Switch to empty workspace.</summary>
+        </key>
+        <key name="open-menu" type="as">
+            <default><![CDATA[['<Super>W']]]></default>
+            <summary>Keybinding to open the workspaces bar menu.</summary>
+        </key>
+
+        <key name="activate-1-key" type="as">
+            <default><![CDATA[['<Super>1']]]></default>
+            <summary>Keybinding to activate workspace 1.</summary>
+        </key>
+        <key name="activate-2-key" type="as">
+            <default><![CDATA[['<Super>2']]]></default>
+            <summary>Keybinding to activate workspace 2.</summary>
+        </key>
+        <key name="activate-3-key" type="as">
+            <default><![CDATA[['<Super>3']]]></default>
+            <summary>Keybinding to activate workspace 3.</summary>
+        </key>
+        <key name="activate-4-key" type="as">
+            <default><![CDATA[['<Super>4']]]></default>
+            <summary>Keybinding to activate workspace 4.</summary>
+        </key>
+        <key name="activate-5-key" type="as">
+            <default><![CDATA[['<Super>5']]]></default>
+            <summary>Keybinding to activate workspace 5.</summary>
+        </key>
+        <key name="activate-6-key" type="as">
+            <default><![CDATA[['<Super>6']]]></default>
+            <summary>Keybinding to activate workspace 6.</summary>
+        </key>
+        <key name="activate-7-key" type="as">
+            <default><![CDATA[['<Super>7']]]></default>
+            <summary>Keybinding to activate workspace 7.</summary>
+        </key>
+        <key name="activate-8-key" type="as">
+            <default><![CDATA[['<Super>8']]]></default>
+            <summary>Keybinding to activate workspace 8.</summary>
+        </key>
+        <key name="activate-9-key" type="as">
+            <default><![CDATA[['<Super>9']]]></default>
+            <summary>Keybinding to activate workspace 9.</summary>
+        </key>
+        <key name="activate-10-key" type="as">
+            <default><![CDATA[['<Super>0']]]></default>
+            <summary>Keybinding to activate workspace 10.</summary>
+        </key>
+    </schema>
+</schemalist>

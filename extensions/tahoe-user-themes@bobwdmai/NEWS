@@ -1,0 +1,1621 @@
+49.0
+====
+* window-list: Adjust to gnome-shell changes [Florian; !421]
+* system-monitor: Unbreak on BSD [Antoine; !356]
+* Misc. bug fixes and cleanups [Florian; !422, !423]
+
+Contributors:
+  Antoine Jacoutot, Florian Müllner
+
+Translators:
+  Jiri Grönroos [fi], Aurimas Aurimas Černius [lt]
+
+49.rc
+=====
+
+Translators:
+  Emilio Sepúlveda [ia], Dušan Kazik [sk], Daniel Rusek [cs],
+  Nathan Follens [nl], Piotr Drąg [pl], Balázs Úr [hu], Yosef Or Boczko [he]
+
+49.beta
+=======
+* Misc. bug fixes and cleanups [Florian; !408]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Anders Jonsson [sv], Makoto Sakaguchi [ja], Danial Behzadi [fa],
+  Jordi Mas i Hernandez [ca]
+
+49.alpha.1
+==========
+* workspaces-indicator, window-list: Better expose workspace names
+  [Florian; !405]
+* window-list: Animate transition to/from overview [Florian; !412]
+* Misc. bug fixes and cleanups [Florian; !409, !411, !413]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Martin [sl], Emin Tufan Çetin [tr], Yuri Chornoivan [uk], Luming Zh [zh_CN],
+  Yago Raña [gl], Ekaterine Papava [ka], Vasil Pupkin [be],
+  Álvaro Burns [pt_BR], Sergej A. [ru]
+
+49.alpha.0
+==========
+* windowsNavigator: Fix handling keyboard shortcuts [Daniel; !395]
+* build: Allow disabling the X11 session [Neal; !396, !400]
+* Disable X11 session by default [Jordan; !399]
+* Misc. bug fixes and cleanups [Florian; !398, !406]
+
+Contributors:
+  Daniel Buch Hansen, Neal Gompa, Florian Müllner, Jordan Petridis
+
+Translators:
+  Emilio Sepúlveda [ia]
+
+48.1
+====
+
+Translators:
+  Hugo Carvalho [pt], Danial Behzadi [fa]
+
+48.0
+====
+* apps-menu: Fix scrolling items into view on keynav [Victor; !391]
+* Misc. bug fixes and cleanups [Florian, Stuart; !390, !392]
+
+Contributors:
+  Stuart Hayhurst, Victor Kareh, Florian Müllner
+
+48.rc
+=====
+* Misc. bug fixes and cleanups [Florian; !385, !388]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Emilio Sepúlveda [ia], Mathews M [ml], Daniel Rusek [cs], Piotr Drąg [pl],
+  Anders Jonsson [sv], Ekaterine Papava [ka], Yuri Chornoivan [uk],
+  Aurimas Černius [lt], Luming Zh [zh_CN], Jiri Grönroos [fi]
+
+48.beta
+=======
+* window-list: Fix regression in chrome tracking [Florian; !379]
+* Misc. bug fixes and cleanups [Florian; !380]
+
+Contributors:
+  Florian Müllner, Emilio Sepúlveda
+
+Translators:
+  Rafael Fontenelle [pt_BR], Emilio Sepúlveda [ia]
+
+48.alpha
+========
+* classic: Add missing top-bar indicators [Florian; !339]
+* window-list: Fix window state styling [Florian; !342]
+* window-list: Fix "ignore-workspace" setting getting reset [Florian; !341]
+* window-list: Allow rearranging window buttons [Florian, Jakub; !338]
+* window-list: Add workspaces page to preference dialog [Florian; !344]
+* places-menu: Sync list of places with nautilus [Florian; !340]
+* places-menu: Fix a11y labelling [Florian; #542]
+* places-menu: Fix opening drives with mount operations [Florian; !361]
+* window-list: Fix hiding when entering overview with gestures [Florian; !364]
+* workspace-indicator: Only show previews of regular windows [Florian; !363]
+* window-list: Add attention indicator [Florian; !366]
+* Misc. bug fixes and cleanups [Florian, Bartłomiej; !337, !343, !345, !347,
+  !348, !349, !351, !352, !353, !354, !358, !362, !365, !367, !368, !370, !375]
+
+Contributors:
+  Florian Müllner, Bartłomiej Piotrowski, Jakub Steiner
+
+Translators:
+  Fabio Tomat [fur], Martin [sl], Jordi Mas i Hernandez [ca], Vasil Pupkin [be],
+  Nathan Follens [nl], Artur S0 [ru], Марко Костић [sr],
+  Yaron Shahrabani [he], Sabri Ünal [tr], Yi-Jyun Pan [zh_TW]
+
+47.0
+====
+
+Translators:
+  twlvnn kraftwerk [bg], Alexander Shopov [bg], Fran Dieguez [gl],
+  Aurimas Černius [lt], Daniel [es], Andika Triwidada [id],
+  Andi Chandler [en_GB], Ask Hjorth Larsen [da], Aefgh Threenine [th],
+  Dušan Kazik [sk], Rūdolfs Mazurs [lv], Irénée THIRION [fr]
+
+47.rc
+=====
+* Misc. bug fixes and cleanups [Sophie; !333]
+
+Contributors:
+  Sophie Herold
+
+Translators:
+  Daniel Șerbănescu [ro], Giannis Antypas [el], Ekaterine Papava [ka],
+  Jordi Mas i Hernandez [ca], Yuri Chornoivan [uk], Jiri Grönroos [fi],
+  Daniel Rusek [cs], Vasil Pupkin [be], Luming Zh [zh_CN], Brage Fuglseth [nb],
+  Asier Sarasua Garmendia [eu], Danial Behzadi [fa], Rafael Fontenelle [pt_BR],
+  Quentin PAGÈS [oc], Anders Jonsson [sv], Jürgen Benvenuti [de],
+  Changwoo Ryu [ko], Hugo Carvalho [pt], Piotr Drąg [pl], Sabri Ünal [tr]
+
+47.beta
+=======
+* window-list: Modernize styling [Jakub; !330]
+* Include "status-icons" extension [Florian; !194]
+* Misc. bug fixes and cleanups [Florian; !328, !331, !327]
+
+Contributors:
+  Florian Müllner, Jakub Steiner
+
+Translators:
+  Sabri Ünal [tr], Chao-Hsiung Liao [zh_TW]
+
+47.alpha
+========
+* Improve workspace previews in window-list and workspace-indicator
+  [Florian; !307, !316]
+* apps-menu: Fix a11y of category labels [Florian; !319]
+* window-list: Fix long-press support [Florian; !320]
+* window-list: Animate transitions [Florian; !325]
+* Misc. bug fixes and cleanups [Florian; !315, !321, !324]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Jordi Mas i Hernandez [ca], Martin [sl], Hugo Carvalho [pt], Jose Riha [sk],
+  Scrambled 777 [hi], Artur S0 [ru], Милош Поповић [sr], Yosef Or Boczko [he],
+  Balázs Úr [hu]
+
+46.1
+====
+* screenshot-window-sizer: Add flathub-recommended size [Florian; !317]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Rachida SACI [kab], Matheus Polkorny [pt_BR], Fabio Tomat [fur]
+
+46.0
+====
+* system-monitor: Fix net speed [Florian; !313]
+* Misc. bug fixes and cleanups [Aral; !311]
+
+Contributors:
+  Aral Balkan, Florian Müllner
+
+Translators:
+  Anders Jonsson [sv], Piotr Drąg [pl], Balázs Úr [hu], Milo Casagrande [it],
+  Quentin PAGÈS [oc], Athmane MOKRAOUI [kab], Changwoo Ryu [ko],
+  Ask Hjorth Larsen [da]
+
+46.rc
+=====
+* Fix window previews in workspace indicator [Florian; !304]
+* Fix menu ornament in workspace indicator [Florian; !305]
+* Misc. bug fixes and cleanups [Florian; !306, !309]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Danial Behzadi [fa], Ekaterine Papava [ka], Sabri Ünal [tr], Artur S0 [ru],
+  Yuri Chornoivan [uk], Vasil Pupkin [be], Asier Sarasua Garmendia [eu],
+  Yaron Shahrabani [he], Brage Fuglseth [nb], Nathan Follens [nl],
+  Aurimas Černius [lt], Matej Urbančič [sl], Boyuan Yang [zh_CN],
+  Kukuh Syafaat [id], Fran Dieguez [gl], Andi Chandler [en_GB],
+  Baurzhan Muftakhidinov [kk], Rūdolfs Mazurs [lv], Guillaume Bernard [fr],
+  Daniel Mustieles [es], Jiri Grönroos [fi]
+
+46.beta
+=======
+* apps-menu: Rename Applications to Apps [Allan; !299]
+* Misc. bug fixes and cleanups [Florian; !296, !297, !300, !301, !302]
+
+Contributors:
+  Allan Day, Florian Müllner
+
+Translators:
+  Gabriel Brand [de], Daniel Rusek [cs], Fran Dieguez [gl],
+  Aefgh Threenine [th], Vasil Pupkin [be], Artur S0 [ru], Yosef Or Boczko [he],
+  Sabri Ünal [tr]
+
+46.alpha
+========
+* workspace-indicator: Fix initial preview visibility [Florian; !280, !292]
+* screenshot-window-sizer: Fix cycling between sizes backwards [Florian; !284]
+* Add back overview in Classic session [Florian; !287]
+* Allow running Classic session headless [Jonas; !289]
+* window-list: Fix buttons not being clickable at the screen edge
+  [Florian; !291]
+* Add system-monitor extension [Florian; !277]
+* Fixed crash [Florian; !290]
+* Misc. bug fixes and cleanups [Florian; !276, !275, !278, !281, !286, !288]
+
+Contributors:
+  Jonas Ådahl, Florian Müllner
+
+Translators:
+  Kristjan SCHMIDT [eo], Brage Fuglseth [nb]
+
+45.0
+====
+
+Contributors:
+  Andre Klapper
+
+Translators:
+  Bruce Cowan [en_GB]
+
+45.rc
+=====
+* Misc. bug fixes and cleanups [Florian; !267, !224, !272]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Sabri Ünal [tr], Florentina Musat [ro], A S Alam [pa]
+
+45.beta
+=======
+* Port extensions to ESM [Florian; !259, !266, !268, !269]
+* Misc. bug fixes and cleanups [Florian; !260, !261, !262, !263, !264]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Efstathios Iosifidis [el]
+
+45.alpha
+========
+* window-list: Modernize default styling [Alexander; !253]
+* Replace classic styling with built-in light style [Florian; !254]
+* window-list: Add tooltip for long window titles [Arik; !251]
+* light-style: New extension [Florian; !256]
+* Misc. bug fixes and cleanups [Florian; !255, !257]
+
+Contributors:
+  Florian Müllner, Arik W, Alexander Weichart
+
+44.0
+====
+* Bump version
+
+44.rc
+=====
+* Bump version
+
+44.beta
+=======
+* Tweak menu alignment [robxnano; !246]
+
+Contributors:
+  Florian Müllner, robxnano
+
+Translators:
+  Vasil Pupkin [be]
+
+43.1
+====
+* Fixed crash [Florian; !243]
+* Misc. bug fixes and cleanups [mowemcfc; !244]
+
+Contributors:
+  Florian Müllner, mowemcfc
+
+Translators:
+  Sabri Ünal [tr]
+
+43.0
+====
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Pawan Chitrakar [ne], Zurab Kargareteli [ka], Aleksandr Melman [ru]
+
+43.rc
+=====
+* Misc. bug fixes and cleanups [Florian; !240]
+
+Contributors:
+  Florian Müllner
+
+43.beta
+=======
+* Misc. bug fixes and cleanups [Florian; !237, !238]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Nart Tlisha [ab]
+
+43.alpha
+========
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Marco Ciampa [it]
+
+42.3
+====
+* screenshot-window-sizer: Fix reported sizes on wayland [Florian; !232]
+* window-list: Improve touch support [Florian; !233]
+
+Contributors:
+  Florian Müllner
+
+42.2
+====
+* native-window-placement: Adjust to gnome-shell 42 changes [Florian; !229]
+* window-list: Fix visibility on non-primary monitors [Jason; !230]
+
+Contributors:
+  Jason Lynch, Florian Müllner
+
+Translators:
+  Cheng-Chia Tseng [zh_TW]
+
+42.1
+====
+* Misc. bug fixes and cleanups [Florian; !223, !222, !225]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Milo Casagrande [it], Rūdolfs Mazurs [lv], Nathan Follens [nl],
+  Ngọc Quân Trần [vi], Zurab Kargareteli [ka]
+
+42.0
+====
+
+Translators:
+  Philipp Kiemle [de], Balázs Úr [hu], Марко Костић [sr], sicklylife [ja],
+  Baurzhan Muftakhidinov [kk]
+
+42.rc
+=====
+* Misc. bug fixes and cleanups [Florian; !215, !218]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Marek Černocký [cs], Dušan Kazik [sk], Piotr Drąg [pl], Jiri Grönroos [fi],
+  Luna Jernberg [sv], Alan Mortensen [da], Charles Monzat [fr],
+  Changwoo Ryu [ko]
+
+42.beta
+=======
+* workspace-indicator: Fix cancelling editing with Esc [Florian; !208]
+* window-list: Update window tracking to avoid missing icons [Florian; !207]
+* Use libadwaita for preferences [Florian; !209, !213]
+* Adapt to Clutter grab API changes [Florian; !212]
+* Misc. bug fixes and cleanups [Jan, Florian; !210, !214]
+
+Contributors:
+  Jan Beich, Florian Müllner, Naala Nanba
+
+Translators:
+  Boyuan Yang [zh_CN], Matej Urbančič [sl], Naala Nanba [ab],
+  Alexander Shopov [bg], Emin Tufan Çetin [tr]
+
+42.alpha
+========
+* native-window-placement: Fix distorted layout in app grid [Sebastian; !189]
+* window-list: Fix on-screen keyboard [Florian; !199]
+* Misc. bug fixes and cleanups [Neal; Just; !195, !197]
+
+Contributors:
+  Piotr Drąg, Neal Gompa, Sebastian Keller, Florian Müllner, Just Perfection
+
+Translators:
+  Goran Vidović [hr], Sveinn í Felli [is], Yuri Chornoivan [uk],
+  Fabio Tomat [fur], Quentin PAGÈS [oc], Hugo Carvalho [pt],
+  Yaron Shahrabani [he], Jordi Mas i Hernandez [ca], MohammadSaleh Kamyab [fa],
+  Fran Dieguez [gl], Daniel Mustieles [es], Aleksandr Melman [ru],
+  Aurimas Černius [lt], Asier Sarasua Garmendia [eu], Kukuh Syafaat [id],
+  Rafael Fontenelle [pt_BR]
+
+41.0
+====
+* Bump version
+
+41.rc.1
+=======
+* Fix pre-generating stylesheets in tarball [Florian; !190]
+
+Contributors:
+  Florian Müllner
+
+41.rc
+=====
+* window-list: Adapt to overview-on-startup [Florian; !185]
+* apps-menu: Use a custom 'toggle-menu' shortcut [Florian; !173]
+* Misc. bug fixes and cleanups [Florian; !186]
+
+Contributors:
+  Florian Müllner
+
+41.beta
+=======
+* window-list: Extend reactive area of minimap to screen edges [Adam; !171]
+* drive-menu: Improve detection of network mounts [Florian; !27, !176]
+* Use distinct gettext domain for e.g.o uploads [Florian; #335]
+* Misc. bug fixes and cleanups [Florian; !172, !174, !177, !167, !178, !180,
+  !181, !182, !183]
+
+Contributors:
+  Marco Trevisan (Treviño), Adam Goode, Florian Müllner
+
+Translators:
+  Hugo Carvalho [pt], Juliano de Souza Camargo [pt], Alexander Shopov [bg]
+
+40.1
+====
+* Disable welcome dialog in classic session [Florian; !169]
+* windowsNavigator: Adjust to a late gnome-shell change [Florian; !170]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Ngọc Quân Trần [vi], Anders Jonsson [sv], Carmen Bianca BAKKER [eo],
+  Pawan Chitrakar [ne], Quentin PAGÈS [oc]
+
+40.0
+====
+
+Translators:
+  Jiri Grönroos [fi]
+
+40.rc
+=====
+* native-window-placement: Adjust to gnome-shell changes [Florian; !164]
+* windows-navigator: Adjust to gnome-shell changes [Florian; !163]
+* window-list, workspace-indicator: Only show previews for up to six workspaces
+  [Florian; !165]
+* window-list, workspace-indicator: Improve workspace preview appearance
+  [Florian; !166]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Fran Dieguez [gl]
+
+40.beta
+=======
+* Add tooltips to workspace thumbnails [Florian; !155]
+* Drop arrows from top bar menus [Florian; !156]
+* drive-menu: Mark mounts that can be unmounted as removable [Michael; !152]
+* Remove horizontal-workspaces extension [Florian; !158]
+* Adjust to shell overview changes [Florian; !159, !160]
+* Fix crashes [Daniel; !157]
+* Misc. bug fixes and cleanups [Florian; !154, !161]
+
+Contributors:
+  Michael Lawton, Florian Müllner, Daniel van Vugt
+
+Translators:
+  Аляксей [be], A S Alam [pa]
+
+40.alpha.1
+==========
+* Don't depend on sassc when building from tarball [Florian; !150]
+* Port extensions preferences to GTK4 [Florian; !148]
+* Misc. bug fixes and cleanups [Florian, Jonas; !149, !151, !153]
+
+Contributors:
+  Jonas Dreßler, Florian Müllner
+
+40.alpha
+========
+* window-list: Honor changes in skip-taskbar property [Sergio; !130]
+* window-list, workspace-indicator: Adjust to 3.38 changes [Florian; !133]
+* window-list, workspace-indicator: Improve previews in workspace thumbs
+  [Florian; #260, !142]
+* auto-move: Improve behavior on multi-monitor setups [Florian; !135]
+* windowNavigator: Adjust to 3.38 changes [Thun; #259]
+* Misc. bug fixes and cleanups [Florian, Jonas Å, Jordan, Ray; !131, !136,
+  !137, !140, !141, !144, !146, !145]
+
+Contributors:
+  Sergio Costas, Florian Müllner, Jordan Petridis, Thun Pin, Ray Strode,
+  Jonas Ådahl
+
+Translators:
+  Fabio Tomat [fur], Jordi Mas [ca]
+
+3.38.1
+======
+
+Contributors:
+  Yacine Bouklif, Florian Müllner
+
+Translators:
+  Yacine Bouklif [kab], Cheng-Chia Tseng [zh_TW], Stas Solovey [ru],
+  Yosef Or Boczko [he]
+
+3.38.0
+======
+
+Translators:
+  Balázs Meskó [hu], Alan Mortensen [da], Juliano Camargo [pt], Tim Sabsch [de],
+  Milo Casagrande [it], Rūdolfs Mazurs [lv]
+
+3.37.92
+=======
+
+Translators:
+  Nathan Follens [nl], Zander Brown [en_GB], Aurimas Černius [lt],
+  Marek Černocký [cs], Changwoo Ryu [ko], Dušan Kazik [sk]
+
+3.37.91
+=======
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Fran Dieguez [gl], Akarshan Biswas [bn_IN], Kukuh Syafaat [id],
+  Piotr Drąg [pl], Rafael Fontenelle [pt_BR], Jiri Grönroos [fi],
+  Марко Костић [sr], Goran Vidović [hr]
+
+3.37.90
+=======
+* Misc. bug fixes and cleanups [Florian, Piotr; !126, !128]
+
+Contributors:
+  Piotr Drąg, Florian Müllner
+
+Translators:
+  Fabio Tomat [fur], Efstathios Iosifidis [el], Anders Jonsson [sv],
+  Asier Sarasua Garmendia [eu], Alexandre Franke [fr]
+
+3.37.3
+======
+* window-list, native-window-placement: Adjust to shell changes [Florian; !124]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Jordi Mas [ca], sicklylife [ja], Boyuan Yang [zh_CN],
+  Baurzhan Muftakhidinov [kk]
+
+3.37.2
+======
+* window-list, auto-move: Modernize preference dialogs [Florian; !121]
+* Adjust to gnome-shell changes [Florian; !122]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Cheng-Chia Tseng [zh_TW], Yuri Chornoivan [uk], Daniel Mustieles [es],
+  Emin Tufan Çetin [tr], Danial Behzadi [fa], Daniel Șerbănescu [ro],
+  Matej Urbančič [sl]
+
+3.37.1
+======
+* drive-menu: Emphasize eject buttons [Florian; #223]
+* user-theme: Add preference dialog [Florian; !117]
+* window-list: Fix inconsistent state in preference dialog [Milan; !119]
+* workspace-indicator: Overhaul preference dialog [Florian; !120]
+* user-theme: Support session mode styles [Florian; !118]
+* Misc. bug fixes and cleanups [Florian, Xiaoguang; !113, !106, !114, !116]
+
+Contributors:
+  Milan Crha, Florian Müllner, Xiaoguang Wang
+
+Translators:
+  Daniel Korostil [uk], Yosef Or Boczko [he], Kristjan SCHMIDT [eo],
+  Dz Chen [zh_CN], Danial Behzadi [fa], Yuri Chornoivan [uk],
+  Anders Jonsson [sv], Daniel Mustieles [es]
+
+3.36.0
+======
+
+Contributors:
+  Florian Müllner
+
+3.35.91
+=======
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Zander Brown [en_GB]
+
+3.35.90
+=======
+* Adjust to gnome-shell changes [Florian; !100, !101, !102]
+* Force single-line window titles in window list [Florian; #202]
+* Misc. bug fixes and cleanup [Florian; !104, !105]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  sicklylife [ja], Umarzuki Bin Mochlis Moktar [ms]
+
+3.35.3
+======
+
+Translators:
+  Fran Dieguez [gl]
+
+3.35.2
+======
+* Adjust to gnome-shell changes [Marco, Florian; !89, !95, !96]
+* window-list, workspace-indicator: Exclude DESKTOP windows from previews
+  [Florian; !93]
+* screenshot-window-sizer: Fix cycling through all valid sizes [Willy; !97]
+
+Contributors:
+  Marco Trevisan (Treviño), Florian Müllner, Willy Stadnick
+
+3.34.1
+======
+* Adjust to gnome-settings-daemon plugin removals [Xiaoguang; !94]
+
+Contributors:
+  Florian Müllner, Xiaoguang Wang
+
+Translators:
+  Nathan Follens [nl], Dušan Kazik [sk], Ask Hjorth Larsen [da],
+  Yi-Jyun Pan [zh_TW]
+
+3.34.0
+======
+
+Translators:
+  Rafael Fontenelle [pt_BR], Efstathios Iosifidis [el], Milo Casagrande [it],
+  Sabri Ünal [tr]
+
+3.33.92
+=======
+
+Translators:
+  Марко Костић [sr], Tim Sabsch [de], Rūdolfs Mazurs [lv], Matej Urbančič [sl],
+  Balázs Úr [hu], Claude Paroz [fr], Fran Dieguez [gl], Changwoo Ryu [ko],
+  Ryuta Fujii [ja], Fabio Tomat [fur], Goran Vidović [hr]
+
+3.33.91
+=======
+* Misc. bug fixes and cleanups [Florian; !88, !90, !91, !92]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Asier Sarasua Garmendia [eu], Anders Jonsson [sv], Marek Černocký [cs],
+  Kukuh Syafaat [id], Jiri Grönroos [fi], Florentina Mușat [ro],
+  Aurimas Černius [lt], Daniel Mustieles [es], Piotr Drąg [pl], Jordi Mas [ca],
+  Danial Behzadi [fa]
+3.33.90
+=======
+* window-list: Support showing windows from all workspaces [Florian; #154]
+* Misc. bug fixes and cleanups [Florian; !86, !87]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Jor Teron [mjw]
+
+3.33.4
+======
+* Make GNOME Classic more classic:
+  - Disable GNOME 3 overview [Florian; !69]
+  - Add window picker button to window list [Florian; !73, !80]
+  - Style improvements and fixes [Jakub; #169, !82]
+  - Support horizontal workspace layout in window list [Florian; !70]
+  - Add draggable previews to window list workspace switcher [Florian; !74]
+  - Arrange workspaces horizontally [Florian; !72]
+* workspace-indicator: Support horizontal workspace layout [Florian; !71]
+* workspace-indicator: Add draggable previews [Florian; !77]
+* Misc. bug fixes and cleanups [Florian; !75, !76, !79, !78, #168, !84]
+
+Contributors:
+  Florian Müllner, Jakub Steiner, Jor Teron
+
+Translators:
+  Jor Teron [mjw]
+
+3.33.3
+======
+* Misc. bug fixes [Florian, Marco; !67, !68]
+
+Contributors:
+  Florian Müllner, Marco Trevisan (Treviño)
+
+3.33.2
+======
+* Misc. bug fixes and cleanups [Florian; !66]
+
+Contributors:
+  Florian Müllner
+
+3.33.1
+======
+* Misc. bug fixes [Florian; !64]
+
+Contributors:
+  Florian Müllner
+
+3.32.1
+======
+* Fix windowsNavigator extension after ES6 port [Florian; #143]
+* screenshot-window-sizer: Add phone screenshot sizes [Adrien; !65]
+* Misc. bug fixes and cleanups [Fabian; !62]
+
+Contributors:
+  Florian Müllner, Adrien Plazas, Fabian P. Schmidt
+
+3.32.0
+======
+
+Contributors:
+  Florian Müllner
+
+Translations:
+  Victor Ibragimov [tg], Kristjan SCHMIDT [eo], Mart Raudsepp [et]
+
+3.31.92
+=======
+* Misc. bug fixes and cleanups [Florian; !57, !58, !59, !60]
+
+Contributors:
+  Florian Müllner
+
+3.31.91
+=======
+* apps-menu: Remove outdated legacy-tray handling [Florian; !53]
+* user-theme: Allow using XDG user data dir [Tomasz; !55]
+* Misc. bug fixes and cleanups [Florian; !52, !54, !56]
+
+Contributors:
+  Tomasz Gąsior, Florian Müllner
+
+Translators:
+  Matej Urbančič [sl], Gun Chleoc [gd]
+
+3.31.90
+=======
+* Misc. bug fixes and cleanups [Florian; !49, !50, !51]
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Ryuta Fujii [ja], Charles Monzat [fr], Pieter Schalk Schoeman [af]
+
+3.31.2
+======
+* Remove obsolete alternate-tab extension [Florian; #786496]
+* Adjust to gnome-shell changes [Florian; #113]
+
+Contributors:
+  Florian Müllner
+
+3.30.1
+======
+* apps-menu: Fix height on HiDPI systems [Florian; #102]
+* window-list: Only switch between windows on active workspace when scrolling
+  [Florian; #78]
+
+Contributors:
+  Florian Müllner
+
+3.30.0
+======
+* Bump version
+
+3.29.91
+=======
+* Misc. bug fixes [Florian; #90]
+
+Contributors:
+  Florian Müllner
+
+3.29.90
+=======
+* Misc. bug fixes [Florian; #786496]
+
+Contributors:
+  Florian Müllner
+
+3.29.3
+======
+* Adjust to global.screen removal [Jonas; #759538]
+
+Contributors:
+  Jonas Ådahl, Florian Müllner
+
+3.29.2
+======
+* Misc. bug fixes [Florian; #69]
+
+Contributors:
+  Florian Müllner
+
+3.28.1
+======
+* Misc. bug fixes [Xiaoguang, Florian; #59, #62]
+
+Contributors:
+  Florian Müllner, Xiaoguang Wang
+
+Translators:
+  Dz Chen [zh_CN]
+
+3.28.0
+======
+
+Contributors:
+  Florian Müllner, Xiaoguang Wang
+
+Translators:
+  Aman Alam [pa], Bruce Cowan [en_GB]
+
+3.27.92
+=======
+
+Contributors:
+  Florian Müllner
+
+Translators:
+  Piotr Drąg [es], GNOME Translation Robot [gd], Daniel Șerbănescu [ro]
+
+3.27.91
+=======
+* places-menu: Support unmounting ejectable places [Rémy; #17]
+* apps-menu: Support separators and custom sort order [Florian; #27]
+* Port to meson [Florian; #31, #45]
+* window-list: Fix missing icons on wayland [Florian; #10]
+* places-menu: Fix terminating gnome-shell with recent gjs [Florian; #44]
+* auto-move: Make it work with wayland windows [Florian; #33]
+* Classic theme fixes [Florian, Jonas; #26, #41, #39, #40]
+* Require sassc for classic styling [Florian; !28]
+* Misc. bug fixes [Piotr, Florian; #772211, #32, #30]
+
+Contributors:
+  Jeremy Bicha, Piotr Drąg, Jonas Kümmerlin, Rémy Lefevre, Iñigo Martínez,
+  Florian Müllner
+
+Translators:
+  Matej Urbančič [sl], Kjartan Maraas [nb]
+
+3.27.1
+======
+* updated translations (ca@valencia)
+
+3.26.1
+======
+* native-window-placement: Adjust to gnome-shell changes
+* updated translations: el, fa, ru, sv
+
+3.26.0
+======
+* updated translations (be, bg, ca, da, eu, fi, is, it, ko, lv, ml,
+  nl, pt_BR, vi, zh_TW)
+
+3.25.91
+=======
+* updated translations (ca, fr, it, pl, pt_BR, sr, sr@latin, tr)
+
+3.25.90
+=======
+* updated translations (es, gl, hr, hu, kk, sl, sv, sv)
+
+3.25.4
+======
+* screenshot-window-sizer: Fix backward cycling
+* updated translations (ar, be, ca, cs, de, fur, id, lt, pl, sk)
+
+3.25.3
+======
+* places-menu: Use mount operation if necessary
+* window-list: Respect MWM hints
+* updated translations (es, fur, kk)
+
+3.25.2
+======
+* places-menu: Make URI launching asynchronous
+* updated translations (de, fur, hr, hu, id, sl)
+
+3.25.1
+======
+* apps-menu: Mark copied launchers as trusted
+* places-menu: Make icon lookup asynchronous
+* updated translations (hr)
+
+3.24.1
+======
+* apps-menu: Allow creating desktop launchers via DND
+* updated translations (el, vi)
+
+3.24.0
+======
+* updated translations (lv, tr)
+
+3.23.92
+=======
+* update classic theme
+* updated translations (be, ko, ca, da, cs, ru, lt)
+
+3.23.91
+=======
+* updated translations (de, es, eu, fi, fr, fur, gl, hu, id, it, kk, nb, pl, pt_BR,
+  sk, sr, sr@latin, sv, uk, zh_TW)
+
+3.23.90
+=======
+* window-list: Improve styling
+* window-list: Hide workspace indicator when there's a single (static) workspace
+* new translation (be)
+
+3.23.2
+======
+* alternateTab: Don't take over 'switch-group' shortcut
+* updated translations (zh_CN)
+
+3.22.1
+======
+* window-list: Update icon on app changes
+
+3.22.0
+======
+* updated translations (en_GB)
+
+3.21.92
+=======
+* update style
+* updated translations (pl, vi)
+
+3.21.91
+=======
+* updated translations (pl)
+
+3.21.90
+=======
+* updated translations (es, gu)
+
+3.21.4
+======
+* apps-menu: Fix entries from non-standard AppDir directories
+
+3.21.3
+======
+* adjust to gnome-shell changes
+* updated translations (oc)
+
+3.21.2
+======
+* version bump, nothing to see here
+
+3.20.1
+======
+* update classic style
+* updated translations (gd, oc)
+
+3.20.0
+======
+* version bump, nothing to see here
+
+3.19.92
+=======
+* version bump, nothing to see here
+
+3.19.91
+=======
+* updated translations (oc)
+
+3.19.90
+=======
+* version bump, nothing to see here
+
+3.19.4
+======
+* screenshot-window-sizer: HiDPI support
+* Fix gnome-shell component in classic session
+* updated translations (lt)
+
+3.19.3
+======
+* native-window-placement: Don't let border overlap title
+* apps-menu: Fix handling of .desktop files in subdirectories
+* updated translations (is)
+
+3.19.2
+======
+* updated translations (gd)
+
+3.19.1
+======
+* Fix some theme issues
+
+3.18.1
+======
+* window-list: Fix accessibility of window buttons
+* apps-menu: Fix unreliable highlight
+* updated translations (ar)
+
+3.18.0
+======
+* Bump version
+
+3.17.92
+=======
+* places: Include DESKTOP when desktop icons are enabled
+* updated translations (fa)
+
+3.17.91
+=======
+* updated translations (nl, pl, zh_TW)
+
+3.17.90
+=======
+* window-list: Improve application ordering
+* workspace-indicator: Use consistent workspace numbering
+
+3.17.4
+======
+* updated translations (fur)
+
+3.17.3
+======
+* window-list: Adjust with text-scaling-factor
+* classic style updates
+* updated translations (pt, ro)
+
+3.17.2
+======
+* updated translations (oc, pt, zh_CN)
+
+3.17.1
+======
+* style updates
+* updated translations (oc)
+
+3.16.1
+======
+* window-list: Fix workspace indicators popup menu position
+* apps-menu: Fix taking over panel-main-menu shortcut
+* updated translations (et, ja, lv)
+
+3.16.0
+======
+* updated translations (ca)
+
+3.15.92
+=======
+* classic: Update theme
+* update for mutter API changes
+* updated translations (bg, bs, da, fi, pa, ru, sr, sr@latin, tg)
+
+3.15.91
+=======
+* classic: Update theme
+* systemMonitor extension was removed, as the message tray where it
+  put its indicator no longer exists
+* window-list: Adjust for gnome-shell changes
+* updated translations (gl, it, kk, ko, lt, pl, sk, uk, zh_TW)
+
+3.15.90
+=======
+* classic: Visual refresh based on new shell theme
+* window-list: Adjust for gnome-shell changes
+* updated translations (an, el, eo, eu, fr, he, is, sv, tr)
+
+3.15.4
+======
+* window-list: Improve interaction with system modal dialogs
+* updated translations (cs, de, es, eu, fur, hu, id, nb, pt_BR, ru, sl, vi)
+
+3.15.3.1
+========
+* adjust to gnome-shell change
+
+3.15.3
+======
+* classic-mode: Add high-contrast theme variant, drop .desktop file
+* places-menu: Fix error when XDG user directories are not set up
+* window-list: Add option to show on all monitors
+* updated translations (eu, hu, kk, ro, tr)
+
+3.15.2
+======
+* removable-drive, user-theme, window-list: Update for gnome-shell changes
+* apps-menu: Fix some visual glitches
+* Fix classic mode style
+* updated translations (an, cs, he, vi)
+
+3.15.1
+======
+ * updated translations (es, nb)
+
+3.14.1
+======
+ * alternateTab: Fix dismissing popup with Escape
+ * some improvements to the window-list
+   (spacing in app buttons, no flash when closing windows with auto-grouping)
+ * updated translations (lv, it, pt, bg)
+
+3.14.0
+======
+ * updated translations (bn_IN, hi, kn, sr, sr@latin, uk)
+
+3.13.92
+=======
+* new extension: screenshot-window-sizer
+* window-list: Don't add sticky windows more than once
+* updated translations (da, de, fi, ko, mr, ms, ne, pa, pl, sk, sv, ta, te, tr)
+
+3.13.91
+=======
+* window-list: restore fitts'ability of workspace button
+* updated for gnome-shell changes
+* updated translations (cs, kk, fr, or, fa, ja, gu, id)
+
+3.13.90
+=======
+* updated translations (as, ca, eu, nl, zh_CN, zh_HK, zh_TW)
+
+3.13.4
+======
+* Updated for gnome-shell changes
+* updated translations (el, gl, ru)
+
+3.13.3
+======
+* Tweak preference UIs some more
+* Fix classic mode schema overrides
+* updated translations (es, he, hu, lt, nb, pt_BR, sl, tr)
+
+3.13.2
+======
+* Fix sorting of grouped buttons in window list
+* Tweak preference UIs
+* updated translations (en_GB)
+
+3.13.1
+======
+* add DesktopNames key to the classic session file
+* classic theme: remove rounded corners from tile previews
+* window-list: don't shift message tray on other monitors
+* auto-move-windows: several fixes and updates for api changes
+* launch-new-instances: updates for api changes
+* updated translations (ja, km)
+
+3.12.0
+======
+* updated translations (zh_HK, zh_TW)
+
+3.11.92
+=======
+* nothing to see here, move on
+
+3.11.91
+=======
+* updated translations (ko, fur)
+
+3.11.90
+=======
+* several fixes and improvements to the window-list
+  (can be scrolled, works correctly with the OSD
+  keyboard, filters skip-taskbar windows, does not
+  force all notifications to bold)
+* drive-menu fixed not to show shadowed mounts
+* updates for gnome-shell changes (launch-new-instance,
+  auto-move-windows, places-menu)
+* build system fixes for systems without /bin/bash
+* updated translations (or, tr, uk)
+
+3.11.5
+======
+* updates for gnome-shell changes
+* updated translations (kn)
+
+3.11.4
+======
+* classic mode now supports session saving
+* updates for gnome-shell changes
+* updated translations (ar, kn)
+
+3.11.3
+======
+* workspace-indicator is vertically aligned now
+* updated translations (ar, eo, ta, te)
+
+3.11.2
+======
+* updated translations (zh_CN)
+
+3.11.1
+======
+* ignore shadowed mounts in drive-menu extension
+* updates for gnome-shell/gjs changes
+* updated translations (el, th)
+
+3.10.1
+======
+* updated translations (af, ca, ca@valencia, de, et, eu, fa,
+  hu, lt, lv, nb, nl, pa, pt, sk, sr, sr@latin, tr)
+
+3.10.0
+======
+* updated translations (as, cs, da, es, et, fi, fr, gl,
+  he, id, it, kk, lt, lv, pa, pl, pt, pt_BR, ru, sl, tg,
+  uk, zh_HK, zh_TW)
+
+3.9.92
+======
+* more updates and fixes for gnome-shell master changes
+  and regressions (systemMonitor, window-list, apps-menu)
+* lots of updated translations (ar, as, cs, da, de, el, es,
+  eu, fi, gl, he, hu, it, ja, kk, ko, lv, nb, nl, pa, pl,
+  pt_BR, ru, sk, sr, sr@latin, ta, tg)
+
+3.9.91
+======
+* update the classic mode session and theme to work with the
+  new system menu
+* the usual round of updates and fixes for gnome-shell
+  API changes
+* updated translations (de, it, lt, nl, pl, pt_BR, sk,
+  zh_HK, zh_TW)
+
+3.9.90
+======
+* xrandr-indicator was removed, as the implementation
+  was incompatible with the new DisplayConfig mutter API
+* various extensions were updated for the 3.9.90 gnome-shell API
+* updated translations (cs, es, fur, gl, he, hu, id, ja, sl, tg,
+  zh_CN, zh_HK, zh_TW)
+
+3.9.5
+=====
+* alternative-status-menu was removed entirely, as
+  it does not fit in the designs of the new unified
+  status menu
+* updated translations (as, gu, it, ru)
+
+3.9.4
+=====
+* apps-menu: fixed handling of hot corner in case
+  of screen reconfiguration
+* alternative-status-menu now correctly honors polkit
+  for hibernation
+* user-menu now loads themes from $XDG_DATA_HOME too
+* translation updates (de, id, pt_BR, vi, zh_CN, ml)
+
+3.9.3
+=====
+* classic mode mini extensions were replaced with a
+  GSettings override specified in the .json file
+* styling of classic mode improved
+* native-window-placement is back working on 3.9
+* misc bug fixes
+* traslation updates (an, cs, el, es, gl, nb, pl, sk, tg)
+
+3.9.2
+=====
+* apps-menu: appearance of the scrollbars was improved
+* window-list is a little taller in classic mode (to account
+  for the workspace switcher)
+* alternative-status-menu honors again the dconf configuration
+* translation updates (sr)
+
+3.9.1
+=====
+* updates to window-list, xrandr-indicator,
+  workspace-indicator, windowsNavigator for gnome-shell
+  changes
+* translation updates (cs, es, lt, pl, pt_BR, sl)
+
+3.8.1
+=====
+* many improvements to window-list:
+  - windows are activated by DND over them
+  - window buttons now have the right size,
+    even if the text is smaller or larger
+    than the ideal
+  - window buttons can be grouped automatically
+    when the panel becomes crowded
+  - added a workspace switcher menu
+* added keyboard navigation to apps-menu
+* small tweaks to classic-mode theme, in particular
+  for menus
+* translation updates (gl, ko, sr)
+
+3.8.0
+=====
+* translation updates (hu, ja, fi, it)
+
+3.7.92
+======
+* misc bug fixes to app-menu and window-list
+* translation updates (de, sl, pt_BR, ru)
+
+3.7.91
+======
+* various updates for shell changes
+* update window-list to always use application icons
+* update apps-menu to not load subdirectories as
+  separate categories
+* translation updates (lt, zh_CN)
+
+3.7.90
+======
+* various fixes to make places-menu behave more
+  like Nautilus, including showing the machine
+  name in place of File System
+* various updates for shell changes
+* alternative-status-menu no longer supports
+  ConsoleKit systems, you need to install logind
+  to have suspend or hibernate
+* translation updates (es, cz, pl, sr)
+
+3.7.5.1
+=======
+* new extension forgotten in previous NEWS entry:
+  windows-list
+* also forgotten previously: classic mode got a new
+  GNOME2 style
+* build fixes
+
+3.7.5
+=====
+* places-menu is back in the classic extensions, with
+  a new old GNOME-2 look
+* classic mode moved the date menu to right, where we
+  all know it rightly belongs
+* apps-menu received a face-lift, with the inclusion
+  of a reduced form of AxeMenu
+* new extension in the classic set: launch-new-instance,
+  which modifies the behavior of clicking in the dash
+  and app launcher
+* alternate-tab, native-window-placement and windowsNavigator
+  updated for gnome-shell changes
+* translation updates (es, cz, pl)
+
+3.7.4
+=====
+* a separate configure switch has been added to enable
+  classic mode session definitions
+* places-menu is no longer part of the classic-mode
+  extension set
+* updated translations (ar, gl, hu, lt, pt_BR, sr)
+
+3.7.3
+=====
+* new extensions: default-min-max, static-workspaces
+* alternate-tab now uses the built-in window switcher and just
+  takes over the switch-application keybinding
+* workspace-indicator: is no longer part of classic-mode
+* we now install classic-mode data files for gdm, gnome-session
+  and gnome-shell, so if you enable classic-mode you get a new
+  session option in GDM
+* updated translations (ar, es, pl, ru, sl, zh_HK, zh_TW)
+
+3.7.2
+=====
+* fixed crashes with places-menu, windowsNavigator, alternate-tab
+  and native-window-placement
+* alternate-tab now hides attached modal dialogs
+* places-menu has restored support for Nautilus 3.4
+* the default for hibernate is now to show in alternative-status-menu
+* some extensions are now tagged as "classic", and can be chosen with
+  --enable-extensions=classic-mode
+* dock and gajim were removed at the beginning of the 3.7.1 cycle,
+  as they were buggy and unmaintained
+* updated translations (ar, cs, de, el, es, gl, id, lt, lv, pa, pl
+  ru, sk, sl, sr, sr@latin)
+
+3.6.1
+=====
+* fixed alternative-status-menu for the new lock screen
+* squashed some alternate-tab warnings
+* drive-menu now works with 3.6 again
+* updated translations (ar, cs, el, es, gl, id, lv, pl, sl)
+
+3.6.0
+=====
+* major rework in places menu, to make it work without
+  removed supporting code in the shell and to make it look like
+  the nautilus sidebar
+  (similar work would be needed for drive-menu, not done yet)
+* updated translations (ca, cs, de, el, en_GB, es, fi, hu, id, lt,
+  pl, pt_BR, ru, sl, sr)
+
+3.5.91
+======
+* various crashers were fixed in alternative-tab
+* auto-move-windows now can be made to work with static workspaces
+* place-menu is now on the left and uses symbolic icons like Files
+* StIconType usage was removed from all extensions, after it was
+  removed in core
+* systemMonitor, xrandr-indicator, apps-menu, places-menu,
+  alternative-status-menu were updated for the newer shell
+* updated translations (es, gl, it, pl, sl)
+
+3.5.90
+======
+* alternate-tab has been reworked again, the old mode switch
+  was removed and the all&thumbnails code extended to handle
+  icons and filtering to the workspace
+* alternate-tab thumbnails now reflect the aspect ratio of the windows
+* systemMonitor now shows a tooltip above the indicator
+* native-window-placement, systemMonitor and windowsNavigator have been updated
+  for the newer shell
+* updated translations (es, pa)
+
+3.5.5
+=====
+* convenience module has been relicensed to BSD,
+  for compatibility with GPLv3 extensions
+* alternate-tab has been refactored and seen various
+  improvements to all&thumbnails mode, including a new
+  overlaid application icon
+* updated translations (lt, id, sr)
+
+3.5.4
+=====
+* updated translations (de, es, ar, sl, lv, zh_CN)
+
+3.5.2
+=====
+* removable-drive-menu is now a11y friendly
+* the dock can now be placed on any monitor, not just the primary
+* dock is now clipped to its monitor
+* alternative-status-menu now exposes GSettings for Suspend
+  and Hibernate visibility - no UI yet
+* more gnome-shell API changes (places-menu, removable-drive-menu,
+  alternative-status-menu)
+* miscellaneous bug fixes (native-window-placement, gajim,
+  auto-move-windows)
+* updated translations
+
+3.4.0
+=====
+* build system improvements
+* updated translations (ar, cs, fr)
+
+3.3.92
+======
+* various updates for gnome-shell API changes (dock,
+  native-window-placement)
+* local-install is now a make rule, not a shell script
+* updated translations (zh, es, sw, ga, hu, it, no, pt_BR, de, sl,
+  pl, la, fi, sr)
+
+3.3.90
+======
+* system wide installation via "make install" is possible
+  again
+* alternate-tab can now pre-activate the selected window
+* auto-move-windows, workspace-indicator and example gained
+  new preference dialogs
+* workspace-indicator: fixed a bug wrt focus stealing prevention
+* updated translations (es, pt_BR, it, sl, gl, sr)
+
+3.3.5
+=====
+* improvements to the build system and convenience module,
+  making it easier for other extensions to use, and bringing
+  it up to date with gnome-shell changes
+* all extensions were ported to the Lang.Class framework
+  (except xrandr-indicator, which is pending GDBus merge)
+* alternate-tab and dock were slightly refactored to clean up
+  some old code
+
+3.3.4
+=====
+* improved styling of windowsNavigator tooltips
+* fixed windowsNavigator when used with the numeric keypad
+* fixed native-window-placement with custom button layout
+* updated translations (pt_BR, cz)
+
+3.3.3
+=====
+* windowsNavigator was fixed to work with azerty keyboards
+* drive-menu was changed to use media-eject icon instead of media-optical
+* dock: the default value of hide-effect is now move
+* dock: if autohide is disabled, now it pushes maximized windows aside
+* dock was updated to match current core shell styling
+* native-window-placement: position stategy setting was removed
+* alternative-status-menu no longer conflicts with other extensions
+  in the user menu
+* various other minor bug fixes
+* updated translations (zh, uk, es, it, cz, sl, sk, fi)
+
+3.3.2
+=====
+* all extensions are now self-contained, including l10n and settings
+* introduce a convenience module that can be shared among all extensions
+* you can know build an installable zip file with make zip-file
+* apps-menu no longer shows NoDisplay apps
+* alternative-status-menu, alternate-tab: fix for master shell
+
+3.2.1
+=====
+* dock: added "move" hide effect
+* systemMonitor: now it enables/disables properly
+* systemMonitor: improved styling
+* alternate-tab: both modes now work with gnome-shell 3.2
+* various other bug fixes
+* updated translations
+
+3.2.0
+=====
+
+* various: update for gnome-shell API changes
+
+3.1.91
+======
+
+* gajim: update for gnome-shell API changes
+
+3.1.90
+======
+
+* All extensions have been ported to the new extension
+  system (including live enable/disable)
+* Updated translations
+* xrandr-indicator no longer requires a specific gjs version
+* windowsNavigator fixed for more than 2 workspaces
+
+3.1.4
+=====
+
+* New extension: a menu for changing workspace (workspace-indicator)
+* systemMonitor: lower the requirement on libgtop
+* auto-move-windows: open overview when last window on
+  last workspace is closed
+* dock: implement autohiding, with various configurable
+  effects
+* alternate-tab: more configurable implementations available
+* native-window-placement: don't rearrange the windows when
+  the workspace switcher is shown/hidden
+* update for gnome-shell 3.1.4 API changes
+
+3.1.3
+=====
+
+* New extension: a menu for removable drives (drive-menu
+* New extensions: GNOME 2 like menus for apps and places
+  (apps-menu, places-menu)
+* New extension: additional configurability for the window
+  layout in the overview, including a mechanism similar to
+  KDE4 (native-window-placement)
+* New extension: a message tray indicator for CPU and memory
+  usage (uses libgtop) (systemMonitor)
+* user-theme: fixed resetting theme
+* user-theme: support themes installed in /usr/share/themes
+* alternative-status-menu: ported to gnome-shell master
+* dock: ported to gnome-shell master
+* dock: make position configurable (can be left or right)
+* Updated translations
+
+3.0.2
+=====
+
+* Updated translations.
+* Fixed bug #647386 (reverting of user-theme to default)
+* Fixed bug #647599 (support globally installed themes)
+* Added license and README
