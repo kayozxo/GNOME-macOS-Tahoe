@@ -87,9 +87,11 @@ If you prefer command-line flags over the interactive menu:
 
 # Install built-in Tahoe extras
 ./install.sh --extensions      # Tahoe-branded GNOME extension forks
+./install.sh --force-extensions # Reinstall extension forks if the cache should be refreshed
 ./install.sh --icons           # Tahoe icon theme (also happens automatically with -l/-d)
 ./install.sh --color red --icons   # Tahoe-red icons
 ./install.sh -d --no-icons     # Dark theme without changing icons
+./install.sh --force-icons     # Rebuild Tahoe icons if the cache should be refreshed
 
 # Generate accent colors
 ./install.sh --colors        # Generate all 16 variants

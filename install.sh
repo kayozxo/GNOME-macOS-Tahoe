@@ -18,6 +18,7 @@ set -euo pipefail
 #   ./install.sh -d         -> install dark
 #   ./install.sh -la        -> install libadwaita override (requires -l or -d)
 #   ./install.sh --no-icons -> skip automatic Tahoe icon install/apply
+#   ./install.sh --force-icons -> rebuild Tahoe icons even when cached
 #   ./install.sh --colors   -> generate all accent color variants
 #   ./install.sh --color blue -> generate specific accent
 #   ./install.sh -u         -> uninstall
@@ -34,6 +35,8 @@ THEME_DIR="$HOME/.themes"
 GTK4_CONFIG_DIR="$HOME/.config/gtk-4.0"
 DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || echo "$HOME/Downloads")"
 TAHOE_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/gnome-macos-tahoe"
+ICON_CACHE_DIR="$TAHOE_CACHE_DIR/icons"
+EXTENSION_CACHE_DIR="$TAHOE_CACHE_DIR/extensions"
 BUTTON_LAYOUT_BACKUP="$TAHOE_CACHE_DIR/button-layout.before"
 TAHOE_BUTTON_LAYOUT="close,minimize,maximize:"
 TMP_DIR="$(mktemp -d -t tahoe-installer.XXXXXXXXXX)"
@@ -181,7 +184,7 @@ cleanup_tmp() {
 
 trap cleanup_tmp EXIT
 
-mkdir -p "$TMP_DIR" "$THEME_DIR" "$DOWNLOADS_DIR" "$GTK4_CONFIG_DIR" "$TAHOE_CACHE_DIR"
+mkdir -p "$TMP_DIR" "$THEME_DIR" "$DOWNLOADS_DIR" "$GTK4_CONFIG_DIR" "$TAHOE_CACHE_DIR" "$ICON_CACHE_DIR" "$EXTENSION_CACHE_DIR"
 
 check_prereqs() {
   local missing=()
@@ -335,6 +338,61 @@ icon_variant_from_accent() {
     slate) printf '%s\n' "grey" ;;
     *) printf '%s\n' "blue" ;;
   esac
+}
+
+fast_fingerprint_path() {
+  # Cheap fingerprint for cache stamps. In a git checkout, tree hashes are
+  # effectively instant; outside git, fall back to file metadata.
+  local rel_path="$1"
+  local abs_path="$SCRIPT_DIR/$rel_path"
+  local git_hash=""
+
+  if command -v git &>/dev/null && [ -d "$SCRIPT_DIR/.git" ]; then
+    git_hash="$(git -C "$SCRIPT_DIR" rev-parse "HEAD:$rel_path" 2>/dev/null || true)"
+  fi
+
+  if [ -n "$git_hash" ]; then
+    printf '%s\n' "$git_hash"
+  elif command -v sha256sum &>/dev/null && [ -d "$abs_path" ]; then
+    find "$abs_path" -type f -printf '%P:%s:%T@\n' 2>/dev/null | sort | sha256sum | awk '{print $1}'
+  else
+    find "$abs_path" -type f -printf '%T@\n' 2>/dev/null | sort | tail -n1
+  fi
+}
+
+icon_variant_installed() {
+  local icon_variant="$1"
+  [ -d "$HOME/.local/share/icons/Tahoe-${icon_variant}" ] &&
+    [ -d "$HOME/.local/share/icons/Tahoe-${icon_variant}-light" ] &&
+    [ -d "$HOME/.local/share/icons/Tahoe-${icon_variant}-dark" ]
+}
+
+icon_base_cache_key() {
+  local icon_variant="$1"
+  printf '%s:%s:%s\n' \
+    "$icon_variant" \
+    "$(fast_fingerprint_path "icons/MacTahoe")" \
+    "$(fast_fingerprint_path "icons/MacTahoe/install.sh")"
+}
+
+icon_override_cache_key() {
+  local override_dir="$SCRIPT_DIR/icons/overrides/apps"
+  local overrides_key="none"
+  local targets_key="none"
+
+  if command -v sha256sum &>/dev/null && [ -d "$override_dir" ]; then
+    overrides_key="$(find "$override_dir" -type f ! -name '.gitkeep' -printf '%P:%s:%T@\n' 2>/dev/null | sort | sha256sum | awk '{print $1}')"
+  fi
+  if command -v sha256sum &>/dev/null && [ -d "$HOME/.local/share/icons" ]; then
+    targets_key="$(find "$HOME/.local/share/icons" -maxdepth 1 -type d -name 'Tahoe*' -printf '%f\n' 2>/dev/null | sort | sha256sum | awk '{print $1}')"
+  fi
+
+  printf '%s:%s\n' "$overrides_key" "$targets_key"
+}
+
+local_extension_cache_key() {
+  local uuid="$1"
+  printf '%s:%s\n' "$uuid" "$(fast_fingerprint_path "extensions/$uuid")"
 }
 
 apply_matching_tahoe_icons() {
@@ -618,12 +676,7 @@ install_mactahoe_icons() {
   # Install it under the Tahoe name so GTK theme + icon theme read as one set.
   local accent="${1:-blue}"
   local icon_variant
-  case "$accent" in
-    blue|purple|green|red|orange) icon_variant="$accent" ;;
-    amber) icon_variant="yellow" ;;
-    slate) icon_variant="grey" ;;
-    *) icon_variant="blue" ;;
-  esac
+  icon_variant="$(icon_variant_from_accent "$accent")"
 
   local local_src="$SCRIPT_DIR/icons/MacTahoe"
   if [ ! -d "$local_src" ] || [ ! -x "$local_src/install.sh" ]; then
@@ -632,7 +685,23 @@ install_mactahoe_icons() {
     return $?
   fi
 
-  gum_spin_run "Installing Tahoe icons from local source..." "bash \"$local_src/install.sh\" -b -n Tahoe -t \"$icon_variant\""
+  local stamp="$ICON_CACHE_DIR/base-${icon_variant}.stamp"
+  local cache_key
+  cache_key="$(icon_base_cache_key "$icon_variant")"
+
+  if [ "${FORCE_ICONS:-false}" != "true" ] && icon_variant_installed "$icon_variant"; then
+    if [ ! -f "$stamp" ] || [ "$(cat "$stamp" 2>/dev/null || true)" = "$cache_key" ]; then
+      printf '%s\n' "$cache_key" > "$stamp"
+      gum_or_echo "✅ Tahoe icons already installed ($icon_variant); skipping file copy."
+    else
+      gum_spin_run "Updating Tahoe icons from local source..." "bash \"$local_src/install.sh\" -b -n Tahoe -t \"$icon_variant\""
+      printf '%s\n' "$cache_key" > "$stamp"
+    fi
+  else
+    gum_spin_run "Installing Tahoe icons from local source..." "bash \"$local_src/install.sh\" -b -n Tahoe -t \"$icon_variant\""
+    printf '%s\n' "$cache_key" > "$stamp"
+  fi
+
   apply_icon_overrides
 
   # Activate it. The vendored installer creates Tahoe, Tahoe-light, Tahoe-dark,
@@ -674,6 +743,14 @@ apply_icon_overrides() {
   local overrides=("$override_dir"/*.svg "$override_dir"/*.png)
   [ ${#overrides[@]} -gt 0 ] || return 0
 
+  local stamp="$ICON_CACHE_DIR/overrides.stamp"
+  local cache_key
+  cache_key="$(icon_override_cache_key)"
+  if [ "${FORCE_ICONS:-false}" != "true" ] && [ -f "$stamp" ] && [ "$(cat "$stamp" 2>/dev/null || true)" = "$cache_key" ]; then
+    gum_or_echo "✅ Tahoe icon overrides already applied; skipping."
+    return 0
+  fi
+
   gum_or_echo "${CYAN}Applying local Tahoe icon overrides...${NC}"
 
   local theme_dir icon base ext out
@@ -704,6 +781,8 @@ apply_icon_overrides() {
       gtk-update-icon-cache -q -f "$theme_dir" 2>/dev/null || true
     fi
   done
+
+  printf '%s\n' "$cache_key" > "$stamp"
 }
 
 install_icons_or_cursors() {
@@ -823,13 +902,30 @@ install_local_extension() {
     return 1
   fi
 
+  local dest="$HOME/.local/share/gnome-shell/extensions/$uuid"
+  local stamp="$EXTENSION_CACHE_DIR/$uuid.stamp"
+  local cache_key
+  cache_key="$(local_extension_cache_key "$uuid")"
+
+  if [ "${FORCE_EXTENSIONS:-false}" != "true" ] && [ -d "$dest" ] && [ -f "$dest/metadata.json" ]; then
+    if [ ! -f "$stamp" ] || [ "$(cat "$stamp" 2>/dev/null || true)" = "$cache_key" ]; then
+      printf '%s\n' "$cache_key" > "$stamp"
+      if gnome-extensions enable "$uuid" 2>/dev/null; then
+        gum_or_echo "✅ ${friendly} already installed & enabled (local · ${uuid})"
+      else
+        gum_or_echo "✅ ${friendly} already installed (local · ${uuid}) — enable after restarting GNOME Shell"
+      fi
+      return 0
+    fi
+  fi
+
   if [ -f "$src/Makefile" ]; then
     gum_spin_run "Building ${friendly} from local source..." "make -C \"$src\" install"
   else
     # No Makefile — drop the source straight into the extensions dir.
-    local dest="$HOME/.local/share/gnome-shell/extensions/$uuid"
     gum_spin_run "Installing ${friendly} from local source..." "rm -rf \"$dest\" && cp -a \"$src\" \"$dest\" && { [ ! -d \"$dest/schemas\" ] || glib-compile-schemas \"$dest/schemas\"; }"
   fi
+  printf '%s\n' "$cache_key" > "$stamp"
 
   if gnome-extensions enable "$uuid" 2>/dev/null; then
     gum_or_echo "✅ ${friendly} installed & enabled (local · ${uuid})"
@@ -1094,8 +1190,10 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
   (Tahoe Open Bar, Tahoe Blur, Tahoe Dock, Tahoe UI Tune,
    Tahoe Space Bar, Tahoe Tiling Shell, Tahoe User Themes, Tahoe Vitals)
 - `--blur` or `--blur-my-shell` - Install only Tahoe Blur
+- `--force-extensions` - Reinstall local Tahoe extension forks even if cached
 - `--icons` - Install Tahoe icons and apply them
 - `--no-icons` - Skip automatic Tahoe icon install when installing a theme
+- `--force-icons` - Rebuild Tahoe icons even if cached
 
 ## Other Flags
 - `-u` or `--uninstall` - Uninstall Tahoe themes, icons, extension forks, and GTK overrides
@@ -1137,8 +1235,10 @@ CLI flags:
                              Tahoe Tiling Shell, Tahoe User Themes,
                              Tahoe Vitals)
   --blur / --blur-my-shell  Install only Tahoe Blur
+  --force-extensions        Reinstall Tahoe extension forks even if cached
   --icons                   Install Tahoe icons and apply them
   --no-icons                Skip automatic Tahoe icon install
+  --force-icons             Rebuild Tahoe icons even if cached
   -u / --uninstall          Uninstall Tahoe themes/icons/extensions
   -h / --help               Show help
 
@@ -1312,6 +1412,8 @@ if [[ $# -gt 0 ]]; then
   INSTALL_EXTENSIONS=false
   INSTALL_ICONS=false
   SKIP_ICONS=false
+  FORCE_ICONS=false
+  FORCE_EXTENSIONS=false
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -1379,12 +1481,22 @@ if [[ $# -gt 0 ]]; then
         INSTALL_EXTENSIONS=true
         shift
         ;;
+      --force-extensions)
+        FORCE_EXTENSIONS=true
+        INSTALL_EXTENSIONS=true
+        shift
+        ;;
       --icons|--icon-theme)
         INSTALL_ICONS=true
         shift
         ;;
       --no-icons)
         SKIP_ICONS=true
+        shift
+        ;;
+      --force-icons)
+        FORCE_ICONS=true
+        INSTALL_ICONS=true
         shift
         ;;
       *)
