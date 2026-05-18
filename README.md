@@ -100,6 +100,16 @@ If you prefer command-line flags over the interactive menu:
 ./install.sh -d --color blue -la    # Dark blue + libadwaita + GNOME Shell
 ```
 
+### Icon overrides
+
+To replace individual app icons with higher-resolution images you are allowed to redistribute, put `.svg` or `.png` files in `icons/overrides/apps/` using the app icon name as the filename, then run:
+
+```bash
+./install.sh --icons
+```
+
+PNG overrides are resized to `512x512` when ImageMagick is installed. Do not commit random Google Images unless you have redistribution rights.
+
 ### Updating
 
 1. Run `cd GNOME-macOS-Tahoe`

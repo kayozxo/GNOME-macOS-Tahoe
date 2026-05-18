@@ -633,6 +633,7 @@ install_mactahoe_icons() {
   fi
 
   gum_spin_run "Installing Tahoe icons from local source..." "bash \"$local_src/install.sh\" -b -n Tahoe -t \"$icon_variant\""
+  apply_icon_overrides
 
   # Activate it. The vendored installer creates Tahoe, Tahoe-light, Tahoe-dark,
   # and accent variants such as Tahoe-red / Tahoe-red-dark.
@@ -663,6 +664,46 @@ install_mactahoe_icons() {
   else
     gum_or_echo "✅ Tahoe icons installed (gsettings unavailable; activate manually)"
   fi
+}
+
+apply_icon_overrides() {
+  local override_dir="$SCRIPT_DIR/icons/overrides/apps"
+  [ -d "$override_dir" ] || return 0
+
+  shopt -s nullglob
+  local overrides=("$override_dir"/*.svg "$override_dir"/*.png)
+  [ ${#overrides[@]} -gt 0 ] || return 0
+
+  gum_or_echo "${CYAN}Applying local Tahoe icon overrides...${NC}"
+
+  local theme_dir icon base ext out
+  for theme_dir in "$HOME"/.local/share/icons/Tahoe*; do
+    [ -d "$theme_dir" ] || continue
+    mkdir -p "$theme_dir/apps/scalable"
+    for icon in "${overrides[@]}"; do
+      base="$(basename "$icon")"
+      ext="${base##*.}"
+      base="${base%.*}"
+      case "${ext,,}" in
+        svg)
+          cp -f "$icon" "$theme_dir/apps/scalable/$base.svg"
+          ;;
+        png)
+          out="$theme_dir/apps/scalable/$base.png"
+          if command -v magick &>/dev/null; then
+            magick "$icon" -resize 512x512 "$out"
+          elif command -v convert &>/dev/null; then
+            convert "$icon" -resize 512x512 "$out"
+          else
+            cp -f "$icon" "$out"
+          fi
+          ;;
+      esac
+    done
+    if command -v gtk-update-icon-cache &>/dev/null; then
+      gtk-update-icon-cache -q -f "$theme_dir" 2>/dev/null || true
+    fi
+  done
 }
 
 install_icons_or_cursors() {
