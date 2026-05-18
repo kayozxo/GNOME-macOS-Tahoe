@@ -504,6 +504,73 @@ install_wallpaper() {
   # wallpaper installer made by skittle0764 https://github.com/skittle0764
 }
 
+install_gnome_extension() {
+  # Install a GNOME Shell extension from extensions.gnome.org.
+  # Args: ext_id [friendly_name]
+  local ext_id="$1"
+  local friendly="${2:-extension $ext_id}"
+
+  for cmd in gnome-shell gnome-extensions curl python3; do
+    if ! command -v "$cmd" &>/dev/null; then
+      gum_or_echo "${RED}✗ '$cmd' is required to install GNOME extensions.${NC}"
+      return 1
+    fi
+  done
+
+  local shell_ver
+  shell_ver=$(gnome-shell --version 2>/dev/null | awk '{print $3}' | cut -d. -f1)
+  if [ -z "$shell_ver" ]; then
+    gum_or_echo "${RED}✗ Could not detect GNOME Shell version.${NC}"
+    return 1
+  fi
+
+  local info_url="https://extensions.gnome.org/extension-info/?pk=${ext_id}&shell_version=${shell_ver}"
+  local info
+  if ! info=$(curl -fsSL "$info_url" 2>/dev/null); then
+    gum_or_echo "${RED}✗ Failed to fetch metadata for $friendly (id=$ext_id).${NC}"
+    return 1
+  fi
+
+  local download_path uuid name
+  download_path=$(printf '%s' "$info" | python3 -c 'import json,sys;d=json.load(sys.stdin);print(d.get("download_url","") or "")' 2>/dev/null || true)
+  uuid=$(printf '%s' "$info" | python3 -c 'import json,sys;print(json.load(sys.stdin).get("uuid","") or "")' 2>/dev/null || true)
+  name=$(printf '%s' "$info" | python3 -c 'import json,sys;print(json.load(sys.stdin).get("name","") or "")' 2>/dev/null || true)
+
+  if [ -z "$download_path" ] || [ -z "$uuid" ]; then
+    gum_or_echo "${RED}✗ $friendly is not available for GNOME Shell $shell_ver.${NC}"
+    return 1
+  fi
+
+  local zip="$TMP_DIR/${uuid}.zip"
+  gum_spin_run "Downloading ${name:-$friendly}..." "curl -fsSL -o \"$zip\" \"https://extensions.gnome.org${download_path}\""
+  gum_spin_run "Installing ${name:-$friendly}..." "gnome-extensions install --force \"$zip\""
+
+  if gnome-extensions enable "$uuid" 2>/dev/null; then
+    gum_or_echo "✅ ${name:-$friendly} installed & enabled ($uuid)"
+  else
+    gum_or_echo "✅ ${name:-$friendly} installed ($uuid) — enable after restarting GNOME Shell."
+  fi
+}
+
+install_blur_my_shell() {
+  install_gnome_extension 3193 "Blur My Shell"
+  gum_or_echo "${YELLOW}⚠️  Log out and back in (or press Alt+F2 → 'r' on X11) to activate.${NC}"
+}
+
+install_recommended_extensions() {
+  gum_or_echo "${CYAN}Installing recommended GNOME Shell extensions...${NC}"
+  # ext_id : friendly_name (kept in sync with README "Recommended GNOME Shell extensions")
+  install_gnome_extension 6580 "Open Bar"                  || true
+  install_gnome_extension 3193 "Blur My Shell"             || true
+  install_gnome_extension 307  "Dash to Dock"              || true
+  install_gnome_extension 4158 "GNOME 4x UI Improvements"  || true
+  install_gnome_extension 5090 "Space Bar"                 || true
+  install_gnome_extension 7065 "Tiling Shell"              || true
+  install_gnome_extension 19   "User Themes"               || true
+  install_gnome_extension 1460 "Vitals"                    || true
+  gum_or_echo "${YELLOW}⚠️  Log out and back in to fully load the new extensions.${NC}"
+}
+
 connect_flatpak() {
   if ! command -v flatpak &>/dev/null; then
     gum_or_echo "${RED}Error: Flatpak is not installed on your system${NC}"
@@ -624,6 +691,12 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
 - `--flatpak` - Connect Flatpak apps to Tahoe themes (requires sudo)
 - `--flatpak-disconnect` - Remove Flatpak theme access
 
+## GNOME Extension Flags
+- `--extensions` - Install all recommended GNOME Shell extensions
+  (Open Bar, Blur My Shell, Dash to Dock, GNOME 4x UI Improvements,
+   Space Bar, Tiling Shell, User Themes, Vitals)
+- `--blur` or `--blur-my-shell` - Install only the Blur My Shell extension
+
 ## Other Flags
 - `-u` or `--uninstall` - Uninstall all themes
 - `-h` or `--help` - Show this help
@@ -657,6 +730,11 @@ CLI flags:
   -la                       Install libadwaita override
   --flatpak                 Connect Flatpak themes
   --flatpak-disconnect      Disconnect Flatpak themes
+  --extensions              Install recommended GNOME Shell extensions
+                            (Open Bar, Blur My Shell, Dash to Dock,
+                             GNOME 4x UI Improvements, Space Bar,
+                             Tiling Shell, User Themes, Vitals)
+  --blur / --blur-my-shell  Install only Blur My Shell
   -u / --uninstall          Uninstall all
   -h / --help               Show help
 
@@ -684,14 +762,14 @@ interactive_menu() {
         "Generate: Specific accent variant" \
         "Install generated accent variants into ~/.themes" \
         "Install libadwaita override" \
-        "Install Extras (icons/wallpapers/cursors/ulauncher/GDM)" \
+        "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" \
         "Uninstall themes" \
         "Force reload theme (clear cache)" \
         "Help" \
         "Exit")
     else
       echo "Choose an option:"
-      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Install libadwaita override" "Install Extras (icons/cursors/ulauncher/GDM)" "Uninstall themes" "Force reload theme" "Help" "Exit"; do break; done
+      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)" "Uninstall themes" "Force reload theme" "Help" "Exit"; do break; done
     fi
 
     case "$selection" in
@@ -724,9 +802,11 @@ interactive_menu() {
         fi
         install_libadwaita_override "${mode:-Light}" "$specific"
         ;;
-      "Install Extras (icons/wallpapers/cursors/ulauncher/GDM)")
+      "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)")
         if command -v gum &>/dev/null; then
           ex=$(gum choose \
+            "Install all recommended GNOME extensions" \
+            "Install Blur My Shell extension" \
             "Install MacTahoe icons" \
             "Install WhiteSur cursors" \
             "Install Ulauncher theme" \
@@ -737,25 +817,29 @@ interactive_menu() {
             "Back")
         else
           echo "Extras:"
-          echo "  1) Install MacTahoe icons"
-          echo "  2) Install WhiteSur cursors"
-          echo "  3) Install Ulauncher theme"
-          echo "  4) Install WhiteSur GDM theme"
-          echo "  5) Install Tahoe Wallpapers"
-          echo "  6) Connect Flatpak themes"
-          echo "  7) Disconnect Flatpak themes"
-          echo "  8) Back"
-          read -r -p "Enter choice (1-8): " ex
+          echo "  1) Install all recommended GNOME extensions"
+          echo "  2) Install Blur My Shell extension"
+          echo "  3) Install MacTahoe icons"
+          echo "  4) Install WhiteSur cursors"
+          echo "  5) Install Ulauncher theme"
+          echo "  6) Install WhiteSur GDM theme"
+          echo "  7) Install Tahoe Wallpapers"
+          echo "  8) Connect Flatpak themes"
+          echo "  9) Disconnect Flatpak themes"
+          echo " 10) Back"
+          read -r -p "Enter choice (1-10): " ex
         fi
         case "$ex" in
-          "Install MacTahoe icons"|1) install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b ;;
-          "Install WhiteSur cursors"|2) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
-          "Install Ulauncher theme"|3) install_ulauncher_theme ;;
-          "Install WhiteSur GDM theme"|4) install_gdm_theme ;;
-          "Install Tahoe Wallpapers"|5) install_wallpaper ;;
-          "Connect Flatpak themes"|6) connect_flatpak ;;
-          "Disconnect Flatpak themes"|7) disconnect_flatpak ;;
-          "Back"|8) : ;;
+          "Install all recommended GNOME extensions"|1) install_recommended_extensions ;;
+          "Install Blur My Shell extension"|2) install_blur_my_shell ;;
+          "Install MacTahoe icons"|3) install_icons_or_cursors "https://github.com/vinceliuice/MacTahoe-icon-theme.git" "MacTahoe-icon-theme" -b ;;
+          "Install WhiteSur cursors"|4) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
+          "Install Ulauncher theme"|5) install_ulauncher_theme ;;
+          "Install WhiteSur GDM theme"|6) install_gdm_theme ;;
+          "Install Tahoe Wallpapers"|7) install_wallpaper ;;
+          "Connect Flatpak themes"|8) connect_flatpak ;;
+          "Disconnect Flatpak themes"|9) disconnect_flatpak ;;
+          "Back"|10) : ;;
           *) gum_or_echo "${YELLOW}Unrecognized option in Extras menu${NC}" ;;
         esac
         ;;
@@ -799,6 +883,8 @@ if [[ $# -gt 0 ]]; then
   INSTALL_COLORS=false
   SPECIFIC_COLOR=""
   INSTALL_WALLPAPER=false
+  INSTALL_BLUR=false
+  INSTALL_EXTENSIONS=false
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -844,6 +930,14 @@ if [[ $# -gt 0 ]]; then
         INSTALL_DARK=true
         shift
         ;;
+      --blur|--blur-my-shell)
+        INSTALL_BLUR=true
+        shift
+        ;;
+      --extensions|--gnome-extensions)
+        INSTALL_EXTENSIONS=true
+        shift
+        ;;
       *)
         gum_or_echo "${YELLOW}Unknown option: $1${NC}"
         print_usage_and_exit
@@ -878,6 +972,12 @@ if [[ $# -gt 0 ]]; then
 
   if $INSTALL_WALLPAPER; then
     install_wallpaper
+  fi
+
+  if $INSTALL_EXTENSIONS; then
+    install_recommended_extensions
+  elif $INSTALL_BLUR; then
+    install_blur_my_shell
   fi
 
   exit 0
