@@ -71,9 +71,67 @@
   --traffic-close-hover: #f25056;
   --traffic-max-hover: #39ea49;
   --traffic-min-hover: #fac536;
+  --tahoe-glass-bg: rgba(28, 28, 32, 0.72);
+  --tahoe-glass-strong-bg: rgba(48, 48, 54, 0.84);
+  --tahoe-glass-border: rgba(255, 255, 255, 0.16);
+  --tahoe-glass-shade: rgba(0, 0, 0, 0.34);
+  --tahoe-glass-shadow: 0 20px 52px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --tahoe-glass-radius: 22px;
+  --tahoe-control-radius: 12px;
 }
 @import '../gtk-3.0/libadwaita.css';
 @import '../gtk-3.0/libadwaita-tweaks.css';
+
+/* Tahoe 26 Liquid Glass approximation.
+ * GNOME/GTK cannot render Apple's private refraction material, so this
+ * combines translucent fills, bright inner strokes, and softer shadows.
+ */
+window.background,
+window.csd,
+dialog,
+popover > contents,
+menu,
+.card,
+.boxed-list,
+preferencesgroup > box,
+headerbar,
+.titlebar,
+navigation-sidebar,
+.navigation-sidebar,
+placessidebar,
+placessidebar list,
+list.navigation-sidebar {
+  background-color: var(--tahoe-glass-bg);
+  border: 1px solid var(--tahoe-glass-border);
+  box-shadow: var(--tahoe-glass-shadow);
+}
+
+headerbar,
+.titlebar,
+popover > contents,
+dialog,
+.card,
+.boxed-list {
+  border-radius: var(--tahoe-glass-radius);
+}
+
+button,
+entry,
+searchentry,
+combobox,
+spinbutton,
+switch,
+scale trough {
+  border-radius: var(--tahoe-control-radius);
+}
+
+button:hover,
+row:hover,
+listview row:hover,
+treeview.view:hover {
+  background-color: var(--tahoe-glass-strong-bg);
+}
 
 * {
   border-radius: 20px;

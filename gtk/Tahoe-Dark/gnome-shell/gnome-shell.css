@@ -5948,3 +5948,65 @@ StWidget.focused .app-grid-running-dot {
 .popup-menu-player-icons-icon {
   background: rgba(255, 255, 255, 0.1) !important;
 }
+
+/* Tahoe 26 Liquid Glass pass.
+ * Apple describes Tahoe as transparent menu bar + Liquid Glass sidebars,
+ * toolbars, Dock, and controls. GNOME Shell cannot refract wallpaper pixels,
+ * but these translucent fills are tuned for Blur My Shell.
+ */
+#panel {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#panel .panel-button,
+#panel .clock-display .clock {
+  color: white;
+  border-radius: 9999px !important;
+}
+
+#panel .panel-button:hover,
+#panel .panel-button:focus,
+#panel .panel-button:checked,
+#panel .clock-display:hover .clock {
+  background-color: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+}
+
+.popup-menu-boxpointer,
+.popup-menu-content,
+.quick-settings,
+.quick-settings-system-item,
+.calendar,
+.datemenu-popover,
+.message,
+.notification-banner,
+.modal-dialog,
+.app-folder-dialog,
+.candidate-popup-content {
+  background-color: rgba(30, 30, 34, 0.78) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.quick-toggle,
+.quick-menu-toggle,
+.message-list-controls,
+.calendar .calendar-day,
+.calendar .calendar-day-base,
+.world-clocks-button,
+.weather-button,
+.events-button {
+  border-radius: 16px !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.quick-toggle:hover,
+.quick-menu-toggle:hover,
+.message:hover,
+.calendar .calendar-day:hover,
+.calendar .calendar-day-base:hover {
+  background-color: rgba(255, 255, 255, 0.16) !important;
+}

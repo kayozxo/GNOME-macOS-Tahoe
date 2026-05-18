@@ -17,6 +17,7 @@ set -euo pipefail
 #   ./install.sh -l         -> install light
 #   ./install.sh -d         -> install dark
 #   ./install.sh -la        -> install libadwaita override (requires -l or -d)
+#   ./install.sh --no-icons -> skip automatic Tahoe icon install/apply
 #   ./install.sh --colors   -> generate all accent color variants
 #   ./install.sh --color blue -> generate specific accent
 #   ./install.sh -u         -> uninstall
@@ -327,6 +328,50 @@ restore_button_layout() {
   fi
 }
 
+icon_variant_from_accent() {
+  case "${1,,}" in
+    blue|purple|green|red|orange) printf '%s\n' "${1,,}" ;;
+    amber) printf '%s\n' "yellow" ;;
+    slate) printf '%s\n' "grey" ;;
+    *) printf '%s\n' "blue" ;;
+  esac
+}
+
+apply_matching_tahoe_icons() {
+  local theme_name="$1"
+  if ! command -v gsettings &>/dev/null; then
+    return 0
+  fi
+
+  local accent="blue"
+  local mode="light"
+  case "$theme_name" in
+    *-Dark*) mode="dark" ;;
+  esac
+
+  if [[ "$theme_name" =~ Tahoe-(Light|Dark)-(.+) ]]; then
+    accent="$(printf '%s' "${BASH_REMATCH[2]}" | tr '[:upper:]' '[:lower:]')"
+  fi
+
+  local icon_variant picked=""
+  icon_variant="$(icon_variant_from_accent "$accent")"
+
+  if [ "$mode" = "dark" ]; then
+    for name in "Tahoe-${icon_variant}-dark" "Tahoe-${icon_variant}" Tahoe-dark Tahoe; do
+      [ -d "$HOME/.local/share/icons/$name" ] && picked="$name" && break
+    done
+  else
+    for name in "Tahoe-${icon_variant}" "Tahoe-${icon_variant}-light" Tahoe Tahoe-light; do
+      [ -d "$HOME/.local/share/icons/$name" ] && picked="$name" && break
+    done
+  fi
+
+  if [ -n "$picked" ]; then
+    gsettings set org.gnome.desktop.interface icon-theme "$picked" 2>/dev/null || true
+    gum_or_echo "✅ Matched icon theme: $picked"
+  fi
+}
+
 apply_theme() {
   # Activate a previously-installed Tahoe variant via gsettings.
   # Arg: theme name (e.g. "Tahoe-Light", "Tahoe-Dark", "Tahoe-Dark-Blue").
@@ -354,6 +399,7 @@ apply_theme() {
   esac
 
   apply_tahoe_button_layout
+  apply_matching_tahoe_icons "$theme_name"
 
   # GNOME Shell theme (requires User Themes extension)
   local shell_applied=false
@@ -407,6 +453,12 @@ install_base_themes() {
     else
       gum_or_echo "${CYAN}Skipped — set the theme later via Tweaks/Refine or 'gsettings set org.gnome.desktop.interface gtk-theme $active'.${NC}"
     fi
+  fi
+
+  if [ "${SKIP_ICONS:-false}" != "true" ]; then
+    install_mactahoe_icons "${SPECIFIC_COLOR:-blue}"
+  else
+    gum_or_echo "${CYAN}Skipped Tahoe icons because --no-icons was set.${NC}"
   fi
 }
 
@@ -1002,6 +1054,7 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
    Tahoe Space Bar, Tahoe Tiling Shell, Tahoe User Themes, Tahoe Vitals)
 - `--blur` or `--blur-my-shell` - Install only Tahoe Blur
 - `--icons` - Install Tahoe icons and apply them
+- `--no-icons` - Skip automatic Tahoe icon install when installing a theme
 
 ## Other Flags
 - `-u` or `--uninstall` - Uninstall Tahoe themes, icons, extension forks, and GTK overrides
@@ -1044,6 +1097,7 @@ CLI flags:
                              Tahoe Vitals)
   --blur / --blur-my-shell  Install only Tahoe Blur
   --icons                   Install Tahoe icons and apply them
+  --no-icons                Skip automatic Tahoe icon install
   -u / --uninstall          Uninstall Tahoe themes/icons/extensions
   -h / --help               Show help
 
@@ -1216,6 +1270,7 @@ if [[ $# -gt 0 ]]; then
   INSTALL_BLUR=false
   INSTALL_EXTENSIONS=false
   INSTALL_ICONS=false
+  SKIP_ICONS=false
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -1287,6 +1342,10 @@ if [[ $# -gt 0 ]]; then
         INSTALL_ICONS=true
         shift
         ;;
+      --no-icons)
+        SKIP_ICONS=true
+        shift
+        ;;
       *)
         gum_or_echo "${YELLOW}Unknown option: $1${NC}"
         print_usage_and_exit
@@ -1323,7 +1382,7 @@ if [[ $# -gt 0 ]]; then
     install_wallpaper
   fi
 
-  if $INSTALL_ICONS; then
+  if $INSTALL_ICONS && ! $INSTALL_LIGHT && ! $INSTALL_DARK; then
     install_mactahoe_icons "${SPECIFIC_COLOR:-blue}"
   fi
 
