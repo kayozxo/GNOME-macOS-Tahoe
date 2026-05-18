@@ -19,6 +19,7 @@ set -euo pipefail
 #   ./install.sh -la        -> install libadwaita override (requires -l or -d)
 #   ./install.sh --no-icons -> skip automatic Tahoe icon install/apply
 #   ./install.sh --force-icons -> rebuild Tahoe icons even when cached
+#   ./install.sh --app-names -> rename common apps to macOS names
 #   ./install.sh --ai       -> install Tahoe Intelligence OpenAI helper
 #   ./install.sh --colors   -> generate all accent color variants
 #   ./install.sh --color blue -> generate specific accent
@@ -46,6 +47,7 @@ AI_BIN_PATH="$AI_BIN_DIR/tahoe-intelligence"
 AI_DESKTOP_FILE="$AI_DESKTOP_DIR/tahoe-intelligence.desktop"
 AI_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gnome-macos-tahoe"
 AI_ENV_FILE="$AI_CONFIG_DIR/openai.env"
+APP_NAME_OVERRIDE_DIR="$TAHOE_CACHE_DIR/app-name-overrides"
 TMP_DIR="$(mktemp -d -t tahoe-installer.XXXXXXXXXX)"
 APP_LAUNCHER="kayozxo/ulauncher-liquid-glass"
 TMP_ZIP_AL="ulauncher-liquid-glass.zip"
@@ -60,6 +62,60 @@ TAHOE_EXTENSION_UUIDS=(
   tahoe-tiling-shell@bobwdmai
   tahoe-user-themes@bobwdmai
   tahoe-vitals@bobwdmai
+)
+DOCK_CONFLICT_UUIDS=(
+  dash-to-dock@micxgx.gmail.com
+  ubuntu-dock@ubuntu.com
+  dash-to-panel@jderose9.github.com
+  dash2dock-lite@icedman.github.com
+  cosmic-dock@system76.com
+)
+MACOS_APP_NAME_MAP=(
+  "org.gnome.Nautilus.desktop|Finder"
+  "nautilus.desktop|Finder"
+  "org.gnome.Settings.desktop|System Settings"
+  "gnome-control-center.desktop|System Settings"
+  "org.gnome.Software.desktop|App Store"
+  "snap-store_ubuntu-software.desktop|App Store"
+  "org.gnome.TextEditor.desktop|TextEdit"
+  "org.gnome.gedit.desktop|TextEdit"
+  "org.gnome.Terminal.desktop|Terminal"
+  "org.gnome.Console.desktop|Terminal"
+  "org.gnome.Ptyxis.desktop|Terminal"
+  "org.gnome.Papers.desktop|Preview"
+  "org.gnome.Papers-previewer.desktop|Preview"
+  "org.gnome.Evince.desktop|Preview"
+  "org.gnome.Loupe.desktop|Preview"
+  "org.gnome.Snapshot.desktop|Photo Booth"
+  "org.gnome.Shotwell.desktop|Photos"
+  "org.gnome.Shotwell-Viewer.desktop|Photos"
+  "org.gnome.Photos.desktop|Photos"
+  "org.gnome.Totem.desktop|QuickTime Player"
+  "org.gnome.Rhythmbox3.desktop|Music"
+  "org.gnome.Music.desktop|Music"
+  "org.gnome.Calendar.desktop|Calendar"
+  "org.gnome.clocks.desktop|Clock"
+  "org.gnome.Calculator.desktop|Calculator"
+  "org.gnome.Contacts.desktop|Contacts"
+  "org.gnome.Maps.desktop|Maps"
+  "org.gnome.Weather.desktop|Weather"
+  "org.gnome.FileRoller.desktop|Archive Utility"
+  "org.gnome.DiskUtility.desktop|Disk Utility"
+  "org.gnome.SystemMonitor.desktop|Activity Monitor"
+  "org.gnome.Logs.desktop|Console"
+  "org.gnome.baobab.desktop|Storage Management"
+  "org.gnome.font-viewer.desktop|Font Book"
+  "org.gnome.seahorse.Application.desktop|Passwords"
+  "org.gnome.Characters.desktop|Character Viewer"
+  "org.gnome.Yelp.desktop|Help"
+  "libreoffice-writer.desktop|Pages"
+  "libreoffice-calc.desktop|Numbers"
+  "libreoffice-impress.desktop|Keynote"
+  "libreoffice-draw.desktop|Freeform"
+  "firefox.desktop|Safari"
+  "thunderbird.desktop|Mail"
+  "org.gnome.Evolution.desktop|Mail"
+  "org.gnome.Geary.desktop|Mail"
 )
 
 # Pretty colors for fallback output
@@ -191,7 +247,7 @@ cleanup_tmp() {
 
 trap cleanup_tmp EXIT
 
-mkdir -p "$TMP_DIR" "$THEME_DIR" "$DOWNLOADS_DIR" "$GTK4_CONFIG_DIR" "$TAHOE_CACHE_DIR" "$ICON_CACHE_DIR" "$EXTENSION_CACHE_DIR"
+mkdir -p "$TMP_DIR" "$THEME_DIR" "$DOWNLOADS_DIR" "$GTK4_CONFIG_DIR" "$TAHOE_CACHE_DIR" "$ICON_CACHE_DIR" "$EXTENSION_CACHE_DIR" "$APP_NAME_OVERRIDE_DIR"
 
 check_prereqs() {
   local missing=()
@@ -777,6 +833,118 @@ EOF
   fi
 }
 
+desktop_entry_source() {
+  local desktop_id="$1"
+  local dir
+  for dir in "$HOME/.local/share/applications" /usr/local/share/applications /usr/share/applications /var/lib/snapd/desktop/applications; do
+    if [ -f "$dir/$desktop_id" ]; then
+      printf '%s\n' "$dir/$desktop_id"
+      return 0
+    fi
+  done
+  return 1
+}
+
+write_macos_named_desktop_entry() {
+  local desktop_id="$1"
+  local macos_name="$2"
+  local source target backup
+
+  source="$(desktop_entry_source "$desktop_id" || true)"
+  [ -n "$source" ] || return 0
+
+  target="$HOME/.local/share/applications/$desktop_id"
+  backup="$APP_NAME_OVERRIDE_DIR/$desktop_id"
+  mkdir -p "$HOME/.local/share/applications" "$APP_NAME_OVERRIDE_DIR"
+
+  if [ -f "$target" ] && ! grep -q '^X-GNOME-macOS-Tahoe-Renamed=true$' "$target" 2>/dev/null; then
+    cp -p "$target" "$backup"
+  fi
+
+  awk -v new_name="$macos_name" '
+    function finish_desktop() {
+      if (in_desktop) {
+        if (!wrote_name) {
+          print "Name=" new_name
+          wrote_name = 1
+        }
+        if (!wrote_marker) {
+          print "X-GNOME-macOS-Tahoe-Renamed=true"
+          wrote_marker = 1
+        }
+      }
+    }
+
+    /^\[/ {
+      finish_desktop()
+      if ($0 == "[Desktop Entry]") {
+        in_desktop = 1
+        wrote_name = 0
+        wrote_marker = 0
+      } else {
+        in_desktop = 0
+      }
+      print
+      next
+    }
+
+    in_desktop && /^Name(\[[^]]+\])?=/ {
+      if ($0 ~ /^Name=/ && !wrote_name) {
+        print "Name=" new_name
+        wrote_name = 1
+      }
+      next
+    }
+
+    in_desktop && /^X-GNOME-macOS-Tahoe-Renamed=/ {
+      if (!wrote_marker) {
+        print "X-GNOME-macOS-Tahoe-Renamed=true"
+        wrote_marker = 1
+      }
+      next
+    }
+
+    { print }
+
+    END {
+      finish_desktop()
+    }
+  ' "$source" > "$target.tmp"
+  mv "$target.tmp" "$target"
+}
+
+install_macos_app_names() {
+  gum_or_echo "${CYAN}Renaming common apps to macOS-style names...${NC}"
+
+  local entry desktop_id macos_name count=0
+  for entry in "${MACOS_APP_NAME_MAP[@]}"; do
+    IFS='|' read -r desktop_id macos_name <<< "$entry"
+    if desktop_entry_source "$desktop_id" >/dev/null; then
+      write_macos_named_desktop_entry "$desktop_id" "$macos_name"
+      count=$((count + 1))
+    fi
+  done
+
+  update-desktop-database "$HOME/.local/share/applications" >/dev/null 2>&1 || true
+  gum_or_echo "✅ Applied $count macOS app-name overrides."
+}
+
+uninstall_macos_app_names() {
+  local entry desktop_id backup target
+  for entry in "${MACOS_APP_NAME_MAP[@]}"; do
+    IFS='|' read -r desktop_id _macos_name <<< "$entry"
+    backup="$APP_NAME_OVERRIDE_DIR/$desktop_id"
+    target="$HOME/.local/share/applications/$desktop_id"
+    if [ -f "$backup" ]; then
+      cp -p "$backup" "$target"
+      rm -f "$backup"
+    elif [ -f "$target" ] && grep -q '^X-GNOME-macOS-Tahoe-Renamed=true$' "$target" 2>/dev/null; then
+      rm -f "$target"
+    fi
+  done
+  update-desktop-database "$HOME/.local/share/applications" >/dev/null 2>&1 || true
+}
+
 apply_icon_overrides() {
   local override_dir="$SCRIPT_DIR/icons/overrides/apps"
   [ -d "$override_dir" ] || return 0
@@ -929,6 +1097,82 @@ install_wallpaper() {
   # https://github.com/skittle0764
 }
 
+disable_dock_conflicts() {
+  local keep_uuid="${1:-}"
+
+  if ! command -v gnome-extensions &>/dev/null; then
+    :
+  fi
+
+  local conflict
+  for conflict in "${DOCK_CONFLICT_UUIDS[@]}"; do
+    [ "$conflict" = "$keep_uuid" ] && continue
+    if command -v gnome-extensions &>/dev/null && gnome-extensions info "$conflict" >/dev/null 2>&1; then
+      gnome-extensions disable "$conflict" >/dev/null 2>&1 || true
+      gum_or_echo "${CYAN}Disabled conflicting dock extension: $conflict${NC}"
+    fi
+    set_shell_extension_enabled "$conflict" false
+  done
+}
+
+set_shell_extension_enabled() {
+  local uuid="$1"
+  local enabled="$2"
+
+  if ! command -v gsettings &>/dev/null || ! command -v python3 &>/dev/null; then
+    return 0
+  fi
+
+  local current updated
+  current=$(gsettings get org.gnome.shell enabled-extensions 2>/dev/null || echo "@as []")
+  updated=$(CURRENT_EXTENSIONS="$current" EXTENSION_UUID="$uuid" EXTENSION_ENABLED="$enabled" python3 -c '
+import ast
+import os
+
+raw = os.environ.get("CURRENT_EXTENSIONS", "").strip()
+uuid = os.environ["EXTENSION_UUID"]
+enabled = os.environ["EXTENSION_ENABLED"] == "true"
+
+try:
+    items = [] if raw.startswith("@as") else ast.literal_eval(raw)
+except Exception:
+    items = []
+
+items = [item for item in items if item != uuid]
+if enabled:
+    items.append(uuid)
+
+print("[" + ", ".join(repr(item) for item in items) + "]")
+')
+  gsettings set org.gnome.shell enabled-extensions "$updated" 2>/dev/null || true
+}
+
+configure_tahoe_dock_defaults() {
+  if ! command -v gsettings &>/dev/null; then
+    return 0
+  fi
+
+  local schema="org.gnome.shell.extensions.dash-to-dock"
+  if ! gsettings list-schemas 2>/dev/null | grep -qx "$schema"; then
+    return 0
+  fi
+
+  gsettings set "$schema" dock-position 'BOTTOM' 2>/dev/null || true
+  gsettings set "$schema" dock-fixed true 2>/dev/null || true
+  gsettings set "$schema" intellihide false 2>/dev/null || true
+  gsettings set "$schema" autohide false 2>/dev/null || true
+  gsettings set "$schema" extend-height false 2>/dev/null || true
+  gsettings set "$schema" show-show-apps-button true 2>/dev/null || true
+  gsettings set "$schema" dash-max-icon-size 56 2>/dev/null || true
+}
+
+fix_dock_duplicates() {
+  gum_or_echo "${CYAN}Fixing duplicate dock sources...${NC}"
+  install_local_extension "tahoe-dash-to-dock@bobwdmai" "Tahoe Dock"
+  configure_tahoe_dock_defaults
+  gum_or_echo "✅ Tahoe Dock is the only active dock source. Log out/in if the overview still shows stale shell actors."
+}
+
 install_local_extension() {
   # Build + install + enable an extension whose source lives under
   # extensions/<UUID>/ in this repo. Args: UUID friendly_name
@@ -948,6 +1192,7 @@ install_local_extension() {
   local stamp="$EXTENSION_CACHE_DIR/$uuid.stamp"
   local cache_key
   cache_key="$(local_extension_cache_key "$uuid")"
+  mkdir -p "$HOME/.local/share/gnome-shell/extensions"
 
   if [ "${FORCE_EXTENSIONS:-false}" != "true" ] && [ -d "$dest" ] && [ -f "$dest/metadata.json" ]; then
     if [ ! -f "$stamp" ] || [ "$(cat "$stamp" 2>/dev/null || true)" = "$cache_key" ]; then
@@ -956,6 +1201,11 @@ install_local_extension() {
         gum_or_echo "✅ ${friendly} already installed & enabled (local · ${uuid})"
       else
         gum_or_echo "✅ ${friendly} already installed (local · ${uuid}) — enable after restarting GNOME Shell"
+      fi
+      set_shell_extension_enabled "$uuid" true
+      if [ "$uuid" = "tahoe-dash-to-dock@bobwdmai" ]; then
+        disable_dock_conflicts "$uuid"
+        configure_tahoe_dock_defaults
       fi
       return 0
     fi
@@ -973,6 +1223,12 @@ install_local_extension() {
     gum_or_echo "✅ ${friendly} installed & enabled (local · ${uuid})"
   else
     gum_or_echo "✅ ${friendly} installed (local · ${uuid}) — enable after restarting GNOME Shell"
+  fi
+  set_shell_extension_enabled "$uuid" true
+
+  if [ "$uuid" = "tahoe-dash-to-dock@bobwdmai" ]; then
+    disable_dock_conflicts "$uuid"
+    configure_tahoe_dock_defaults
   fi
 
   local upstream_uuid=""
@@ -1038,6 +1294,7 @@ install_gnome_extension() {
   else
     gum_or_echo "✅ ${name:-$friendly} installed ($uuid) — enable after restarting GNOME Shell."
   fi
+  set_shell_extension_enabled "$uuid" true
 }
 
 install_blur_my_shell() {
@@ -1126,7 +1383,7 @@ disconnect_flatpak() {
 }
 
 uninstall_all() {
-  if ! gum_confirm_or_read "Are you sure you want to uninstall Tahoe themes, icons, extension forks, and GTK overrides?"; then
+  if ! gum_confirm_or_read "Are you sure you want to uninstall Tahoe themes, icons, app-name overrides, extension forks, and GTK overrides?"; then
     gum_or_echo "Uninstall cancelled."
     return 0
   fi
@@ -1165,6 +1422,9 @@ uninstall_all() {
       secret-tool clear application gnome-macos-tahoe credential openai-api-key >/dev/null 2>&1 || true
     fi
   '
+
+  gum_or_echo "${CYAN}Restoring original app names...${NC}"
+  uninstall_macos_app_names
 
   if command -v gsettings &>/dev/null; then
     local current_gtk current_icons current_shell schema_dir
@@ -1240,14 +1500,16 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
   (Tahoe Open Bar, Tahoe Blur, Tahoe Dock, Tahoe UI Tune,
    Tahoe Space Bar, Tahoe Tiling Shell, Tahoe User Themes, Tahoe Vitals)
 - `--blur` or `--blur-my-shell` - Install only Tahoe Blur
+- `--fix-dock` - Disable duplicate dock providers and enable Tahoe Dock
 - `--force-extensions` - Reinstall local Tahoe extension forks even if cached
 - `--icons` - Install Tahoe icons and apply them
 - `--no-icons` - Skip automatic Tahoe icon install when installing a theme
 - `--force-icons` - Rebuild Tahoe icons even if cached
+- `--app-names` - Rename common GNOME apps to macOS-style names
 - `--ai` or `--intelligence` - Install Tahoe Intelligence (OpenAI helper)
 
 ## Other Flags
-- `-u` or `--uninstall` - Uninstall Tahoe themes, icons, extension forks, and GTK overrides
+- `-u` or `--uninstall` - Uninstall Tahoe themes, icons, app-name overrides, extension forks, and GTK overrides
 - `./uninstall.sh` - Same uninstall flow, easier to find
 - `-h` or `--help` - Show this help
 
@@ -1256,8 +1518,8 @@ Run `./install.sh` (interactive TUI). Also supports CLI flags:
 - **Generate accent variants** - Run generate_accent_variants.py
 - **Install generated variants** - Copy Tahoe-Light-<color> folders to ~/.themes
 - **Libadwaita override** - Install gtk-4.0 override to ~/.config/gtk-4.0
-- **Extras** - Install icons, cursors, Ulauncher theme, GDM theme, Tahoe Intelligence, or connect Flatpak
-- **Uninstall** - Remove Tahoe themes, icons, extension forks, Tahoe Intelligence, and GTK overrides
+- **Extras** - Install icons, app-name overrides, cursors, Ulauncher theme, GDM theme, Tahoe Intelligence, or connect Flatpak
+- **Uninstall** - Remove Tahoe themes, icons, app-name overrides, extension forks, Tahoe Intelligence, and GTK overrides
 
 ## Flatpak Support
 Flatpak apps run in a sandbox and need explicit permission to access themes:
@@ -1286,12 +1548,14 @@ CLI flags:
                              Tahoe Tiling Shell, Tahoe User Themes,
                              Tahoe Vitals)
   --blur / --blur-my-shell  Install only Tahoe Blur
+  --fix-dock                Fix duplicate dock in overview/app grid
   --force-extensions        Reinstall Tahoe extension forks even if cached
   --icons                   Install Tahoe icons and apply them
   --no-icons                Skip automatic Tahoe icon install
   --force-icons             Rebuild Tahoe icons even if cached
+  --app-names               Rename common apps to macOS names
   --ai / --intelligence     Install Tahoe Intelligence (OpenAI helper)
-  -u / --uninstall          Uninstall Tahoe themes/icons/extensions/AI helper
+  -u / --uninstall          Uninstall Tahoe themes/icons/app names/extensions/AI helper
   -h / --help               Show help
 
 Flatpak Support:
@@ -1319,14 +1583,14 @@ interactive_menu() {
         "Install generated accent variants into ~/.themes" \
         "Apply: pick an installed theme as active" \
         "Install libadwaita override" \
-        "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions/AI)" \
+        "Install Extras (icons/app names/wallpapers/cursors/ulauncher/GDM/extensions/AI)" \
         "Uninstall Tahoe" \
         "Force reload theme (clear cache)" \
         "Help" \
         "Exit")
     else
       echo "Choose an option:"
-      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Apply: pick an installed theme as active" "Install libadwaita override" "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions/AI)" "Uninstall Tahoe" "Force reload theme" "Help" "Exit"; do break; done
+      select selection in "Install: Light" "Install: Dark" "Install: Both" "Generate: All accent variants" "Generate: Specific accent variant" "Install generated accent variants into ~/.themes" "Apply: pick an installed theme as active" "Install libadwaita override" "Install Extras (icons/app names/wallpapers/cursors/ulauncher/GDM/extensions/AI)" "Uninstall Tahoe" "Force reload theme" "Help" "Exit"; do break; done
     fi
 
     case "$selection" in
@@ -1373,12 +1637,14 @@ interactive_menu() {
         fi
         install_libadwaita_override "${mode:-Light}" "$specific"
         ;;
-      "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)"|"Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions/AI)")
+      "Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions)"|"Install Extras (icons/wallpapers/cursors/ulauncher/GDM/extensions/AI)"|"Install Extras (icons/app names/wallpapers/cursors/ulauncher/GDM/extensions/AI)")
         if command -v gum &>/dev/null; then
           ex=$(gum choose \
             "Install all recommended GNOME extensions" \
             "Install Tahoe Blur extension" \
+            "Fix duplicate dock" \
             "Install Tahoe icons" \
+            "Rename apps to macOS names" \
             "Install Tahoe Intelligence (OpenAI)" \
             "Install WhiteSur cursors" \
             "Install Ulauncher theme" \
@@ -1391,35 +1657,39 @@ interactive_menu() {
           echo "Extras:"
           echo "  1) Install all recommended GNOME extensions"
           echo "  2) Install Tahoe Blur extension"
-          echo "  3) Install Tahoe icons"
-          echo "  4) Install Tahoe Intelligence (OpenAI)"
-          echo "  5) Install WhiteSur cursors"
-          echo "  6) Install Ulauncher theme"
-          echo "  7) Install WhiteSur GDM theme"
-          echo "  8) Install Tahoe Wallpapers"
-          echo "  9) Connect Flatpak themes"
-          echo " 10) Disconnect Flatpak themes"
-          echo " 11) Back"
-          read -r -p "Enter choice (1-11): " ex
+          echo "  3) Fix duplicate dock"
+          echo "  4) Install Tahoe icons"
+          echo "  5) Rename apps to macOS names"
+          echo "  6) Install Tahoe Intelligence (OpenAI)"
+          echo "  7) Install WhiteSur cursors"
+          echo "  8) Install Ulauncher theme"
+          echo "  9) Install WhiteSur GDM theme"
+          echo " 10) Install Tahoe Wallpapers"
+          echo " 11) Connect Flatpak themes"
+          echo " 12) Disconnect Flatpak themes"
+          echo " 13) Back"
+          read -r -p "Enter choice (1-13): " ex
         fi
         case "$ex" in
           "Install all recommended GNOME extensions"|1) install_recommended_extensions ;;
           "Install Tahoe Blur extension"|2) install_blur_my_shell ;;
-          "Install Tahoe icons"|3)
+          "Fix duplicate dock"|3) fix_dock_duplicates ;;
+          "Install Tahoe icons"|4)
             _icon_color=""
             if gum_confirm_or_read "Match icons to a Tahoe accent color?"; then
               _icon_color="$(choose_accent_color)"
             fi
             install_mactahoe_icons "${_icon_color:-blue}"
             ;;
-          "Install Tahoe Intelligence (OpenAI)"|4) install_tahoe_intelligence ;;
-          "Install WhiteSur cursors"|5) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
-          "Install Ulauncher theme"|6) install_ulauncher_theme ;;
-          "Install WhiteSur GDM theme"|7) install_gdm_theme ;;
-          "Install Tahoe Wallpapers"|8) install_wallpaper ;;
-          "Connect Flatpak themes"|9) connect_flatpak ;;
-          "Disconnect Flatpak themes"|10) disconnect_flatpak ;;
-          "Back"|11) : ;;
+          "Rename apps to macOS names"|5) install_macos_app_names ;;
+          "Install Tahoe Intelligence (OpenAI)"|6) install_tahoe_intelligence ;;
+          "Install WhiteSur cursors"|7) install_icons_or_cursors "https://github.com/vinceliuice/WhiteSur-cursors.git" "WhiteSur-cursors" ;;
+          "Install Ulauncher theme"|8) install_ulauncher_theme ;;
+          "Install WhiteSur GDM theme"|9) install_gdm_theme ;;
+          "Install Tahoe Wallpapers"|10) install_wallpaper ;;
+          "Connect Flatpak themes"|11) connect_flatpak ;;
+          "Disconnect Flatpak themes"|12) disconnect_flatpak ;;
+          "Back"|13) : ;;
           *) gum_or_echo "${YELLOW}Unrecognized option in Extras menu${NC}" ;;
         esac
         ;;
@@ -1467,6 +1737,8 @@ if [[ $# -gt 0 ]]; then
   INSTALL_EXTENSIONS=false
   INSTALL_ICONS=false
   INSTALL_AI=false
+  INSTALL_APP_NAMES=false
+  FIX_DOCK=false
   SKIP_ICONS=false
   FORCE_ICONS=false
   FORCE_EXTENSIONS=false
@@ -1533,6 +1805,10 @@ if [[ $# -gt 0 ]]; then
         INSTALL_BLUR=true
         shift
         ;;
+      --fix-dock|--dock-fix)
+        FIX_DOCK=true
+        shift
+        ;;
       --extensions|--gnome-extensions)
         INSTALL_EXTENSIONS=true
         shift
@@ -1544,6 +1820,10 @@ if [[ $# -gt 0 ]]; then
         ;;
       --icons|--icon-theme)
         INSTALL_ICONS=true
+        shift
+        ;;
+      --app-names|--macos-app-names)
+        INSTALL_APP_NAMES=true
         shift
         ;;
       --ai|--intelligence|--tahoe-intelligence)
@@ -1597,6 +1877,14 @@ if [[ $# -gt 0 ]]; then
 
   if $INSTALL_ICONS && ! $INSTALL_LIGHT && ! $INSTALL_DARK; then
     install_mactahoe_icons "${SPECIFIC_COLOR:-blue}"
+  fi
+
+  if $INSTALL_APP_NAMES; then
+    install_macos_app_names
+  fi
+
+  if $FIX_DOCK; then
+    fix_dock_duplicates
   fi
 
   if $INSTALL_EXTENSIONS; then

@@ -67,6 +67,7 @@ cd GNOME-macOS-Tahoe
 - 🖼️ Install generated accent variants to ~/.themes
 - ⚙️ Install libadwaita override (for modern GTK4 apps & GNOME Shell)
 - 🎯 Install extras: Tahoe icons, Tahoe wallpapers, WhiteSur cursors, Ulauncher theme, GDM theme, and Tahoe extension forks
+- 🏷️ Rename common GNOME apps to macOS names like Finder, Preview, System Settings, App Store, TextEdit, Photos, Music, and QuickTime Player
 - ✨ Install Tahoe Intelligence, an Apple Intelligence-style OpenAI helper for selected text and quick prompts
 - 🔴 Set macOS window button order: red close, yellow minimize, green fullscreen
 - 🧹 Uninstall Tahoe themes, icons, extension forks, and GTK overrides
@@ -88,11 +89,13 @@ If you prefer command-line flags over the interactive menu:
 
 # Install built-in Tahoe extras
 ./install.sh --extensions      # Tahoe-branded GNOME extension forks
+./install.sh --fix-dock        # Remove duplicate docks in overview/app grid
 ./install.sh --force-extensions # Reinstall extension forks if the cache should be refreshed
 ./install.sh --icons           # Tahoe icon theme (also happens automatically with -l/-d)
 ./install.sh --color red --icons   # Tahoe-red icons
 ./install.sh -d --no-icons     # Dark theme without changing icons
 ./install.sh --force-icons     # Rebuild Tahoe icons if the cache should be refreshed
+./install.sh --app-names       # Rename common apps to macOS names
 ./install.sh --ai              # Tahoe Intelligence (OpenAI helper)
 
 # Generate accent colors
@@ -113,6 +116,24 @@ To replace individual app icons with higher-resolution images you are allowed to
 ```
 
 PNG overrides are resized to `512x512` when ImageMagick is installed. Do not commit random Google Images unless you have redistribution rights.
+
+### macOS app names
+
+The installer can create reversible local `.desktop` overrides so GNOME apps appear with macOS-style names in the app grid:
+
+```bash
+./install.sh --app-names
+```
+
+Examples: Files/Nautilus becomes Finder, Settings becomes System Settings, Software becomes App Store, Text Editor becomes TextEdit, Papers/Loupe becomes Preview, Snapshot becomes Photo Booth, System Monitor becomes Activity Monitor, LibreOffice Writer/Calc/Impress become Pages/Numbers/Keynote, and Firefox becomes Safari. The uninstall flow restores or removes these local overrides.
+
+### Duplicate dock fix
+
+Tahoe Dock disables common conflicting dock extensions such as Ubuntu Dock and upstream Dash to Dock when it is installed. If you see two docks in the app grid or multitasking overview, rerun:
+
+```bash
+./install.sh --fix-dock
+```
 
 ### Tahoe Intelligence
 
