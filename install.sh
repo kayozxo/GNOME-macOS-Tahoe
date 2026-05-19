@@ -1104,15 +1104,64 @@ disable_dock_conflicts() {
     :
   fi
 
+  # Record which conflicting docks were enabled before we touch them, so the
+  # uninstaller can put the user's dock back. State lives in the tahoe cache
+  # dir; one UUID per line. We append (not overwrite) so a re-run of install
+  # doesn't forget docks recorded by an earlier run.
+  local state_file="$TAHOE_CACHE_DIR/disabled-docks.txt"
+  mkdir -p "$TAHOE_CACHE_DIR" 2>/dev/null || true
+
   local conflict
   for conflict in "${DOCK_CONFLICT_UUIDS[@]}"; do
     [ "$conflict" = "$keep_uuid" ] && continue
     if command -v gnome-extensions &>/dev/null && gnome-extensions info "$conflict" >/dev/null 2>&1; then
+      # Only record if it's currently enabled — avoids re-enabling something
+      # the user had deliberately disabled before installing Tahoe.
+      if gnome-extensions list --enabled 2>/dev/null | grep -qx "$conflict"; then
+        if ! { [ -f "$state_file" ] && grep -qx "$conflict" "$state_file"; }; then
+          echo "$conflict" >> "$state_file"
+        fi
+      fi
       gnome-extensions disable "$conflict" >/dev/null 2>&1 || true
       gum_or_echo "${CYAN}Disabled conflicting dock extension: $conflict${NC}"
     fi
     set_shell_extension_enabled "$conflict" false
   done
+}
+
+restore_dock_conflicts() {
+  # Re-enable docks we disabled at install time. Reads the state file written
+  # by disable_dock_conflicts. Falls back to re-enabling ubuntu-dock on Ubuntu
+  # if no state file exists (covers users who installed pre-state-tracking).
+  local state_file="$TAHOE_CACHE_DIR/disabled-docks.txt"
+  local -a to_restore=()
+
+  if [ -f "$state_file" ]; then
+    mapfile -t to_restore < "$state_file"
+  elif [ -r /etc/os-release ] && grep -qiE '^ID(_LIKE)?=.*ubuntu' /etc/os-release; then
+    to_restore=( "ubuntu-dock@ubuntu.com" )
+  fi
+
+  if [ ${#to_restore[@]} -eq 0 ]; then
+    return 0
+  fi
+
+  local uuid restored=0
+  for uuid in "${to_restore[@]}"; do
+    [ -z "$uuid" ] && continue
+    if command -v gnome-extensions &>/dev/null && gnome-extensions info "$uuid" >/dev/null 2>&1; then
+      gnome-extensions enable "$uuid" >/dev/null 2>&1 || true
+      set_shell_extension_enabled "$uuid" true
+      gum_or_echo "${CYAN}Re-enabled previously-disabled dock: $uuid${NC}"
+      restored=$((restored + 1))
+    fi
+  done
+
+  [ -f "$state_file" ] && rm -f "$state_file" 2>/dev/null || true
+
+  if [ "$restored" -eq 0 ]; then
+    gum_or_echo "${YELLOW}No standard dock extension found to restore — install ubuntu-dock or dash-to-dock if you want one.${NC}"
+  fi
 }
 
 set_shell_extension_enabled() {
@@ -1463,6 +1512,11 @@ uninstall_all() {
     fi
     rm -rf "$HOME/.local/share/gnome-shell/extensions/$uuid"
   done
+
+  # Bring back whatever dock the install flow disabled, so the user isn't
+  # left with no dock at all after uninstall (the reported regression).
+  gum_or_echo "${CYAN}Restoring original dock extension(s)...${NC}"
+  restore_dock_conflicts
 
   restore_button_layout
 
