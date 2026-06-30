@@ -1179,3 +1179,15 @@ overlay-split-vew.window-chatpage
   > button.image-button.toggle {
   margin-right: -4px;
 }
+
+/*********************
+ * Disk Usage Analyzer *
+ *********************/
+
+overlay-split-view box columnview.view,
+overlay-split-view scrolledwindow columnview.view {
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
