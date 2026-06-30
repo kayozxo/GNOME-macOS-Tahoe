@@ -66,8 +66,6 @@
   --overview-bg-color: #28282c;
   --overview-fg-color: #ffffff;
 }
-@import '../gtk-3.0/libadwaita.css';
-@import '../gtk-3.0/libadwaita-tweaks.css';
 
 * {
   border-radius: 20px;
@@ -140,7 +138,6 @@ headerbar button:not(.suggested-action):not(.destructive-action),
 button.close,
 button.circular {
   border-radius: 9999px;
-  -gtk-outline-radius: 9999px;
 }
 
 button.image-button.toggle {
@@ -585,8 +582,6 @@ windowcontrols > button > image {
 
 windowcontrols {
   margin-right: -6px;
-  max-width: 12px;
-  max-height: 12px;
 }
 
 /*********************
@@ -985,7 +980,7 @@ stack.background {
 
 box.split-row.vertical {
   border-radius: 0;
-  border-bottom-color: rgba(0, 0, 0, 0, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.2);
 }
 
 leaflet.unfolded > separator.horizontal {
