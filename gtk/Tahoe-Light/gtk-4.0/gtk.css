@@ -919,6 +919,9 @@ popover > contents {
     rgba(255, 255, 255, 0.5),
     rgba(255, 255, 255, 0.43)
   );
+  box-shadow: inset 2px 2px 4px -2.8px rgb(255, 255, 255),
+    inset -2px -2px 4px -2.8px rgb(255, 255, 255);
+  border-radius: 16px;
 }
 
 popover > arrow {
