@@ -742,7 +742,7 @@ window#NautilusFileChooser > revealer.bottom-bar {
   margin-left: 10px;
 }
 
-#NautilusPathBar {
+#NautilusPathBar, .nautilus-pathbar {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
     to bottom,
