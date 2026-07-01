@@ -797,6 +797,27 @@ window#NautilusAppChooser > scrolledwindow.background {
   border: none;
 }
 
+dialog.floating.nautilus-app-chooser listview.view {
+  padding: 4px;
+  
+}
+
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-bottom.undershoot-top widget.toolbar {
+  padding-top: 6px;
+  padding-bottom: 0px;
+  
+}
+
+dialog.floating.nautilus-app-chooser listview.view > header {
+  padding-top: 10px;
+  
+}
+
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-bottom.undershoot-top,
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-top {
+  padding: 10px;
+}
+
 list.background {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
