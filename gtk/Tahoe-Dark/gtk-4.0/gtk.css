@@ -619,23 +619,27 @@ separator.vertical {
   opacity: 0;
 }
 
-list.boxed-list row {
+list.boxed-list row, 
+list.content row {
   border-radius: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-list.boxed-list row:first-child {
+list.boxed-list row:first-child, 
+list.content row:first-child {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
 }
 
-list.boxed-list row:last-child {
+list.boxed-list row:last-child, 
+list.content row:last-child {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border-bottom: none;
 }
 
-list.boxed-list row:only-child {
+list.boxed-list row:only-child, 
+list.content row:only-child {
   border-radius: 16px;
   border-bottom: none;
 }
@@ -650,6 +654,20 @@ widget.end.sidebar-pane > widget,
 widget.end.sidebar-pane > widget > preferencespage {
   margin-top: -14px;
   margin-bottom: -14px;
+}
+
+widget.sidebar-pane preferencespage > scrolledwindow > viewport {
+  border-radius: 30px;
+}
+
+widget.sidebar-pane preferencespage > scrolledwindow {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+floating-sheet sheet.background preferencespage > scrolledwindow {
+  margin: 25px;
+  margin-bottom: 35px;
 }
 
 widget.end.sidebar-pane {
