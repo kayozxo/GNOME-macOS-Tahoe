@@ -619,23 +619,23 @@ separator.vertical {
   opacity: 0;
 }
 
-list.boxed-list > row {
+list.boxed-list row {
   border-radius: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-list.boxed-list > row:first-child {
+list.boxed-list row:first-child {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
 }
 
-list.boxed-list > row:last-child {
+list.boxed-list row:last-child {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border-bottom: none;
 }
 
-list.boxed-list > row:only-child {
+list.boxed-list row:only-child {
   border-radius: 16px;
   border-bottom: none;
 }
