@@ -855,6 +855,17 @@ box.bottom.floating-bar {
     inset -2px -2px 2px -2.8px rgba(255, 255, 255, 0.8);
 }
 
+toastoverlay toast {
+  background-color: rgba(0, 0, 0, 0.93);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.06)
+  );
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
+}
+
 /*
  row.activatable.entry {
   background-color: rgba(0, 0, 0, 0);
