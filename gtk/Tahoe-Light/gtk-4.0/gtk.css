@@ -647,11 +647,13 @@ widget.end.sidebar-pane > widget > preferencespage {
   margin-bottom: -14px;
 }
 
-widget.sidebar-pane preferencespage > scrolledwindow > viewport {
+widget.sidebar-pane preferencespage > scrolledwindow > viewport,
+overlay-split-view widget > scrolledwindow > viewport {
   border-radius: 30px;
 }
 
-widget.sidebar-pane preferencespage > scrolledwindow {
+widget.sidebar-pane preferencespage > scrolledwindow,
+overlay-split-view widget > scrolledwindow {
   margin-top: 14px;
   margin-bottom: 14px;
 }
