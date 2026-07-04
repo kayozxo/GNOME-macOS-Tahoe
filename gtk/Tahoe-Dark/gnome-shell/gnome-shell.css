@@ -4574,6 +4574,10 @@ background-color: rgba(50, 50, 50, 0.89);
   spacing: 8px;
 }
 
+.quick-toggle.power-item .quick-toggle-title {
+  padding-right: 10px;
+}
+
 .quick-toggle.button {
   padding: 0;
 }

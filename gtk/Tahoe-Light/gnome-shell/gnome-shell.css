@@ -4575,6 +4575,10 @@ StWidget.focused .app-grid-running-dot {
   spacing: 8px;
 }
 
+.quick-toggle.power-item .quick-toggle-title {
+  padding-right: 10px;
+}
+
 .quick-toggle.button {
   padding: 0;
 }
