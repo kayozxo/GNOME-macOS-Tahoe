@@ -4303,10 +4303,10 @@ StWidget.focused .app-grid-running-dot {
   min-height: 64px;
   width: 34em;
   border-radius: 14px;
-  margin: 8px;
-  padding: 4px;
+  margin: 10px;
+  padding: 10px;
   color: #242424;
-  background-color: rgba(245, 245, 245, 0.92);
+  background-color: rgba(245, 245, 245, 0.82);
   border: 1px solid transparent;
   text-shadow: none;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
@@ -4324,7 +4324,7 @@ StWidget.focused .app-grid-running-dot {
   color: #424242;
   font-weight: 500;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 18px;
 }
 
 .notification-button:focus {

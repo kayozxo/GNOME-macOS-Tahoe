@@ -4302,13 +4302,17 @@ background-color: rgba(50, 50, 50, 0.89);
   min-height: 64px;
   width: 34em;
   border-radius: 14px;
-  margin: 8px;
-  padding: 4px;
+  margin: 10px;
+  padding: 10px;
   color: #dedede;
-  background-color: rgba(36, 36, 36, 0.92);
-  border: 1px solid rgba(0, 0, 0, 0.75);
+  background-color: rgba(40, 40, 40, 0.7);
+  border: none;
   text-shadow: none;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 0.1px rgba(255, 255, 255, 0.3);
+}
+
+.notification-banner .message-close-button {
+  box-shadow: inset 0 0 3px 0.1px rgba(255, 255, 255, 0.3) !important;
 }
 
 .notification-buttons-bin {
@@ -4319,11 +4323,11 @@ background-color: rgba(50, 50, 50, 0.89);
 .notification-button {
   min-height: 32px;
   padding: 0 8px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #afafaf;
   font-weight: 500;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 18px;
 }
 
 .notification-button:focus {
