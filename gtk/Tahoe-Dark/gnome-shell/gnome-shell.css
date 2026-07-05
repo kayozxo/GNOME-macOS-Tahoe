@@ -4106,12 +4106,12 @@ background-color: rgba(50, 50, 50, 0.89);
 
 .message:second-in-stack {
   background-color: #404040;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  box-shadow: inset 0 0 4px 0.1px rgba(255, 255, 255, 0.3);
 }
 
 .message:lower-in-stack {
   background-color: #363636;
-  box-shadow: none;
+  box-shadow: inset 0 0 4px 0.1px rgba(255, 255, 255, 0.25);
   border-color: transparent;
 }
 
