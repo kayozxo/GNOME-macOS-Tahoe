@@ -66,8 +66,6 @@
   --overview-bg-color: #28282c;
   --overview-fg-color: #ffffff;
 }
-@import '../gtk-3.0/libadwaita.css';
-@import '../gtk-3.0/libadwaita-tweaks.css';
 
 * {
   border-radius: 20px;
@@ -135,7 +133,6 @@ headerbar button:not(.suggested-action):not(.destructive-action),
 button.close,
 button.circular {
   border-radius: 9999px;
-  -gtk-outline-radius: 9999px;
 }
 
 headerbar,

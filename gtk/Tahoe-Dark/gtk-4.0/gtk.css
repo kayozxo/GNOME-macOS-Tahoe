@@ -66,8 +66,6 @@
   --overview-bg-color: #28282c;
   --overview-fg-color: #ffffff;
 }
-@import '../gtk-3.0/libadwaita.css';
-@import '../gtk-3.0/libadwaita-tweaks.css';
 
 * {
   border-radius: 20px;
@@ -140,7 +138,6 @@ headerbar button:not(.suggested-action):not(.destructive-action),
 button.close,
 button.circular {
   border-radius: 9999px;
-  -gtk-outline-radius: 9999px;
 }
 
 button.image-button.toggle {
@@ -585,8 +582,6 @@ windowcontrols > button > image {
 
 windowcontrols {
   margin-right: -6px;
-  max-width: 12px;
-  max-height: 12px;
 }
 
 /*********************
@@ -624,12 +619,29 @@ separator.vertical {
   opacity: 0;
 }
 
-list.boxed-list > row.property,
-list.boxed-list > row.activatable.combo,
-list.boxed-list > row.activatable {
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+list.boxed-list row, 
+list.content row {
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+list.boxed-list row:first-child, 
+list.content row:first-child {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+list.boxed-list row:last-child, 
+list.content row:last-child {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-bottom: none;
+}
+
+list.boxed-list row:only-child, 
+list.content row:only-child {
+  border-radius: 16px;
+  border-bottom: none;
 }
 
 widget.end.sidebar-pane,
@@ -642,6 +654,22 @@ widget.end.sidebar-pane > widget,
 widget.end.sidebar-pane > widget > preferencespage {
   margin-top: -14px;
   margin-bottom: -14px;
+}
+
+widget.sidebar-pane preferencespage > scrolledwindow > viewport,
+overlay-split-view widget > scrolledwindow > viewport {
+  border-radius: 30px;
+}
+
+widget.sidebar-pane preferencespage > scrolledwindow,
+overlay-split-view widget > scrolledwindow {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+floating-sheet sheet.background preferencespage > scrolledwindow {
+  margin: 25px;
+  margin-bottom: 35px;
 }
 
 widget.end.sidebar-pane {
@@ -734,7 +762,7 @@ window#NautilusFileChooser > revealer.bottom-bar {
   margin-left: 10px;
 }
 
-#NautilusPathBar {
+#NautilusPathBar, .nautilus-pathbar {
   background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
     to bottom,
@@ -769,6 +797,27 @@ window#NautilusAppChooser
 
 window#NautilusAppChooser > scrolledwindow.background {
   border: none;
+}
+
+dialog.floating.nautilus-app-chooser listview.view {
+  padding: 4px;
+  
+}
+
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-bottom.undershoot-top widget.toolbar {
+  padding-top: 6px;
+  padding-bottom: 0px;
+  
+}
+
+dialog.floating.nautilus-app-chooser listview.view > header {
+  padding-top: 10px;
+  
+}
+
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-bottom.undershoot-top,
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-top {
+  padding: 10px;
 }
 
 list.background {
@@ -806,6 +855,17 @@ box.bottom.floating-bar {
   background-color: rgba(0, 0, 0, 0.6);
   box-shadow: inset 2px 2px 2px -2.8px rgba(255, 255, 255, 0.8),
     inset -2px -2px 2px -2.8px rgba(255, 255, 255, 0.8);
+}
+
+toastoverlay toast {
+  background-color: rgba(0, 0, 0, 0.93);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.06)
+  );
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
 }
 
 /*
@@ -894,6 +954,9 @@ popover > contents {
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.03)
   );
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
 }
 
 popover > arrow {
@@ -972,7 +1035,7 @@ stack.background {
 
 box.split-row.vertical {
   border-radius: 0;
-  border-bottom-color: rgba(0, 0, 0, 0, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.2);
 }
 
 leaflet.unfolded > separator.horizontal {
@@ -1170,4 +1233,16 @@ overlay-split-vew.window-chatpage
   > box.end.horizontal
   > button.image-button.toggle {
   margin-right: -4px;
+}
+
+/*********************
+ * Disk Usage Analyzer *
+ *********************/
+
+overlay-split-view box columnview.view,
+overlay-split-view scrolledwindow columnview.view {
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
