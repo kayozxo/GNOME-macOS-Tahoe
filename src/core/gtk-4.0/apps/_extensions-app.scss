@@ -1,0 +1,25 @@
+/*********************
+ * Extensions *
+ *********************/
+
+header.horizontal.top > tabs > tab:checked,
+header.horizontal.top > tabs > tab:hover {
+  box-shadow: none;
+  background-color: theme(
+    raw(rgba(255, 255, 255, 0.15)),
+    raw(rgba(0, 0, 0, 0.8))
+  );
+}
+
+header.horizontal.top > tabs > tab {
+  margin-left: -4px;
+  margin-right: 8px;
+}
+
+notebook.frame > stack {
+  background-color: transparent;
+}
+
+notebook.frame > stack > list {
+  background-color: rgba(255, 255, 255, 0.6);
+}

@@ -1,0 +1,11 @@
+/*********************
+ * Settings *
+ *********************/
+
+button.background-preview-button.toggle:checked {
+  border-radius: 30px;
+}
+
+button.background-preview-button.toggle > background-preview > picture {
+  border-radius: 28px;
+}

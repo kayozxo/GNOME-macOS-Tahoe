@@ -1,0 +1,79 @@
+/*********************
+ * Tweaks *
+ *********************/
+.tweak-titlebar-left,
+.tweak-titlebar-right {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+}
+
+.tweak-titlebar-left > box,
+.tweak-titlebar-right > box {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+}
+
+box {
+  border: none;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+}
+
+stack.background {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+box.split-row.vertical {
+  border-radius: 0;
+  border-bottom-color: theme(
+    raw(rgba(0, 0, 0, 0.2)),
+    raw(rgba(255, 255, 255, 0.2))
+  );
+}
+
+leaflet.unfolded > separator.horizontal {
+  opacity: 0;
+}
+
+leaflet.unfolded > box.vertical list.navigation-sidebar {
+  background-color: transparent;
+  background-image: theme(
+    raw(linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.03)
+    )), 
+    raw(linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.43)
+    ))
+  );
+  box-shadow: theme(
+    raw(
+      inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
+      inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)
+    ),
+    raw(
+      inset 2px 2px 4px -2.8px rgb(255, 255, 255),
+      inset -2px -2px 4px -2.8px rgb(255, 255, 255)
+    )
+  );
+}
+
+leaflet.unfolded > box.vertical > searchbar box {
+  background-color: transparent;
+}

@@ -1,0 +1,40 @@
+// src/core/_compat.scss
+// This file shields native GTK layout functions and macros from the compiler
+
+// Core function protection layers
+@function alpha($color, $opacity: null) {
+  @if $opacity == null {
+    @return unquote("alpha(#{$color})");
+  } @else {
+    @return unquote("alpha(#{$color}, #{$opacity})");
+  }
+}
+
+// Utilities for managing dark/light variant selection
+@function theme($dark, $light) {
+  @return if($variant == 'dark', $dark, $light);
+}
+
+// Helper to pass unquoted complex CSS tokens forward 
+@function raw($args...) {
+  @if length($args) == 1 {
+    $first-arg: nth($args, 1);
+    @if type-of($first-arg) == "string" {
+      @return unquote($first-arg);
+    }
+  }
+  @return unquote("#{$args}");
+}
+
+
+@function oklab($args...) {
+  @return unquote("oklab(#{$args})");
+}
+
+// Global macro handling logic to pass @define-color straight out to final CSS
+@mixin define-color($name, $value...) {
+  @at-root {
+    @define-color #{$name} #{$value};
+  }
+}
+

@@ -1,0 +1,15 @@
+/*********************
+ * Cartridges *
+ *********************/
+
+overlay.large > button#cover_button {
+  border-radius: 20px;
+  min-width: 22px;
+}
+
+overlay.large
+  > revealer.right.top
+  > menubutton.circular.osd.popup
+  button.image-button.toggle {
+  margin-right: 1px;
+}

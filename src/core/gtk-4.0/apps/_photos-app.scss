@@ -1,0 +1,12 @@
+/*********************
+ * Photos APP *
+ *********************/
+
+row.expander,
+row.expander > row.activatable.header {
+  border-radius: 0;
+  border-bottom-color: theme(
+    raw(rgba(255, 255, 255, 0.2)),
+    raw(rgba(255, 255, 255, 0))
+  );
+}

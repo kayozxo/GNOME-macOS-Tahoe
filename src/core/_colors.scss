@@ -1,0 +1,137 @@
+// src/core/_colors.scss
+
+$destructive_bg:         theme(raw("@red_4"), raw("@red_3"));
+$success_bg:             theme(raw("@green_5"), raw("@green_4"));
+$warning_bg:             theme(raw("#cd9309"), raw("@yellow_5"));
+$warning_fg:             theme(RGB(0 0 0 / 80%), RGB(0 0 0 / 80%));
+$error_bg:               theme(raw("@red_4"), raw("@red_3"));
+
+$accent_color_style:      theme(raw("oklab(from @accent_bg_color max(l, 0.85) a b)"), raw("oklab(from @accent_bg_color min(l, 0.5) a b)"));
+$destructive_color_style: theme(raw("oklab(from @destructive_bg_color max(l, 0.85) a b)"), raw("oklab(from @destructive_bg_color min(l, 0.5) a b)"));
+$success_color_style:     theme(raw("oklab(from @success_bg_color max(l, 0.85) a b)"), raw("oklab(from @success_bg_color min(l, 0.5) a b)"));
+$warning_color_style:     theme(raw("oklab(from @warning_bg_color max(l, 0.85) a b)"), raw("oklab(from @warning_bg_color min(l, 0.5) a b)"));
+$error_color_style:       theme(raw("oklab(from @error_bg_color max(l, 0.85) a b)"), raw("oklab(from @error_bg_color min(l, 0.5) a b)"));
+
+$window_bg:              theme(#222226, #fafafb);
+$window_fg:              theme(white, RGB(30 30 30/100%));
+$view_bg:                theme(#1d1d20, #ffffff);
+$view_fg:                theme(white, RGB(30 30 30/100%));
+
+$headerbar_bg:           theme(#2e2e32, #ffffff);
+$headerbar_fg:           theme(white, RGB(30 30 30/100%));
+$headerbar_border:       theme(white, RGB(30 30 30/100%));
+$headerbar_shade:        theme(RGB(0 0 6/36%), RGB(0 0 6/12%));
+$headerbar_darker_shade: theme(RGB(0 0 12/90%), RGB(0 0 6/12%));
+
+$sidebar_bg:             theme(#2e2e32, RGB(235 235 237/0%));
+$sidebar_fg:             theme(white, RGB(30 30 30/100%));
+$sidebar_backdrop:       theme(#28282c, #f2f2f4);
+$sidebar_shade:          theme(RGB(0 0 6/25%), RGB(0 0 6/7%));
+$sidebar_border:         theme(RGB(0 0 6/36%), RGB(0 0 6/7%));
+
+$sec_sidebar_bg:         theme(#28282c, #f3f3f5);
+$sec_sidebar_fg:         theme(white, RGB(30 30 30/100%));
+$sec_sidebar_backdrop:   theme(#252529, #f6f6fa);
+$sec_sidebar_shade:      theme(RGB(0 0 6/25%), RGB(0 0 6/7%));
+$sec_sidebar_border:     theme(RGB(0 0 6/36%), RGB(0 0 6/7%));
+
+$card_bg:                theme(RGB(255 255 255/8%), RGB(255 255 255/25%));
+$card_fg:                theme(white, RGB(30 30 30/100%));
+$card_shade:             theme(RGB(0 0 6/36%), RGB(0 0 6/7%));
+
+$dialog_bg:              theme(#36363a, #fafafb);
+$dialog_fg:              theme(white, RGB(30 30 30/100%));
+$popover_bg:             theme(#36363a, #ffffff);
+$popover_fg:             theme(white, RGB(30 30 30/100%));
+$popover_shade:          theme(RGB(0 0 6/25%), RGB(0 0 6/7%));
+
+$thumbnail_bg:           theme(#39393d, #ffffff);
+$thumbnail_fg:           theme(white, RGB(30 30 30/100%));
+$shade:                  theme(RGB(0 0 6/25%), RGB(0 0 6/7%));
+$scrollbar_outline:      theme(RGB(0 0 12/95%), white);
+
+
+// ---------------------------------------------------------------------------
+// Design tokens/variables for GTK3 titlebuttons and GTK4 windowcontrols
+// ---------------------------------------------------------------------------
+
+// Colored-surface bevel (shared by gtk3 titlebuttons AND gtk4 windowcontrols images) — only the bottom edge value changes between themes)
+$tl_bevel_edge: theme(raw(alpha(white, 0.2)), raw(alpha(black, 0.1)));
+
+// Plain/generic titlebutton bevel
+$plain_bevel_1: theme(raw(alpha(white, 0.2)),  raw(alpha(black, 0.1)));
+$plain_bevel_2: theme(raw(alpha(white, 0.3)),  raw(alpha(black, 0.05)));
+$plain_bevel_3: theme(raw(alpha(white, 0.07)), raw(alpha(black, 0.02)));
+$plain_bevel_4: theme(raw(alpha(white, 0.07)), raw(alpha(black, 0.02)));
+
+// gtk3 titlebutton traffic-light colors (its own palette, distinct from gtk4)
+$tl_close_bg:    theme(rgb(255, 66, 69), rgb(255, 95, 87));
+$tl_maximize_bg: theme(rgb(48, 209, 88), rgb(56, 200, 106));
+$tl_minimize_bg: theme(rgb(255, 214, 0), rgb(253, 190, 4));
+
+// gtk4 windowcontrols traffic-light colors
+$wc_close_bg:    theme(#fd5f51, #ff383b);
+$wc_maximize_bg: theme(#38c76a, #34c759);
+$wc_minimize_bg: theme(#fdbe04, #ffcc00);
+
+// Light drops the outer drop-shadow on windowcontrols bevels entirely
+$wc_outer_shadow: theme(
+  raw(", 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)"),
+  raw("")
+);
+
+// ---------------------------------------------------------------------------
+
+@define-color destructive_bg_color #{$destructive_bg};
+@define-color destructive_fg_color white;
+@define-color success_bg_color #{$success_bg};
+@define-color success_fg_color white;
+@define-color warning_bg_color #{$warning_bg};
+@define-color warning_fg_color #{$warning_fg};
+@define-color error_bg_color #{$error_bg};
+@define-color error_fg_color white;
+
+@define-color accent_color #{$accent_color_style};
+@define-color destructive_color #{$destructive_color_style};
+@define-color success_color #{$success_color_style};
+@define-color warning_color #{$warning_color_style};
+@define-color error_color #{$error_color_style};
+
+@define-color window_bg_color #{$window_bg};
+@define-color window_fg_color #{$window_fg};
+@define-color view_bg_color #{$view_bg};
+@define-color view_fg_color #{$view_fg};
+
+@define-color headerbar_bg_color #{$headerbar_bg};
+@define-color headerbar_fg_color #{$headerbar_fg};
+@define-color headerbar_border_color #{$headerbar_border};
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_shade_color #{$headerbar_shade};
+@define-color headerbar_darker_shade_color #{$headerbar_darker_shade};
+
+@define-color sidebar_bg_color #{$sidebar_bg};
+@define-color sidebar_fg_color #{$sidebar_fg};
+@define-color sidebar_backdrop_color #{$sidebar_backdrop};
+@define-color sidebar_shade_color #{$sidebar_shade};
+@define-color sidebar_border_color #{$sidebar_border};
+
+@define-color secondary_sidebar_bg_color #{$sec_sidebar_bg};
+@define-color secondary_sidebar_fg_color #{$sec_sidebar_fg};
+@define-color secondary_sidebar_backdrop_color #{$sec_sidebar_backdrop};
+@define-color secondary_sidebar_shade_color #{$sec_sidebar_shade};
+@define-color secondary_sidebar_border_color #{$sec_sidebar_border};
+
+@define-color card_bg_color #{$card_bg};
+@define-color card_fg_color #{$card_fg};
+@define-color card_shade_color #{$card_shade};
+
+@define-color dialog_bg_color #{$dialog_bg};
+@define-color dialog_fg_color #{$dialog_fg};
+@define-color popover_bg_color #{$popover_bg};
+@define-color popover_fg_color #{$popover_fg};
+@define-color popover_shade_color #{$popover_shade};
+
+@define-color thumbnail_bg_color #{$thumbnail_bg};
+@define-color thumbnail_fg_color #{$thumbnail_fg};
+@define-color shade_color #{$shade};
+@define-color scrollbar_outline_color #{$scrollbar_outline};
