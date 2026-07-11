@@ -6,26 +6,38 @@
   border: none; }
 
 frame.rounded-card {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: theme(
+    raw(rgba(255, 255, 255, 0.1)),
+    raw(rgba(255, 255, 255, 0.5))
+  );
   box-shadow: inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6);
   margin-bottom: 10px;
   border-radius: 30px; }
 
 frame.background.dialog-overlay {
-  background-color: rgba(0, 0, 0, 0.92);
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.92)),
+    raw(rgba(255, 255, 255, 0.8))
+  );
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
   box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.4), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.3); }
 
 notebook.frame scrolledwindow columnview.view {
   border-radius: 30px;
   margin-top: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.2)),
+    raw(rgba(255, 255, 255, 0.2))
+  );
   box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6); }
 
 stack frame > box.vertical {
   border-radius: 30px;
   margin-top: 10px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: theme(
+    raw(rgba(255, 255, 255, 0.1)),
+    raw(rgba(255, 255, 255, 0.5))
+  );
   box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
   padding: 12px;
   padding-top: 16px; }
@@ -38,7 +50,10 @@ stack frame box.vertical scrolledwindow > viewport > list, list.flatpak-nav {
 frame > stack {
   border-radius: 30px;
   margin-top: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.2)),
+    raw(rgba(255, 255, 255, 0.2))
+  );
   box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6); }
 
 header.horizontal.top {
@@ -63,6 +78,19 @@ header.horizontal.top tab {
   padding: 0 2em;
   min-width: 275px; }
 
+@if $variant == light {
+  header.horizontal.top tabs {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  header.horizontal.top tab:checked {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+  
+  header.horizontal.top tab:hover{
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
 box.sidebar-nav.vertical {
   padding-top: 5px;
   padding-right: 10px; }
