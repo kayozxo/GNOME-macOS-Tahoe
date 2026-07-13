@@ -1,3 +1,26 @@
+// ---------------------------------------------------------------------------
+// Common styling for applications
+// ---------------------------------------------------------------------------
+
+@mixin liquid-glass-side-pane(
+  $shadow_dark: raw(inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6)), 
+  $shadow_light: raw(inset 2px 2px 4px -3px rgb(255, 255, 255), inset -2px -2px 4px -3px rgb(255, 255, 255))
+) {
+  background-color: transparent;
+  background-image: linear-gradient(
+    to bottom, theme(
+    raw(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
+    )
+  );
+  box-shadow: theme(
+    $shadow_dark,
+    $shadow_light
+  );
+}
+
+// ---------------------------------------------------------------------------
+
 :root {
 
   --accent-color: #{theme(raw("oklab(from @accent_bg_color max(l, 0.85) a b)"), #0088ff)};

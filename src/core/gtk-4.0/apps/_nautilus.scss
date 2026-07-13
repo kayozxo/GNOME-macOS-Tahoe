@@ -40,17 +40,7 @@ box.vertical > banner > revealer > widget {
 }
 
 .sidebar-pane {
-  background-color: transparent;
-  background-image: linear-gradient(
-    to bottom, theme(
-    raw(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
-    )
-  );
-  box-shadow: theme(
-    raw(inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6)),
-    raw(inset 2px 2px 4px -3px rgb(255, 255, 255), inset -2px -2px 4px -3px rgb(255, 255, 255))
-  );
+  @include liquid-glass-side-pane;
 }
 
 toastoverlay > overlay-split-view > widget.background {
@@ -115,17 +105,7 @@ window#NautilusFileChooser > revealer.bottom-bar {
 }
 
 entry {
-  background-color: rgba(0, 0, 0, 0);
-  background-image: linear-gradient(
-    to bottom, theme(
-    raw(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
-    )
-  );
-  box-shadow: theme(
-    raw(inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6)),
-    raw(inset 2px 2px 4px -3px rgb(255, 255, 255), inset -2px -2px 4px -3px rgb(255, 255, 255))
-  );
+  @include liquid-glass-side-pane;
 }
 
 window#NautilusAppChooser > separator.horizontal {
@@ -165,14 +145,7 @@ dialog.floating.nautilus-app-chooser toolbarview.undershoot-top {
 }
 
 list.background {
-  background-color: rgba(0, 0, 0, 0);
-  background-image: linear-gradient(
-    to bottom, theme(
-    raw(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
-    )
-  );
-  box-shadow: theme(
+  @include liquid-glass-side-pane(
     raw(inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6)),
     raw(inset 2px 2px 4px -3.2px rgb(255, 255, 255), inset -2px -2px 4px -3.2px rgb(255, 255, 255))
   );
@@ -186,15 +159,10 @@ row.activatable {
  */
 
 sheet.background {
+  @include liquid-glass-side-pane($shadow_dark: null, $shadow_light: null);
   background-color: theme(
     raw(rgba(0, 0, 0, 0.92)),
     raw(rgba(255, 255, 255, 0.92))
-  );
-  background-image: linear-gradient(
-    to bottom, theme(
-    raw(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
-    )
   );
 }
 
