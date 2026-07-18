@@ -57,6 +57,10 @@ toastoverlay > overlay-split-view > widget.background {
   );
 }
 
+toastoverlay > overlay-split-view > dimming.left, toastoverlay > overlay-split-view > shadow.left {
+  opacity: 0;
+}
+
 box.horizontal.start > button.image-button.toggle {
   margin-right: 0px;
 }

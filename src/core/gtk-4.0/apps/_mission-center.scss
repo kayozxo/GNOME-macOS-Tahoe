@@ -27,3 +27,21 @@ columnview.rich-list.view {
     )
   );
 }
+
+widget > overlay-split-view > widget.background {
+  background-color: transparent;
+  background-image: linear-gradient(
+    to bottom, theme(
+    raw(rgba(40, 40, 40, 0.99),rgba(30, 30, 30, 0.5)),
+    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
+    )
+  );
+  box-shadow: theme(
+    raw(inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6)),
+    raw(inset 2px 2px 4px -3px rgb(255, 255, 255), inset -2px -2px 4px -3px rgb(255, 255, 255))
+  );
+}
+
+widget > overlay-split-view > dimming, widget > overlay-split-view > shadow.left {
+  opacity: 0;
+}
