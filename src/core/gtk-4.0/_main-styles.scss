@@ -22,13 +22,17 @@
 // ---------------------------------------------------------------------------
 
 :root {
+  --standalone-color-oklab: #{theme(raw("max(l, 0.85) a b"), raw("min(l, 0.5) a b"))};
 
-  --accent-color: #{theme(raw("oklab(from @accent_bg_color max(l, 0.85) a b)"), #0088ff)};
+  --accent-color: #{theme(
+    raw("oklab(from var(--accent-bg-color) var(--standalone-color-oklab))"),
+    #0088ff
+  )};
 
-  --destructive-color: #{theme(raw("oklab(from @destructive_bg_color max(l, 0.85) a b)"), raw("oklab(from @destructive_bg_color min(l, 0.5) a b)"))};
-  --success-color:     #{theme(raw("oklab(from @success_bg_color max(l, 0.85) a b)"), raw("oklab(from @success_bg_color min(l, 0.5) a b)"))};
-  --warning-color:     #{theme(raw("oklab(from @warning_bg_color max(l, 0.85) a b)"), raw("oklab(from @warning_bg_color min(l, 0.5) a b)"))};
-  --error-color:       #{theme(raw("oklab(from @error_bg_color max(l, 0.85) a b)"), raw("oklab(from @error_bg_color min(l, 0.5) a b)"))};
+  --destructive-color: oklab(from var(--destructive-bg-color) var(--standalone-color-oklab));
+  --success-color:     oklab(from var(--success-bg-color) var(--standalone-color-oklab));
+  --warning-color:     oklab(from var(--warning-bg-color) var(--standalone-color-oklab));
+  --error-color:       oklab(from var(--error-bg-color) var(--standalone-color-oklab));
 
   --active-toggle-bg-color: #{theme(raw("rgb(255 255 255 / 20%)"), #ffffff)};
   --active-toggle-fg-color: #{theme(#ffffff, raw("rgb(0 0 6 / 80%)"))};
