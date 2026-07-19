@@ -3,5 +3,6 @@ $variant: 'light';
 
 @import '../core/compat';
 @import '../core/colors';
+@import '../core/gtk-4.0/_styling-mixins';
 @import '../core/gtk-4.0/main-styles';
 
