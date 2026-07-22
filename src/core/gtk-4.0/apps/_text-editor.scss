@@ -1,0 +1,112 @@
+/*********************
+ * Text Editor *
+ *********************/
+tabbox {
+  background-color: theme(
+    raw(rgba(255, 255, 255, 0.05)),
+    raw(rgba(255, 255, 255, 0.25))
+  );
+  border-radius: 24px;
+  margin: 2px 4px 2px 0px;
+  box-shadow: none;
+}
+
+textview.editor {
+  border-radius: 30px;
+  margin-top: 10px;
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.2)),
+    raw(rgba(255, 255, 255, 0.2))
+  );
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
+}
+
+textview.editor > border.left > gutter,
+textview.editor > border.left,
+revealer.bottom-bar.raised,
+positionlabel.bottom.numeric.right {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+revealer.bottom-bar.raised,
+revealer.top-bar.raised {
+  border: none;
+  box-shadow: none;
+}
+
+separator.vertical {
+  opacity: 0;
+}
+
+list.boxed-list row, 
+list.content row {
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+list.boxed-list row:first-child, 
+list.content row:first-child {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+list.boxed-list row:last-child, 
+list.content row:last-child {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-bottom: none;
+}
+
+list.boxed-list row:only-child, 
+list.content row:only-child {
+  border-radius: 16px;
+  border-bottom: none;
+}
+
+widget.end.sidebar-pane,
+widget.end.sidebar-pane > widget,
+widget.end.sidebar-pane > widget > preferencespage {
+  border-radius: 30px;
+}
+
+widget.end.sidebar-pane > widget,
+widget.end.sidebar-pane > widget > preferencespage {
+  margin-top: -14px;
+  margin-bottom: -14px;
+}
+
+widget.sidebar-pane preferencespage > scrolledwindow > viewport,
+overlay-split-view widget > scrolledwindow > viewport {
+  border-radius: 30px;
+}
+
+widget.sidebar-pane preferencespage > scrolledwindow,
+overlay-split-view widget > scrolledwindow {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+floating-sheet sheet.background preferencespage > scrolledwindow {
+  margin: 25px;
+  margin-bottom: 35px;
+}
+
+widget.end.sidebar-pane {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/*
+.collapse-spacing.vertical {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  box-shadow: inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6);
+}
+
+*/

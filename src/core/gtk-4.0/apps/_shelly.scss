@@ -1,0 +1,123 @@
+/*********
+ * Shelly *
+ *********/
+
+ notebook.frame, frame {
+  border: none; }
+
+frame.rounded-card {
+  background-color: theme(
+    raw(rgba(255, 255, 255, 0.1)),
+    raw(rgba(255, 255, 255, 0.5))
+  );
+  box-shadow: inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  border-radius: 30px; }
+
+frame.background.dialog-overlay {
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.92)),
+    raw(rgba(255, 255, 255, 0.8))
+  );
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.4), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.3); }
+
+notebook.frame scrolledwindow columnview.view {
+  border-radius: 30px;
+  margin-top: 10px;
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.2)),
+    raw(rgba(255, 255, 255, 0.2))
+  );
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6); }
+
+stack frame > box.vertical {
+  border-radius: 30px;
+  margin-top: 10px;
+  background-color: theme(
+    raw(rgba(255, 255, 255, 0.1)),
+    raw(rgba(255, 255, 255, 0.5))
+  );
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
+  padding: 12px;
+  padding-top: 16px; }
+
+stack frame box.vertical scrolledwindow > viewport > list, list.flatpak-nav {
+  background-color: transparent;
+  padding: 14px;
+  border-radius: 30px; }
+
+frame > stack {
+  border-radius: 30px;
+  margin-top: 10px;
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.2)),
+    raw(rgba(255, 255, 255, 0.2))
+  );
+  box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6); }
+
+header.horizontal.top {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  box-shadow: none;
+  margin: 6px;
+  border: none; }
+
+#remove_page_box.vertical scrolledwindow listview,
+#update_page_box.vertical scrolledwindow listview {
+  background-color: transparent; }
+
+notebook.frame separator.horizontal,
+stack > box > separator.horizontal {
+  opacity: 0; }
+
+header.horizontal.top tab {
+  margin: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0 2em;
+  min-width: 275px; }
+
+@if $variant == light {
+  header.horizontal.top tabs {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  header.horizontal.top tab:checked {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+  
+  header.horizontal.top tab:hover{
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+box.sidebar-nav.vertical {
+  padding-top: 5px;
+  padding-right: 10px; }
+
+columnview.view > header.activatable {
+  padding-top: 2px; }
+
+box.horizontal.linked > button.image-button.toggle {
+  margin-left: 0px;
+  margin-right: 0px; }
+
+button.suggested-action.text-button {
+  margin-left: 10px;
+  margin-right: 0px; }
+
+button.destructive-action.text-button {
+  margin-left: 10px; }
+
+frame box.vertical list row {
+  padding: 10px; }
+
+scrolledwindow > gridview {
+  background-color: transparent;
+  margin-left: 20px; }
+
+stack > box > scrolledwindow > listview.view {
+  background-color: transparent; }
+
+frame box.vertical list.flatpak-nav row:selected {
+  border-left: none; }

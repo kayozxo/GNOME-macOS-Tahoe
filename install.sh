@@ -35,6 +35,7 @@ DOWNLOADS_DIR="$(xdg-user-dir DOWNLOAD 2>/dev/null || echo "$HOME/Downloads")"
 TMP_DIR="$(mktemp -d -t tahoe-installer.XXXXXXXXXX)"
 APP_LAUNCHER="kayozxo/ulauncher-liquid-glass"
 TMP_ZIP_AL="ulauncher-liquid-glass.zip"
+SRC_DIR="$SCRIPT_DIR/src"
 
 AVAILABLE_COLORS=(blue green purple pink orange red teal indigo rose emerald violet amber cyan lime sky slate)
 
@@ -211,7 +212,80 @@ backup_existing() {
   fi
 }
 
+check_and_install_sassc() {
+  if command -v sassc &>/dev/null; then
+    return 0
+  fi
+
+  gum_or_echo "${YELLOW}sassc not found (required to compile theme SCSS).${NC}"
+  if ! gum_confirm_or_read "Install sassc now?"; then
+    gum_or_echo "${YELLOW}Skipping sassc install.${NC}"
+    return 1
+  fi
+
+  if command -v brew &>/dev/null; then
+    brew install sassc
+  elif command -v dnf &>/dev/null; then
+    sudo dnf install -y sassc
+  elif command -v pacman &>/dev/null; then
+    sudo pacman -S --noconfirm sassc
+  elif command -v apt &>/dev/null; then
+    sudo apt update && sudo apt install -y sassc
+  else
+    gum_or_echo "${RED}No known package manager — install sassc manually: https://github.com/sass/sassc${NC}"
+    return 1
+  fi
+
+  if command -v sassc &>/dev/null; then
+    return 0
+  else
+    gum_or_echo "${RED}✗ sassc install attempted but command still not found.${NC}"
+    return 1
+  fi
+}
+
+compile_scss_themes() {
+  local sassc_bin
+  sassc_bin="$(command -v sassc || true)"
+
+  if [ -z "$sassc_bin" ]; then
+    if check_and_install_sassc; then
+      sassc_bin="$(command -v sassc || true)"
+    fi
+  fi
+
+  if [ -z "$sassc_bin" ]; then
+    gum_or_echo "${RED}✗ sassc is required but not available. Aborting operation.${NC}"
+    return 1
+  fi
+
+  if [ ! -f "$SRC_DIR/targets/Tahoe-Light-gtk4.scss" ] || [ ! -f "$SRC_DIR/targets/Tahoe-Dark-gtk4.scss" ]; then
+    gum_or_echo "${RED}✗ SCSS targets not found in $SRC_DIR/targets. Aborting operation.${NC}"
+    return 1
+  fi
+
+  if ! mkdir -p "$GTK_DIR/Tahoe-Light/gtk-4.0" "$GTK_DIR/Tahoe-Dark/gtk-4.0"; then
+    gum_or_echo "${RED}✗ Failed to create gtk-4.0 directories.${NC}"
+    return 1
+  fi
+
+  if ! gum_spin_run "Compiling SCSS -> gtk-4.0 CSS..." "
+    set -e
+    '$sassc_bin' '$SRC_DIR/targets/Tahoe-Light-gtk4.scss' '$GTK_DIR/Tahoe-Light/gtk-4.0/gtk.css'
+    '$sassc_bin' '$SRC_DIR/targets/Tahoe-Dark-gtk4.scss'  '$GTK_DIR/Tahoe-Dark/gtk-4.0/gtk.css'
+    cp '$GTK_DIR/Tahoe-Light/gtk-4.0/gtk.css' '$GTK_DIR/Tahoe-Light/gtk-4.0/gtk-dark.css'
+    cp '$GTK_DIR/Tahoe-Dark/gtk-4.0/gtk.css'  '$GTK_DIR/Tahoe-Dark/gtk-4.0/gtk-dark.css'
+  "; then
+    gum_or_echo "${RED}✗ SCSS compilation failed. Aborting operation.${NC}"
+    return 1
+  fi
+
+  gum_or_echo "✅ SCSS compiled into gtk-4.0 folders."
+  return 0
+}
+
 install_theme_copy() {
+  compile_scss_themes || return 1
   # args: src_dir dest_name
   local src="$1"
   local dest_name="$2"
@@ -302,6 +376,7 @@ install_color_variants_from_gtkdir() {
 }
 
 install_libadwaita_override() {
+  compile_scss_themes || return 1
   # args: pref_mode(Light|Dark) specific_color(optional)
   local pref="$1"
   local specific="$2"
@@ -695,9 +770,9 @@ interactive_menu() {
     fi
 
     case "$selection" in
-      "Install: Light") install_base_themes true false ;;
-      "Install: Dark") install_base_themes false true ;;
-      "Install: Both") install_base_themes true true ;;
+      "Install: Light") install_base_themes true false || gum_or_echo "${RED}✗ Install failed — back to menu.${NC}" ;;
+      "Install: Dark") install_base_themes false true || gum_or_echo "${RED}✗ Install failed — back to menu.${NC}" ;;
+      "Install: Both") install_base_themes true true || gum_or_echo "${RED}✗ Install failed — back to menu.${NC}" ;;
       "Generate: All accent variants")
         if gum_confirm_or_read "Run accent generation (--all) now?"; then
           generate_accent_variants_py ""
@@ -722,7 +797,7 @@ interactive_menu() {
         if gum_confirm_or_read "Pick a specific accent variant for libadwaita override?"; then
           specific="$(choose_accent_color)"
         fi
-        install_libadwaita_override "${mode:-Light}" "$specific"
+        install_libadwaita_override "${mode:-Light}" "$specific" || gum_or_echo "${RED}✗ libadwaita override failed — back to menu.${NC}"
         ;;
       "Install Extras (icons/wallpapers/cursors/ulauncher/GDM)")
         if command -v gum &>/dev/null; then
@@ -853,7 +928,7 @@ if [[ $# -gt 0 ]]; then
 
   # Execute based on parsed flags
   if $INSTALL_LIGHT || $INSTALL_DARK; then
-    install_base_themes $INSTALL_LIGHT $INSTALL_DARK
+    install_base_themes $INSTALL_LIGHT $INSTALL_DARK || { gum_or_echo "${RED}✗ Theme installation failed.${NC}"; exit 1; }
   fi
 
   if $INSTALL_COLORS; then
@@ -873,7 +948,7 @@ if [[ $# -gt 0 ]]; then
       pref="Light"  # default
     fi
 
-    install_libadwaita_override "$pref" "$SPECIFIC_COLOR"
+    install_libadwaita_override "$pref" "$SPECIFIC_COLOR" || { gum_or_echo "${RED}✗ libadwaita override failed.${NC}"; exit 1; }
   fi
 
   if $INSTALL_WALLPAPER; then

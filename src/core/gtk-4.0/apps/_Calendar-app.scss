@@ -1,0 +1,10 @@
+/*********************
+ * calendar *
+ *********************/
+
+monthcell:hover {
+  background-color: theme(
+    raw(rgba(255, 255, 255, 0.1)),
+    raw(rgba(255, 255, 255, 0.25))
+  );
+}

@@ -1,0 +1,226 @@
+/*********************
+ * Nautilus *
+ *********************/
+
+widget#NautilusViewCell {
+  border-radius: 0px;
+}
+
+widget#NautilusViewCell
+  > box.horizontal
+  > box.horizontal
+  > box.vertical
+  > picture {
+  border-radius: 0px;
+}
+
+widget#NautilusViewCell > box.horizontal > box.horizontal > box.vertical {
+  border-radius: 0px;
+}
+
+window.filechooser > gridview.view,
+window.filechooser > list.navigation-sidebar {
+  background-color: transparent;
+}
+
+gridview.view picture.thumbnail {
+  border-radius: 16px;
+  border: none;
+  border-color: rgba(255, 255, 255, 0);
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.nautilus-window headerbar > revealer.top-bar,
+overlay-split-view.view,
+statuspage.view,
+window#NautilusAppChooser > headerbar.titlebar,
+box.vertical > banner > revealer > widget {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.sidebar-pane {
+  @include liquid-glass-side-pane;
+}
+
+toastoverlay > overlay-split-view > widget.background {
+  background-color: transparent;
+  background-image: linear-gradient(
+    to bottom, theme(
+    raw(rgba(40, 40, 40, 0.99),rgba(30, 30, 30, 0.5)),
+    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
+    )
+  );
+  box-shadow: theme(
+    raw(inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6)),
+    raw(inset 2px 2px 4px -3px rgb(255, 255, 255), inset -2px -2px 4px -3px rgb(255, 255, 255))
+  );
+}
+
+toastoverlay > overlay-split-view > dimming.left, toastoverlay > overlay-split-view > shadow.left {
+  opacity: 0;
+}
+
+box.horizontal.start > button.image-button.toggle {
+  margin-right: 0px;
+}
+
+window {
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.6)),
+    raw(rgba(255, 255, 255, 0.6))
+  );
+  box-shadow: theme(
+    raw(inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.05)),
+    raw(inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.02))
+  );
+}
+
+#NautilusFileChooser.background {
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.6)),
+    raw(rgba(255, 255, 255, 0.6))
+  );
+  box-shadow: theme(
+    raw(inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.05)),
+    raw(inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.02))
+  );
+}
+
+window#NautilusFileChooser > button.default.pill {
+  margin-right: 10px;
+}
+
+window#NautilusFileChooser > revealer.bottom-bar {
+  margin-left: 10px;
+}
+
+#NautilusPathBar, .nautilus-pathbar {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  box-shadow: theme(
+    raw(inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)),
+    raw(inset 2px 2px 4px -2.8px rgb(255, 255, 255), inset -2px -2px 4px -2.8px rgb(255, 255, 255))
+  );
+}
+
+entry {
+  @include liquid-glass-side-pane;
+}
+
+window#NautilusAppChooser > separator.horizontal {
+  opacity: 0;
+}
+
+window#NautilusAppChooser
+  > box.dialog-vbox
+  > box.vertical
+  > scrolledwindow.background {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+window#NautilusAppChooser > scrolledwindow.background {
+  border: none;
+}
+
+dialog.floating.nautilus-app-chooser listview.view {
+  padding: 4px;
+  
+}
+
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-bottom.undershoot-top widget.toolbar {
+  padding-top: 6px;
+  padding-bottom: 0px;
+  
+}
+
+dialog.floating.nautilus-app-chooser listview.view > header {
+  padding-top: 10px;
+  
+}
+
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-bottom.undershoot-top,
+dialog.floating.nautilus-app-chooser toolbarview.undershoot-top {
+  padding: 10px;
+}
+
+list.background {
+  @include liquid-glass-side-pane(
+    raw(inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6)),
+    raw(inset 2px 2px 4px -3.2px rgb(255, 255, 255), inset -2px -2px 4px -3.2px rgb(255, 255, 255))
+  );
+  margin-top: 10px;
+}
+
+/* This removes selection color of sidebar
+row.activatable {
+  background-color: rgba(0, 0, 0, 0);
+ }
+ */
+
+sheet.background {
+  @include liquid-glass-side-pane($shadow_dark: null, $shadow_light: null);
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.92)),
+    raw(rgba(255, 255, 255, 0.92))
+  );
+}
+
+button.suggested-action.text-button {
+  margin-right: -10px;
+}
+
+box.bottom.floating-bar {
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.6)),
+    raw(rgba(255, 255, 255, 0.8))
+  );
+  box-shadow: theme(
+    raw(inset 2px 2px 2px -2.8px rgba(255, 255, 255, 0.8), inset -2px -2px 2px -2.8px rgba(255, 255, 255, 0.8)),
+    raw(inset 2px 2px 2px -2.8px rgb(255, 255, 255), inset -2px -2px 2px -2.8px rgb(255, 255, 255))
+  );
+}
+
+toastoverlay toast {
+  background-color: theme(
+    raw(rgba(0, 0, 0, 0.93)),
+    raw(rgba(255, 255, 255, 0.86))
+  );
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.06)
+  );
+  box-shadow: theme(
+    raw(inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)),
+    raw(inset 2px 2px 4px -2.8px rgb(255, 255, 255), inset -2px -2px 4px -2.8px rgb(255, 255, 255))
+  );
+}
+
+/*
+ row.activatable.entry {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  box-shadow: inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6);
+ }
+
+ toolbarview.undershoot-top {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.03)
+  );
+  box-shadow: inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6);
+ }
+*/
