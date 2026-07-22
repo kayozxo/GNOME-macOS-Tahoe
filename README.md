@@ -85,6 +85,33 @@ If you prefer command-line flags over the interactive menu:
 
 Then continue from [here](.config/EXTENSIONS.md)
 
+## Emojis 😮‍💨
+
+1. Create `~/.local/share/fonts`:
+
+```bash
+mkdir ~/.local/share/fonts
+```
+
+2. Download [Apple-emoji-linux](https://github.com/samuelngs/apple-emoji-linux) to `~/.local/share/fonts`
+
+```bash
+curl -L https://github.com/samuelngs/apple-emoji-linux/releases/latest/download/AppleColorEmoji.ttf \
+  -o ~/.local/share/fonts/AppleColorEmoji.ttf
+```
+
+3. Move the font config to ~/.config/fontconfig/conf.d
+
+```bash
+mkdir -p ~/.config/fontconfig/conf.d && mv 99-apple-emoji.conf ~/.config/fontconfig/conf.d
+```
+
+4. Rebuild the font cache and re-login
+
+```bash
+fc-cache -f -v
+```
+
 ## Accent Colors
 
 Tahoe now supports **16 beautiful accent colors** with complete theming support across **GTK4, GTK3, and GNOME Shell**! Generate and install accent color variants easily:
