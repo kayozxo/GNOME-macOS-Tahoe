@@ -212,50 +212,52 @@ backup_existing() {
   fi
 }
 
-check_and_install_sassc() {
-  if command -v sassc &>/dev/null; then
+check_and_install_dart_sass() {
+  if command -v sass &>/dev/null; then
     return 0
   fi
 
-  gum_or_echo "${YELLOW}sassc not found (required to compile theme SCSS).${NC}"
-  if ! gum_confirm_or_read "Install sassc now?"; then
-    gum_or_echo "${YELLOW}Skipping sassc install.${NC}"
+  gum_or_echo "${YELLOW}Dart Sass (sass) not found (required to compile theme SCSS).${NC}"
+  if ! gum_confirm_or_read "Install Dart Sass now?"; then
+    gum_or_echo "${YELLOW}Skipping Dart Sass install.${NC}"
     return 1
   fi
 
   if command -v brew &>/dev/null; then
-    brew install sassc
+    brew install dart-sass
   elif command -v dnf &>/dev/null; then
-    sudo dnf install -y sassc
+    sudo dnf install -y rubygem-sass || sudo dnf install -y dart-sass
   elif command -v pacman &>/dev/null; then
-    sudo pacman -S --noconfirm sassc
+    sudo pacman -S --noconfirm dart-sass
   elif command -v apt &>/dev/null; then
-    sudo apt update && sudo apt install -y sassc
+    sudo apt update && sudo apt install -y dart-sass
+  elif command -v npm &>/dev/null; then
+    sudo npm install -g sass
   else
-    gum_or_echo "${RED}No known package manager — install sassc manually: https://github.com/sass/sassc${NC}"
+    gum_or_echo "${RED}No known package manager — install Dart Sass manually: https://sass-lang.com/install${NC}"
     return 1
   fi
 
-  if command -v sassc &>/dev/null; then
+  if command -v sass &>/dev/null; then
     return 0
   else
-    gum_or_echo "${RED}✗ sassc install attempted but command still not found.${NC}"
+    gum_or_echo "${RED}✗ Dart Sass install attempted but command still not found.${NC}"
     return 1
   fi
 }
 
 compile_scss_themes() {
-  local sassc_bin
-  sassc_bin="$(command -v sassc || true)"
+  local sass_bin
+  sass_bin="$(command -v sass || true)"
 
-  if [ -z "$sassc_bin" ]; then
-    if check_and_install_sassc; then
-      sassc_bin="$(command -v sassc || true)"
+  if [ -z "$sass_bin" ]; then
+    if check_and_install_dart_sass; then
+      sass_bin="$(command -v sass || true)"
     fi
   fi
 
-  if [ -z "$sassc_bin" ]; then
-    gum_or_echo "${RED}✗ sassc is required but not available. Aborting operation.${NC}"
+  if [ -z "$sass_bin" ]; then
+    gum_or_echo "${RED}✗ Dart Sass (sass) is required but not available. Aborting operation.${NC}"
     return 1
   fi
 
@@ -271,8 +273,8 @@ compile_scss_themes() {
 
   if ! gum_spin_run "Compiling SCSS -> gtk-4.0 CSS..." "
     set -e
-    '$sassc_bin' '$SRC_DIR/targets/Tahoe-Light-gtk4.scss' '$GTK_DIR/Tahoe-Light/gtk-4.0/gtk.css'
-    '$sassc_bin' '$SRC_DIR/targets/Tahoe-Dark-gtk4.scss'  '$GTK_DIR/Tahoe-Dark/gtk-4.0/gtk.css'
+    '$sass_bin' '$SRC_DIR/targets/Tahoe-Light-gtk4.scss' '$GTK_DIR/Tahoe-Light/gtk-4.0/gtk.css'
+    '$sass_bin' '$SRC_DIR/targets/Tahoe-Dark-gtk4.scss'  '$GTK_DIR/Tahoe-Dark/gtk-4.0/gtk.css'
     cp '$GTK_DIR/Tahoe-Light/gtk-4.0/gtk.css' '$GTK_DIR/Tahoe-Light/gtk-4.0/gtk-dark.css'
     cp '$GTK_DIR/Tahoe-Dark/gtk-4.0/gtk.css'  '$GTK_DIR/Tahoe-Dark/gtk-4.0/gtk-dark.css'
   "; then

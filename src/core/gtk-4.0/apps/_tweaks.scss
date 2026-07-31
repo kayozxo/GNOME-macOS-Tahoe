@@ -1,3 +1,5 @@
+@use "../../compat";
+
 /*********************
  * Tweaks *
  *********************/
@@ -38,9 +40,9 @@ stack.background {
 
 box.split-row.vertical {
   border-radius: 0;
-  border-bottom-color: theme(
-    raw(rgba(0, 0, 0, 0.2)),
-    raw(rgba(255, 255, 255, 0.2))
+  border-bottom-color: compat.theme(
+    compat.raw(rgba(0, 0, 0, 0.2)),
+    compat.raw(rgba(255, 255, 255, 0.2))
   );
 }
 
@@ -50,24 +52,24 @@ leaflet.unfolded > separator.horizontal {
 
 leaflet.unfolded > box.vertical list.navigation-sidebar {
   background-color: transparent;
-  background-image: theme(
-    raw(linear-gradient(
+  background-image: compat.theme(
+    compat.raw(linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.03)
     )), 
-    raw(linear-gradient(
+    compat.raw(linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.43)
     ))
   );
-  box-shadow: theme(
-    raw(
+  box-shadow: compat.theme(
+    compat.raw(
       inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
       inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)
     ),
-    raw(
+    compat.raw(
       inset 2px 2px 4px -2.8px rgb(255, 255, 255),
       inset -2px -2px 4px -2.8px rgb(255, 255, 255)
     )

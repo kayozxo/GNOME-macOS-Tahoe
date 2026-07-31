@@ -1,3 +1,6 @@
+@use "../../compat";
+@use "../styling-mixins";
+
 /*********************
  * Nautilus *
  *********************/
@@ -40,20 +43,20 @@ box.vertical > banner > revealer > widget {
 }
 
 .sidebar-pane {
-  @include liquid-glass-side-pane;
+  @include styling-mixins.liquid-glass-side-pane;
 }
 
 toastoverlay > overlay-split-view > widget.background {
   background-color: transparent;
   background-image: linear-gradient(
-    to bottom, theme(
-    raw(rgba(40, 40, 40, 0.99),rgba(30, 30, 30, 0.5)),
-    raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
+    to bottom, compat.theme(
+    compat.raw(rgba(40, 40, 40, 0.99),rgba(30, 30, 30, 0.5)),
+    compat.raw(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.43))
     )
   );
-  box-shadow: theme(
-    raw(inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6)),
-    raw(inset 2px 2px 4px -3px rgb(255, 255, 255), inset -2px -2px 4px -3px rgb(255, 255, 255))
+  box-shadow: compat.theme(
+    compat.raw(inset 2px 2px 4px -3px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3px rgba(255, 255, 255, 0.6)),
+    compat.raw(inset 2px 2px 4px -3px rgb(255, 255, 255), inset -2px -2px 4px -3px rgb(255, 255, 255))
   );
 }
 
@@ -66,24 +69,24 @@ box.horizontal.start > button.image-button.toggle {
 }
 
 window {
-  background-color: theme(
-    raw(rgba(0, 0, 0, 0.6)),
-    raw(rgba(255, 255, 255, 0.6))
+  background-color: compat.theme(
+    compat.raw(rgba(0, 0, 0, 0.6)),
+    compat.raw(rgba(255, 255, 255, 0.6))
   );
-  box-shadow: theme(
-    raw(inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.05)),
-    raw(inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.02))
+  box-shadow: compat.theme(
+    compat.raw(inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.05)),
+    compat.raw(inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.02))
   );
 }
 
 #NautilusFileChooser.background {
-  background-color: theme(
-    raw(rgba(0, 0, 0, 0.6)),
-    raw(rgba(255, 255, 255, 0.6))
+  background-color: compat.theme(
+    compat.raw(rgba(0, 0, 0, 0.6)),
+    compat.raw(rgba(255, 255, 255, 0.6))
   );
-  box-shadow: theme(
-    raw(inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.05)),
-    raw(inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.02))
+  box-shadow: compat.theme(
+    compat.raw(inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 0.05)),
+    compat.raw(inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.02))
   );
 }
 
@@ -102,14 +105,14 @@ window#NautilusFileChooser > revealer.bottom-bar {
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.03)
   );
-  box-shadow: theme(
-    raw(inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)),
-    raw(inset 2px 2px 4px -2.8px rgb(255, 255, 255), inset -2px -2px 4px -2.8px rgb(255, 255, 255))
+  box-shadow: compat.theme(
+    compat.raw(inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)),
+    compat.raw(inset 2px 2px 4px -2.8px rgb(255, 255, 255), inset -2px -2px 4px -2.8px rgb(255, 255, 255))
   );
 }
 
 entry {
-  @include liquid-glass-side-pane;
+  @include styling-mixins.liquid-glass-side-pane;
 }
 
 window#NautilusAppChooser > separator.horizontal {
@@ -149,9 +152,9 @@ dialog.floating.nautilus-app-chooser toolbarview.undershoot-top {
 }
 
 list.background {
-  @include liquid-glass-side-pane(
-    raw(inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6)),
-    raw(inset 2px 2px 4px -3.2px rgb(255, 255, 255), inset -2px -2px 4px -3.2px rgb(255, 255, 255))
+  @include styling-mixins.liquid-glass-side-pane(
+    compat.raw(inset 2px 2px 4px -3.2px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -3.2px rgba(255, 255, 255, 0.6)),
+    compat.raw(inset 2px 2px 4px -3.2px rgb(255, 255, 255), inset -2px -2px 4px -3.2px rgb(255, 255, 255))
   );
   margin-top: 10px;
 }
@@ -163,10 +166,10 @@ row.activatable {
  */
 
 sheet.background {
-  @include liquid-glass-side-pane($shadow_dark: null, $shadow_light: null);
-  background-color: theme(
-    raw(rgba(0, 0, 0, 0.92)),
-    raw(rgba(255, 255, 255, 0.92))
+  @include styling-mixins.liquid-glass-side-pane($shadow_dark: null, $shadow_light: null);
+  background-color: compat.theme(
+    compat.raw(rgba(0, 0, 0, 0.92)),
+    compat.raw(rgba(255, 255, 255, 0.92))
   );
 }
 
@@ -175,29 +178,29 @@ button.suggested-action.text-button {
 }
 
 box.bottom.floating-bar {
-  background-color: theme(
-    raw(rgba(0, 0, 0, 0.6)),
-    raw(rgba(255, 255, 255, 0.8))
+  background-color: compat.theme(
+    compat.raw(rgba(0, 0, 0, 0.6)),
+    compat.raw(rgba(255, 255, 255, 0.8))
   );
-  box-shadow: theme(
-    raw(inset 2px 2px 2px -2.8px rgba(255, 255, 255, 0.8), inset -2px -2px 2px -2.8px rgba(255, 255, 255, 0.8)),
-    raw(inset 2px 2px 2px -2.8px rgb(255, 255, 255), inset -2px -2px 2px -2.8px rgb(255, 255, 255))
+  box-shadow: compat.theme(
+    compat.raw(inset 2px 2px 2px -2.8px rgba(255, 255, 255, 0.8), inset -2px -2px 2px -2.8px rgba(255, 255, 255, 0.8)),
+    compat.raw(inset 2px 2px 2px -2.8px rgb(255, 255, 255), inset -2px -2px 2px -2.8px rgb(255, 255, 255))
   );
 }
 
 toastoverlay toast {
-  background-color: theme(
-    raw(rgba(0, 0, 0, 0.93)),
-    raw(rgba(255, 255, 255, 0.86))
+  background-color: compat.theme(
+    compat.raw(rgba(0, 0, 0, 0.93)),
+    compat.raw(rgba(255, 255, 255, 0.86))
   );
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.2),
     rgba(255, 255, 255, 0.06)
   );
-  box-shadow: theme(
-    raw(inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)),
-    raw(inset 2px 2px 4px -2.8px rgb(255, 255, 255), inset -2px -2px 4px -2.8px rgb(255, 255, 255))
+  box-shadow: compat.theme(
+    compat.raw(inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6), inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6)),
+    compat.raw(inset 2px 2px 4px -2.8px rgb(255, 255, 255), inset -2px -2px 4px -2.8px rgb(255, 255, 255))
   );
 }
 

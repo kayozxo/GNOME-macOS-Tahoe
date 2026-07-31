@@ -1,34 +1,40 @@
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
+
 // src/core/_compat.scss
 // This file shields native GTK layout functions and macros from the compiler
+
+// Define $variant with a default fallback so targets can configure it
+$variant: 'light' !default;
 
 // Core function protection layers
 @function alpha($color, $opacity: null) {
   @if $opacity == null {
-    @return unquote("alpha(#{$color})");
+    @return string.unquote("alpha(#{$color})");
   } @else {
-    @return unquote("alpha(#{$color}, #{$opacity})");
+    @return string.unquote("alpha(#{$color}, #{$opacity})");
   }
 }
 
-// Utilities for managing dark/light variant selection
+// Utilities for managing dark/light variant selection (updated for modern Dart Sass if-syntax)
 @function theme($dark, $light) {
-  @return if($variant == 'dark', $dark, $light);
+  @return if(sass($variant == 'dark'): $dark; else: $light);
 }
 
 // Helper to pass unquoted complex CSS tokens forward 
 @function raw($args...) {
-  @if length($args) == 1 {
-    $first-arg: nth($args, 1);
-    @if type-of($first-arg) == "string" {
-      @return unquote($first-arg);
+  @if list.length($args) == 1 {
+    $first-arg: list.nth($args, 1);
+    @if meta.type-of($first-arg) == "string" {
+      @return string.unquote($first-arg);
     }
   }
-  @return unquote("#{$args}");
+  @return string.unquote("#{$args}");
 }
 
-
 @function oklab($args...) {
-  @return unquote("oklab(#{$args})");
+  @return string.unquote("oklab(#{$args})");
 }
 
 // Global macro handling logic to pass @define-color straight out to final CSS
@@ -37,4 +43,3 @@
     @define-color #{$name} #{$value};
   }
 }
-

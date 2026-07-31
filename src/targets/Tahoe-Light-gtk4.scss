@@ -1,8 +1,8 @@
 // src/targets/Tahoe-Light-gtk4.scss
-$variant: 'light';
+@use '../core/compat' with (
+  $variant: 'light'
+);
 
-@import '../core/compat';
-@import '../core/colors';
-@import '../core/gtk-4.0/_styling-mixins';
-@import '../core/gtk-4.0/main-styles';
-
+@use '../core/colors';
+@use '../core/gtk-4.0/_styling-mixins';
+@use '../core/gtk-4.0/main-styles';

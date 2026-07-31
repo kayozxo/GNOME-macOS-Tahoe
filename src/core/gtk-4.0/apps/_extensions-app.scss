@@ -1,3 +1,5 @@
+@use "../../compat";
+
 /*********************
  * Extensions *
  *********************/
@@ -5,9 +7,9 @@
 header.horizontal.top > tabs > tab:checked,
 header.horizontal.top > tabs > tab:hover {
   box-shadow: none;
-  background-color: theme(
-    raw(rgba(255, 255, 255, 0.15)),
-    raw(rgba(0, 0, 0, 0.8))
+  background-color: compat.theme(
+    compat.raw(rgba(255, 255, 255, 0.15)),
+    compat.raw(rgba(0, 0, 0, 0.8))
   );
 }
 

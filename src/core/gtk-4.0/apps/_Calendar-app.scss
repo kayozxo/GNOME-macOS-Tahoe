@@ -1,10 +1,12 @@
+@use "../../compat";
+
 /*********************
  * calendar *
  *********************/
 
 monthcell:hover {
-  background-color: theme(
-    raw(rgba(255, 255, 255, 0.1)),
-    raw(rgba(255, 255, 255, 0.25))
+  background-color: compat.theme(
+    compat.raw(rgba(255, 255, 255, 0.1)),
+    compat.raw(rgba(255, 255, 255, 0.25))
   );
 }

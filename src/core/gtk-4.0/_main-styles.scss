@@ -1,8 +1,12 @@
-:root {
-  --standalone-color-oklab: #{theme(raw("max(l, 0.85) a b"), raw("min(l, 0.5) a b"))};
+@use "sass:meta";
+@use "../colors";
+@use "../compat";
 
-  --accent-color: #{theme(
-    raw("oklab(from var(--accent-bg-color) var(--standalone-color-oklab))"),
+:root {
+  --standalone-color-oklab: #{compat.theme(compat.raw("max(l, 0.85) a b"), compat.raw("min(l, 0.5) a b"))};
+
+  --accent-color: #{compat.theme(
+    compat.raw("oklab(from var(--accent-bg-color) var(--standalone-color-oklab))"),
     #0088ff
   )};
 
@@ -11,10 +15,10 @@
   --warning-color:     oklab(from var(--warning-bg-color) var(--standalone-color-oklab));
   --error-color:       oklab(from var(--error-bg-color) var(--standalone-color-oklab));
 
-  --active-toggle-bg-color: #{theme(raw("rgb(255 255 255 / 20%)"), #ffffff)};
-  --active-toggle-fg-color: #{theme(#ffffff, raw("rgb(0 0 6 / 80%)"))};
-  --overview-bg-color:      #{theme(#28282c, #f3f3f5)};
-  --overview-fg-color:      #{theme(#ffffff, raw("rgb(0 0 6 / 80%)"))};
+  --active-toggle-bg-color: #{compat.theme(compat.raw("rgb(255 255 255 / 20%)"), #ffffff)};
+  --active-toggle-fg-color: #{compat.theme(#ffffff, compat.raw("rgb(0 0 6 / 80%)"))};
+  --overview-bg-color:      #{compat.theme(#28282c, #f3f3f5)};
+  --overview-fg-color:      #{compat.theme(#ffffff, compat.raw("rgb(0 0 6 / 80%)"))};
 }
 
 * {
@@ -48,9 +52,9 @@ button.titlebutton {
   min-height: 12px;
   padding: 0;
   margin: 0 2px;
-  box-shadow: inset 0 -1px 0 0 #{$plain_bevel_1},
-    inset 0 1px 0 0 #{$plain_bevel_2}, inset 1px 0 0 0 #{$plain_bevel_3},
-    inset -1px 0 0 0 #{$plain_bevel_4}, 0 1px 3px rgba(0, 0, 0, 0.12),
+  box-shadow: inset 0 -1px 0 0 #{colors.$plain_bevel_1},
+    inset 0 1px 0 0 #{colors.$plain_bevel_2}, inset 1px 0 0 0 #{colors.$plain_bevel_3},
+    inset -1px 0 0 0 #{colors.$plain_bevel_4}, 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -112,10 +116,10 @@ headerbar button.titlebutton.close,
   padding: 0;
   margin: 0 2px;
   color: transparent;
-  background-color: #{$tl_close_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+  background-color: #{colors.$tl_close_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -127,10 +131,10 @@ headerbar button.titlebutton.maximize,
   padding: 0;
   margin: 0 2px;
   color: transparent;
-  background-color: #{$tl_maximize_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+  background-color: #{colors.$tl_maximize_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -142,10 +146,10 @@ headerbar button.titlebutton.minimize,
   padding: 0;
   margin: 0 2px;
   color: transparent;
-  background-color: #{$tl_minimize_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+  background-color: #{colors.$tl_minimize_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -164,10 +168,10 @@ headerbar.default-decoration button.titlebutton.close:hover,
   padding: 2px;
   margin: -2px 0;
   background-color: #f25056;
-  color: theme(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+  color: compat.theme(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -186,10 +190,10 @@ headerbar.default-decoration button.titlebutton.maximize:hover,
   padding: 2px;
   margin: -2px 0;
   background-color: #39ea49;
-  color: theme(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+  color: compat.theme(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -208,10 +212,10 @@ headerbar.default-decoration button.titlebutton.minimize:hover,
   padding: 2px;
   margin: -2px 0;
   background-color: #fac536;
-  color: theme(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
+  color: compat.theme(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.7));
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07), 0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -460,17 +464,17 @@ windowcontrols > button.close {
 }
 
 windowcontrols.end > button.minimize > image {
-  background-color: #{$wc_maximize_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07)#{$wc_outer_shadow};
+  background-color: #{colors.$wc_maximize_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07)#{colors.$wc_outer_shadow};
 }
 
 windowcontrols.start > button.minimize > image {
-  background-color: #{$wc_minimize_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07)#{$wc_outer_shadow};
+  background-color: #{colors.$wc_minimize_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07)#{colors.$wc_outer_shadow};
 }
 
 windowcontrols.end > button.minimize > image {
@@ -478,44 +482,44 @@ windowcontrols.end > button.minimize > image {
 }
 
 windowcontrols.end > button.minimize > image:hover {
-  background-color: #{rgba($wc_maximize_bg, 0.85)};
+  background-color: #{rgba(colors.$wc_maximize_bg, 0.85)};
 }
 
 windowcontrols.start > button.minimize > image:hover {
-  background-color: #{rgba($wc_minimize_bg, 0.85)};
+  background-color: #{rgba(colors.$wc_minimize_bg, 0.85)};
 }
 
 windowcontrols.end > button.maximize > image {
-  background-color: #{$wc_minimize_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07)#{$wc_outer_shadow};
+  background-color: #{colors.$wc_minimize_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07)#{colors.$wc_outer_shadow};
 }
 
 windowcontrols.start > button.maximize > image {
-  background-color: #{$wc_maximize_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07)#{$wc_outer_shadow};
+  background-color: #{colors.$wc_maximize_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07)#{colors.$wc_outer_shadow};
 }
 
 windowcontrols.end > button.maximize > image:hover {
-  background-color: #{rgba($wc_minimize_bg, 0.85)};
+  background-color: #{rgba(colors.$wc_minimize_bg, 0.85)};
 }
 
 windowcontrols.start > button.maximize > image:hover {
-  background-color: #{rgba($wc_maximize_bg, 0.85)};
+  background-color: #{rgba(colors.$wc_maximize_bg, 0.85)};
 }
 
 windowcontrols > button.close > image {
-  background-color: #{$wc_close_bg};
-  box-shadow: inset 0 -1px 0 0 #{$tl_bevel_edge},
-    inset 0 1px 0 0 alpha(white, 0.3), inset 1px 0 0 0 alpha(white, 0.07),
-    inset -1px 0 0 0 alpha(white, 0.07)#{$wc_outer_shadow};
+  background-color: #{colors.$wc_close_bg};
+  box-shadow: inset 0 -1px 0 0 #{colors.$tl_bevel_edge},
+    inset 0 1px 0 0 compat.alpha(white, 0.3), inset 1px 0 0 0 compat.alpha(white, 0.07),
+    inset -1px 0 0 0 compat.alpha(white, 0.07)#{colors.$wc_outer_shadow};
 }
 
 windowcontrols > button.close > image:hover {
-  background-color: #{rgba($wc_close_bg, 0.85)};
+  background-color: #{rgba(colors.$wc_close_bg, 0.85)};
 }
 
 windowcontrols > button > image {
@@ -531,9 +535,9 @@ windowcontrols {
  *********************/
 
 viewswitcher.wide {
-  background-color: theme(
-    raw(rgba(255, 255, 255, 0.1)),
-    raw(rgba(255, 255, 255, 0.25))
+  background-color: compat.theme(
+    compat.raw(rgba(255, 255, 255, 0.1)),
+    compat.raw(rgba(255, 255, 255, 0.25))
   );
   border-radius: 9999px;
 }
@@ -543,9 +547,9 @@ viewswitcher.wide > button {
 }
 
 switch:checked {
-  background-color: theme(
-    raw(rgb(48, 209, 88)),
-    raw(rgb(52, 199, 89))
+  background-color: compat.theme(
+    compat.raw(rgb(48, 209, 88)),
+    compat.raw(rgb(52, 199, 89))
   );
 }
 
@@ -570,9 +574,9 @@ scale.marks-after > trough > slider {
 switch > slider:active {
   transform: scale(1.8);
   background-color: rgba(255, 255, 255, 0);
-  box-shadow: theme(
-    raw(inset 1.2px 0px 2px -0.2px rgba(48, 209, 88, 0.8), inset -0.8px 0.8px 2px -0.2px rgba(255, 255, 255, 0.6)),
-    raw(inset 1.2px 0px 2px -0.2px rgb(52, 199, 89), inset -0.8px 0.8px 2px -0.2px rgb(255, 255, 255))
+  box-shadow: compat.theme(
+    compat.raw(inset 1.2px 0px 2px -0.2px rgba(48, 209, 88, 0.8), inset -0.8px 0.8px 2px -0.2px rgba(255, 255, 255, 0.6)),
+    compat.raw(inset 1.2px 0px 2px -0.2px rgb(52, 199, 89), inset -0.8px 0.8px 2px -0.2px rgb(255, 255, 255))
   );
 }
 
@@ -580,9 +584,9 @@ scale.horizontal > trough > slider:active,
 scale.marks-after > trough > slider:active {
   transform: scale(1.28);
   background-color: rgba(255, 255, 255, 0);
-  box-shadow: theme(
-    raw(inset 1.2px 0px 2px -0.2px rgba(0, 145, 255, 0.8), inset -0.8px 0.8px 2px -0.2px rgba(255, 255, 255, 0.6)),
-    raw(inset 1.2px 0px 2px -0.2px rgb(0, 145, 255), inset -0.8px 0.8px 2px -0.2px rgb(255, 255, 255))
+  box-shadow: compat.theme(
+    compat.raw(inset 1.2px 0px 2px -0.2px rgba(0, 145, 255, 0.8), inset -0.8px 0.8px 2px -0.2px rgba(255, 255, 255, 0.6)),
+    compat.raw(inset 1.2px 0px 2px -0.2px rgb(0, 145, 255), inset -0.8px 0.8px 2px -0.2px rgb(255, 255, 255))
   );
 }
 
@@ -639,4 +643,4 @@ widget.content-pane > lpdragoverlay {
   border-radius: 30px;
 }
 
-@import 'apps'; 
+@include meta.load-css('apps'); 
