@@ -4302,7 +4302,7 @@ StWidget.focused .app-grid-running-dot {
 .notification-banner {
   min-height: 64px;
   width: 34em;
-  border-radius: 14px;
+  border-radius: 18px;
   margin: 10px;
   padding: 10px;
   color: #242424;
