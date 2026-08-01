@@ -21,6 +21,9 @@
   --overview-fg-color:      #{compat.theme(#ffffff, compat.raw("rgb(0 0 6 / 80%)"))};
 }
 
+@import '../gtk-3.0/libadwaita.css';
+@import '../gtk-3.0/libadwaita-tweaks.css';
+
 * {
   border-radius: 20px;
 }
