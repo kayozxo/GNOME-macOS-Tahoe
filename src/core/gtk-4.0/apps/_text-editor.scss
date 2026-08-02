@@ -1,10 +1,12 @@
+@use "../../compat";
+
 /*********************
  * Text Editor *
  *********************/
 tabbox {
-  background-color: theme(
-    raw(rgba(255, 255, 255, 0.05)),
-    raw(rgba(255, 255, 255, 0.25))
+  background-color: compat.theme(
+    compat.raw(rgba(255, 255, 255, 0.05)),
+    compat.raw(rgba(255, 255, 255, 0.25))
   );
   border-radius: 24px;
   margin: 2px 4px 2px 0px;
@@ -14,9 +16,9 @@ tabbox {
 textview.editor {
   border-radius: 30px;
   margin-top: 10px;
-  background-color: theme(
-    raw(rgba(0, 0, 0, 0.2)),
-    raw(rgba(255, 255, 255, 0.2))
+  background-color: compat.theme(
+    compat.raw(rgba(0, 0, 0, 0.2)),
+    compat.raw(rgba(255, 255, 255, 0.2))
   );
   box-shadow: inset 2px 2px 4px -2.8px rgba(255, 255, 255, 0.6),
     inset -2px -2px 4px -2.8px rgba(255, 255, 255, 0.6);
