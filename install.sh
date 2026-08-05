@@ -212,8 +212,18 @@ backup_existing() {
   fi
 }
 
-check_and_install_dart_sass() {
+find_sass_bin() {
+  # Dart Sass may be installed as `sass` (apt/brew/pacman/npm) or as
+  # `dart-sass` (the snap package — snap doesn't alias it to `sass` by default).
   if command -v sass &>/dev/null; then
+    command -v sass
+  elif command -v dart-sass &>/dev/null; then
+    command -v dart-sass
+  fi
+}
+
+check_and_install_dart_sass() {
+  if [ -n "$(find_sass_bin)" ]; then
     return 0
   fi
 
@@ -230,7 +240,13 @@ check_and_install_dart_sass() {
   elif command -v pacman &>/dev/null; then
     sudo pacman -S --noconfirm dart-sass
   elif command -v apt &>/dev/null; then
-    sudo apt update && sudo apt install -y dart-sass
+    # dart-sass isn't packaged in apt on newer Ubuntu releases (e.g. 26.04) —
+    # try apt first, then fall back to snap if it's still missing.
+    sudo apt update && sudo apt install -y dart-sass || true
+    if [ -z "$(find_sass_bin)" ] && command -v snap &>/dev/null; then
+      gum_or_echo "${YELLOW}dart-sass not available via apt — trying snap instead...${NC}"
+      sudo snap install dart-sass
+    fi
   elif command -v npm &>/dev/null; then
     sudo npm install -g sass
   else
@@ -238,7 +254,7 @@ check_and_install_dart_sass() {
     return 1
   fi
 
-  if command -v sass &>/dev/null; then
+  if [ -n "$(find_sass_bin)" ]; then
     return 0
   else
     gum_or_echo "${RED}✗ Dart Sass install attempted but command still not found.${NC}"
@@ -248,11 +264,11 @@ check_and_install_dart_sass() {
 
 compile_scss_themes() {
   local sass_bin
-  sass_bin="$(command -v sass || true)"
+  sass_bin="$(find_sass_bin)"
 
   if [ -z "$sass_bin" ]; then
     if check_and_install_dart_sass; then
-      sass_bin="$(command -v sass || true)"
+      sass_bin="$(find_sass_bin)"
     fi
   fi
 
